@@ -6,6 +6,9 @@
     i18n_domain="plone.app.imagecropping">
 
   <five:registerPackage package="." initialize=".initialize" />
+  <include package="plone.app.imaging" />
+
+  <include package=".browser" />
 
   <genericsetup:registerProfile
       name="default"
@@ -15,5 +18,5 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <!-- -*- extra stuff goes here -*- -->
-  
+
 </configure>
