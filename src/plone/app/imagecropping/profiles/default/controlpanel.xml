@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="silvuple">
+
+    <configlet
+        title="plone.app.imagecropping Settings"
+        action_id="imagecropping.settings"
+        appId="plone.app.imagecropping"
+        category="Plone"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@imagecropping-settings"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage site</permission>
+    </configlet>
+
+</object>

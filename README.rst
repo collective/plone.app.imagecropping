@@ -1,31 +1,56 @@
 .. contents::
 
-Introduction
-============
-
 
 Goal
-----
+====
 
-There has been a need for cropping for a long time and there are lots of addons and a plip too:
-http://dev.plone.org/plone/ticket/10174
+There has been a need for cropping for a long time and there are lots of addons around
+that have different ways to achieve this.
 
-This package meant to be THE cropping solution for plone that just works TM.
+There is `plip #10174`_ asking for adding image cropping to plone core
+which recently got rejected by the FWT. The cropping functionality should go
+into an addon first that also work for dexterity and can be pliped into core.
 
-**Why would you want/need this addon**
+.. _`plip #10174`: http://dev.plone.org/plone/ticket/10174
 
-Automatic cropping is already possible, plone.app.imaging does already handle this.
-But plone.app.imaging only scrops from the center of the image, so in some ocasions this is not what you want.
-plone.app.imagecroppig allows you to select the cropping area yourself.
+This package aims to be THE cropping solution for plone that `just works TM`.
 
+
+Why would you want/need this addon
+----------------------------------
+
+Automatic cropping is already possible, ``plone.app.imaging`` does already handle this
+via the ``direction`` parameter::
+
+  <img tal:define="scales context/@@images"
+       tal:replace="structure python: scales.tag('image',
+                    width=1200, height=800, direction='down')"
+       />
+
+However it only crops from the center of the image,
+so in some ocasions this is not what you want.
+
+``plone.app.imagecropping`` allows you to select the cropping area yourself.
+
+
+How it works
+============
+
+There is a view @@
+
+
+<img tal:replace="structure context/@@images/image/mini" />
 
 
 *explain how to define crop areas should be outlined here
 xxx very important ;-)*
 
 
+xxx mention this is based on https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
 
-**Design decisions**
+
+Design decisions
+----------------
 
 * we need to store the cropped image immediately, so plone.app.imaging traverser doesn't need to care about cropping
   xxx this might be changed when this goes into core
@@ -133,3 +158,7 @@ type/imagefieldname_scale
 
 
 *We should mention other transforms and how they could be implemented (most probably in a different new addon)*
+
+
+
+xxx mention this package on http://stackoverflow.com/questions/11241031/cropping-images-instead-of-scaling-with-plone-and-archetypes
