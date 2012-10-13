@@ -1,0 +1,21 @@
+<html metal:use-macro="context/main_template/macros/master">
+
+    <body>
+
+        <metal:main fill-slot="main">
+
+            <form action="" method="POST">
+                <select>
+                    <!-- scales selector -->
+                </select>
+
+                <!-- jCrop editor -->
+
+                <input type="submit" name="save" />
+                <input type="button" name="delete" />
+            </form>
+        </metal:main>
+
+    </body>
+
+</html>
