@@ -9,4 +9,14 @@
         directory="static"
         />
 
+    <!-- configlet -->
+    <include package="Products.CMFCore" file="permissions.zcml" />
+
+    <browser:page
+        name="imagecropping-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class=".settings.SettingsView"
+        />
+
 </configure>
