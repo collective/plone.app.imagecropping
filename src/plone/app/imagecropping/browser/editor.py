@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 
 
+
 class CroppingEditor(BrowserView):
 
     #this is used to display in JCrop
@@ -12,6 +13,7 @@ class CroppingEditor(BrowserView):
         the current context
         """
 
+        pass
 #    {'fieldname1': {'scales': [('preview', 200, 200)],
 #                     'thumb': 'we might use that in case multiple fields are there',
 #                     'truesize' (5000,3450),

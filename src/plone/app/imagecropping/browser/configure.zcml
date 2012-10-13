@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n_domain="plone">
+
+  <!-- -*- extra stuff goes here -*- -->
+
+    <browser:page
+        for="*"
+        name="crop-image"
+        class=".crop.CroppingView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+
+</configure>
