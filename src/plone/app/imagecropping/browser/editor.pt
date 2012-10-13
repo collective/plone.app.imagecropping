@@ -1,21 +1,82 @@
-<html metal:use-macro="context/main_template/macros/master">
+<html metal:use-macro="context/main_template/macros/master"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  i18n:domain="plone.app.imagecropping">
+  <body>
 
-    <body>
+    <metal:main fill-slot="main">
 
-        <metal:main fill-slot="main">
+      <div metal:define-macro="content-core" tal:define="images view/images">
 
-            <form action="" method="POST">
-                <select>
-                    <!-- scales selector -->
-                </select>
+        <form method="post" tal:attributes="action view/current_url" id="coords" class="coords">
 
-                <!-- jCrop editor -->
+          <!-- select scales-->
+          <select name="image-select" id="image-select">
+            <tal:image tal:repeat="image images">
+              <optgroup
+                tal:define="prefix string:${image/iface}.${image/field}"
+                tal:attributes="label image/title">
+                <option tal:repeat="scale image/scales"
+                  tal:attributes="value string:${prefix}-${scale/id};
+                  data-origWidth string:${scale/orig_width};
+                  data-origHeight string:${scale/orig_height};
+                  data-minWidth string:${scale/min_width};
+                  data-minHeight string:${scale/min_height};
+                  data-ratioWidth string:${scale/ratio_width};
+                  data-ratioHeight string:${scale/ratio_height};
+                  selected string:${scale/selected};
+                  data-imageURL string:${image/full-image}"
+                  tal:content="scale/id">
+                </option>
+              </optgroup>
+            </tal:image>
+          </select>
 
-                <input type="submit" name="save" />
-                <input type="button" name="delete" />
-            </form>
-        </metal:main>
+          <!--JCrop Editor-->
+          <tal:imageform tal:define="image view/current_image;">
+            <img tal:attributes="src image/full-image" class="cropbox" />
+            <div>
+              <label for="x1" i18n:translate="">X1</label>
+              <input type="text" size="4" id="x1" name="x1" />
+              <label for="y1" i18n:translate="">Y1</label>
+              <input type="text" size="4" id="y1" name="y1" />
+              <label for="x2" i18n:translate="">X2</label>
+              <input type="text" size="4" id="x2" name="x2" />
+              <label for="y2" i18n:translate="">Y2</label>
+              <input type="text" size="4" id="y2" name="y2" />
 
-    </body>
+              <input type="hidden" id="field" name="field" value=""
+                tal:attributes="value string:${image/iface}.${image/field}"/>
+
+              <input type="hidden" id="scalename" name="scalename" value=""
+                tal:attributes="value image/current_scale/id" />
+
+            </div>
+            <input type="submit"
+              class="context"
+              value="Save"
+              i18n:attributes="value"
+              name="form.button.Save"
+              />
+            <input type="submit"
+              class="context"
+              value="Delete"
+              i18n:attributes="value"
+              name="form.button.Delete"
+              />
+            <input type="submit"
+              class="context"
+              value="Cancel"
+              i18n:attributes="value"
+              name="form.button.Cancel"
+              />
+          </tal:imageform>
+
+        </form>
+      </div>
+    </div>
+
+  </body>
 
 </html>
