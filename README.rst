@@ -85,8 +85,8 @@ possible editor problems:
 
 
 
-for archetypes this should kinda work:
-contextobject/@@storeCrop?fieldname=image&scalename=thumb,crop-information
+for archetypes and dexterity (by adding the interface option) this should kinda work:
+contextobject/@@storeCrop?interface=my.package.foo.interfaces.IInterface&fieldname=image&scalename=thumb,crop-information
 
 
 
