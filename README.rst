@@ -4,80 +4,81 @@ Introduction
 ============
 
 
-aim
+Goal
 ----
 
-There has been a need for cropping and there are lots of addons and a plip too:
+There has been a need for cropping for a long time and there are lots of addons and a plip too:
 http://dev.plone.org/plone/ticket/10174
 
-this package meant to be THE cropping solution for plone that just works TM
+This package meant to be THE cropping solution for plone that just works TM.
 
+**Why would you want/need this addon**
 
-why would you want/need this addon.
-automatic cropping already possible. but sometimes not what you want
-eg example image for crop problem
-
-
-
-explain how to define crop areas should be outlined here
-xxx very important ;-)
+Automatic cropping is already possible, plone.app.imaging does already handle this.
+But plone.app.imaging only scrops from the center of the image, so in some ocasions this is not what you want.
+plone.app.imagecroppig allows you to select the cropping area yourself.
 
 
 
-design decisions
+*explain how to define crop areas should be outlined here
+xxx very important ;-)*
 
-* store the cropped image immediately, so p.a.i traverser need not care about cropping
+
+
+**Design decisions**
+
+* we need to store the cropped image immediately, so plone.app.imaging traverser doesn't need to care about cropping
   xxx this might be changed when this goes into core
 * need not patch/overwrite/change default imaging behaviour in plone
-* crop gets stored as scaled image. no way to access just the resized scale unless cropinfo gets removed
+* a cropped image gets stored as scaled image. there is no way to access the resized scale unless cropinfo gets removed
 
 
-let user define crop region manually in case the automatic behaviour leads to an unwanted result
-xxx example image
+A user should be able to define the cropping area manually in case the automatic behaviour leads to an unwanted result.
+*xxx example image*
 
 
 
-use cases we want to support
+**Use cases we want to support**
 
 * support archetypes imagefield (custom content type and atctimage, think collective.contentleadimage) and dexterity content
   XXX limitation: this will only work for images in attributestorage
 
-* user uploads new image or referres existing one in tinymce.
-  should be able to change crop via a link just below the image scale selection in tiny image plugin (could open crop-editor in an overlay)
+* a user uploads a new image or referrers an existing one in TinyMCE.
+  the user should be able to change the crop via a link just below the image scale selection in Tiny image plugin (could open a crop-editor in an overlay)
 
 
 
 
 
 
-implementation:
+Implementation
 ===============
 
-cropping view
+Cropping view
 -------------
 
 
-2 possible approaches:
+**2 possible approaches**
 
-a) show preview image for every scale with link to choose cropping region with editor
-b) show dropdown with available scales, picture below
+a) show a preview image for every scale with a link to choose cropping area with the editor
+b) show a dropdown with available scales, picture below
 
 b) preferred, more user friendly, not necessary to show a list of all scaled images (faster)
 
 
-view has to care about all image fields defined on the context (for archetypes it's just iterating over the schema, dexterity iterate over all behaviours)
-just one field: editor shows image direclty
-more fields: page to select image, editor on next page or in an overlay
+The view has to care about all image fields defined on the context (for archetypes it's just iterating over the schema, dexterity iterates over all behaviours).
+Just one field: editor shows image directly.
+More fields: page to select image, editor on next page or in an overlay.
 
 
-possible editor problems:
+**Possible editor problems**
 
 * how to only store crops for scales the user really cared about
   (extra apply button that just saves the currently edited scale)
 
-* shown full resolution image might be slow.
+* shown full resolution image might be slow
   configurable size for the preview might be a good idea
-  but showing downscaled version limits user in terms of precision of selecting a certain
+  but showing downscaled version limits user in terms of precision of selecting a certain precise part of an image
 
 * removing scales should be possible too
 
@@ -85,12 +86,12 @@ possible editor problems:
 
 
 
-for archetypes and dexterity (by adding the interface option) this should kinda work:
+For archetypes and dexterity (by adding the interface option) this should kinda work:
 contextobject/@@storeCrop?interface=my.package.foo.interfaces.IInterface&fieldname=image&scalename=thumb,crop-information
 
 
 
-class croppingview:
+**Class croppingview**
 
 #this is used to display in JCrop
 INITIAL_SIZE = (1000,1000)
@@ -106,26 +107,26 @@ def available_scales()
 
 
 
-allows to select a certain scale
+This allows you to select a certain scale
 
-fires up cropping editor with the aspect ratio fixed to the ratio of the chosen scale.
-in case of tile(16,16) ratio would be 1:1
+It fires up the cropping editor with the aspect ratio fixed to the ratio of the chosen scale.
+In case of a tile(16,16) the ratio would be 1:1.
 
-apply button:
-we gonna store the cropped and resized version of the image as the p.a.i traverser would do when we first access the image
-
-
+Apply button:
+We are going to store the cropped and resized version of the image as the plone.app.imaging traverser would do when we first access the image.
 
 
 
-use cropped version as you are used to use the scales::
+
+
+Use the cropped version as you are used to use the scales:
 
 type/imagefieldname_scale
-xxx refere to p.a.i documentation or show examples here
+*xxx refer to plone.app.imaging documentation or show examples here*
 
 
-plone.app.imagetransforms
+*plone.app.imagetransforms*
 
 
 
-mention other transforms and how they could be implemented (most probably in a different new addon)
+*We should mention other transforms and how they could be implemented (most probably in a different new addon)*
