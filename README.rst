@@ -47,6 +47,14 @@ xxx very important ;-)*
 
 
 xxx mention this is based on https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
+differences:
+* he also added configuration panel options to p.a.i (if fill)
+  images will be auto-cropped in case strategy is fill
+* there you need to mark croppable scales with strategy fill.
+  we allow every scale to be manually cropped
+* our ui is different and more intuitive
+
+
 
 
 Design decisions
