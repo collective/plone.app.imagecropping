@@ -40,7 +40,7 @@ setup(name='plone.app.imagecropping',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'plone.app.imaging',
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""

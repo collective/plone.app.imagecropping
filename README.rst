@@ -126,7 +126,10 @@ def available_scales()
 {'fieldname1': {'scales': [('preview', 200, 200)],
                  'thumb': 'we might use that in case multiple fields are there',
                  'truesize' (5000,3450),
-                 'preview': 'picture url resized to INITIALSIZE to use in JCrop'}}
+                 'preview': 'picture url resized to INITIALSIZE to use in JCrop',
+                 'interface': 'optional.Interface',
+               },
+}
 
 
 
