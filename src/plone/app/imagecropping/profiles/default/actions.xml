@@ -7,7 +7,7 @@
             <property name="description" i18n:translate=""></property>
             <property
                 name="url_expr">string:${object_url}/@@imagecropping</property>
-            <property name="available_expr">object/@@imagecropping/has_croppable_images</property>
+            <property name="available_expr">python:object.restrictedTraverse('@@plone_interface_info').provides('plone.app.imagecropping.interfaces.IImageCropping')</property>
             <property name="permissions">
                 <element value="Modify portal content"/>
             </property>
