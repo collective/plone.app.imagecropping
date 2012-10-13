@@ -16,7 +16,7 @@ class ISettings(Interface):
 
     min_size = schema.TextLine(
         title=u"Minimum Crop Area Size",
-        requred=False,
+        required=False,
         default=u"10:10"
     )
 
