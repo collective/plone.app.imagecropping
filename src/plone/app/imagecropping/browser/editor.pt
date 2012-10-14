@@ -6,36 +6,28 @@
   <body>
 
     <metal:main fill-slot="main">
-      <div metal:define-macro="content-core" tal:define="images view/images">
+      <div metal:define-macro="content-core" tal:define="scales view/scales;
+                                                         current_url view/current_url;
+                                                         editor_size view/editor_size;
+                                                         image_url view/image_url;">
 
-        <form method="post" tal:attributes="action view/current_url" id="coords" class="coords"
-                            tal:condition="images">
+        <form method="post" id="coords" class="coords" tal:attributes="action current_url"
+                                                       tal:condition="scales">
 
           <!-- select scales-->
           <select name="image-select" id="image-select">
-            <tal:image tal:repeat="image images">
-              <optgroup
-                tal:define="prefix string:${image/iface}.${image/field}"
-                tal:attributes="label image/title">
-                <option tal:repeat="scale image/scales"
-                  tal:attributes="value string:${prefix}-${scale/id};
-                  data-origWidth string:${scale/orig_width};
-                  data-origHeight string:${scale/orig_height};
-                  data-minWidth string:${scale/min_width};
-                  data-minHeight string:${scale/min_height};
-                  data-ratioWidth string:${scale/ratio_width};
-                  data-ratioHeight string:${scale/ratio_height};
-                  selected string:${scale/selected};
-                  data-imageURL string:${image/full-image}"
+                <option tal:repeat="scale scales"
+                  tal:attributes="value string:${scale/id};
+                                  data-jcrop_config string:${scale/config};
+                                  selected string:${scale/selected}"
                   tal:content="scale/id">
                 </option>
-              </optgroup>
-            </tal:image>
           </select>
 
           <!--JCrop Editor-->
-          <tal:imageform tal:define="image view/current_image;">
-            <img tal:attributes="src image/full-image" class="cropbox" />
+          <tal:imageform tal:define="image view/current_scale;">
+            <img class="cropbox" tal:attributes="src image_url;" />
+
             <div>
               <label for="x1" i18n:translate="">X1</label>
               <input type="text" size="4" id="x1" name="x1" />
@@ -46,11 +38,8 @@
               <label for="y2" i18n:translate="">Y2</label>
               <input type="text" size="4" id="y2" name="y2" />
 
-              <input type="hidden" id="field" name="field" value=""
-                tal:attributes="value string:${image/iface}.${image/field}"/>
-
               <input type="hidden" id="scalename" name="scalename" value=""
-                tal:attributes="value image/current_scale/id" />
+                tal:attributes="value image/id" />
 
             </div>
             <input type="submit"

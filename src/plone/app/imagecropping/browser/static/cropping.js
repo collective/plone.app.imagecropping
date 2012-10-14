@@ -1,3 +1,5 @@
+//TODO: seting the ration is not working always right...
+
 if (jQuery) {
 
     function clearCoords() {
@@ -16,22 +18,28 @@ if (jQuery) {
     };
 
     function option_change(option) {
-        var origWidth = option.attr('data-origWidth');
-        var origHeight = option.attr('data-origHeight');
-        var minWidth = option.attr('data-minWidth');
-        var minHeight = option.attr('data-minHeight');
-        var ratioWidth = option.attr('data-ratioWidth');
-        var ratioHeight = option.attr('data-ratioHeight');
 
-        var imageURL = option.attr('data-imageURL');
-        $('#coords img.cropbox').attr('src', imageURL);
-        $('#coords img.cropbox').width(origWidth);
-        $('#coords img.cropbox').height(origHeight);
+        var config = jQuery.parseJSON(option.attr('data-jcrop_config'));
+        var jcrop_config = {
+            onChange: showCoords,
+            onSelect: showCoords,
+            onRelease: clearCoords
+        };
+        jcrop_config.allowResize = config["allowResize"];
+        jcrop_config.allowMove = config["allowMove"];
+        jcrop_config.trueSize = config["trueSize"];
+        jcrop_config.boxWidth = config["boxWidth"];
+        jcrop_config.boxHeight = config["boxHeight"];
+        jcrop_config.setSelect = config["setSelect"];
+        jcrop_config.aspectRatio = config["aspectRatio"];
+        jcrop_config.minSize = config["minSize"];
+        jcrop_config.maxSize = config["maxSize"];
 
+        $('#coords img.cropbox').attr('src', config["data-imageURL"]);
+        $('#coords img.cropbox').width(config["origWidth"]);
+        $('#coords img.cropbox').height(config["origHeight"]);
 
-        var field = option.val().split('-')[0];
-        $('#field').val(field);
-        var scaleName = option.val().split('-')[1];
+        var scaleName = option.val();
         $('#scalename').val(scaleName);
 
         var jcrop_api = $('#coords img.cropbox').data('Jcrop');
@@ -39,19 +47,7 @@ if (jQuery) {
             jcrop_api.destroy();
         }
 
-        $('#coords img.cropbox').Jcrop({
-            allowResize: true,
-            allowMove: true,
-            onChange: showCoords,
-            onSelect: showCoords,
-            onRelease: clearCoords,
-            trueSize: [origWidth, origHeight],
-            boxWidth: 900,
-            boxHeight: 0,
-            setSelect: [0,0, minWidth, minHeight],
-            aspectRatio: ratioWidth/ratioHeight,
-            minSize: [minWidth,minHeight]
-        });
+        $('#coords img.cropbox').Jcrop(jcrop_config);
     }
 
     $(document).ready(function() {
