@@ -35,7 +35,7 @@
     <browser:page
       class=".editor.CroppingEditor"
       for="*"
-      name="cropping"
+      name="croppingeditor"
       permission="cmf.ModifyPortalContent"
     />
 

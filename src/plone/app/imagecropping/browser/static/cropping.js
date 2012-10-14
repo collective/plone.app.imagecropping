@@ -1,4 +1,3 @@
-//TODO: seting the ration is not working always right...
 
 if (jQuery) {
 
