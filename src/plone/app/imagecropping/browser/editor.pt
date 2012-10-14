@@ -6,10 +6,10 @@
   <body>
 
     <metal:main fill-slot="main">
-
       <div metal:define-macro="content-core" tal:define="images view/images">
 
-        <form method="post" tal:attributes="action view/current_url" id="coords" class="coords">
+        <form method="post" tal:attributes="action view/current_url" id="coords" class="coords"
+                            tal:condition="images">
 
           <!-- select scales-->
           <select name="image-select" id="image-select">
@@ -74,8 +74,9 @@
           </tal:imageform>
 
         </form>
+
       </div>
-    </div>
+    </metal:main>
 
   </body>
 
