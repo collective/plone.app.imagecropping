@@ -41,6 +41,8 @@ setup(name='plone.app.imagecropping',
       install_requires=[
           'setuptools',
           'plone.app.imaging',
+          'plone.app.jquery',
+          'Products.ATContentTypes',
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""

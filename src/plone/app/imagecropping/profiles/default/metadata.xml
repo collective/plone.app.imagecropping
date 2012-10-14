@@ -4,5 +4,6 @@
   <dependencies>
       <dependency>profile-plone.app.jquery:default</dependency>
       <dependency>profile-plone.app.imaging:default</dependency>
+      <dependency>profile-plone.app.jquery:default</dependency>
   </dependencies>
 </metadata>
