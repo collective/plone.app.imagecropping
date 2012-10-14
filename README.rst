@@ -1,8 +1,8 @@
 .. contents::
 
 
-Goal
-====
+History
+=======
 
 There has been a need for cropping for a long time and there are lots of addons around
 that have different ways to achieve this.
@@ -16,10 +16,10 @@ into an addon first that also work for dexterity and can be pliped into core.
 This package aims to be THE cropping solution for plone that `just works TM`.
 
 
-Why would you want/need this addon
-----------------------------------
+Why do I need this?
+===================
 
-Automatic cropping is already possible, ``plone.app.imaging`` does already handle this
+Automatic cropping is already possible, `plone.app.imaging`_ does already handle this
 via the ``direction`` parameter::
 
   <img tal:define="scales context/@@images"
@@ -30,143 +30,71 @@ via the ``direction`` parameter::
 However it only crops from the center of the image,
 so in some ocasions this is not what you want.
 
-``plone.app.imagecropping`` allows you to select the cropping area yourself.
+``plone.app.imagecropping`` allows you to select the cropping area manually
+for each available image scale using the `JCrop editor`_
+
+.. _`plone.app.imaging`: http://pypi.python.org/pypi/plone.app.imaging
+.. _`JCrop editor`: XXX url here
 
 
 How it works
 ============
 
-There is a view @@
+There is a view @@image-cropping (xxx might be renamed)
+available for every content type implementing ``IImageCropping`` via an object action.
+
+The Interface is implemented by default for ATImage xxx and plone.app.contenttypes image.
 
 
-<img tal:replace="structure context/@@images/image/mini" />
+The view shows a dropdown for all available image scales.
+The aspect ratio for the cropping area in JCrop editor is automatically set
+to the image scale selected by the user.
 
+XXX put screenshot here
 
-*explain how to define crop areas should be outlined here
-xxx very important ;-)*
+The image stored for this scale gets replaced with the cropped and scaled version.
+This way you can access them as you're used to. For example::
 
+  <img tal:replace="structure context/@@images/image/mini" />
 
-xxx mention this is based on https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
-differences:
-* he also added configuration panel options to p.a.i (if fill)
-  images will be auto-cropped in case strategy is fill
-* there you need to mark croppable scales with strategy fill.
-  we allow every scale to be manually cropped
-* our ui is different and more intuitive
+This also enables support for richtext editors such as TinyMCE to insert
+cropped scales into a textfield.
 
-
+In TinyMCE it will be possible to access the cropping editor directly
+out of the image plugin right below the scale selection
+(xxx it might get an additional toolbar button)
 
 
 Design decisions
 ----------------
 
-* we need to store the cropped image immediately, so plone.app.imaging traverser doesn't need to care about cropping
-  xxx this might be changed when this goes into core
-* need not patch/overwrite/change default imaging behaviour in plone
-* a cropped image gets stored as scaled image. there is no way to access the resized scale unless cropinfo gets removed
+* make this package as minimally invasive as possible
 
+  - therefore we store the cropped image immediately, so plone.app.imaging
+    traverser doesn't need to care about cropping
 
-A user should be able to define the cropping area manually in case the automatic behaviour leads to an unwanted result.
-*xxx example image*
+  - users can access cropped images the same way as the access scales
+    (so it works in richtext editors too)
 
+* support archetypes and dexterity content
+  (XXX limitation for dexterity: this will only work for images in AttributeStorage)
 
-
-**Use cases we want to support**
-
-* support archetypes imagefield (custom content type and atctimage, think collective.contentleadimage) and dexterity content
-  XXX limitation: this will only work for images in attributestorage
-
-* a user uploads a new image or referrers an existing one in TinyMCE.
-  the user should be able to change the crop via a link just below the image scale selection in Tiny image plugin (could open a crop-editor in an overlay)
+* a cropped image gets stored instead of the scaled image.
+  if you want back the uncropped image scale you'll need to remove the cropped version
+  in the editor
 
 
 
 
 
+Possible extensions / changes for the future
+--------------------------------------------
 
-Implementation
-===============
-
-Cropping view
--------------
-
-
-**2 possible approaches**
-
-a) show a preview image for every scale with a link to choose cropping area with the editor
-b) show a dropdown with available scales, picture below
-
-b) preferred, more user friendly, not necessary to show a list of all scaled images (faster)
-
-
-The view has to care about all image fields defined on the context (for archetypes it's just iterating over the schema, dexterity iterates over all behaviours).
-Just one field: editor shows image directly.
-More fields: page to select image, editor on next page or in an overlay.
-
-
-**Possible editor problems**
-
-* how to only store crops for scales the user really cared about
-  (extra apply button that just saves the currently edited scale)
-
-* shown full resolution image might be slow
-  configurable size for the preview might be a good idea
-  but showing downscaled version limits user in terms of precision of selecting a certain precise part of an image
-
-* removing scales should be possible too
-
-* read cropping information from the field to mark the correct area if opened for an already cropped scale
-
-
-
-For archetypes and dexterity (by adding the interface option) this should kinda work:
-contextobject/@@storeCrop?interface=my.package.foo.interfaces.IInterface&fieldname=image&scalename=thumb,crop-information
-
-
-
-**Class croppingview**
-
-#this is used to display in JCrop
-INITIAL_SIZE = (1000,1000)
-
-@property
-def available_scales()
-{'fieldname1': {'scales': [('preview', 200, 200)],
-                 'thumb': 'we might use that in case multiple fields are there',
-                 'truesize' (5000,3450),
-                 'preview': 'picture url resized to INITIALSIZE to use in JCrop',
-                 'interface': 'optional.Interface',
-               },
-}
+* allow to mark scales as `auto-croppable` in the plone.app.imaging controlpanel.
+  this enables cropped scales w/o manually defining the cropping area
+  but would require some changes in plone.app.imaging (extend traverser, change
+  controlpanel)
 
 
 
 
-
-This allows you to select a certain scale
-
-It fires up the cropping editor with the aspect ratio fixed to the ratio of the chosen scale.
-In case of a tile(16,16) the ratio would be 1:1.
-
-Apply button:
-We are going to store the cropped and resized version of the image as the plone.app.imaging traverser would do when we first access the image.
-
-
-
-
-
-Use the cropped version as you are used to use the scales:
-
-type/imagefieldname_scale
-*xxx refer to plone.app.imaging documentation or show examples here*
-
-
-*plone.app.imagetransforms*
-
-
-
-*We should mention other transforms and how they could be implemented (most probably in a different new addon)*
-
-
-
-xxx mention this package on http://stackoverflow.com/questions/11241031/cropping-images-instead-of-scaling-with-plone-and-archetypes
