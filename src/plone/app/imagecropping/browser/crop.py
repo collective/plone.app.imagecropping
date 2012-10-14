@@ -26,6 +26,7 @@ class CroppingView(BrowserView):
         field = self.context.getField(fieldname)
         handler = IImageScaleHandler(field)
 
+        # TODO this is archetype only
         value = field.get(self.context)
         data = getattr(aq_base(value), 'data', value)
         if isinstance(data, Pdata):
