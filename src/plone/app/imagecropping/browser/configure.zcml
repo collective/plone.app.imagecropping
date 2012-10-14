@@ -6,13 +6,8 @@
 
     <include package="Products.CMFCore" file="permissions.zcml" />
 
-    <browser:page
-        for="*"
-        name="crop-image"
-        class=".crop.CroppingView"
-        permission="cmf.ModifyPortalContent"
-        />
 
+    <!--resources-->
 
     <browser:resourceDirectory
         name="plone.app.imagecropping.static"
@@ -28,6 +23,20 @@
         class=".settings.SettingsView"
         />
 
+    <!-- views -->
 
+    <browser:page
+        for="*"
+        name="crop-image"
+        class=".crop.CroppingView"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+      class=".editor.CroppingEditor"
+      for="*"
+      name="cropping"
+      permission="cmf.ModifyPortalContent"
+    />
 
 </configure>
