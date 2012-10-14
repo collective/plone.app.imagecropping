@@ -5,3 +5,10 @@ Note:  place names and roles of the people who contribute to this package
 - Joscha Krutzki (joka)
 - Harald Frießnegger (fRiSi)
 - Martijn Zweistra (themask96)
+
+Credits
+-------
+
+The basic concept of ``plone.app.imagcropping`` has already been implemented in `XXX's branch of plone.app.imaging`_
+
+.. _`XXX's branch of plone.app.imaging`: https://github.com/plone/plone.app.imaging/tree/ggozad-cropping

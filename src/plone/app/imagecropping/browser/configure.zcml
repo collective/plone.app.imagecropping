@@ -4,6 +4,8 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n_domain="plone">
 
+    <include package="Products.CMFCore" file="permissions.zcml" />
+
     <browser:page
         for="*"
         name="crop-image"
@@ -18,7 +20,6 @@
         />
 
     <!-- configlet -->
-    <include package="Products.CMFCore" file="permissions.zcml" />
 
     <browser:page
         name="imagecropping-settings"
