@@ -20,6 +20,9 @@ class IImageCroppingUtils(Interface):
             }
         """
 
+    def get_image_field(fieldname, interface):
+        """Returns the image field"""
+
     def get_image_data(fieldname, interface):
         """Returns the image data"""
 
