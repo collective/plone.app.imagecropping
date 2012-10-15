@@ -10,6 +10,18 @@ xxx mention this package on:
 * product page on plone.org
 * the plip: http://dev.plone.org/plone/ticket/10174
 * inform author of branch https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
+* inform people that attended the openspace (frisi has adresses)
+
+
+infrastructure
+==============
+
+* travis-ci integration, so tests get run after each push:
+  http://about.travis-ci.org/docs/user/getting-started/
+
+  (they did it for embedly in this pull request:
+  https://github.com/collective/collective.embedly/pull/2)
+
 
 Implementation
 ==============
