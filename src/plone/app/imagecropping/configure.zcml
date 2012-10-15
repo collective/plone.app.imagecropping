@@ -17,4 +17,9 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <include package=".browser" />
+
+  <!-- adapter -->
+  <adapter factory=".utils.CroppingUtilsArchetype" />
+
+
 </configure>

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+
 from zope import component
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from plone.app.imaging.utils import getAllowedSizes
 
+from plone.app.imagecropping.interfaces import IImageCroppingUtils
 
 class CroppingEditor(BrowserView):
 
@@ -20,13 +22,11 @@ class CroppingEditor(BrowserView):
         """Returns information to initialize JCrop for all available scales
            on the current content with the given fieldname and interface."""
 
-        all_sizes = getAllowedSizes()
-        ids = []
+        scales = []
         current_selected = self.request.get('image-select', '')
-        # TODO this is archetype only, we should do refactoring with an adapter
-        # to provide dexterity and archetype support
-        field = self.context.getField(self.fieldname)
-        image_size = field.getSize(self.context)
+        croputils = IImageCroppingUtils(self.context)
+        image_size = croputils.get_image_size(self.fieldname, self.interface)
+        all_sizes = getAllowedSizes()
         for index, size in enumerate(all_sizes):
             scale = dict()
             # scale jcrop config
@@ -52,8 +52,8 @@ class CroppingEditor(BrowserView):
             scale["id"] = size
             scale["selected"] = size == current_selected and 'selected' or '',
 
-            ids.append(scale)
-        return ids
+            scales.append(scale)
+        return scales
 
     def current_scale(self):
         """Returns information of the current selected scale"""
@@ -99,7 +99,7 @@ class CroppingEditor(BrowserView):
             cropping_util._crop(fieldname=self.fieldname,
                                 scale=scale_name,
                                 box=(x1, y1, x2, y2),
-                                interface=self.interface.__identifier__)
+                                interface=self.interface)
             # XXX TODO success message
         return self.template()
 
