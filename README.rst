@@ -34,23 +34,23 @@ so in some ocasions this is not what you want.
 for each available image scale using the `JCrop editor`_
 
 .. _`plone.app.imaging`: http://pypi.python.org/pypi/plone.app.imaging
-.. _`JCrop editor`: XXX url here
+.. _`JCrop editor`: http://deepliquid.com/content/Jcrop.html
 
 
 How it works
 ============
 
-There is a view @@image-cropping (xxx might be renamed)
-available for every content type implementing ``IImageCropping`` via an object action.
+There is a view @@croppingeditor available for every content type
+implementing ``IImageCropping`` via an object action.
 
-The Interface is implemented by default for ATImage xxx and plone.app.contenttypes image.
+The Interface is implemented by default for ATImage XXX and plone.app.contenttypes image.
 
 
 The view shows a dropdown for all available image scales.
 The aspect ratio for the cropping area in JCrop editor is automatically set
 to the image scale selected by the user.
 
-XXX put screenshot here
+.. image:: https://github.com/petschki/plone.app.imagecropping/master/docs/editor.png
 
 The image stored for this scale gets replaced with the cropped and scaled version.
 This way you can access them as you're used to. For example::
@@ -62,7 +62,6 @@ cropped scales into a textfield.
 
 In TinyMCE it will be possible to access the cropping editor directly
 out of the image plugin right below the scale selection
-(xxx it might get an additional toolbar button)
 
 
 Design decisions
