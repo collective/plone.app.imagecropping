@@ -8,7 +8,6 @@
     <metal:main fill-slot="main">
       <div metal:define-macro="content-core" tal:define="scales view/scales;
                                                          current_url view/current_url;
-                                                         editor_size view/editor_size;
                                                          image_url view/image_url;">
 
         <form method="post" id="coords" class="coords" tal:attributes="action current_url"
@@ -29,15 +28,10 @@
             <img class="cropbox" tal:attributes="src image_url;" />
 
             <div>
-              <label for="x1" i18n:translate="">X1</label>
-              <input type="text" size="4" id="x1" name="x1" />
-              <label for="y1" i18n:translate="">Y1</label>
-              <input type="text" size="4" id="y1" name="y1" />
-              <label for="x2" i18n:translate="">X2</label>
-              <input type="text" size="4" id="x2" name="x2" />
-              <label for="y2" i18n:translate="">Y2</label>
-              <input type="text" size="4" id="y2" name="y2" />
-
+              <input type="hidden" size="4" id="x1" name="x1" />
+              <input type="hidden" size="4" id="y1" name="y1" />
+              <input type="hidden" size="4" id="x2" name="x2" />
+              <input type="hidden" size="4" id="y2" name="y2" />
               <input type="hidden" id="scalename" name="scalename" value=""
                 tal:attributes="value image/id" />
 
