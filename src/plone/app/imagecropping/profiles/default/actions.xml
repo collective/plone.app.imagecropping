@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-    <object name="object" meta_type="CMF Action Category" purge="false">
+    <object name="object" meta_type="CMF Action Category" purge="false" i18n:domain="plone.app.imagecropping">
         <object name="cropping" meta_type="CMF Action">
             <property name="title" i18n:translate="">Image Cropping</property>
             <property name="description" i18n:translate=""></property>
