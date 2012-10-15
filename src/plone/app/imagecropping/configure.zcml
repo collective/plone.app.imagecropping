@@ -17,4 +17,9 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <include package=".browser" />
+
+  <class class="plone.app.blob.content.ATBlob">
+      <implements interface=".interfaces.IImageCropping" />
+  </class>
+
 </configure>

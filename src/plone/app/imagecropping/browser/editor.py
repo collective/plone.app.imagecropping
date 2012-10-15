@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-import json
-from zope import component
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
+from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imaging.utils import getAllowedSizes
+from plone.registry.interfaces import IRegistry
+from zope import component
+from zope.component._api import getUtility
+import json
 
 
 class CroppingEditor(BrowserView):
@@ -13,18 +16,22 @@ class CroppingEditor(BrowserView):
 
     fieldname = "image"
     interface = IATContentType
-    default_editor_size = (900, 0)
     default_cropping_max_size = (0, 0)
+
+    @property
+    def default_editor_size(self):
+        return self._editor_settings.large_size.split(":")
 
     def scales(self):
         """Returns information to initialize JCrop for all available scales
            on the current content with the given fieldname and interface."""
-
         all_sizes = getAllowedSizes()
         ids = []
         current_selected = self.request.get('image-select', '')
-        # TODO this is archetype only, we should do refactoring with an adapter
-        # to provide dexterity and archetype support
+        # TODO: implement other imagefields
+        large_image_url = self.image_url("image")
+        # TODO: this is archetype only, we should do refactoring with an
+        # adapter to provide dexterity and archetype support
         field = self.context.getField(self.fieldname)
         image_size = field.getSize(self.context)
         for index, size in enumerate(all_sizes):
@@ -45,7 +52,7 @@ class CroppingEditor(BrowserView):
                 ("aspectRatio", ratio_width / ratio_height),
                 ("minSize", [min_width, min_height]),
                 ("maxSize", [max_width, max_height]),
-                ("imageURL", self.image_url()),
+                ("imageURL", large_image_url),
             ])
             scale["config"] = json.dumps(config)
             # scale value/id
@@ -76,9 +83,12 @@ class CroppingEditor(BrowserView):
         )
         return context_state.current_page_url()
 
-    def image_url(self):
+    def image_url(self, fieldname="image"):
         """Returns the url to the unscaled image"""
-        return "%s/@@images/%s" % (self.context.absolute_url(), self.fieldname)
+        scales = self.context.restrictedTraverse('@@images')
+        return scales.scale(fieldname,
+            width=int(self.default_editor_size[0]),
+            height=int(self.default_editor_size[1])).url
 
     def __call__(self):
         form = self.request.form
@@ -116,3 +126,9 @@ class CroppingEditor(BrowserView):
             height = image_size[1]
             width = float(width) * ratio
         return (int(round(width)), int(round(height)))
+
+    @property
+    def _editor_settings(self):
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(ISettings)
+        return settings

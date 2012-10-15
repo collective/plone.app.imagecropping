@@ -8,7 +8,6 @@
     <metal:main fill-slot="main">
       <div metal:define-macro="content-core" tal:define="scales view/scales;
                                                          current_url view/current_url;
-                                                         editor_size view/editor_size;
                                                          image_url view/image_url;">
 
         <form method="post" id="coords" class="coords" tal:attributes="action current_url"

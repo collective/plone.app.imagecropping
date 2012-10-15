@@ -6,7 +6,7 @@
             <property name="title" i18n:translate="">Image Cropping</property>
             <property name="description" i18n:translate=""></property>
             <property
-                name="url_expr">string:${object_url}/@@imagecropping</property>
+                name="url_expr">string:${object_url}/@@croppingeditor</property>
             <property name="available_expr">python:object.restrictedTraverse('@@plone_interface_info').provides('plone.app.imagecropping.interfaces.IImageCropping')</property>
             <property name="permissions">
                 <element value="Modify portal content"/>
