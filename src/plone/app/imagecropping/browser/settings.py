@@ -3,19 +3,22 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper, \
 from plone.z3cform import layout
 from zope import schema
 from zope.interface.interface import Interface
+from plone.app.imagecropping import imagecroppingMessageFactory as _
 
 
 class ISettings(Interface):
     """ Define settings data structure """
 
     large_size = schema.TextLine(
-        title=u"Crop Editor Large Size",
+        title=_(u"Crop Editor Large Size"),
+        description=_(u"width:height"),
         required=False,
         default=u"1000:1000",
     )
 
     min_size = schema.TextLine(
-        title=u"Minimum Crop Area Size",
+        title=_(u"Minimum Crop Area Size"),
+        description=_(u"width:height"),
         required=False,
         default=u"10:10"
     )
@@ -26,7 +29,7 @@ class SettingsEditForm(RegistryEditForm):
     Define form logic
     """
     schema = ISettings
-    label = u"plone.app.imagecropping Settings"
+    label = _(u"Image Cropping Settings")
 
 
 SettingsView = layout.wrap_form(SettingsEditForm, ControlPanelFormWrapper)

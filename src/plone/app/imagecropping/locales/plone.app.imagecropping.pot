@@ -1,0 +1,51 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-10-15 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.app.imagecropping\n"
+
+#: plone/app/imagecropping/browser/editor.pt:51
+msgid "Cancel"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:13
+msgid "Crop Editor Large Size"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:45
+msgid "Delete"
+msgstr ""
+
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "Image Cropping"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:32
+msgid "Image Cropping Settings"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:20
+msgid "Minimum Crop Area Size"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:39
+msgid "Save"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:14
+msgid "width:height"
+msgstr ""
+
