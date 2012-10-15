@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
-
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.imagecropping.browser.settings import ISettings
-from plone.app.imaging.utils import getAllowedSizes
-from plone.registry.interfaces import IRegistry
-from zope import component
-from zope.component._api import getUtility
 import json
 
+from zope import component
+from zope.component._api import getUtility
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
+from plone.registry.interfaces import IRegistry
+from plone.app.imagecropping.browser.settings import ISettings
+from plone.app.imaging.utils import getAllowedSizes
+
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+
 
 class CroppingEditor(BrowserView):
 
@@ -89,8 +90,8 @@ class CroppingEditor(BrowserView):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
         return scales.scale(fieldname,
-            width=int(self.default_editor_size[0]),
-            height=int(self.default_editor_size[1])).url
+                            width=int(self.default_editor_size[0]),
+                            height=int(self.default_editor_size[1])).url
 
     def __call__(self):
         form = self.request.form
