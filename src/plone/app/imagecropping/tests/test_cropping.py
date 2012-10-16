@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import _createObjectByType
 from os.path import dirname, join
 from plone.app.imagecropping import tests

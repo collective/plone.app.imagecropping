@@ -3,61 +3,87 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   i18n:domain="plone.app.imagecropping">
+
   <body>
 
     <metal:main fill-slot="main">
-      <div metal:define-macro="content-core" tal:define="scales view/scales;
-                                                         current_url view/current_url;
-                                                         image_url view/image_url;">
+      <h1 class="documentFirstHeading"
+          i18n:translate="">
+          Image Cropping Editor
+      </h1>
 
-        <form method="post" id="coords" class="coords" tal:attributes="action current_url"
-                                                       tal:condition="scales">
+      <div class="row"
+           tal:define="multiple_flds python:len(view.image_fields()) > 1;
+                       scales view/scales;
+                       image_url view/image_url;">
+          <div class="cell width-1:4 position-0"
+               tal:condition="multiple_flds">
+                <pre tal:content="view/image_fields" />
+          </div>
 
-          <!-- select scales-->
-          <select name="image-select" id="image-select">
-                <option tal:repeat="scale scales"
-                  tal:attributes="value string:${scale/id};
-                                  data-jcrop_config string:${scale/config};
-                                  selected string:${scale/selected}"
-                  tal:content="scale/id">
-                </option>
-          </select>
+          <div class="cell width-1:4"
+               tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
-          <!--JCrop Editor-->
-          <tal:imageform tal:define="image view/current_scale;">
-            <img class="cropbox" tal:attributes="src image_url;" />
+            <ul class="scales visualNoMarker">
+                <li tal:repeat="scale scales"
+                    tal:attributes="data-jcrop_config scale/config;
+                                    data-scale_name scale/id;
+                                    class scale/selected">
+                    <a href="javascript:void(0)">
+                        <span class="scaleDesc"
+                              tal:content="scale/title">
+                            mini (100, 100)
+                        </span><br />
+                        <img tal:attributes="src string:${context/absolute_url}/@@images/${view/fieldname}/${scale/id}" />
+                    </a>
+                </li>
+            </ul>
+          </div>
 
-            <div>
-              <input type="hidden" size="4" id="x1" name="x1" />
-              <input type="hidden" size="4" id="y1" name="y1" />
-              <input type="hidden" size="4" id="x2" name="x2" />
-              <input type="hidden" size="4" id="y2" name="y2" />
-              <input type="hidden" id="scalename" name="scalename" value=""
-                tal:attributes="value image/id" />
+          <div class="cell width-1:2 position-1:2"
+               tal:attributes="class python:'cell width-%s position-%s' % (multiple_flds and '1:2' or '3:4', multiple_flds and '1:2' or '1:4')">
 
-            </div>
-            <input type="submit"
-              class="context"
-              value="Save"
-              i18n:attributes="value"
-              name="form.button.Save"
-              />
-            <input type="submit"
-              class="context"
-              value="Delete"
-              i18n:attributes="value"
-              name="form.button.Delete"
-              />
-            <input type="submit"
-              class="context"
-              value="Cancel"
-              i18n:attributes="value"
-              name="form.button.Cancel"
-              />
-          </tal:imageform>
+            <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
+                                                           tal:condition="scales">
 
-        </form>
+              <!--JCrop Editor-->
+              <tal:imageform tal:define="image view/current_scale;">
+                <img class="cropbox" tal:attributes="src image_url;" />
 
+                <div>
+                  <input type="hidden" size="4" id="x1" name="x1" />
+                  <input type="hidden" size="4" id="y1" name="y1" />
+                  <input type="hidden" size="4" id="x2" name="x2" />
+                  <input type="hidden" size="4" id="y2" name="y2" />
+                  <input type="hidden" id="scalename" name="scalename" value=""
+                    tal:attributes="value image/id" />
+
+                </div>
+                <input type="submit"
+                  class="context"
+                  value="Save"
+                  i18n:attributes="value"
+                  name="form.button.Save"
+                  />
+                <input type="submit"
+                  class="context"
+                  value="Delete"
+                  i18n:attributes="value"
+                  name="form.button.Delete"
+                  />
+                <input type="submit"
+                  class="context"
+                  value="Cancel"
+                  i18n:attributes="value"
+                  name="form.button.Cancel"
+                  />
+              </tal:imageform>
+
+            </form>
+
+          </div>
+
+          <div class="visualClear"><!-- --></div>
       </div>
     </metal:main>
 

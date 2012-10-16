@@ -1,9 +1,6 @@
-import unittest2 as unittest
-
 from Products.CMFCore.utils import getToolByName
-
-from plone.app.imagecropping.testing import\
-    PLONE_APP_IMAGECROPPING_INTEGRATION
+from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+import unittest2 as unittest
 
 
 class TestExample(unittest.TestCase):

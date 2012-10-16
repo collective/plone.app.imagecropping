@@ -1,0 +1,17 @@
+#content ul.scales {
+    height: 550px;
+    overflow-y: scroll;
+}
+#content ul.scales li {
+    border: solid 1px #999;
+    padding: 0.5em;
+    margin: 0 1em 1em 0;
+    cursor: pointer;
+}
+#content ul.scales li.selected {
+    border-color: #000;
+}
+#content ul.scales img {
+    max-width: 100%;
+    height: auto;
+}

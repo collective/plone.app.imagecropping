@@ -53,33 +53,33 @@
 /* The "jcrop-light" class/extension */
 .jcrop-light .jcrop-vline,.jcrop-light .jcrop-hline
 {
-	background:#FFF;
-	filter:Alpha(opacity=70)!important;
-	opacity:.70!important;
+    background:#FFF;
+    filter:Alpha(opacity=70)!important;
+    opacity:.70!important;
 }
 .jcrop-light .jcrop-handle
 {
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	background-color:#000;
-	border-color:#FFF;
-	border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background-color:#000;
+    border-color:#FFF;
+    border-radius:3px;
 }
 
 /* The "jcrop-dark" class/extension */
 .jcrop-dark .jcrop-vline,.jcrop-dark .jcrop-hline
 {
-	background:#000;
-	filter:Alpha(opacity=70)!important;
-	opacity:.7!important;
+    background:#000;
+    filter:Alpha(opacity=70)!important;
+    opacity:.7!important;
 }
 .jcrop-dark .jcrop-handle
 {
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	background-color:#FFF;
-	border-color:#000;
-	border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background-color:#FFF;
+    border-color:#000;
+    border-radius:3px;
 }
 
 /* Fix for twitter bootstrap et al. */

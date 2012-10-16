@@ -18,28 +18,19 @@ if (jQuery) {
 
     function option_change(option) {
 
-        var config = jQuery.parseJSON(option.attr('data-jcrop_config'));
-        var jcrop_config = {
-            onChange: showCoords,
-            onSelect: showCoords,
-            onRelease: clearCoords
-        };
-        jcrop_config.allowResize = config["allowResize"];
-        jcrop_config.allowMove = config["allowMove"];
-        jcrop_config.trueSize = config["trueSize"];
-        jcrop_config.boxWidth = config["boxWidth"];
-        jcrop_config.boxHeight = config["boxHeight"];
-        jcrop_config.setSelect = config["setSelect"];
-        jcrop_config.aspectRatio = config["aspectRatio"];
-        jcrop_config.minSize = config["minSize"];
-        jcrop_config.maxSize = config["maxSize"];
+        var config = jQuery.parseJSON(option.attr('data-jcrop_config')),
+            scale_name = option.attr('data-scale_name'),
+            jcrop_config = {
+                onChange: showCoords,
+                onSelect: showCoords,
+                onRelease: clearCoords
+            };
+        jQuery.extend(jcrop_config, config);
 
         $('#coords img.cropbox').attr('src', config["data-imageURL"]);
         $('#coords img.cropbox').width(config["origWidth"]);
         $('#coords img.cropbox').height(config["origHeight"]);
-
-        var scaleName = option.val();
-        $('#scalename').val(scaleName);
+        $('#scalename').val(scale_name);
 
         var jcrop_api = $('#coords img.cropbox').data('Jcrop');
         if (jcrop_api != undefined) {
@@ -49,11 +40,12 @@ if (jQuery) {
         $('#coords img.cropbox').Jcrop(jcrop_config);
     }
 
-    $(document).ready(function() {
-        $('#image-select').change( function(){
-            option_change($('option:selected',this));
+    $(function() {
+        $('ul.scales li').click(function(e) {
+            option_change($(this));
+            $(this).addClass('selected').siblings().removeClass('selected');
         });
-        option_change($('#image-select option:selected'));
-
+        $('ul.scales a').prepOverlay({subtype: 'image'});
+        option_change($('ul.scales li.selected'));
     });
 }

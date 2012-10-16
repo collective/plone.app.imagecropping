@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
-import json
-
-from zope import component
-from zope.component._api import getUtility
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
-from plone.registry.interfaces import IRegistry
 from plone.app.imagecropping.browser.settings import ISettings
-from plone.app.imaging.utils import getAllowedSizes
-
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+from plone.app.imaging.utils import getAllowedSizes
+from plone.registry.interfaces import IRegistry
+from zope import component
+from zope.component._api import getUtility
+import json
 
 
 class CroppingEditor(BrowserView):
 
     template = ViewPageTemplateFile('editor.pt')
 
-    fieldname = "image"
     interface = IATContentType
     default_cropping_max_size = (0, 0)
 
@@ -25,17 +22,27 @@ class CroppingEditor(BrowserView):
     def default_editor_size(self):
         return self._editor_settings.large_size.split(":")
 
+    @property
+    def fieldname(self):
+        if 'fieldname' in self.request.form.keys():
+            # TODO: check if requested fieldname is available
+            # in self.image_fields
+            return self.request.form.get('fieldname')
+
+        img_fields = self.image_fields()
+        return len(img_fields) > 0 and img_fields[0].__name__
+
     def scales(self):
         """Returns information to initialize JCrop for all available scales
            on the current content with the given fieldname and interface."""
 
         scales = []
-        current_selected = self.request.get('image-select', '')
         croputils = IImageCroppingUtils(self.context)
         image_size = croputils.get_image_size(self.fieldname, self.interface)
         all_sizes = getAllowedSizes()
+        current_selected = self.request.get('scalename', all_sizes.keys()[0])
         # TODO: implement other imagefields
-        large_image_url = self.image_url("image")
+        large_image_url = self.image_url(self.fieldname)
 
         for index, size in enumerate(all_sizes):
             scale = dict()
@@ -50,7 +57,6 @@ class CroppingEditor(BrowserView):
                 ("trueSize", [image_size[0], image_size[1]]),
                 ("boxWidth", self.default_editor_size[0]),
                 ("boxHeight", self.default_editor_size[1]),
-                ("trueSize", [image_size[0], image_size[1]]),
                 ("setSelect", [0, 0, min_width, min_height]),
                 ("aspectRatio", ratio_width / ratio_height),
                 ("minSize", [min_width, min_height]),
@@ -60,10 +66,14 @@ class CroppingEditor(BrowserView):
             scale["config"] = json.dumps(config)
             # scale value/id
             scale["id"] = size
-            scale["selected"] = size == current_selected and 'selected' or '',
+            scale["title"] = "%s %s" % (size, all_sizes[size])
+            scale["selected"] = size == current_selected and 'selected' or ''
 
             scales.append(scale)
         return scales
+
+    def image_fields(self):
+        return IImageCroppingUtils(self.context).image_fields()
 
     def current_scale(self):
         """Returns information of the current selected scale"""
@@ -89,9 +99,10 @@ class CroppingEditor(BrowserView):
     def image_url(self, fieldname="image"):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
-        return scales.scale(fieldname,
-                            width=int(self.default_editor_size[0]),
-                            height=int(self.default_editor_size[1])).url
+        scaled_img = scales.scale(fieldname,
+            width=int(self.default_editor_size[0]),
+            height=int(self.default_editor_size[1]))
+        return scaled_img and scaled_img.url or ''
 
     def __call__(self):
         form = self.request.form

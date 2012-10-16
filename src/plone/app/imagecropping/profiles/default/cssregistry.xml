@@ -2,5 +2,6 @@
 <object name="portal_css" meta_type="Stylesheets Registry">
 
     <stylesheet id="++resource++plone.app.imagecropping.static/jquery.Jcrop.css" enabled="1" />
+    <stylesheet id="++resource++plone.app.imagecropping.static/cropping.css" enabled="1" />
 
 </object>
