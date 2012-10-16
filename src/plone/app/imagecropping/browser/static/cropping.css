@@ -7,9 +7,11 @@
     padding: 0.5em;
     margin: 0 1em 1em 0;
     cursor: pointer;
+    opacity: 0.5;
 }
 #content ul.scales li.selected {
     border-color: #000;
+    opacity: 1;
 }
 .thumbPreview {
     overflow:hidden;

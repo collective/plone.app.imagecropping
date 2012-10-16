@@ -67,5 +67,6 @@ if (jQuery) {
         // TODO: preview of actual scale
         //$('ul.scales a').prepOverlay({subtype: 'image'});
         option_change($('ul.scales li.selected'));
+        $('ul.scales').scrollTop($('ul.scales li.selected').scrollTop());
     });
 }
