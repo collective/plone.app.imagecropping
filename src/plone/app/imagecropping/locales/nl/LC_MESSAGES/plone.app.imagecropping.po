@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
 "POT-Creation-Date: 2012-10-15 13:26+0000\n"
-"PO-Revision-Date: 2012-10-15 15:39+0100\n"
-"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
+"PO-Revision-Date: 2012-10-16 15:42+0100\n"
+"Last-Translator: Martijn Zweistra <martijn.zweistra@edition1.nl>\n"
 "Language-Team: themask96\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,36 +14,36 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 "Language: Dutch\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: plone/app/imagecropping/browser/editor.pt:51
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: plone/app/imagecropping/browser/settings.py:13
 msgid "Crop Editor Large Size"
-msgstr ""
+msgstr "Groot formaat bijsnijd editor "
 
 #: plone/app/imagecropping/browser/editor.pt:45
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Image Cropping"
-msgstr ""
+msgstr "Afbeelding bijsnijden"
 
 #: plone/app/imagecropping/browser/settings.py:32
 msgid "Image Cropping Settings"
-msgstr ""
+msgstr "Afbeelding bijsnijd instellingen"
 
 #: plone/app/imagecropping/browser/settings.py:20
 msgid "Minimum Crop Area Size"
-msgstr ""
+msgstr "Minimum bijsnijd gebiedsgrootte"
 
 #: plone/app/imagecropping/browser/editor.pt:39
 msgid "Save"
-msgstr ""
+msgstr "Bewaren"
 
 #: plone/app/imagecropping/browser/settings.py:14
 msgid "width:height"
-msgstr ""
+msgstr "breedte:hoogte"
