@@ -37,7 +37,7 @@
                         <div class="thumbPreview"
                              tal:attributes="id string:preview-${scale/id};
                                              style string:width:${scale/thumb_width}px;;max-width:100%">
-                            <img tal:attributes="src string:${context/absolute_url}/@@images/${view/fieldname}/${scale/id}" />
+                            <img tal:attributes="src string:${context/absolute_url}/${view/fieldname}_${scale/id}" />
                         </div>
                     </a>
                 </li>
