@@ -11,7 +11,7 @@
 #content ul.scales li.selected {
     border-color: #000;
 }
-#content ul.scales img {
-    max-width: 100%;
-    height: auto;
+.thumbPreview {
+    overflow:hidden;
+    max-height:10em;
 }

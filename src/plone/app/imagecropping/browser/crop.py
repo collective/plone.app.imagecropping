@@ -2,7 +2,11 @@ from Acquisition import aq_base
 from OFS.Image import Pdata
 from Products.Five.browser import BrowserView
 from cStringIO import StringIO
+from persistent.dict import PersistentDict
+from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.scale.storage import AnnotationStorage
+from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
 import PIL.Image
@@ -16,8 +20,7 @@ class CroppingView(BrowserView):
 
         self._crop(rq['fieldname'], rq['scale'], box)
 
-        return "worked (xxx we might give some decent feedback to " \
-               "the frontend here)"
+        return True
 
     def _crop(self, fieldname, scale, box, interface=None):
         """interface just useful to locate field on dexterity types
@@ -47,4 +50,13 @@ class CroppingView(BrowserView):
         data = handler.createScale(self.context, scale, w, h,
                                    data=image_file.read())
         handler.storeScale(self.context, scale, **data)
+
+        # store crop information
+        self._store(fieldname, scale, box)
+
         notify(ObjectModifiedEvent(self.context))
+
+    def _store(self, fieldname, scale, box):
+        storage = IAnnotations(self.context).setdefault(PAI_STORAGE_KEY,
+            PersistentDict())
+        storage["%s-%s" % (fieldname, scale)] = box

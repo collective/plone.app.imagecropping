@@ -2,11 +2,15 @@
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
+from plone.app.imagecropping import imagecroppingMessageFactory as _, \
+    PAI_STORAGE_KEY
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from zope import component
+from zope.annotation.interfaces import IAnnotations
 from zope.component._api import getUtility
 import json
 
@@ -44,6 +48,8 @@ class CroppingEditor(BrowserView):
         # TODO: implement other imagefields
         large_image_url = self.image_url(self.fieldname)
 
+        storage = IAnnotations(self.context).get(PAI_STORAGE_KEY)
+
         for index, size in enumerate(all_sizes):
             scale = dict()
             # scale jcrop config
@@ -51,13 +57,18 @@ class CroppingEditor(BrowserView):
             max_width, max_height = self.default_cropping_max_size[0],\
                 self.default_cropping_max_size[1]
             ratio_width, ratio_height = all_sizes[size][0], all_sizes[size][1]
+            select_box = storage.get('%s-%s' % (self.fieldname, size))
+
+            if select_box is None:
+                select_box = (0, 0, min_width, min_height)
+
             config = dict([
                 ("allowResize", True),
                 ("allowMove", True),
                 ("trueSize", [image_size[0], image_size[1]]),
                 ("boxWidth", self.default_editor_size[0]),
                 ("boxHeight", self.default_editor_size[1]),
-                ("setSelect", [0, 0, min_width, min_height]),
+                ("setSelect", select_box),
                 ("aspectRatio", ratio_width / ratio_height),
                 ("minSize", [min_width, min_height]),
                 ("maxSize", [max_width, max_height]),
@@ -67,6 +78,8 @@ class CroppingEditor(BrowserView):
             # scale value/id
             scale["id"] = size
             scale["title"] = "%s %s" % (size, all_sizes[size])
+            scale["thumb_width"] = ratio_width
+            scale["thumb_height"] = ratio_height
             scale["selected"] = size == current_selected and 'selected' or ''
 
             scales.append(scale)
@@ -111,8 +124,8 @@ class CroppingEditor(BrowserView):
                 self.context.absolute_url() + '/view')
         if form.get('form.button.Delete', None) is not None:
             # XXX TODO Delete
-            return self.request.response.redirect(
-                self.context.absolute_url() + '/view')
+            IStatusMessage(self.request).add(
+                _(u"Cropping area deleted"), type="error")
         if form.get('form.button.Save', None) is not None:
             x1 = int(round(float(self.request.form.get('x1'))))
             y1 = int(round(float(self.request.form.get('y1'))))
@@ -124,7 +137,9 @@ class CroppingEditor(BrowserView):
                                 scale=scale_name,
                                 box=(x1, y1, x2, y2),
                                 interface=self.interface)
-            # XXX TODO success message
+            IStatusMessage(self.request).add(
+                _(u"Successfully saved cropped area"))
+
         return self.template()
 
     def _min_size(self, image_size, scale_size):
