@@ -48,7 +48,7 @@ class CroppingEditor(BrowserView):
         # TODO: implement other imagefields
         large_image_url = self.image_url(self.fieldname)
 
-        storage = IAnnotations(self.context).get(PAI_STORAGE_KEY)
+        storage = IAnnotations(self.context).get(PAI_STORAGE_KEY, {})
 
         for index, size in enumerate(all_sizes):
             scale = dict()

@@ -44,6 +44,3 @@ class TestExample(unittest.TestCase):
 
         self.browser.getLink('Image Cropping').click()
         self.assertTrue(u"Image Cropping Editor" in self.browser.contents)
-
-        open('/Users/peterm/workspace/plone.app.imagecropping/' \
-             'testbrowser.html', 'w').write(self.browser.contents)
