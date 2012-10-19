@@ -14,6 +14,8 @@ import PIL.Image
 
 class CroppingView(BrowserView):
 
+    DEFAULT_FORMAT = 'PNG'
+
     def __call__(self, **kw):
         rq = self.request
         box = (rq['x1'], rq['y1'], rq['x2'], rq['y2'])
@@ -42,8 +44,13 @@ class CroppingView(BrowserView):
         image = image.crop(box)
 
         image_file = StringIO()
-        #xxx use settings of original image (see archtetypes.clippingimage)
-        image.save(image_file, 'PNG', quality=88)
+
+        # FIXME: try to save image in it's original format if it can be guessed
+        #quality will be reduced by createScale anyway so we pass it
+        #w/o reducing quality
+        format = image.format or self.DEFAULT_FORMAT
+        image.save(image_file, format, quality=100)
+
         image_file.seek(0)
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]

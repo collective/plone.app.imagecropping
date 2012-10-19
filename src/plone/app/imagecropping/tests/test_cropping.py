@@ -22,6 +22,7 @@ class TestExample(unittest.TestCase):
         self.img.setImage(f)
         f.close()
 
+
     def test_image_and_annotation(self):
         """check that our cropping view is able to store a cropped image
         and also saves the crop-box info in an annotation
@@ -76,4 +77,51 @@ class TestExample(unittest.TestCase):
         self.assertEqual((thumb2.width, thumb2.height),
                          (128, 128),
                          "imagescaling does not return cropped image")
+
+
+    def test_image_formats(self):
+        """make sure the scales have the same format as the original image
+        """
+
+        from cStringIO import StringIO
+        from PIL.Image import open
+        org_data = StringIO(self.img.getImage().data)
+        self.assertEqual(open(org_data).format, 'PNG')
+
+        view = self.img.restrictedTraverse('@@crop-image')
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+        traverse = self.portal.REQUEST.traverseName
+        cropped = traverse(self.img, 'image_thumb')
+        croppedData = StringIO(cropped.data)
+        self.assertEqual(open(croppedData).format,
+                         'PNG',
+                         "cropped scale does not have same format as the original")
+
+
+        #create a jpeg image out of the png file:
+        img=open(file(join(dirname(tests.__file__), 'plone-logo.png')))
+        out = StringIO()
+        img.save(out, format='JPEG', quality=75)
+        out.seek(0)
+
+
+        #and test if created scale is jpeg too
+        _createObjectByType('Image', self.portal, 'testjpeg')
+        jpg = self.portal.testjpeg
+        jpg.setImage(out.getvalue())
+
+        org_data = StringIO(jpg.getImage().data)
+        self.assertEqual(open(org_data).format, 'JPEG')
+
+        view = jpg.restrictedTraverse('@@crop-image')
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+        cropped = traverse(self.img, 'image_thumb')
+        croppedData = StringIO(cropped.data)
+        self.assertEqual(open(croppedData).format,
+                         'JPEG',
+                         "cropped scale does not have same format as the original")
+
+
+
+
 
