@@ -31,6 +31,8 @@ let's use the 1000x1000 image which is passed to jcrop for the preview of uncrop
 scales. cropped scales (those with the box annotation) have been stored anyway
 
 
+test_accessing_images fails when accessing the scale via @@images
+
 
 
 
