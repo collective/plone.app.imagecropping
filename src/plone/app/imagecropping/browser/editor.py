@@ -57,9 +57,11 @@ class CroppingEditor(BrowserView):
 
             # lookup saved crop info
             select_box = cropview._read(self.fieldname, size)
+            is_cropped = True
 
             if select_box is None:
                 select_box = (0, 0, min_width, min_height)
+                is_cropped = False
 
             config = dict([
                 ("allowResize", True),
@@ -78,6 +80,10 @@ class CroppingEditor(BrowserView):
             scale["id"] = size
             scale["title"] = "%s %s" % (size, all_sizes[size])
             scale["selected"] = size == current_selected and 'selected' or ''
+            # flag if saved cropped scale was found
+            # this helps to prevent generating unused
+            # default scales in preview column
+            scale["is_cropped"] = is_cropped
             # TODO: this is for thumbnail live-preview
             scale["thumb_width"] = ratio_width
             scale["thumb_height"] = ratio_height

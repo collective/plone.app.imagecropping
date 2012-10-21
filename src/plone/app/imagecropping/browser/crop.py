@@ -5,11 +5,8 @@ from cStringIO import StringIO
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.interfaces import IImageScaleHandler
-from plone.app.imaging.utils import getAllowedSizes
 from plone.scale.storage import AnnotationStorage as ScaleStorage
 from zope.annotation.interfaces import IAnnotations
-from zope.event import notify
-from zope.lifecycleevent import ObjectModifiedEvent
 import PIL.Image
 
 
@@ -59,10 +56,13 @@ class CroppingView(BrowserView):
                                    data=image_file.read())
         handler.storeScale(self.context, scale, **data)
 
-        # store crop information
+        # store crop information in annotations
         self._store(fieldname, scale, box)
 
-        notify(ObjectModifiedEvent(self.context))
+        # set modification date
+        # FIXME: why doesn't zope.lifecycleevent do this?
+        # this is archetypes only!
+        self.context.notifyModified()
 
     @property
     def _storage(self):
@@ -87,3 +87,5 @@ class CroppingView(BrowserView):
         image_scales = self.context.restrictedTraverse("@@images")
         image_scale = image_scales.scale(fieldname, scale=scale)
         del scale_storage[image_scale.uid]
+
+        self.context.notifyModified()
