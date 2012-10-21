@@ -42,13 +42,12 @@ class CroppingEditor(BrowserView):
 
         scales = []
         croputils = IImageCroppingUtils(self.context)
+        cropview = self.context.restrictedTraverse('@@crop-image')
         image_size = croputils.get_image_size(self.fieldname, self.interface)
         all_sizes = getAllowedSizes()
         current_selected = self.request.get('scalename', all_sizes.keys()[0])
         # TODO: implement other imagefields
         large_image_url = self.image_url(self.fieldname)
-
-        storage = IAnnotations(self.context).get(PAI_STORAGE_KEY, {})
 
         for index, size in enumerate(all_sizes):
             scale = dict()
@@ -57,7 +56,9 @@ class CroppingEditor(BrowserView):
             max_width, max_height = self.default_cropping_max_size[0],\
                 self.default_cropping_max_size[1]
             ratio_width, ratio_height = all_sizes[size][0], all_sizes[size][1]
-            select_box = storage.get('%s-%s' % (self.fieldname, size))
+
+            # lookup saved crop info
+            select_box = cropview._read(self.fieldname, size)
 
             if select_box is None:
                 select_box = (0, 0, min_width, min_height)
@@ -78,9 +79,10 @@ class CroppingEditor(BrowserView):
             # scale value/id
             scale["id"] = size
             scale["title"] = "%s %s" % (size, all_sizes[size])
+            scale["selected"] = size == current_selected and 'selected' or ''
+            # TODO: this is for thumbnail live-preview
             scale["thumb_width"] = ratio_width
             scale["thumb_height"] = ratio_height
-            scale["selected"] = size == current_selected and 'selected' or ''
 
             scales.append(scale)
         return scales
@@ -119,11 +121,14 @@ class CroppingEditor(BrowserView):
 
     def __call__(self):
         form = self.request.form
+        cropping_util = self.context.restrictedTraverse('@@crop-image')
+
         if form.get('form.button.Cancel', None) is not None:
             return self.request.response.redirect(
                 self.context.absolute_url() + '/view')
         if form.get('form.button.Delete', None) is not None:
-            # XXX TODO Delete
+            cropping_util._remove(self.fieldname,
+                self.request.form.get('scalename'))
             IStatusMessage(self.request).add(
                 _(u"Cropping area deleted"), type="error")
         if form.get('form.button.Save', None) is not None:
@@ -132,7 +137,6 @@ class CroppingEditor(BrowserView):
             x2 = int(round(float(self.request.form.get('x2'))))
             y2 = int(round(float(self.request.form.get('y2'))))
             scale_name = self.request.form.get('scalename')
-            cropping_util = self.context.restrictedTraverse('@@crop-image')
             cropping_util._crop(fieldname=self.fieldname,
                                 scale=scale_name,
                                 box=(x1, y1, x2, y2),
