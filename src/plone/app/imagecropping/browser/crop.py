@@ -5,6 +5,8 @@ from cStringIO import StringIO
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.app.imaging.utils import getAllowedSizes
+from plone.scale.storage import AnnotationStorage as ScaleStorage
 from zope.annotation.interfaces import IAnnotations
 from zope.event import notify
 from zope.lifecycleevent import ObjectModifiedEvent
@@ -78,9 +80,10 @@ class CroppingView(BrowserView):
         # remove info from annotation
         key = "%s-%s" % (fieldname, scale)
         if key in self._storage.keys():
-            del(self._storage[key])
+            del self._storage[key]
 
-        # remobe saved scale
-        import pdb; pdb.set_trace()
-        field = self.context.getField(fieldname)
-        handler = IImageScaleHandler(field)
+        # remove saved scale
+        scale_storage = ScaleStorage(self.context)
+        image_scales = self.context.restrictedTraverse("@@images")
+        image_scale = image_scales.scale(fieldname, scale=scale)
+        del scale_storage[image_scale.uid]

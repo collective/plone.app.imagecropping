@@ -22,7 +22,6 @@ class TestExample(unittest.TestCase):
         self.img.setImage(f)
         f.close()
 
-
     def test_image_and_annotation(self):
         """check that our cropping view is able to store a cropped image
         and also saves the crop-box info in an annotation
@@ -48,16 +47,15 @@ class TestExample(unittest.TestCase):
 
         # when storing a new crop-scale the crop-box information is stored
         # as an annotation.
-        # this allows us to fire up the editor with the correct box when editing
-        # the scale and it also allows us to identify if a scale is cropped
-        # or simply resized
+        # this allows us to fire up the editor with the correct box when
+        # editing the scale and it also allows us to identify if a scale is
+        # cropped or simply resized
         self.assertEqual(IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
                          ['image-thumb'],
                          "there's only one scale that is cropped")
-        self.assertEqual(IAnnotations(self.img).get(PAI_STORAGE_KEY)['image-thumb'],
-                         (14,14,218,218),
-                         "wrong box information has been stored")
-
+        self.assertEqual(
+            IAnnotations(self.img).get(PAI_STORAGE_KEY)['image-thumb'],
+            (14, 14, 218, 218), "wrong box information has been stored")
 
     def test_accessing_images(self):
         """test if accessing the images works for our users
@@ -67,17 +65,16 @@ class TestExample(unittest.TestCase):
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
         traverse = self.portal.REQUEST.traverseName
 
-        # one way to access the cropped image is via the traverser <fieldname>_<scalename>
+        # one way to access the cropped image is via the traverser
+        # <fieldname>_<scalename>
         thumb = traverse(self.img, 'image_thumb')
         self.assertEqual((thumb.width, thumb.height), (128, 128))
 
         # another is to use plone.app.imaging's ImageScaling view
         scales = traverse(self.img, '@@images')
         thumb2 = scales.scale('image', 'thumb')
-        self.assertEqual((thumb2.width, thumb2.height),
-                         (128, 128),
-                         "imagescaling does not return cropped image")
-
+        self.assertEqual((thumb2.width, thumb2.height), (128, 128),
+            "imagescaling does not return cropped image")
 
     def test_image_formats(self):
         """make sure the scales have the same format as the original image
@@ -93,17 +90,14 @@ class TestExample(unittest.TestCase):
         traverse = self.portal.REQUEST.traverseName
         cropped = traverse(self.img, 'image_thumb')
         croppedData = StringIO(cropped.data)
-        self.assertEqual(open(croppedData).format,
-                         'PNG',
-                         "cropped scale does not have same format as the original")
-
+        self.assertEqual(open(croppedData).format, 'PNG',
+            "cropped scale does not have same format as the original")
 
         #create a jpeg image out of the png file:
-        img=open(file(join(dirname(tests.__file__), 'plone-logo.png')))
+        img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
         out = StringIO()
         img.save(out, format='JPEG', quality=75)
         out.seek(0)
-
 
         #and test if created scale is jpeg too
         _createObjectByType('Image', self.portal, 'testjpeg')
@@ -117,11 +111,5 @@ class TestExample(unittest.TestCase):
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
         cropped = traverse(self.img, 'image_thumb')
         croppedData = StringIO(cropped.data)
-        self.assertEqual(open(croppedData).format,
-                         'JPEG',
-                         "cropped scale does not have same format as the original")
-
-
-
-
-
+        self.assertEqual(open(croppedData).format, 'JPEG',
+            "cropped scale does not have same format as the original")
