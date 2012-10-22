@@ -25,12 +25,6 @@ infrastructure
 fixme
 =====
 
-currently the view uses image_scalename in the preview column.
-this creates an image for each image scale. also those we don't want/need anywhere in the portal.
-let's use the 1000x1000 image which is passed to jcrop for the preview of uncropped
-scales. cropped scales (those with the box annotation) have been stored anyway
-
-
 test_accessing_images fails when accessing the scale via @@images
 
 
