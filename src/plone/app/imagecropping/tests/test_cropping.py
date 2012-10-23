@@ -51,10 +51,10 @@ class TestExample(unittest.TestCase):
         # editing the scale and it also allows us to identify if a scale is
         # cropped or simply resized
         self.assertEqual(IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
-                         ['image-thumb'],
+                         ['image_thumb'],
                          "there's only one scale that is cropped")
         self.assertEqual(
-            IAnnotations(self.img).get(PAI_STORAGE_KEY)['image-thumb'],
+            IAnnotations(self.img).get(PAI_STORAGE_KEY)['image_thumb'],
             (14, 14, 218, 218), "wrong box information has been stored")
 
     def test_accessing_images(self):
