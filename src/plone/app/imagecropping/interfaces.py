@@ -1,4 +1,6 @@
 from zope.interface.interface import Interface
+from plone.app.imaging.interfaces import IImageScaling
+from plone.app.blob.interfaces import IBlobImageField
 
 
 class IImageCropping(Interface):
@@ -31,3 +33,11 @@ class IImageCroppingUtils(Interface):
 
            (100, 200)
         """
+
+
+class ICroppedImageScaling(IImageScaling):
+    """ marker for @@images overrides """
+
+
+class ICroppedBlobImageField(IBlobImageField):
+    """ marker for coppable blob image field adapters """

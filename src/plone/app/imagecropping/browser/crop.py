@@ -1,13 +1,17 @@
 from Acquisition import aq_base
 from OFS.Image import Pdata
 from Products.Five.browser import BrowserView
+from ZODB.blob import Blob
 from cStringIO import StringIO
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.interfaces import IImageScaleHandler
-from plone.scale.storage import AnnotationStorage as ScaleStorage
+from plone.scale.scale import scaleImage
+from plone.scale.storage import AnnotationStorage as ScaleStorage, \
+    AnnotationStorage
 from zope.annotation.interfaces import IAnnotations
 import PIL.Image
+import time
 
 
 class CroppingView(BrowserView):
@@ -21,6 +25,9 @@ class CroppingView(BrowserView):
         self._crop(rq['fieldname'], rq['scale'], box)
 
         return True
+
+    def now_millis(self):
+        return int(time.time() * 1000)
 
     def _crop(self, fieldname, scale, box, interface=None):
         """interface just useful to locate field on dexterity types
@@ -54,15 +61,26 @@ class CroppingView(BrowserView):
         w, h = sizes[scale]
         data = handler.createScale(self.context, scale, w, h,
                                    data=image_file.read())
-        handler.storeScale(self.context, scale, **data)
+
+        # call plone.scale.storage.scale method in order to
+        # provide saved scale for plone.app.imaging @@images view
+        def crop_factory(fieldname, direction='keep', **parameters):
+            blob = Blob()
+            result = blob.open('w')
+            _, format, dimensions = scaleImage(data['data'], result=result,
+                **parameters)
+            result.close()
+            return blob, format, dimensions
+
+        # call storage with actual time in milliseconds
+        # this always invalidates old scales
+        storage = AnnotationStorage(self.context,
+            self.now_millis)
+        storage.scale(factory=crop_factory, fieldname=fieldname,
+            width=w, height=h)
 
         # store crop information in annotations
         self._store(fieldname, scale, box)
-
-        # set modification date
-        # FIXME: why doesn't zope.lifecycleevent do this?
-        # this is archetypes only!
-        self.context.notifyModified()
 
     @property
     def _storage(self):
@@ -70,22 +88,20 @@ class CroppingView(BrowserView):
             PersistentDict())
 
     def _store(self, fieldname, scale, box):
-        self._storage["%s-%s" % (fieldname, scale)] = box
+        self._storage["%s_%s" % (fieldname, scale)] = box
         return True
 
     def _read(self, fieldname, scale):
-        return self._storage.get('%s-%s' % (fieldname, scale))
+        return self._storage.get('%s_%s' % (fieldname, scale))
 
     def _remove(self, fieldname, scale):
         # remove info from annotation
-        key = "%s-%s" % (fieldname, scale)
+        key = "%s_%s" % (fieldname, scale)
         if key in self._storage.keys():
             del self._storage[key]
 
         # remove saved scale
-        scale_storage = ScaleStorage(self.context)
+        scale_storage = AnnotationStorage(self.context)
         image_scales = self.context.restrictedTraverse("@@images")
         image_scale = image_scales.scale(fieldname, scale=scale)
         del scale_storage[image_scale.uid]
-
-        self.context.notifyModified()

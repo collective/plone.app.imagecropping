@@ -22,12 +22,18 @@ infrastructure
   (they did it for embedly in this pull request:
   https://github.com/collective/collective.embedly/pull/2)
 
-fixme
+FIXME
 =====
 
 test_accessing_images fails when accessing the scale via @@images
 
+TinyMCE
+-------
 
+If an image scale is added to TinyMCE it gets transformed to its uid
+representation (as stored in plone.scale.storage).
+If the cropped scale gets removed the uid does not exists anymore and
+the referenced image in TinyMCE raises NotFound exception.
 
 
 Implementation

@@ -23,7 +23,7 @@
   <class class="plone.app.blob.content.ATBlob">
       <implements interface=".interfaces.IImageCropping" />
   </class>
-  
+
    <!-- adapter -->
   <adapter factory=".utils.CroppingUtilsArchetype" />
 
