@@ -1,4 +1,3 @@
-from plone.app.imagecropping.monkey import patchImageField
 from zope.i18nmessageid.message import MessageFactory
 
 
@@ -8,4 +7,3 @@ PAI_STORAGE_KEY = "plone.app.imagecropping"
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""
-    #patchImageField()

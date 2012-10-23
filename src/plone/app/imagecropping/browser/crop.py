@@ -62,6 +62,9 @@ class CroppingView(BrowserView):
         data = handler.createScale(self.context, scale, w, h,
                                    data=image_file.read())
 
+        # store scale for classic <fieldname>_<scale> traversing
+        handler.storeScale(self.context, scale, **data)
+
         # call plone.scale.storage.scale method in order to
         # provide saved scale for plone.app.imaging @@images view
         def crop_factory(fieldname, direction='keep', **parameters):
