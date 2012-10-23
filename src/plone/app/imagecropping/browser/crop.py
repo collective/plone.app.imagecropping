@@ -7,8 +7,7 @@ from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.interfaces import IImageScaleHandler
 from plone.scale.scale import scaleImage
-from plone.scale.storage import AnnotationStorage as ScaleStorage, \
-    AnnotationStorage
+from plone.scale.storage import AnnotationStorage
 from zope.annotation.interfaces import IAnnotations
 import PIL.Image
 import time
@@ -46,21 +45,17 @@ class CroppingView(BrowserView):
 
         original_file = StringIO(data)
         image = PIL.Image.open(original_file)
-        image = image.crop(box)
+        image_format = image.format or self.DEFAULT_FORMAT
 
-        image_file = StringIO()
+        cropped_image = image.crop(box)
+        cropped_image_file = StringIO()
+        cropped_image.save(cropped_image_file, image_format, quality=100)
+        cropped_image_file.seek(0)
 
-        # FIXME: try to save image in it's original format if it can be guessed
-        #quality will be reduced by createScale anyway so we pass it
-        #w/o reducing quality
-        format = image.format or self.DEFAULT_FORMAT
-        image.save(image_file, format, quality=100)
-
-        image_file.seek(0)
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]
         data = handler.createScale(self.context, scale, w, h,
-                                   data=image_file.read())
+                                   data=cropped_image_file.read())
 
         # store scale for classic <fieldname>_<scale> traversing
         handler.storeScale(self.context, scale, **data)
@@ -70,10 +65,10 @@ class CroppingView(BrowserView):
         def crop_factory(fieldname, direction='keep', **parameters):
             blob = Blob()
             result = blob.open('w')
-            _, format, dimensions = scaleImage(data['data'], result=result,
-                **parameters)
+            _, image_format, dimensions = scaleImage(data['data'],
+                result=result, **parameters)
             result.close()
-            return blob, format, dimensions
+            return blob, image_format, dimensions
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
