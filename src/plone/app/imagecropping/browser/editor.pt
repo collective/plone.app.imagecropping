@@ -4,6 +4,14 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   i18n:domain="plone.app.imagecropping">
 
+  <head>
+      <metal:js fill-slot="javascript_head_slot">
+          <script type="text/javascript"
+              tal:attributes="src string:${portal_state/portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+          <script type="text/javascript"
+              tal:attributes="src string:${portal_state/portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+      </metal:js>
+  </head>
   <body>
 
     <metal:main fill-slot="main">

@@ -40,7 +40,7 @@ class TestExample(unittest.TestCase):
         """
         # is there the cropping action tab
         self.browser.open("%s/view" % self.img.absolute_url())
-        self.assertTrue("Image Cropping" in self.browser.contents)
+        self.assertTrue("Cropping" in self.browser.contents)
 
-        self.browser.getLink('Image Cropping').click()
+        self.browser.getLink('Cropping').click()
         self.assertTrue(u"Image Cropping Editor" in self.browser.contents)

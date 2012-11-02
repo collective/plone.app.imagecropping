@@ -24,7 +24,11 @@
       <implements interface=".interfaces.IImageCropping" />
   </class>
 
-   <!-- adapter -->
+   <!-- archetypes adapter -->
   <adapter factory=".utils.CroppingUtilsArchetype" />
+
+  <!-- dexterity adapter -->
+  <include package="plone.namedfile" />
+  <adapter factory=".utils.CroppingUtilsDexterity" />
 
 </configure>

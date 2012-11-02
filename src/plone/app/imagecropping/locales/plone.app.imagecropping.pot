@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-15 13:26+0000\n"
+"POT-Creation-Date: 2012-11-02 20:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.imagecropping\n"
 
-#: plone/app/imagecropping/browser/editor.pt:51
+#: plone/app/imagecropping/browser/editor.pt:80
 msgid "Cancel"
 msgstr ""
 
@@ -25,12 +25,20 @@ msgstr ""
 msgid "Crop Editor Large Size"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:45
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "Cropping"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.py:137
+msgid "Cropping area deleted"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:74
 msgid "Delete"
 msgstr ""
 
-#: plone/app/imagecropping/profiles/default/actions.xml
-msgid "Image Cropping"
+#: plone/app/imagecropping/browser/editor.pt:10
+msgid "Image Cropping Editor"
 msgstr ""
 
 #: plone/app/imagecropping/browser/settings.py:32
@@ -41,8 +49,16 @@ msgstr ""
 msgid "Minimum Crop Area Size"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:39
+#: plone/app/imagecropping/browser/editor.pt:68
 msgid "Save"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.py:149
+msgid "Successfully saved cropped area"
+msgstr ""
+
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "View the image cropping editor for this object"
 msgstr ""
 
 #: plone/app/imagecropping/browser/settings.py:14

@@ -14,6 +14,7 @@ import json
 
 
 class CroppingEditor(BrowserView):
+    """ Cropping Editor View """
 
     template = ViewPageTemplateFile('editor.pt')
 
@@ -70,7 +71,8 @@ class CroppingEditor(BrowserView):
                 ("boxWidth", self.default_editor_size[0]),
                 ("boxHeight", self.default_editor_size[1]),
                 ("setSelect", select_box),
-                ("aspectRatio", ratio_width / ratio_height),
+                ("aspectRatio", "%.2f" % (
+                    float(ratio_width) / float(ratio_height))),
                 ("minSize", [min_width, min_height]),
                 ("maxSize", [max_width, max_height]),
                 ("imageURL", large_image_url),
@@ -133,8 +135,7 @@ class CroppingEditor(BrowserView):
         if form.get('form.button.Delete', None) is not None:
             cropping_util._remove(self.fieldname,
                 self.request.form.get('scalename'))
-            IStatusMessage(self.request).add(
-                _(u"Cropping area deleted"), type="error")
+            IStatusMessage(self.request).add(_(u"Cropping area deleted"))
         if form.get('form.button.Save', None) is not None:
             x1 = int(round(float(self.request.form.get('x1'))))
             y1 = int(round(float(self.request.form.get('y1'))))

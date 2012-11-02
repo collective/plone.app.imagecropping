@@ -17,5 +17,5 @@ msgstr ""
 "Language: German\n"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
-msgid "Image Cropping"
+msgid "Cropping"
 msgstr "Zuschneiden"

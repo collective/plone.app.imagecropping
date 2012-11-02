@@ -4,7 +4,7 @@
     i18n:domain="plone.app.imagecropping">
     <object name="object" meta_type="CMF Action Category" purge="false">
         <object name="cropping" meta_type="CMF Action">
-            <property name="title" i18n:translate="">Image Cropping</property>
+            <property name="title" i18n:translate="">Cropping</property>
             <property name="description" i18n:translate="">View the image cropping editor for this object</property>
             <property
                 name="url_expr">string:${object_url}/@@croppingeditor</property>

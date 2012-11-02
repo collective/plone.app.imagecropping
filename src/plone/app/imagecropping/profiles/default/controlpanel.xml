@@ -2,14 +2,15 @@
 <object
     name="portal_controlpanel"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="silvuple">
+    i18n:domain="plone">
 
     <configlet
         title="plone.app.imagecropping Settings"
         action_id="imagecropping.settings"
-        appId="plone.app.imagecropping"
+        appId="ImageCroppingSettings"
         category="Plone"
         condition_expr=""
+        icon_expr="string:$portal_url/image_icon.gif"
         url_expr="string:${portal_url}/@@imagecropping-settings"
         visible="True"
         i18n:attributes="title">

@@ -5,9 +5,11 @@ from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Archetypes.interfaces.field import IImageField
 from plone.app.blob.interfaces import IBlobImageField
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+from plone.namedfile.interfaces import IImageScaleTraversable
 from zope.component import adapts
 from zope.interface import implements
 from zope.interface.declarations import providedBy
+from zope.app.file.interfaces import IImage
 
 
 class CroppingUtilsArchetype(object):
@@ -36,6 +38,50 @@ class CroppingUtilsArchetype(object):
         """ read interface
         """
         return self.context.getField(fieldname)
+
+    def get_image_data(self, fieldname, interface):
+        """ read interface
+        """
+        field = self.get_image_field(fieldname, interface)
+        blob = field.get(self.context)
+        data = getattr(aq_base(blob), 'data', blob)
+        if isinstance(data, Pdata):
+            data = str(data)
+        return data
+
+    def get_image_size(self, fieldname, interface):
+        """ read interface
+        """
+        field = self.get_image_field(fieldname, interface)
+        image_size = field.getSize(self.context)
+        return image_size
+
+
+class CroppingUtilsDexterity(object):
+    """TODO"""
+
+    implements(IImageCroppingUtils)
+    adapts(IImageScaleTraversable)
+
+    def __init__(self, context):
+        self.context = context
+
+    def image_fields(self):
+        """ read interface
+        """
+        fields = []
+
+        for field in self.context.getTypeInfo().lookupSchema():
+            img_field = getattr(self.context, field, None)
+            if img_field and IImage in providedBy(img_field).interfaces():
+                fields.append(img_field)
+
+        return fields
+
+    def get_image_field(self, fieldname, interface):
+        """ read interface
+        """
+        return getattr(self.context, fieldname, None)
 
     def get_image_data(self, fieldname, interface):
         """ read interface
