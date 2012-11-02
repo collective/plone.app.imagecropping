@@ -50,7 +50,7 @@ The view shows a dropdown for all available image scales.
 The aspect ratio for the cropping area in JCrop editor is automatically set
 to the image scale selected by the user.
 
-.. image:: https://raw.github.com/petschki/plone.app.imagecropping/master/docs/editor.png
+.. image:: https://raw.github.com/collective/plone.app.imagecropping/master/docs/editor.png
 
 The image stored for this scale gets replaced with the cropped and scaled version.
 This way you can access them as you're used to. For example::
