@@ -1,8 +1,10 @@
 Changelog
 =========
 
-0.1-dev (unreleased)
---------------------
+0.1a1 (2012-11-05)
+------------------
 
+- public alpha release
+  [petschki]
 - Package created using templer
-  []
+  [fRiSi]
