@@ -44,3 +44,7 @@ class TestExample(unittest.TestCase):
 
         self.browser.getLink('Cropping').click()
         self.assertTrue(u"Image Cropping Editor" in self.browser.contents)
+        # check for editor buttons
+        self.assertTrue(u"Save" in self.browser.contents)
+        self.assertTrue(u"Delete" in self.browser.contents)
+        self.assertTrue(u"Cancel" in self.browser.contents)

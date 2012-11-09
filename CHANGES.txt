@@ -4,7 +4,11 @@ Changelog
 0.1a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- fix tests
+- add test setups for Plone 4.1-4.3
+- Products.CMFPlone dependency. Right now we only support Plone >= 4.1
+- make dexterity support optional
+  [petschki]
 
 
 0.1a1 (2012-11-05)

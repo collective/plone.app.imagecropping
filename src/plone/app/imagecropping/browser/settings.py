@@ -13,14 +13,14 @@ class ISettings(Interface):
         title=_(u"Crop Editor Large Size"),
         description=_(u"width:height"),
         required=False,
-        default=u"1000:1000",
+        default=u"768:768",
     )
 
     min_size = schema.TextLine(
         title=_(u"Minimum Crop Area Size"),
         description=_(u"width:height"),
         required=False,
-        default=u"10:10"
+        default=u"50:50"
     )
 
 

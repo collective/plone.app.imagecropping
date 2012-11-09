@@ -21,7 +21,12 @@
 
   <include package=".browser" />
 
-  <class class="plone.app.blob.content.ATBlob">
+  <class class="Products.ATContentTypes.content.image.ATImage">
+      <implements interface=".interfaces.IImageCropping" />
+  </class>
+
+  <class zcml:condition="installed plone.app.blob"
+         class="plone.app.blob.content.ATBlob">
       <implements interface=".interfaces.IImageCropping" />
   </class>
 

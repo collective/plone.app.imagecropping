@@ -16,7 +16,8 @@ long_description = (
 
 setup(name='plone.app.imagecropping',
       version=version,
-      description="allows images to be manually cropped using JCrop JS library",
+      description=\
+        "allows images to be manually cropped using JCrop JS library",
       long_description=long_description,
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -41,8 +42,8 @@ setup(name='plone.app.imagecropping',
       install_requires=[
           'setuptools',
           'plone.app.imaging',
-          'plone.app.jquery',
           'Products.ATContentTypes',
+          'Products.CMFPlone>=4.1'
       ],
       extras_require={'test': ['plone.app.testing']},
       entry_points="""
