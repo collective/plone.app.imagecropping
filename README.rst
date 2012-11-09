@@ -63,6 +63,23 @@ cropped scales into a textfield.
 In TinyMCE it will be possible to access the cropping editor directly
 out of the image plugin right below the scale selection
 
+Configuration
+-------------
+
+A Configlet is registered in Plone Site Setup. There you can adjust the
+maximum Size of the jCrop Editor Image (large_size) and the minimum selectable
+size of the cropped area (min_size).
+
+You can also set those values in the profile of your (policy)product using
+p.a.registry mechanism (registry.xml)::
+
+  <registry>
+    <records interface="plone.app.imagecropping.browser.settings.ISettings">
+        <value key="large_size">500:500</value>
+        <value key="min_size">10:10</value>
+    </records>
+  </registry>
+
 
 Design decisions
 ----------------
