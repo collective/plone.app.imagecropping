@@ -1,5 +1,7 @@
-.. contents::
+.. image:: https://travis-ci.org/collective/plone.app.imagecropping.png
+    :target: http://travis-ci.org/collective/plone.app.imagecropping
 
+.. contents::
 
 History
 =======
