@@ -32,8 +32,8 @@ class CroppingEditor(BrowserView):
             # in self.image_fields
             return self.request.form.get('fieldname')
 
-        img_fields = self.image_fields()
-        return len(img_fields) > 0 and img_fields[0].__name__
+        img_field_names = self.image_field_names()
+        return len(img_field_names) > 0 and img_field_names[0]
 
     def scales(self):
         """Returns information to initialize JCrop for all available scales
@@ -95,6 +95,9 @@ class CroppingEditor(BrowserView):
 
     def image_fields(self):
         return IImageCroppingUtils(self.context).image_fields()
+
+    def image_field_names(self):
+        return IImageCroppingUtils(self.context).image_field_names()
 
     def current_scale(self):
         """Returns information of the current selected scale"""
