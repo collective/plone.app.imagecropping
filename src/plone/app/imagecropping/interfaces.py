@@ -13,14 +13,7 @@ class IImageCroppingUtils(Interface):
     """
 
     def image_fields():
-        """Returns all image fields and additional information:
-
-           {'fieldname1': {"title" :  "super image"
-                           'preview_url': 'http:..',
-                           'interface': interface.Inteface,
-                           },
-            }
-        """
+        """Returns all image fields"""
 
     def get_image_field(fieldname, interface):
         """Returns the image field"""
