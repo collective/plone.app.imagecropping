@@ -9,13 +9,10 @@ from zope.component import adapts
 from zope.interface import implements
 from zope.interface.declarations import providedBy
 
-HAS_DEXTERITY = False
-try:
+from plone.app.imagecropping import HAS_DEXTERITY
+if HAS_DEXTERITY:
     from plone.namedfile.interfaces import IImageScaleTraversable
-    from zope.app.file.interfaces import IImage
-    HAS_DEXTERITY = True
-except:
-    pass
+    from plone.namedfile.interfaces import IImage
 
 
 class CroppingUtilsArchetype(object):
@@ -39,6 +36,11 @@ class CroppingUtilsArchetype(object):
                 fields.append(field)
 
         return fields
+
+    def image_field_names(self):
+        """ read interface
+        """
+        return [field.__name__ for field in self.image_fields()]
 
     def get_image_field(self, fieldname, interface):
         """ read interface
@@ -73,17 +75,25 @@ if HAS_DEXTERITY:
         def __init__(self, context):
             self.context = context
 
+        def _image_field_info(self):
+            fields = []
+
+            for fieldname in self.context.getTypeInfo().lookupSchema():
+                img_field = getattr(self.context, fieldname, None)
+                if img_field and IImage.providedBy(img_field):
+                    fields.append((fieldname, img_field))
+
+            return fields
+
         def image_fields(self):
             """ read interface
             """
-            fields = []
+            return [info[1] for info in self._image_field_info()]
 
-            for field in self.context.getTypeInfo().lookupSchema():
-                img_field = getattr(self.context, field, None)
-                if img_field and IImage in providedBy(img_field).interfaces():
-                    fields.append(img_field)
-
-            return fields
+        def image_field_names(self):
+            """ read interface
+            """
+            return [info[0] for info in self._image_field_info()]
 
         def get_image_field(self, fieldname, interface):
             """ read interface
@@ -94,15 +104,11 @@ if HAS_DEXTERITY:
             """ read interface
             """
             field = self.get_image_field(fieldname, interface)
-            blob = field.get(self.context)
-            data = getattr(aq_base(blob), 'data', blob)
-            if isinstance(data, Pdata):
-                data = str(data)
-            return data
+            return field.data
 
         def get_image_size(self, fieldname, interface):
             """ read interface
             """
             field = self.get_image_field(fieldname, interface)
-            image_size = field.getSize(self.context)
+            image_size = field.getImageSize()
             return image_size

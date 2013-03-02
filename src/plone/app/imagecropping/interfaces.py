@@ -15,6 +15,9 @@ class IImageCroppingUtils(Interface):
     def image_fields():
         """Returns all image fields"""
 
+    def image_field_names():
+        """Returns the names of all image fields"""
+
     def get_image_field(fieldname, interface):
         """Returns the image field"""
 
