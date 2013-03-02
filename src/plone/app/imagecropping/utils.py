@@ -81,7 +81,7 @@ class CroppingUtilsArchetype(BaseUtil):
 
     def save_cropped(
             self, fieldname, field, scale, image_file, interface=None):
-        """ Cropping for Archetypes
+        """ see interface
         """
         handler = IImageScaleHandler(field)
         sizes = field.getAvailableSizes(self.context)
@@ -155,7 +155,7 @@ if HAS_DEXTERITY:
 
         def save_cropped(
                 self, fieldname, field, scale, image_file, interface=None):
-            """ Cropping for dexterity
+            """ see interface
             """
             sizes = getAllowedSizes()
             w, h = sizes[scale]
