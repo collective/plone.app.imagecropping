@@ -11,8 +11,8 @@ from zope.interface.declarations import providedBy
 
 from plone.app.imagecropping import HAS_DEXTERITY
 if HAS_DEXTERITY:
-    from plone.namedfile.interfaces import IImageScaleTraversable
     from plone.namedfile.interfaces import IImage
+    from plone.namedfile.interfaces import IImageScaleTraversable
 
 
 class CroppingUtilsArchetype(object):
