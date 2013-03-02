@@ -5,7 +5,9 @@ from ZODB.blob import Blob
 from cStringIO import StringIO
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
+from plone.app.imagecropping import HAS_DEXTERITY
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.app.imaging.utils import getAllowedSizes
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
 from zope.annotation.interfaces import IAnnotations
@@ -29,19 +31,19 @@ class CroppingView(BrowserView):
         return int(time.time() * 1000)
 
     def _crop(self, fieldname, scale, box, interface=None):
-        """interface just useful to locate field on dexterity types
+        """switch between dexterity and Archetypes
         """
-        # https://github.com/plone/plone.app.imaging/blob/ggozad-cropping/src/
-        # plone/app/imaging/cropping.py
+        if HAS_DEXTERITY:
+            field = getattr(self.context, fieldname)
+            data = field.data
+        else:
+            field = self.context.getField(fieldname)
+            handler = IImageScaleHandler(field)
 
-        field = self.context.getField(fieldname)
-        handler = IImageScaleHandler(field)
-
-        # TODO this is archetype only
-        value = field.get(self.context)
-        data = getattr(aq_base(value), 'data', value)
-        if isinstance(data, Pdata):
-            data = str(data)
+            value = field.get(self.context)
+            data = getattr(aq_base(value), 'data', value)
+            if isinstance(data, Pdata):
+                data = str(data)
 
         original_file = StringIO(data)
         image = PIL.Image.open(original_file)
@@ -52,10 +54,59 @@ class CroppingView(BrowserView):
         cropped_image.save(cropped_image_file, image_format, quality=100)
         cropped_image_file.seek(0)
 
+        if HAS_DEXTERITY:
+            self._dexterity_crop(
+                fieldname, field, scale, cropped_image_file, interface)
+        else:
+            self._atct_crop(
+                field, scale, cropped_image_file, handler, interface)
+
+        # store crop information in annotations
+        self._store(fieldname, scale, box)
+
+    def _dexterity_crop(self, fieldname, field, scale, image_file, interface):
+        """ Cropping for dexterity
+        """
+        sizes = getAllowedSizes()
+        w, h = sizes[scale]
+
+        def crop_factory(fieldname, **parameters):
+            result = scaleImage(image_file.read(), **parameters)
+            if result is not None:
+                data, format, dimensions = result
+                mimetype = 'image/%s' % format.lower()
+                value = field.__class__(
+                    data,
+                    contentType=mimetype,
+                    filename=field.filename
+                )
+                value.fieldname = fieldname
+                return value, format, dimensions
+
+        # call storage with actual time in milliseconds
+        # this always invalidates old scales
+        storage = AnnotationStorage(self.context, self.now_millis)
+
+        # We need to pass direction='thumbnail' since this is the default
+        # used by plone.namedfile.scaling, also for retrieval of scales.
+        # Otherwise the key under which the scaled and cropped image is saved
+        # in plone.scale.storage.AnnotationStorage will not match the key used
+        # for retrieval (= the cropped scaled image will not be found)
+        storage.scale(
+            factory=crop_factory,
+            direction='thumbnail',
+            fieldname=fieldname,
+            width=w,
+            height=h,
+        )
+
+    def _atct_crop(self, field, scale, image_file, handler, interface):
+        """ Cropping for Archetypes
+        """
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]
-        data = handler.createScale(self.context, scale, w, h,
-                                   data=cropped_image_file.read())
+        data = handler.createScale(
+            self.context, scale, w, h, data=image_file.read())
 
         # store scale for classic <fieldname>_<scale> traversing
         handler.storeScale(self.context, scale, **data)
@@ -65,25 +116,21 @@ class CroppingView(BrowserView):
         def crop_factory(fieldname, direction='keep', **parameters):
             blob = Blob()
             result = blob.open('w')
-            _, image_format, dimensions = scaleImage(data['data'],
-                result=result, **parameters)
+            _, image_format, dimensions = scaleImage(
+                data['data'], result=result, **parameters)
             result.close()
             return blob, image_format, dimensions
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
-        storage = AnnotationStorage(self.context,
-            self.now_millis)
-        storage.scale(factory=crop_factory, fieldname=fieldname,
-            width=w, height=h)
-
-        # store crop information in annotations
-        self._store(fieldname, scale, box)
+        storage = AnnotationStorage(self.context, self.now_millis)
+        storage.scale(
+            factory=crop_factory, fieldname=field.__name__, width=w, height=h)
 
     @property
     def _storage(self):
-        return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY,
-            PersistentDict())
+        return IAnnotations(self.context).setdefault(
+            PAI_STORAGE_KEY, PersistentDict())
 
     def _store(self, fieldname, scale, box):
         self._storage["%s_%s" % (fieldname, scale)] = box
