@@ -2,7 +2,7 @@
 if (jQuery) {
 
     function clearCoords() {
-        $('#coords input').val('');
+        $('#coords input[hidden]').val('');
         $('#h').css({color:'red'});
         window.setTimeout(function(){
             $('#h').css({color:'inherit'});
