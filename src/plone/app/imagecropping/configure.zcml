@@ -30,6 +30,11 @@
       <implements interface=".interfaces.IImageCropping" />
   </class>
 
+  <class zcml:condition="installed plone.app.contenttypes"
+    class="plone.app.contenttypes.content.Image">
+      <implements interface=".interfaces.IImageCropping" />
+  </class>
+
    <!-- archetypes adapter -->
   <adapter factory=".utils.CroppingUtilsArchetype" />
 

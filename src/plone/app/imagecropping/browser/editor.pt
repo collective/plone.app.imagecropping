@@ -46,7 +46,7 @@
                              tal:attributes="id string:preview-${scale/id};
                                              style string:width:${scale/thumb_width}px;;max-width:100%">
                             <img tal:define="is_cropped scale/is_cropped;
-                                             src python:is_cropped and '%s/%s_%s' % (context.absolute_url(), view.fieldname, scale['id']) or image_url"
+                                             src python:is_cropped and '%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id']) or image_url"
                                  tal:attributes="src src" />
                         </div>
                     </a>
