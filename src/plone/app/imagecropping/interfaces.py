@@ -13,14 +13,10 @@ class IImageCroppingUtils(Interface):
     """
 
     def image_fields():
-        """Returns all image fields and additional information:
+        """Returns all image fields"""
 
-           {'fieldname1': {"title" :  "super image"
-                           'preview_url': 'http:..',
-                           'interface': interface.Inteface,
-                           },
-            }
-        """
+    def image_field_names():
+        """Returns the names of all image fields"""
 
     def get_image_field(fieldname, interface):
         """Returns the image field"""
@@ -32,6 +28,12 @@ class IImageCroppingUtils(Interface):
         """Returns the original image size:
 
            (100, 200)
+        """
+
+    def save_cropped(fieldname, field, scale, image_file, interface=None):
+        """ Save the cropped iamge under the name of the selected scale in
+            plone.scale.storage.AnnotationStorage, so that it is available
+            in plone.app.imaging @@images view
         """
 
 

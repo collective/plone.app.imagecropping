@@ -4,7 +4,8 @@ Changelog
 0.1a3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Made cropping work in dexterity-only sites
+  [pysailor]
 
 
 0.1a2 (2012-11-10)

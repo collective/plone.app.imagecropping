@@ -5,6 +5,7 @@
 - Joscha Krutzki (joka)
 - Harald Frießnegger (fRiSi)
 - Martijn Zweistra (themask96)
+- Wolfgang Thomas (pysailor)
 
 Credits
 -------

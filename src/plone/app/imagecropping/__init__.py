@@ -1,5 +1,12 @@
 from zope.i18nmessageid.message import MessageFactory
+import pkg_resources
 
+try:
+    pkg_resources.get_distribution('plone.dexterity')
+except pkg_resources.DistributionNotFound:
+    HAS_DEXTERITY = False
+else:
+    HAS_DEXTERITY = True
 
 imagecroppingMessageFactory = MessageFactory("plone.app.imagecropping")
 PAI_STORAGE_KEY = "plone.app.imagecropping"
