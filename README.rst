@@ -45,7 +45,7 @@ How it works
 There is a view @@croppingeditor available for every content type
 implementing ``IImageCropping`` via an object action.
 
-The Interface is implemented by default for ATImage XXX and plone.app.contenttypes image.
+The Interface is implemented by default for ATImage and plone.app.contenttypes image.
 
 
 The view shows a dropdown for all available image scales.
