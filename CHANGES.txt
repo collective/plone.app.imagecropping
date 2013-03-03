@@ -7,6 +7,9 @@ Changelog
 - Made cropping work in dexterity-only sites
   [pysailor]
 
+- Add travis integration
+  [saily]
+
 
 0.1a2 (2012-11-10)
 ------------------
