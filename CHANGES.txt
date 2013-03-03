@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1a3 (unreleased)
+0.1b1 (2013-03-03)
 ------------------
 
 - Made cropping work in dexterity-only sites
