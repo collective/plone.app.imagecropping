@@ -1,7 +1,7 @@
 language: python
 python: "2.7"
 before_install:
-  - sudo apt-get install -y libjpeg-dev libgif-dev libpng-dev xpdf zlib1g-dev
+  - sudo apt-get install -y libjpeg-dev libgif-dev libpng-dev libz-dev
   - pip install http://effbot.org/downloads/Imaging-1.1.7.tar.gz
 install:
   - mkdir -p buildout-cache/eggs
