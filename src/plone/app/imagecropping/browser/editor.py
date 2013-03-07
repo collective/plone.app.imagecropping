@@ -155,6 +155,10 @@ class CroppingEditor(BrowserView):
             IStatusMessage(self.request).add(
                 _(u"Successfully saved cropped area"))
 
+        # disable columns
+        self.request.set('disable_plone.leftcolumn', 1)
+        self.request.set('disable_plone.rightcolumn', 1)
+
         return self.template()
 
     def _min_size(self, image_size, scale_size):

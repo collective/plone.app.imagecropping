@@ -5,8 +5,12 @@ Changelog
 ------------------
 
 - add support for multiple image fields
+- refactored javascript includes so the editor can be loaded as overlay
+- fixed JS error when editor is invisible (ie editor is loaded in an overlay)
+- fixed edit/remove actions when editor is loaded as overlay
+- make editor view more convenient (disable columns)
+- update documentation
   [petschki]
-
 
 0.1b1 (2013-03-03)
 ------------------

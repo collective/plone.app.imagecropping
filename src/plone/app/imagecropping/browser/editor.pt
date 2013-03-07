@@ -4,14 +4,6 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   i18n:domain="plone.app.imagecropping">
 
-  <head>
-      <metal:js fill-slot="javascript_head_slot">
-          <script type="text/javascript"
-              tal:attributes="src string:${portal_state/portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-          <script type="text/javascript"
-              tal:attributes="src string:${portal_state/portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
-      </metal:js>
-  </head>
   <body>
 
     <metal:main fill-slot="main">
@@ -103,19 +95,29 @@
                   i18n:attributes="value"
                   name="form.button.Delete"
                   />
+                <br />
                 <input type="submit"
-                  class="context"
+                  class="standalone"
                   value="Cancel"
                   i18n:attributes="value"
                   name="form.button.Cancel"
                   />
 
+                <input type="hidden" name="ajax_load"
+                    tal:condition="ajax_load"
+                    tal:attributes="value ajax_load" />
             </form>
 
           </div>
 
           <div class="visualClear"><!-- --></div>
       </div>
+
+    <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+    <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+    <script type="text/javascript">
+        imagecropping.init_editor();
+    </script>
     </metal:main>
 
   </body>
