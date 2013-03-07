@@ -21,17 +21,36 @@
       </h1>
 
       <div class="row"
-           tal:define="multiple_flds python:len(view.image_fields()) > 1;
+           tal:define="image_field_names view/image_field_names;
+                       multiple_flds python:len(image_field_names) &gt; 1;
                        scales view/scales;
-                       image_url view/image_url;">
+                       current_scale view/current_scale">
           <div class="cell width-1:4 position-0"
                tal:condition="multiple_flds">
-                <pre tal:content="view/image_fields" />
+                <h2 i18n:translate="">Available Image Fields</h2>
+                <ul class="fields visualNoMarker">
+                    <li tal:repeat="fieldname image_field_names">
+                        <a tal:define="image_url python:view.image_url(fieldname)"
+                           tal:attributes="href string:${context_state/current_base_url}?fieldname=${fieldname}"
+                           tal:omit-tag="not:image_url">
+                            <span tal:content="fieldname">image field name</span><br />
+                            <img style="max-width:100%;height:auto;"
+                                 tal:condition="image_url"
+                                 tal:attributes="src python:view.image_url(fieldname)" />
+                            <span class="discreet"
+                                  tal:condition="not:image_url"
+                                  i18n:translate="">
+                                no image available
+                            </span>
+                        </a>
+                    </li>
+                </ul>
           </div>
 
           <div class="cell width-1:4"
                tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
+            <h2 i18n:translate="">Available Image Scales for Field "<span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="" />"</h2>
             <ul class="scales visualNoMarker">
                 <li tal:repeat="scale scales"
                     tal:attributes="data-jcrop_config scale/config;
@@ -46,7 +65,7 @@
                              tal:attributes="id string:preview-${scale/id};
                                              style string:width:${scale/thumb_width}px;;max-width:100%">
                             <img tal:define="is_cropped scale/is_cropped;
-                                             src python:is_cropped and '%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id']) or image_url"
+                                             src python:is_cropped and '%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id']) or scale['image_url']"
                                  tal:attributes="src src" />
                         </div>
                     </a>
@@ -60,9 +79,8 @@
             <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
                                                            tal:condition="scales">
 
-              <!--JCrop Editor-->
-              <tal:imageform tal:define="image view/current_scale;">
-                <img class="cropbox" tal:attributes="src image_url;" />
+                <!--JCrop Editor-->
+                <img class="cropbox" tal:attributes="src current_scale/image_url;" />
 
                 <div>
                   <input type="hidden" size="4" id="x1" name="x1" />
@@ -70,7 +88,7 @@
                   <input type="hidden" size="4" id="x2" name="x2" />
                   <input type="hidden" size="4" id="y2" name="y2" />
                   <input type="hidden" id="scalename" name="scalename" value=""
-                    tal:attributes="value image/id" />
+                    tal:attributes="value current_scale/id" />
 
                 </div>
                 <input type="submit"
@@ -91,7 +109,6 @@
                   i18n:attributes="value"
                   name="form.button.Cancel"
                   />
-              </tal:imageform>
 
             </form>
 

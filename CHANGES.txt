@@ -4,7 +4,8 @@ Changelog
 0.1b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- add support for multiple image fields
+  [petschki]
 
 
 0.1b1 (2013-03-03)

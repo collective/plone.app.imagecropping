@@ -35,18 +35,19 @@ class CroppingEditor(BrowserView):
         img_field_names = self.image_field_names()
         return len(img_field_names) > 0 and img_field_names[0]
 
-    def scales(self):
+    def scales(self, fieldname=None):
         """Returns information to initialize JCrop for all available scales
            on the current content with the given fieldname and interface."""
 
         scales = []
         croputils = IImageCroppingUtils(self.context)
         cropview = self.context.restrictedTraverse('@@crop-image')
-        image_size = croputils.get_image_size(self.fieldname, self.interface)
+        if fieldname is None:
+            fieldname = self.fieldname
+        image_size = croputils.get_image_size(fieldname, self.interface)
         all_sizes = getAllowedSizes()
         current_selected = self.request.get('scalename', all_sizes.keys()[0])
-        # TODO: implement other imagefields
-        large_image_url = self.image_url(self.fieldname)
+        large_image_url = self.image_url(fieldname)
 
         for index, size in enumerate(all_sizes):
             scale = dict()
@@ -57,7 +58,7 @@ class CroppingEditor(BrowserView):
             ratio_width, ratio_height = all_sizes[size][0], all_sizes[size][1]
 
             # lookup saved crop info
-            select_box = cropview._read(self.fieldname, size)
+            select_box = cropview._read(fieldname, size)
             is_cropped = True
 
             if select_box is None:
@@ -89,6 +90,8 @@ class CroppingEditor(BrowserView):
             # TODO: this is for thumbnail live-preview
             scale["thumb_width"] = ratio_width
             scale["thumb_height"] = ratio_height
+            # safe original image url
+            scale["image_url"] = large_image_url
 
             scales.append(scale)
         return scales
