@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2012-11-02 20:35+0000\n"
-"PO-Revision-Date: 2012-11-02 21:38+0100\n"
+"POT-Creation-Date: 2013-03-11 07:53+0000\n"
+"PO-Revision-Date: 2013-03-11 09:18+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: frisi, petschki <office@kombinat.at>\n"
 "MIME-Version: 1.0\n"
@@ -13,10 +13,18 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.3\n"
 "Language: German\n"
 
-#: plone/app/imagecropping/browser/editor.pt:80
+#: plone/app/imagecropping/browser/editor.pt:22
+msgid "Available Image Fields"
+msgstr "Vorhandene Bilder"
+
+#: plone/app/imagecropping/browser/editor.pt:45
+msgid "Available Image Scales for Field \"${field_name}\""
+msgstr "Bildgrößen für \"${field_name}\""
+
+#: plone/app/imagecropping/browser/editor.pt:99
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -28,11 +36,11 @@ msgstr "Bildgröße für Vorschau im Jcrop Editor (Jcrop: boxWidth: boxHeight)"
 msgid "Cropping"
 msgstr "Zuschneiden"
 
-#: plone/app/imagecropping/browser/editor.py:137
+#: plone/app/imagecropping/browser/editor.py:144
 msgid "Cropping area deleted"
 msgstr "Zuschnitt gelöscht"
 
-#: plone/app/imagecropping/browser/editor.pt:74
+#: plone/app/imagecropping/browser/editor.pt:92
 msgid "Delete"
 msgstr "Entfernen"
 
@@ -48,17 +56,21 @@ msgstr "Bild Cropping Einstellungen"
 msgid "Minimum Crop Area Size"
 msgstr "minimal erlaubter Ausschnitt (Jcrop: minSize)"
 
-#: plone/app/imagecropping/browser/editor.pt:68
+#: plone/app/imagecropping/browser/editor.pt:86
 msgid "Save"
 msgstr "Speichern"
 
-#: plone/app/imagecropping/browser/editor.py:149
+#: plone/app/imagecropping/browser/editor.py:156
 msgid "Successfully saved cropped area"
 msgstr "Zuschnitt erfolgreich gespeichert"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
 msgstr "zeige den Zuschnitts Editor für dieses Bild"
+
+#: plone/app/imagecropping/browser/editor.pt:32
+msgid "no image available"
+msgstr "kein Bild vorhanden"
 
 #: plone/app/imagecropping/browser/settings.py:14
 msgid "width:height"
