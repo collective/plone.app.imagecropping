@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.1b2 (unreleased)
-------------------
+0.1rc1 (2013-03-11)
+-------------------
 
 - add support for multiple image fields
 - refactored javascript includes so the editor can be loaded as overlay
