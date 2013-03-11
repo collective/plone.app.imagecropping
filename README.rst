@@ -77,7 +77,7 @@ The editor can also be loaded as an overlay anywhere. Just place a link to the
 @@croppingeditor url of an image (<image_base_url>/@@croppingeditor) and add
 some javascript. For example::
 
-    (function() {
+    (function($) {
         $(function() {
             $("a[href$='@@croppingeditor']").prepOverlay({
                 subtype:'ajax',
