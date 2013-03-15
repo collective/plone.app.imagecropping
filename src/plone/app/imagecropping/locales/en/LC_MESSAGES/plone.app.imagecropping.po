@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2013-03-11 07:53+0000\n"
+"POT-Creation-Date: 2013-03-14 16:50+0000\n"
 "PO-Revision-Date: 2012-10-15 15:39+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: themask96\n"
@@ -21,7 +21,7 @@ msgid "Available Image Fields"
 msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:45
-msgid "Available Image Scales for Field "${field_name}""
+msgid "Available Image Scales for Field ${field_name}"
 msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:99

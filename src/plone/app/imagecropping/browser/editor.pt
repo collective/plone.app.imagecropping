@@ -42,7 +42,7 @@
           <div class="cell width-1:4"
                tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
-            <h2 i18n:translate="">Available Image Scales for Field "<span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="" />"</h2>
+            <h2 i18n:translate="">Available Image Scales for Field <span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">"Field Name"</span></h2>
             <ul class="scales visualNoMarker">
                 <li tal:repeat="scale scales"
                     tal:attributes="data-jcrop_config scale/config;

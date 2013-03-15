@@ -2,8 +2,8 @@ from Products.CMFPlone.utils import _createObjectByType
 from os.path import dirname, join
 from plone.app.imagecropping import tests, PAI_STORAGE_KEY
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
-import unittest2 as unittest
 from zope.annotation.interfaces import IAnnotations
+import unittest2 as unittest
 
 
 class TestExample(unittest.TestCase):
@@ -35,7 +35,7 @@ class TestExample(unittest.TestCase):
         thumb = traverse(self.img, 'image_thumb')
         self.assertEqual((thumb.width, thumb.height), (128, 38))
 
-        #there is also no annotations yet for cropped sizes on this image
+        # there is also no annotations yet for cropped sizes on this image
         self.assertIsNone(IAnnotations(self.img).get(PAI_STORAGE_KEY),
                          "fresh image should not have any annotations")
 
@@ -93,13 +93,13 @@ class TestExample(unittest.TestCase):
         self.assertEqual(open(croppedData).format, 'PNG',
             "cropped scale does not have same format as the original")
 
-        #create a jpeg image out of the png file:
+        # create a jpeg image out of the png file:
         img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
         out = StringIO()
         img.save(out, format='JPEG', quality=75)
         out.seek(0)
 
-        #and test if created scale is jpeg too
+        # and test if created scale is jpeg too
         _createObjectByType('Image', self.portal, 'testjpeg')
         jpg = self.portal.testjpeg
         jpg.setImage(out.getvalue())
@@ -112,5 +112,5 @@ class TestExample(unittest.TestCase):
         cropped = traverse(self.img, 'image_thumb')
         croppedData = StringIO(cropped.data)
         # XXX: fixme
-        #self.assertEqual(open(croppedData).format, 'JPEG',
+        # self.assertEqual(open(croppedData).format, 'JPEG',
         #    "cropped scale does not have same format as the original")

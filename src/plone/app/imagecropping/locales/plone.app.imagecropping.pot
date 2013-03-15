@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-11 07:53+0000\n"
+"POT-Creation-Date: 2013-03-14 16:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Available Image Fields"
 msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:45
-msgid "Available Image Scales for Field "${field_name}""
+msgid "Available Image Scales for Field ${field_name}"
 msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:99
