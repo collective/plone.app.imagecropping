@@ -29,7 +29,7 @@ via the ``direction`` parameter::
                     width=1200, height=800, direction='down')"
        />
 
-However it only crops from the center of the image,
+However it only crops from the top left of the image,
 so in some ocasions this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually
