@@ -4,7 +4,8 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Small documentation update  
+  [saily]
 
 
 0.1rc1 (2013-03-11)
