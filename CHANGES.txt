@@ -8,6 +8,11 @@ Changelog
   [jensens
 
 - Small documentation update  
+- Added tests for control panel and registry
+- Added Spanish and Brazilian Portuguese translations
+  [hvelarde]
+
+- Small documentation update
   [saily]
 
 
