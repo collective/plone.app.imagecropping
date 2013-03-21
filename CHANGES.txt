@@ -4,6 +4,7 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Added tests for control panel and registry
 - Added Spanish and Brazilian Portuguese translations
   [hvelarde]
 
