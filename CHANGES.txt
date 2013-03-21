@@ -4,7 +4,10 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
-- Small documentation update  
+- Added Spanish and Brazilian Portuguese translations
+  [hvelarde]
+
+- Small documentation update
   [saily]
 
 

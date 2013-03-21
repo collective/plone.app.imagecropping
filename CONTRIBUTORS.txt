@@ -7,6 +7,7 @@
 - Martijn Zweistra (themask96)
 - Daniel Widerin (saily)
 - Wolfgang Thomas (pysailor)
+- Héctor Velarde (hvelarde)
 
 Credits
 -------
