@@ -6,6 +6,10 @@
 
     <include package="Products.CMFCore" file="permissions.zcml" />
 
+    <!-- utilities -->
+    <utility 
+        factory=".settings.SizesVocabulary" 
+        name="plone.app.imagecropping.all_sizes" />
 
     <!--resources-->
 

@@ -48,12 +48,16 @@ class CroppingEditor(BrowserView):
         all_sizes = getAllowedSizes()
         current_selected = self.request.get('scalename', all_sizes.keys()[0])
         large_image_url = self.image_url(fieldname)
+        constrain_cropping = self._editor_settings.constrain_cropping
+        cropping_for = self._editor_settings.cropping_for
 
-        for index, size in enumerate(all_sizes):
+        for size in all_sizes:
+            if constrain_cropping and size not in cropping_for:
+                continue
             scale = dict()
             # scale jcrop config
             min_width, min_height = self._min_size(image_size, all_sizes[size])
-            max_width, max_height = self.default_cropping_max_size[0],\
+            max_width, max_height = self.default_cropping_max_size[0], \
                 self.default_cropping_max_size[1]
             ratio_width, ratio_height = all_sizes[size][0], all_sizes[size][1]
 

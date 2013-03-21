@@ -4,6 +4,9 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Implemented #11 - Mark image scales as "croppable"
+  [jensens
+
 - Small documentation update  
   [saily]
 

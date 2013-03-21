@@ -5,12 +5,12 @@
     i18n:domain="plone">
 
     <configlet
-        title="plone.app.imagecropping Settings"
+        title="Image Cropping"
         action_id="imagecropping.settings"
         appId="ImageCroppingSettings"
         category="Plone"
         condition_expr=""
-        icon_expr="string:$portal_url/image_icon.gif"
+        icon_expr="string:$portal_url/++resource++plone.app.imagecropping.static/crop_icon.png"
         url_expr="string:${portal_url}/@@imagecropping-settings"
         visible="True"
         i18n:attributes="title">

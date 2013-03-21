@@ -15,7 +15,16 @@
       description="Installs the plone.app.imagecropping package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
+
+  <genericsetup:upgradeStep
+      title="Upgrade plone.app.imagecropping to profile 0003"
+      description="Migrates plone.app.imagecropping upgrade to 0003"
+      source="0002"
+      destination="0003"
+      handler=".setuphandler.migrate0002to0003"
+      sortkey="1"
+      profile="plone.app.imagecropping:default"
+  />
 
   <i18n:registerTranslations directory="locales" />
 

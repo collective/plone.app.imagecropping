@@ -31,3 +31,8 @@ pip-log.txt
 .settings
 
 .DS_Store
+
+# virtualenv
+include
+lib
+
