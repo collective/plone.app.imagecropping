@@ -24,13 +24,27 @@
       handler=".setuphandler.migrate0002to0003"
       sortkey="1"
       profile="plone.app.imagecropping:default"
-  />
+      />
+  
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="plone.app.imagecropping Uninstallation"
+      directory="profiles/uninstall"
+      description="Uninstalls resources from the plone.app.imagecropping package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
   <i18n:registerTranslations directory="locales" />
 
   <include package=".browser" />
 
-  <class class="Products.ATContentTypes.content.image.ATImage">
+  <class zcml:condition="installed Products.ATContentTypes"
+         class="Products.ATContentTypes.content.image.ATImage">
+      <implements interface=".interfaces.IImageCropping" />
+  </class>
+
+  <class zcml:condition="installed Products.ATContentTypes"
+         class="Products.ATContentTypes.content.newsitem.ATNewsItem">
       <implements interface=".interfaces.IImageCropping" />
   </class>
 
