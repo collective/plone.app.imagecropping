@@ -8,8 +8,9 @@ from plone.app.registry.browser.controlpanel import (
     ControlPanelFormWrapper,
     RegistryEditForm,
 )
+from z3c.form import form
 from plone.z3cform import layout
-from plone.registry.field import (
+from zope.schema import (
     List,
     Choice,
     TextLine,
@@ -77,6 +78,7 @@ class SettingsEditForm(RegistryEditForm):
     """
     Define form logic
     """
+    form.extends(RegistryEditForm)
     schema = ISettings
     label = _(u"Image Cropping Settings")
 
