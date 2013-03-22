@@ -15,6 +15,15 @@
       description="Installs the plone.app.imagecropping package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="plone.app.imagecropping Uninstallation"
+      directory="profiles/uninstall"
+      description="Uninstalls resources from the plone.app.imagecropping package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <!-- -*- extra stuff goes here -*- -->
 
   <i18n:registerTranslations directory="locales" />

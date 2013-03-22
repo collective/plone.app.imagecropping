@@ -3,7 +3,7 @@ from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
 import unittest2 as unittest
 
 
-class TestExample(unittest.TestCase):
+class TestSetup(unittest.TestCase):
 
     layer = PLONE_APP_IMAGECROPPING_INTEGRATION
 

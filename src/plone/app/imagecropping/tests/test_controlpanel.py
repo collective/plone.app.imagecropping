@@ -19,6 +19,7 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.controlpanel = self.portal['portal_controlpanel']
+        self.setup_tool = self.portal['portal_setup']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_controlpanel_has_view(self):
@@ -40,15 +41,18 @@ class ControlPanelTestCase(unittest.TestCase):
         self.assertIn('imagecropping.settings', actions,
                       'control panel was not installed')
 
-    # XXX: quickinstaller does not pay attention to uninstall profile.
-    # this is not our failure
-    #def test_controlpanel_removed_on_uninstall(self):
-    #    qi = self.portal['portal_quickinstaller']
-    #    qi.uninstallProducts(products=['plone.app.imagecropping'])
-    #    actions = [a.getAction(self)['id']
-    #               for a in self.controlpanel.listActions()]
-    #    self.assertNotIn('imagecropping.settings', actions,
-    #                     'control panel was not removed')
+    def test_controlpanel_removed_on_uninstall(self):
+        # run uninstall profile instead of uninstall in quickinstaller.
+        # QI does not pay attention to uninstall profiles
+        # see https://dev.plone.org/ticket/11328
+        # XXX: Configlet removal doesn't seem to work in GenericSetup :(
+        #self.setup_tool.runAllImportStepsFromProfile(
+        #    'profile-plone.app.imagecropping:uninstall')
+        #actions = [a.getAction(self)['id']
+        #           for a in self.controlpanel.listActions()]
+        #self.assertNotIn('imagecropping.settings', actions,
+        #                 'control panel was not removed')
+        pass
 
 
 class RegistryTestCase(unittest.TestCase):
@@ -57,6 +61,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.setup_tool = self.portal['portal_setup']
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISettings)
 
@@ -68,18 +73,19 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'min_size'))
         self.assertEqual(self.settings.min_size, u"50:50")
 
-    # XXX: quickinstaller does not pay attention to uninstall profile.
-    # this is not our failure
-    #def test_records_removed_on_uninstall(self):
-    #    setRoles(self.portal, TEST_USER_ID, ['Manager'])
-    #    qi = self.portal['portal_quickinstaller']
-    #    qi.uninstallProducts(products=['plone.app.imagecropping'])
-    #
-    #    BASE_REGISTRY = 'plone.app.imagecropping.browser.settings.ISettings.%s'
-    #    records = (
-    #        BASE_REGISTRY % 'large_size',
-    #        BASE_REGISTRY % 'min_size',
-    #    )
-    #
-    #    for r in records:
-    #        self.assertNotIn(r, self.registry)
+    def test_records_removed_on_uninstall(self):
+        # run uninstall profile instead of uninstall in quickinstaller.
+        # QI does not pay attention to uninstall profiles
+        # see https://dev.plone.org/ticket/11328
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.setup_tool.runAllImportStepsFromProfile(
+            'profile-plone.app.imagecropping:uninstall')
+
+        BASE_REGISTRY = 'plone.app.imagecropping.browser.settings.ISettings.%s'
+        records = (
+            BASE_REGISTRY % 'large_size',
+            BASE_REGISTRY % 'min_size',
+        )
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
