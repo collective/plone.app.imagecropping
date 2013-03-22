@@ -5,9 +5,8 @@ Changelog
 -------------------
 
 - Implemented #11 - Mark image scales as "croppable"
-  [jensens
+  [jensens]
 
-- Small documentation update  
 - Added tests for control panel and registry
 - Added Spanish and Brazilian Portuguese translations
   [hvelarde]
