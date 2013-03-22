@@ -21,7 +21,13 @@
 
   <include package=".browser" />
 
-  <class class="Products.ATContentTypes.content.image.ATImage">
+  <class zcml:condition="installed Products.ATContentTypes"
+         class="Products.ATContentTypes.content.image.ATImage">
+      <implements interface=".interfaces.IImageCropping" />
+  </class>
+
+  <class zcml:condition="installed Products.ATContentTypes"
+         class="Products.ATContentTypes.content.newsitem.ATNewsItem">
       <implements interface=".interfaces.IImageCropping" />
   </class>
 
