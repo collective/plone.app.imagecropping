@@ -20,3 +20,8 @@ msgstr ""
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Cropping"
 msgstr ""
+
+#: plone/app/imagecropping/profiles/default/controlpanel.xml
+msgid "Image Cropping"
+msgstr ""
+

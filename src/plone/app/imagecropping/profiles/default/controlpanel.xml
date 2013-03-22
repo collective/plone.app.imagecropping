@@ -13,7 +13,7 @@
         url_expr="string:${portal_url}/@@imagecropping-settings"
         visible="True"
         i18n:attributes="title">
-            <permission>Manage site</permission>
+            <permission>Manage Site</permission>
     </configlet>
 
 </object>
