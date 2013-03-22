@@ -31,3 +31,5 @@ pip-log.txt
 .settings
 
 .DS_Store
+
+local.cfg
