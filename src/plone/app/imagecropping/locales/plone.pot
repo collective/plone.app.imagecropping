@@ -3,7 +3,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: plone.app.imagecropping\n"
 "POT-Creation-Date: 2012-10-15 13:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -20,3 +20,8 @@ msgstr ""
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Cropping"
 msgstr ""
+
+#: plone/app/imagecropping/profiles/default/controlpanel.xml
+msgid "Image Cropping"
+msgstr ""
+

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2012-11-02 20:35+0000\n"
+"POT-Creation-Date: 2013-03-14 16:50+0000\n"
 "PO-Revision-Date: 2012-10-15 15:39+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: themask96\n"
@@ -16,7 +16,15 @@ msgstr ""
 "Language: English\n"
 "X-Generator: Poedit 1.5.3\n"
 
-#: plone/app/imagecropping/browser/editor.pt:80
+#: plone/app/imagecropping/browser/editor.pt:22
+msgid "Available Image Fields"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:45
+msgid "Available Image Scales for Field ${field_name}"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:99
 msgid "Cancel"
 msgstr ""
 
@@ -28,11 +36,11 @@ msgstr ""
 msgid "Cropping"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.py:137
+#: plone/app/imagecropping/browser/editor.py:144
 msgid "Cropping area deleted"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:74
+#: plone/app/imagecropping/browser/editor.pt:92
 msgid "Delete"
 msgstr ""
 
@@ -48,16 +56,20 @@ msgstr ""
 msgid "Minimum Crop Area Size"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:68
+#: plone/app/imagecropping/browser/editor.pt:86
 msgid "Save"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.py:149
+#: plone/app/imagecropping/browser/editor.py:156
 msgid "Successfully saved cropped area"
 msgstr ""
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:32
+msgid "no image available"
 msgstr ""
 
 #: plone/app/imagecropping/browser/settings.py:14

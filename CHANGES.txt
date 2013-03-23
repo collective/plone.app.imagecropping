@@ -1,7 +1,32 @@
 Changelog
 =========
 
-0.1a3 (unreleased)
+0.1rc2 (unreleased)
+-------------------
+
+- Implemented #11 - Mark image scales as "croppable"
+  [jensens]
+
+- Added tests for control panel and registry
+- Added Spanish and Brazilian Portuguese translations
+  [hvelarde]
+
+- Small documentation update
+  [saily]
+
+
+0.1rc1 (2013-03-11)
+-------------------
+
+- add support for multiple image fields
+- refactored javascript includes so the editor can be loaded as overlay
+- fixed JS error when editor is invisible (ie editor is loaded in an overlay)
+- fixed edit/remove actions when editor is loaded as overlay
+- make editor view more convenient (disable columns)
+- update documentation
+  [petschki]
+
+0.1b1 (2013-03-03)
 ------------------
 
 - Made cropping work in dexterity-only sites

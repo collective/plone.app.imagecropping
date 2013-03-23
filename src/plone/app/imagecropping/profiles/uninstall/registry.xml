@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<registry>
+
+    <record interface="plone.app.imagecropping.browser.settings.ISettings" field="large_size" delete="True" />
+    <record interface="plone.app.imagecropping.browser.settings.ISettings" field="min_size" delete="True" />
+
+</registry>

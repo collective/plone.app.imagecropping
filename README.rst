@@ -29,7 +29,7 @@ via the ``direction`` parameter::
                     width=1200, height=800, direction='down')"
        />
 
-However it only crops from the center of the image,
+However it only crops from the top/center of the image,
 so in some ocasions this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually
@@ -45,10 +45,14 @@ How it works
 There is a view @@croppingeditor available for every content type
 implementing ``IImageCropping`` via an object action.
 
-The Interface is implemented by default for ATImage XXX and plone.app.contenttypes image.
+The Interface is implemented by default for ATImage and plone.app.contenttypes image.
 
+The editor view shows at maximum three columns:
 
-The view shows a dropdown for all available image scales.
+ - Image Fields column (only visible when more than one image field is available)
+ - Image scales column (only visible when more than one scale is available)
+ - Cropping editor column
+
 The aspect ratio for the cropping area in JCrop editor is automatically set
 to the image scale selected by the user.
 
@@ -64,6 +68,29 @@ cropped scales into a textfield.
 
 In TinyMCE it will be possible to access the cropping editor directly
 out of the image plugin right below the scale selection
+
+
+Load editor as overlay
+----------------------
+
+The editor can also be loaded as an overlay anywhere. Just place a link to the
+@@croppingeditor url of an image (<image_base_url>/@@croppingeditor) and add
+some javascript. For example::
+
+    (function($) {
+        $(function() {
+            $("a[href$='@@croppingeditor']").prepOverlay({
+                subtype:'ajax',
+                formselector:'#coords',
+                closeselector:"input[name='form.button.Cancel']"
+            })
+
+            $(document).bind("formOverlayLoadSuccess", function() {
+                imagecropping.init_editor();
+            })
+        })
+    })(jQuery);
+
 
 Configuration
 -------------
