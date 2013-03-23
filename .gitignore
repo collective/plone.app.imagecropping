@@ -36,3 +36,5 @@ pip-log.txt
 include
 lib
 
+# Local development
+local.cfg
