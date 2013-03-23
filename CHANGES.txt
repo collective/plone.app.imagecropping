@@ -4,6 +4,12 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Add cropping ui-tests using robotframework
+  [saily]
+
+- Update ``bootstrap.py`` to work with ``zc.buildout`` 2.0
+  [saily]
+
 - Implemented #11 - Mark image scales as "croppable"
   [jensens]
 
