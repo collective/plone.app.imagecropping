@@ -33,3 +33,5 @@ pip-log.txt
 .DS_Store
 
 local.cfg
+
+/src/plone/app/imagecropping/tests/acceptance/library-settings.txt
