@@ -1,7 +1,8 @@
+
 *** Keywords ***
 
 Suite Setup
-    Open browser  ${front-page}  browser=${BROWSER}  desired_capabilities=Capture Page Screenshot
+    Open Browser  ${front-page}  browser=${BROWSER}  desired_capabilities=Capture Page Screenshot
 
 Suite Teardown
     Close All Browsers
