@@ -1,10 +1,12 @@
-from Products.CMFPlone.utils import _createObjectByType
-from os.path import dirname, join
+from os.path import dirname
+from os.path import join
 from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_FUNCTIONAL
-from plone.app.testing import TEST_USER_NAME, TEST_USER_ID, \
-    TEST_USER_PASSWORD, setRoles
-from plone.testing.z2 import Browser, installProduct
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_PASSWORD
+from plone.testing.z2 import Browser
+from Products.CMFPlone.utils import _createObjectByType
+
 import transaction
 import unittest2 as unittest
 
@@ -39,21 +41,21 @@ class EditorTestCase(unittest.TestCase):
         self.createSingleImageType()
         # is there the cropping action tab
         self.browser.open("%s/view" % self.img.absolute_url())
-        self.assertTrue("Cropping" in self.browser.contents)
+        self.assertIn("Cropping", self.browser.contents)
 
         self.browser.getLink('Cropping').click()
-        self.assertTrue(u"Image Cropping Editor" in self.browser.contents)
+        self.assertIn(u"Image Cropping Editor", self.browser.contents)
 
         # check for non existing image field column
-        self.assertFalse(u"Available Image Fields" in self.browser.contents)
+        self.assertNotIn(u"Available Image Fields", self.browser.contents)
 
         # check for scales column
         self.assertTrue(u"Available Image Scales" in self.browser.contents)
 
         # check for editor buttons
-        self.assertTrue(u"Save" in self.browser.contents)
-        self.assertTrue(u"Delete" in self.browser.contents)
-        self.assertTrue(u"Cancel" in self.browser.contents)
+        self.assertIn(u"Save", self.browser.contents)
+        self.assertIn(u"Delete", self.browser.contents)
+        self.assertIn(u"Cancel", self.browser.contents)
 
     def tearDown(self):
         self.portal.manage_delObjects(['testimage', ])
