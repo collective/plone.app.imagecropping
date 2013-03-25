@@ -41,18 +41,18 @@ class ControlPanelTestCase(unittest.TestCase):
         self.assertIn('imagecropping.settings', actions,
                       'control panel was not installed')
 
+    @unittest.expectedFailure
     def test_controlpanel_removed_on_uninstall(self):
         # run uninstall profile instead of uninstall in quickinstaller.
         # QI does not pay attention to uninstall profiles
         # see https://dev.plone.org/ticket/11328
         # XXX: Configlet removal doesn't seem to work in GenericSetup :(
-        #self.setup_tool.runAllImportStepsFromProfile(
-        #    'profile-plone.app.imagecropping:uninstall')
-        #actions = [a.getAction(self)['id']
-        #           for a in self.controlpanel.listActions()]
-        #self.assertNotIn('imagecropping.settings', actions,
-        #                 'control panel was not removed')
-        pass
+        self.setup_tool.runAllImportStepsFromProfile(
+            'profile-plone.app.imagecropping:uninstall')
+        actions = [a.getAction(self)['id']
+                   for a in self.controlpanel.listActions()]
+        self.assertNotIn('imagecropping.settings', actions,
+                         'control panel was not removed')
 
 
 class RegistryTestCase(unittest.TestCase):
