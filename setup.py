@@ -41,6 +41,7 @@ setup(name='plone.app.imagecropping',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Pillow',
           'plone.app.imaging',
           'Products.ATContentTypes',
           'Products.CMFPlone>=4.1'
