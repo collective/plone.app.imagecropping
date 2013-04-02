@@ -47,10 +47,7 @@ setup(name='plone.app.imagecropping',
       ],
       extras_require={
           'test': [
-              'lxml',
-              'plone.app.testing',
-              'robotsuite',
-              'robotframework-selenium2library',
+              'plone.app.testing[robot]>=4.2.2',
           ],
       },
       entry_points="""
