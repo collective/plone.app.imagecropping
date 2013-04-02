@@ -1,4 +1,4 @@
-.. image:: https://travis-ci.org/collective/plone.app.imagecropping.png
+.. image:: https://travis-ci.org/collective/plone.app.imagecropping.png?branch=master
     :target: http://travis-ci.org/collective/plone.app.imagecropping
 
 .. contents::
