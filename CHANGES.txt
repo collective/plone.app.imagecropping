@@ -23,6 +23,9 @@ Changelog
 - Small documentation update
   [saily]
 
+- Implementation came_from Parameter to go back to specific page
+  [Kosi81]
+
 
 0.1rc1 (2013-03-11)
 -------------------

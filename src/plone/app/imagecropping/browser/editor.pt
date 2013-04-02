@@ -7,6 +7,12 @@
   <body>
 
     <metal:main fill-slot="main">
+
+      <dl class="portalMessage info" tal:condition="view/go_back_url">
+        <dt>Info:</dt>
+        <dd><a tal:content="view/go_back_title" tal:attributes="href view/go_back_url"></a></dd>
+      </dl>
+
       <h1 class="documentFirstHeading"
           i18n:translate="">
           Image Cropping Editor
@@ -75,6 +81,7 @@
                 <img class="cropbox" tal:attributes="src current_scale/image_url;" />
 
                 <div>
+                  <input type="hidden" id="came_from" name="came_from" tal:attributes="value request/came_from|nothing"/>
                   <input type="hidden" size="4" id="x1" name="x1" />
                   <input type="hidden" size="4" id="y1" name="y1" />
                   <input type="hidden" size="4" id="x2" name="x2" />

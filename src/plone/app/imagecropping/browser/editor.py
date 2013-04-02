@@ -9,6 +9,7 @@ from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from zope import component
+from plone.app.uuid.utils import uuidToObject
 from zope.component._api import getUtility
 import json
 
@@ -140,6 +141,10 @@ class CroppingEditor(BrowserView):
         cropping_util = self.context.restrictedTraverse('@@crop-image')
 
         if form.get('form.button.Cancel', None) is not None:
+            if self.request.form.get("came_from", None):
+                came_from = self.request.form.get("came_from")
+                return self.request.response.redirect(
+                    uuidToObject(came_from).absolute_url())
             return self.request.response.redirect(
                 self.context.absolute_url() + '/view')
         if form.get('form.button.Delete', None) is not None:
@@ -164,6 +169,24 @@ class CroppingEditor(BrowserView):
         self.request.set('disable_plone.rightcolumn', 1)
 
         return self.template()
+
+    def go_back_url(self):
+        if self.request.form.get('form.button.Save', None) is not None \
+                or self.request.form.get('form.button.Delete', None) \
+                is not None:
+            if self.request.form.get("came_from", None):
+                came_from = self.request.form.get("came_from")
+                if uuidToObject(came_from):
+                    return uuidToObject(came_from).absolute_url()
+
+    def go_back_title(self):
+        if self.request.form.get('form.button.Save', None) is not None \
+                or self.request.form.get('form.button.Delete', None) is \
+                not None:
+            if self.request.form.get("came_from", None):
+                came_from = self.request.form.get("came_from")
+                if uuidToObject(came_from):
+                    return _(u"Go back to ") + uuidToObject(came_from).title
 
     def _min_size(self, image_size, scale_size):
         """ we need lower min-sizes if the image is smaller than the scale """
