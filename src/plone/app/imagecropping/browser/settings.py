@@ -64,6 +64,7 @@ class ISettings(Interface):
             vocabulary="plone.app.imagecropping.all_sizes"),
     )
 
+    """ XXX: not implemented right now
     auto_cropping_for = List(
         title=_(u"Scales with auto crop"),
         description=_(u"Scales to be auto cropped in center of image."),
@@ -72,6 +73,7 @@ class ISettings(Interface):
         value_type=Choice(
             vocabulary="plone.app.imagecropping.all_sizes"),
     )
+    """
 
 
 class SettingsEditForm(RegistryEditForm):
