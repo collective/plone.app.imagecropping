@@ -19,7 +19,7 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.controlpanel = self.portal['portal_controlpanel']
-        self.setup_tool = self.portal['portal_setup']
+        self.qi_tool = self.portal['portal_quickinstaller']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_controlpanel_has_view(self):
@@ -41,14 +41,8 @@ class ControlPanelTestCase(unittest.TestCase):
         self.assertIn('imagecropping.settings', actions,
                       'control panel was not installed')
 
-    @unittest.expectedFailure
     def test_controlpanel_removed_on_uninstall(self):
-        # run uninstall profile instead of uninstall in quickinstaller.
-        # QI does not pay attention to uninstall profiles
-        # see https://dev.plone.org/ticket/11328
-        # XXX: Configlet removal doesn't seem to work in GenericSetup :(
-        self.setup_tool.runAllImportStepsFromProfile(
-            'profile-plone.app.imagecropping:uninstall')
+        self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
         actions = [a.getAction(self)['id']
                    for a in self.controlpanel.listActions()]
         self.assertNotIn('imagecropping.settings', actions,
@@ -61,7 +55,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.setup_tool = self.portal['portal_setup']
+        self.qi_tool = self.portal['portal_quickinstaller']
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISettings)
 
@@ -74,12 +68,8 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual(self.settings.min_size, u"50:50")
 
     def test_records_removed_on_uninstall(self):
-        # run uninstall profile instead of uninstall in quickinstaller.
-        # QI does not pay attention to uninstall profiles
-        # see https://dev.plone.org/ticket/11328
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_tool.runAllImportStepsFromProfile(
-            'profile-plone.app.imagecropping:uninstall')
+        self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
 
         BASE_REGISTRY = 'plone.app.imagecropping.browser.settings.ISettings.%s'
         records = (

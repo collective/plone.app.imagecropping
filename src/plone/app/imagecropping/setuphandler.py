@@ -1,11 +1,12 @@
-from zope.component import queryUtility
-from Products.CMFCore.utils import getToolByName
-from plone.registry.interfaces import IRegistry
 from .browser.settings import ISettings
+from Products.CMFCore.utils import getToolByName
+from plone.app.imagecropping import PRODUCT_NAME
+from plone.registry.interfaces import IRegistry
+from zope.component import queryUtility
 import logging
 
 logger = logging.getLogger('plone.app.imagecropping')
-PROFILE_ID = 'profile-plone.app.imagecropping:default'
+PROFILE_ID = 'profile-%s:default' % PRODUCT_NAME
 
 
 def migrate0002to0003(context):

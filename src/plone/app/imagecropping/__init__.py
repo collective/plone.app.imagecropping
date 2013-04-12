@@ -9,7 +9,7 @@ else:
     HAS_DEXTERITY = True
 
 imagecroppingMessageFactory = MessageFactory("plone.app.imagecropping")
-PAI_STORAGE_KEY = "plone.app.imagecropping"
+PRODUCT_NAME = PAI_STORAGE_KEY = "plone.app.imagecropping"
 
 
 def initialize(context):
