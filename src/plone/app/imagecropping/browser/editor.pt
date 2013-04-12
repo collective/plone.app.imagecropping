@@ -19,7 +19,7 @@
                        current_scale view/current_scale">
           <div class="cell width-1:4 position-0"
                tal:condition="multiple_flds">
-                <h2 i18n:translate="">Available Image Fields</h2>
+                <h3 i18n:translate="">Available Image Fields</h3>
                 <ul class="fields visualNoMarker">
                     <li tal:repeat="fieldname image_field_names">
                         <a tal:define="image_url python:view.image_url(fieldname)"
@@ -42,7 +42,7 @@
           <div class="cell width-1:4"
                tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
-            <h2 i18n:translate="">Available Image Scales for Field <span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">"Field Name"</span></h2>
+            <h3 i18n:translate="">Available Image Scales for Field <span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">"Field Name"</span></h3>
             <ul class="scales visualNoMarker">
                 <li tal:repeat="scale scales"
                     tal:attributes="data-jcrop_config scale/config;
@@ -85,20 +85,28 @@
                 </div>
                 <input type="submit"
                   class="context"
-                  value="Save"
+                  value="Save cropping information"
                   i18n:attributes="value"
                   name="form.button.Save"
                   />
+                <div class="discreet tooltip"
+                     i18n:translate="">
+                    Save the selected cropping area. The original image remains untouched.
+                </div>
                 <input type="submit"
                   class="context"
-                  value="Delete"
+                  value="Remove cropping information"
                   i18n:attributes="value"
                   name="form.button.Delete"
                   />
-                <br />
+                <div class="discreet tooltip"
+                     i18n:translate="">
+                    The scale gets reverted to its default.
+                </div>
                 <input type="submit"
                   class="standalone"
-                  value="Cancel"
+                  value="Close"
+                  tal:condition="ajax_load"
                   i18n:attributes="value"
                   name="form.button.Cancel"
                   />
@@ -115,6 +123,7 @@
 
     <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
     <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+    <script type="text/javascript" tal:content="view/js_messages"></script>
     <script type="text/javascript">
         imagecropping.init_editor();
     </script>

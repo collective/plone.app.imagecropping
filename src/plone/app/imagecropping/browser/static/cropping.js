@@ -1,4 +1,13 @@
-var imagecropping = {};
+/* set default values */
+var imagecropping = {
+    x1: 0,
+    y1: 0,
+    x2: 0,
+    y2: 0,
+    i18n_message_ids: {
+        confirm_discard_changes: "Your changes will be lost. Continue?"
+    }
+};
 
 if (jQuery) {
 
@@ -9,6 +18,13 @@ if (jQuery) {
             window.setTimeout(function(){
                 $('#h').css({color:'inherit'});
             },500);
+        };
+
+        imagecropping.saveCoords = function() {
+            this.x1 = $("#x1").val();
+            this.y1 = $("#y1").val();
+            this.x2 = $("#x2").val();
+            this.y2 = $("#y2").val();
         };
 
         imagecropping.doChange = function(c) {
@@ -23,7 +39,6 @@ if (jQuery) {
             rx = c.w / 100;
             ry = c.h / 100;
             prev_node = $('#preview-' + $("#scalename").val());
-            console.log(prev_node);
             cropbox_img = $('img.cropbox');
             thumb_img = $('<img />');
             thumb_img.attr('src', cropbox_img.attr('src'));
@@ -35,6 +50,15 @@ if (jQuery) {
                 marginTop: '-' + Math.round(ry * c.y) + 'px'
             });
             */
+        };
+
+        imagecropping.unsaved_changes = function() {
+            /* actual coords */
+            if(this.x1 != $("#x1").val() || this.y1 != $("#y1").val() ||
+               this.x2 != $("#x2").val() || this.y2 != $("#y2").val()) {
+                return !confirm(this.i18n_message_ids.confirm_discard_changes);
+            }
+            return false;
         };
 
         imagecropping.option_change = function(option) {
@@ -59,6 +83,8 @@ if (jQuery) {
             }
 
             $('#coords img.cropbox').Jcrop(jcrop_config);
+
+            option.addClass('selected').siblings().removeClass('selected');
         }
 
         imagecropping.init_editor = function() {
@@ -66,14 +92,18 @@ if (jQuery) {
 
             if(scales.length) {
                 scales.click(function(e) {
+                    if(imagecropping.unsaved_changes()) {
+                        return false;
+                    }
                     imagecropping.option_change($(this));
-                    $(this).addClass('selected').siblings().removeClass('selected');
+                    imagecropping.saveCoords();
                 });
-                // TODO: preview of actual scale
-                //$('ul.scales a').prepOverlay({subtype: 'image'});
                 imagecropping.option_change($('ul.scales li.selected'));
                 scales.scrollTop($('ul.scales li.selected').scrollTop());
             }
+
+            /* save initial coords to track changes */
+           this.saveCoords()
         }
     })(jQuery);
 }
