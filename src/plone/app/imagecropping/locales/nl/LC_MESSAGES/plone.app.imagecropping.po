@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2013-03-14 16:50+0000\n"
+"POT-Creation-Date: 2013-04-12 09:44+0000\n"
 "PO-Revision-Date: 2012-10-16 15:42+0100\n"
 "Last-Translator: Martijn Zweistra <martijn.zweistra@edition1.nl>\n"
 "Language-Team: themask96\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "Available Image Scales for Field ${field_name}"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:99
-msgid "Cancel"
-msgstr "Annuleren"
+#: plone/app/imagecropping/browser/editor.pt:106
+msgid "Close"
+msgstr ""
 
-#: plone/app/imagecropping/browser/settings.py:13
+#: plone/app/imagecropping/browser/settings.py:36
 msgid "Crop Editor Large Size"
 msgstr "Groot formaat bijsnijd editor "
 
@@ -36,43 +36,71 @@ msgstr "Groot formaat bijsnijd editor "
 msgid "Cropping"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.py:144
+#: plone/app/imagecropping/browser/editor.py:153
 msgid "Cropping area deleted"
 msgstr ""
 
-#: plone/app/imagecropping/browser/editor.pt:92
-msgid "Delete"
-msgstr "Verwijderen"
+#: plone/app/imagecropping/browser/settings.py:50
+msgid "Enable to constrain cropable scales"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:51
+msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
+msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
 msgstr ""
 
-#: plone/app/imagecropping/browser/settings.py:32
+#: plone/app/imagecropping/browser/settings.py:85
 msgid "Image Cropping Settings"
 msgstr "Afbeelding bijsnijd instellingen"
 
-#: plone/app/imagecropping/browser/settings.py:20
+#: plone/app/imagecropping/browser/settings.py:58
+msgid "List of scales with crop support"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:43
 msgid "Minimum Crop Area Size"
 msgstr "Minimum bijsnijd gebiedsgrootte"
 
-#: plone/app/imagecropping/browser/editor.pt:86
-msgid "Save"
-msgstr "Bewaren"
+#: plone/app/imagecropping/browser/editor.pt:96
+msgid "Remove cropping information"
+msgstr ""
 
-#: plone/app/imagecropping/browser/editor.py:156
+#: plone/app/imagecropping/browser/editor.pt:86
+msgid "Save cropping information"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:92
+msgid "Save the selected cropping area. The original image remains untouched."
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:59
+msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.py:165
 msgid "Successfully saved cropped area"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:102
+msgid "The scale gets reverted to its default."
 msgstr ""
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
 msgstr ""
 
+#: plone/app/imagecropping/browser/editor.py:195
+msgid "Your changes will be lost. Continue?"
+msgstr ""
+
 #: plone/app/imagecropping/browser/editor.pt:32
 msgid "no image available"
 msgstr ""
 
-#: plone/app/imagecropping/browser/settings.py:14
+#: plone/app/imagecropping/browser/settings.py:37
 msgid "width:height"
 msgstr "breedte:hoogte"
 

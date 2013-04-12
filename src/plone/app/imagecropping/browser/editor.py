@@ -13,6 +13,14 @@ from zope.component._api import getUtility
 import json
 
 
+JS_MESSAGES = """\
+if(typeof(imagecropping) != "undefined") {
+    imagecropping.i18n_message_ids = {
+        confirm_discard_changes: "%(discard_changes)s"
+    };
+}"""
+
+
 class CroppingEditor(BrowserView):
     """ Cropping Editor View """
 
@@ -139,9 +147,6 @@ class CroppingEditor(BrowserView):
         form = self.request.form
         cropping_util = self.context.restrictedTraverse('@@crop-image')
 
-        if form.get('form.button.Cancel', None) is not None:
-            return self.request.response.redirect(
-                self.context.absolute_url() + '/view')
         if form.get('form.button.Delete', None) is not None:
             cropping_util._remove(self.fieldname,
                 self.request.form.get('scalename'))
@@ -184,3 +189,8 @@ class CroppingEditor(BrowserView):
         registry = getUtility(IRegistry)
         settings = registry.forInterface(ISettings)
         return settings
+
+    def js_messages(self):
+        return JS_MESSAGES % dict(
+            discard_changes=_("Your changes will be lost. Continue?")
+        )
