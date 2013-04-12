@@ -53,9 +53,8 @@ class EditorTestCase(unittest.TestCase):
         self.assertTrue(u"Available Image Scales" in self.browser.contents)
 
         # check for editor buttons
-        self.assertIn(u"Save", self.browser.contents)
-        self.assertIn(u"Delete", self.browser.contents)
-        self.assertIn(u"Cancel", self.browser.contents)
+        self.assertIn(u"Save cropping information", self.browser.contents)
+        self.assertIn(u"Remove cropping information", self.browser.contents)
 
     def tearDown(self):
         self.portal.manage_delObjects(['testimage', ])
