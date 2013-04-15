@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2013-04-12 09:44+0000\n"
-"PO-Revision-Date: 2013-04-12 11:53+0100\n"
+"POT-Creation-Date: 2013-04-15 07:41+0000\n"
+"PO-Revision-Date: 2013-04-15 09:42+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: frisi, petschki <office@kombinat.at>\n"
 "MIME-Version: 1.0\n"
@@ -16,15 +16,15 @@ msgstr ""
 "X-Generator: Poedit 1.5.3\n"
 "Language: German\n"
 
-#: plone/app/imagecropping/browser/editor.pt:22
+#: plone/app/imagecropping/browser/editor.pt:28
 msgid "Available Image Fields"
 msgstr "Vorhandene Bilder"
 
-#: plone/app/imagecropping/browser/editor.pt:45
-msgid "Available Image Scales for Field ${field_name}"
-msgstr "Bildgrößen für \"${field_name}\""
+#: plone/app/imagecropping/browser/editor.pt:51
+msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
+msgstr "Bildgrößen für: \"${field_name}\""
 
-#: plone/app/imagecropping/browser/editor.pt:106
+#: plone/app/imagecropping/browser/editor.pt:112
 msgid "Close"
 msgstr "Schließen"
 
@@ -52,6 +52,18 @@ msgstr ""
 "Aktivieren, wenn nicht alle Bildgrößen zuschneidbar sein sollen. Die Auswahl "
 "der eingeschränkten Bildgrößen folgt weiter unten."
 
+#: plone/app/imagecropping/browser/editor.pt:15
+msgid ""
+"Here you can define cropping areas for each scale of the available "
+"imagefields. This operation is non-destructive which means, your original "
+"image data doesn't get lost when cropping a scale. By removing a cropping "
+"area, the scale gets back to its default functionality: resize, no crop."
+msgstr ""
+"Hier können Sie die Bildzuschnittsbereiche für jedes Bild und dessen Größe "
+"definieren. Das originale Bild wird nicht gelöscht, wenn sie es zuschneiden. "
+"Sie können die Bereiche jederzeit wieder entfernen um zur "
+"Standardfunktionalität zurückzukehren: skalieren ohne zuschneiden."
+
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
 msgstr "Zuschnitts Editor"
@@ -68,17 +80,17 @@ msgstr "Bildgrößen für Cropping Editor"
 msgid "Minimum Crop Area Size"
 msgstr "minimal erlaubter Ausschnitt (Jcrop: minSize)"
 
-#: plone/app/imagecropping/browser/editor.pt:96
+#: plone/app/imagecropping/browser/editor.pt:102
 msgid "Remove cropping information"
 msgstr "Cropping Informationen entfernen"
 
-#: plone/app/imagecropping/browser/editor.pt:86
+#: plone/app/imagecropping/browser/editor.pt:92
 msgid "Save cropping information"
 msgstr "Bildzuschnitt speichern"
 
-#: plone/app/imagecropping/browser/editor.pt:92
-msgid "Save the selected cropping area. The original image remains untouched."
-msgstr "Speichert die aktuelle Auswahl. Das Originalbild bleibt bestehen."
+#: plone/app/imagecropping/browser/editor.pt:98
+msgid "Save this cropping area for the selected scale."
+msgstr "Speichern die den ausgewählten Bereich der Bildgröße."
 
 #: plone/app/imagecropping/browser/settings.py:59
 msgid ""
@@ -92,9 +104,12 @@ msgstr ""
 msgid "Successfully saved cropped area"
 msgstr "Zuschnitt erfolgreich gespeichert"
 
-#: plone/app/imagecropping/browser/editor.pt:102
-msgid "The scale gets reverted to its default."
-msgstr "Die Bildgröße wird auf den Standardwert zurückgesetzt"
+#: plone/app/imagecropping/browser/editor.pt:108
+msgid ""
+"The selected scale gets reverted to the default behaviour: resize, no crop."
+msgstr ""
+"Die ausgewählte Bildgröße wird auf die Standardfunktionalität zurückgesetzt: "
+"skalieren ohne zuschneiden."
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
@@ -104,7 +119,7 @@ msgstr "zeige den Zuschnitts Editor für dieses Bild"
 msgid "Your changes will be lost. Continue?"
 msgstr "Die Änderungen gehen verloren. Fortfahren?"
 
-#: plone/app/imagecropping/browser/editor.pt:32
+#: plone/app/imagecropping/browser/editor.pt:38
 msgid "no image available"
 msgstr "kein Bild vorhanden"
 
