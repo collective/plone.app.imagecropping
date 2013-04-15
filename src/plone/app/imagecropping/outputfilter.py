@@ -3,7 +3,9 @@ Created on 15.04.2013
 
 @author: peterm
 '''
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import _checkPermission
+from plone.app.uuid.utils import uuidToObject
 from plone.outputfilters.interfaces import IFilter
 from zope.component import adapter
 from zope.interface import Interface, implementer
@@ -30,7 +32,7 @@ class CroppingEditorLink(object):
         self.request = request
 
     def is_enabled(self):
-        return _checkPermission("Modify portal content", self.context)
+        return _checkPermission(ModifyPortalContent, self.context)
 
     def __call__(self, data):
         img_tags = img_tag.findall(data)
@@ -38,6 +40,9 @@ class CroppingEditorLink(object):
             src = src_attr.search(tag).groups(0)
             if len(src) > 0:
                 x, uuid, x, field, scale = src[0].split("/")
+                img_obj = uuidToObject(uuid)
+                if not _checkPermission(ModifyPortalContent, img_obj):
+                    continue
                 editor_link = \
                     """<a href="resolveuid/%(uid)s/@@croppingeditor?""" \
                     """fieldname=%(field)s&amp;scalename=%(scale)s&amp;""" \

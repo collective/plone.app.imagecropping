@@ -24,3 +24,11 @@
 #coords .jcrop-holder {
     margin-bottom:1em;
 }
+
+a.croppingeditor {
+    display:inline-block;
+    border:dotted 1px #205C90;
+}
+a.croppingeditor:after {
+    content:url(++resource++plone.app.imagecropping.static/crop_icon.png);
+}
