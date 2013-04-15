@@ -12,6 +12,12 @@
           Image Cropping Editor
       </h1>
 
+      <p class="documentDescription" i18n:translate="">
+        Here you can define cropping areas for each scale of the available imagefields.
+        This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale.
+        By removing a cropping area, the scale gets back to its default functionality: resize, no crop.
+      </p>
+
       <div class="row"
            tal:define="image_field_names view/image_field_names;
                        multiple_flds python:len(image_field_names) &gt; 1;
@@ -42,7 +48,7 @@
           <div class="cell width-1:4"
                tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
-            <h3 i18n:translate="">Available Image Scales for Field <span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">"Field Name"</span></h3>
+            <h3 i18n:translate="">Available Image Scales for Field: &quot;<span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">Field Name</span>&quot;</h3>
             <ul class="scales visualNoMarker">
                 <li tal:repeat="scale scales"
                     tal:attributes="data-jcrop_config scale/config;
@@ -91,7 +97,7 @@
                   />
                 <div class="discreet tooltip"
                      i18n:translate="">
-                    Save the selected cropping area. The original image remains untouched.
+                    Save this cropping area for the selected scale.
                 </div>
                 <input type="submit"
                   class="context"
@@ -101,7 +107,7 @@
                   />
                 <div class="discreet tooltip"
                      i18n:translate="">
-                    The scale gets reverted to its default.
+                    The selected scale gets reverted to the default behaviour: resize, no crop.
                 </div>
                 <input type="submit"
                   class="standalone"
