@@ -25,7 +25,17 @@
       sortkey="1"
       profile="plone.app.imagecropping:default"
       />
-  
+
+  <genericsetup:upgradeStep
+      title="Upgrade plone.app.imagecropping to profile 0004"
+      description="Migrates plone.app.imagecropping upgrade to 0004"
+      source="0003"
+      destination="0004"
+      handler=".setuphandler.migrate0003to0004"
+      sortkey="1"
+      profile="plone.app.imagecropping:default"
+      />
+
   <genericsetup:registerProfile
       name="uninstall"
       title="plone.app.imagecropping Uninstallation"
@@ -64,5 +74,11 @@
   <!-- dexterity adapter -->
   <adapter zcml:condition="installed plone.namedfile"
            factory=".utils.CroppingUtilsDexterity" />
+
+  <!-- outputfilter for cropping editor link -->
+  <adapter
+    name="cropping_editor_link"
+    factory=".outputfilter.CroppingEditorLink"
+    />
 
 </configure>

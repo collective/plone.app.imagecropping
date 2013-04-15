@@ -5,7 +5,7 @@ from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
 import logging
 
-logger = logging.getLogger('plone.app.imagecropping')
+logger = logging.getLogger(PRODUCT_NAME)
 PROFILE_ID = 'profile-%s:default' % PRODUCT_NAME
 
 
@@ -23,3 +23,9 @@ def migrate0002to0003(context):
         settings.default_cropping_for = []
     logger.info('Registry cleanup operation performed')
     logger.info('Migrated to profile version 0003')
+
+
+def migrate0003to0004(context):
+    setup_tool = getToolByName(context, 'portal_setup')
+    setup_tool.runImportStepFromProfile(PROFILE_ID, 'jsregistry')
+    logger.info('Migrated to profile version 0004')

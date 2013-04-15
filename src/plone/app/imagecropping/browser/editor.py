@@ -35,12 +35,10 @@ class CroppingEditor(BrowserView):
 
     @property
     def fieldname(self):
-        if 'fieldname' in self.request.form.keys():
-            # TODO: check if requested fieldname is available
-            # in self.image_fields
-            return self.request.form.get('fieldname')
-
         img_field_names = self.image_field_names()
+        req_field_name = self.request.get('fieldname')
+        if req_field_name and req_field_name in img_field_names:
+            return req_field_name
         return len(img_field_names) > 0 and img_field_names[0]
 
     def scales(self, fieldname=None):
@@ -62,6 +60,7 @@ class CroppingEditor(BrowserView):
         for size in all_sizes:
             if constrain_cropping and size not in cropping_for:
                 continue
+
             scale = dict()
             # scale jcrop config
             min_width, min_height = self._min_size(image_size, all_sizes[size])

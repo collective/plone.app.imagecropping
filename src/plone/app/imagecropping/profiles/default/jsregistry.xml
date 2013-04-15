@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts">
-
+    <javascript id="++resource++plone.app.imagecropping.static/editor_overlay.js"
+        enabled="1" compression="safe" authenticated="True" cacheable="True"
+        cookable="True" expression="" inline="False" />
 </object>

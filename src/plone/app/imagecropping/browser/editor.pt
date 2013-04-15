@@ -20,8 +20,9 @@
 
       <div class="row"
            tal:define="image_field_names view/image_field_names;
-                       multiple_flds python:len(image_field_names) &gt; 1;
                        scales view/scales;
+                       multiple_flds python:len(image_field_names) &gt; 1;
+                       hide_scales python:bool(request.get('hide_scales'));
                        current_scale view/current_scale">
           <div class="cell width-1:4 position-0"
                tal:condition="multiple_flds">
@@ -46,7 +47,7 @@
           </div>
 
           <div class="cell width-1:4"
-               tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
+               tal:attributes="class python:'cell width-1:4 position-%s%s' % (multiple_flds and '1:4' or '0', hide_scales and ' hiddenStructure' or '')">
 
             <h3 i18n:translate="">Available Image Scales for Field: &quot;<span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">Field Name</span>&quot;</h3>
             <ul class="scales visualNoMarker">
@@ -72,7 +73,7 @@
           </div>
 
           <div class="cell width-1:2 position-1:2"
-               tal:attributes="class python:'cell width-%s position-%s' % (multiple_flds and '1:2' or '3:4', multiple_flds and '1:2' or '1:4')">
+               tal:attributes="class python:'cell width-%s position-%s' % ((multiple_flds and not hide_scales and '1:2') or (hide_scales and 'full') or '3:4', (multiple_flds and not hide_scales and '1:2') or (hide_scales and '0') or '1:4')">
 
             <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
                                                            tal:condition="scales">
@@ -120,6 +121,9 @@
                 <input type="hidden" name="ajax_load"
                     tal:condition="ajax_load"
                     tal:attributes="value ajax_load" />
+
+                <input type="hidden" name="hide_scales:boolean"
+                    tal:attributes="value hide_scales" />
             </form>
 
           </div>
