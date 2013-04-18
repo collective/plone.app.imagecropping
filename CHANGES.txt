@@ -4,6 +4,9 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Pin ``plone.app.testing`` to make Plone 4.1 tests work.
+  [saily]
+
 - Use correct dependency for plone.app.testing with extra ``[robot]``.
   [saily]
 
