@@ -4,6 +4,13 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Make tests work in Plone 4.1
+  [saily]
+
+- Rename *acceptance* to *robot* to align new
+  ``plone.app.robotframework`` guidelines.
+  [saily]
+
 - Pin ``plone.app.testing`` to make Plone 4.1 tests work.
   [saily]
 
