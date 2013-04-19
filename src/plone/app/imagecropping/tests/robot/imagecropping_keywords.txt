@@ -34,7 +34,11 @@ Create Image
     Open Add New Menu
     Click Link  link=Image
 
-    Wait Until Page Contains  Add Image
+    # Plone 4.1 adds a span tag around portal_type, so we would need
+    # Wait Until Page Contains  Add <span>Image</span>
+
+    # Therefore, just wait until Image field appears
+    Wait Until Page Contains  Image
     Input text  name=title  ${title}
     Choose File  name=image_file  ${PATH_TO_TEST_FILES}/plone-logo.png
 
