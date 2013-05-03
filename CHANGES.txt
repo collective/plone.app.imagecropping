@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1rc2 (unreleased)
+0.1rc2 (2013-05-03)
 -------------------
 
 - Include styles for authenticated users only.
