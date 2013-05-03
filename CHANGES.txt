@@ -4,6 +4,9 @@ Changelog
 0.1rc2 (unreleased)
 -------------------
 
+- Include styles for authenticated users only.
+  [saily]
+
 - Make tests work in Plone 4.1
   [saily]
 
