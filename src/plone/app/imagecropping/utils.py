@@ -16,8 +16,8 @@ from zope.interface.declarations import providedBy
 
 import time
 
-from plone.app.imagecropping import HAS_DEXTERITY
-if HAS_DEXTERITY:
+from plone.app.imagecropping import HAS_NAMEDFILE
+if HAS_NAMEDFILE:
     from plone.namedfile.interfaces import IImage
     from plone.namedfile.interfaces import IImageScaleTraversable
 
@@ -108,7 +108,7 @@ class CroppingUtilsArchetype(BaseUtil):
         storage.scale(
             factory=crop_factory, fieldname=field.__name__, width=w, height=h)
 
-if HAS_DEXTERITY:
+if HAS_NAMEDFILE:
     class CroppingUtilsDexterity(BaseUtil):
         """TODO"""
 
