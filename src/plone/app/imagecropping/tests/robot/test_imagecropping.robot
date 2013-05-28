@@ -2,7 +2,7 @@
 
 Library  Selenium2Library  timeout=10  implicit_wait=0.5  run_on_failure=Capture Page Screenshot
 
-Resource  imagecropping_keywords.txt
+Resource  keywords.robot
 
 Variables  plone/app/testing/interfaces.py
 Variables  plone/app/imagecropping/tests/variables.py

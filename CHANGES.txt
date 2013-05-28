@@ -4,7 +4,9 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Rename ``imagecropping_keywords.txt`` to ``keywords.robot`` to allow simple
+  reusage in ``plone.app.robotframework``.
+  [saily]
 
 
 0.1rc2 (2013-05-03)
