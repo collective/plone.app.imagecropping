@@ -4,7 +4,8 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check for plone.namedfile not Dexterity. It can be used seperately
+  [tom_gross]
 
 
 0.1rc2 (2013-05-03)
