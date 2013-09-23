@@ -71,7 +71,6 @@ if (jQuery) {
                     onRelease: imagecropping.clearCoords
                 };
             jQuery.extend(jcrop_config, config);
-
             $('#coords img.cropbox').attr('src', config["data-imageURL"]);
             $('#coords img.cropbox').width(config["origWidth"]);
             $('#coords img.cropbox').height(config["origHeight"]);
@@ -88,9 +87,13 @@ if (jQuery) {
         }
 
         imagecropping.init_editor = function() {
-            var scales = $('ul.scales li');
+            var scales = $('ul.scales li'),
+                selected = $('ul.scales li.selected');
 
             if(scales.length) {
+                if(selected.length == 0) {
+                    selected = scales[0];
+                }
                 scales.click(function(e) {
                     if(imagecropping.unsaved_changes()) {
                         return false;
@@ -98,8 +101,8 @@ if (jQuery) {
                     imagecropping.option_change($(this));
                     imagecropping.saveCoords();
                 });
-                imagecropping.option_change($('ul.scales li.selected'));
-                scales.scrollTop($('ul.scales li.selected').scrollTop());
+                imagecropping.option_change($(selected));
+                scales.scrollTop($(selected).scrollTop());
             }
 
             /* save initial coords to track changes */
