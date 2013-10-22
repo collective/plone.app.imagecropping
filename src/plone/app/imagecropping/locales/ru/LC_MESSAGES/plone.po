@@ -1,0 +1,25 @@
+# Bogdan Girman <EMAIL@ADDRESS>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.app.imagecropping\n"
+"POT-Creation-Date: 2012-10-15 13:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Bogdan Girman <bogdan.girman@gmail.com>\n"
+"Language-Team: Russian <bogdan.girman@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: ru\n"
+"Language-Name: Russian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "Cropping"
+msgstr "Обрезка"
+
+#: plone/app/imagecropping/profiles/default/controlpanel.xml
+msgid "Image Cropping"
+msgstr "Обрезка изображения"
+
