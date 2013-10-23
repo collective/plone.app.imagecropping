@@ -13,4 +13,8 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <class class="plone.dexterity.content.DexterityContent">
+      <implements interface="plone.app.imagecropping.interfaces.IImageCropping" />
+  </class>
+
 </configure>

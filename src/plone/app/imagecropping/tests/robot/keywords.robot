@@ -82,3 +82,48 @@ Image Must Be Cropped
 
 Open Add New Menu
     Open Menu  plone-contentmenu-factories
+
+
+Setup dexterity content type with two image fields
+    Go to  ${PLONE_URL}/@@dexterity-types
+    Click Button  css=form#add-type input[type=submit]
+    Input text  name=form.widgets.title  dexterity content type with two image fields
+    Click Button  name=form.buttons.add
+    Go to  ${PLONE_URL}/dexterity-types/dexterity_content_type_with_two_image_fields/@@fields
+    Click Button  css=form#add-field input[type=submit]
+    Input text  name=form.widgets.title  First image
+    Select From List By Value  form.widgets.factory:list  Image
+    Click Button  name=form.buttons.add
+    Go to  ${PLONE_URL}/dexterity-types/dexterity_content_type_with_two_image_fields/@@fields
+    Click Button  css=form#add-field input[type=submit]
+    Input text  name=form.widgets.title  Second image
+    Select From List By Value  form.widgets.factory:list  Image
+    Click Button  name=form.buttons.add
+
+
+Create dexterity content type with two image fields
+    [Arguments]  ${title}
+    Go to  ${test-folder}
+    Open Add New Menu
+    Click Link  link=dexterity content type with two image fields
+    Input text  name=form.widgets.IDublinCore.title  ${title}
+    Choose File  name=form.widgets.first_image  ${PATH_TO_TEST_FILES}/plone-logo.png
+    Choose File  name=form.widgets.second_image  ${PATH_TO_TEST_FILES}/plone-logo.png
+    Click Button  Save
+    Page Should Contain  Item created
+    Page Should Contain  Cropping
+
+
+Image Must Be Cropped For 
+    [Arguments]  ${content-id}  ${field-name}
+    Go to  ${test-folder}/${content-id}
+    Execute JavaScript  $('#form-widgets-${field-name} img').attr('src', '${test-folder}/${content-id}/@@images/${field-name}/preview').removeAttr('width').removeAttr('height').attr('width',$('#form-widgets-${field-name} img').width()).attr('height',$('#form-widgets-${field-name} img').height());
+    Execute JavaScript  $('#form-widgets-${field-name}').parent().parent().find('label').text('${field-name} size is ' + $('#form-widgets-${field-name} img').width() + 'x' + $('#form-widgets-${field-name} img').height());
+    Page Should Contain  ${field-name} size is 232x233
+
+
+Open Cropping Editor For
+    [Arguments]  ${field-name}
+    Click Link  link=Cropping
+    Click Link  link=${field-name}
+    Page Should Contain  Image Cropping Editor
