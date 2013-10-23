@@ -87,6 +87,7 @@
                   <input type="hidden" size="4" id="y2" name="y2" />
                   <input type="hidden" id="scalename" name="scalename" value=""
                     tal:attributes="value current_scale/id" />
+                  <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value request/fieldname|view/fieldname" />
 
                 </div>
                 <input type="submit"
