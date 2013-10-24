@@ -84,23 +84,6 @@ Open Add New Menu
     Open Menu  plone-contentmenu-factories
 
 
-Setup dexterity content type with two image fields
-    Go to  ${PLONE_URL}/@@dexterity-types
-    Click Button  css=form#add-type input[type=submit]
-    Input text  name=form.widgets.title  dexterity content type with two image fields
-    Click Button  name=form.buttons.add
-    Go to  ${PLONE_URL}/dexterity-types/dexterity_content_type_with_two_image_fields/@@fields
-    Click Button  css=form#add-field input[type=submit]
-    Input text  name=form.widgets.title  First image
-    Select From List By Value  form.widgets.factory:list  Image
-    Click Button  name=form.buttons.add
-    Go to  ${PLONE_URL}/dexterity-types/dexterity_content_type_with_two_image_fields/@@fields
-    Click Button  css=form#add-field input[type=submit]
-    Input text  name=form.widgets.title  Second image
-    Select From List By Value  form.widgets.factory:list  Image
-    Click Button  name=form.buttons.add
-
-
 Create dexterity content type with two image fields
     [Arguments]  ${title}
     Go to  ${test-folder}
