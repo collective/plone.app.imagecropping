@@ -18,8 +18,10 @@ import time
 
 from plone.app.imagecropping import HAS_NAMEDFILE
 if HAS_NAMEDFILE:
+    from plone.behavior.interfaces import IBehaviorAssignable
     from plone.namedfile.interfaces import IImage
     from plone.namedfile.interfaces import IImageScaleTraversable
+    from zope.schema import getFieldsInOrder
 
 
 class BaseUtil(object):
@@ -116,14 +118,20 @@ if HAS_NAMEDFILE:
         adapts(IImageScaleTraversable)
 
         def _image_field_info(self):
-            fields = []
+            type_info = self.context.getTypeInfo()
+            schema = type_info.lookupSchema()
+            fields = getFieldsInOrder(schema)
 
-            for fieldname in self.context.getTypeInfo().lookupSchema():
+            behavior_assignable = IBehaviorAssignable(self.context)
+            if behavior_assignable:
+                behaviors = behavior_assignable.enumerateBehaviors()
+                for behavior in behaviors:
+                    fields += getFieldsInOrder(behavior.interface)
+
+            for fieldname, field in fields:
                 img_field = getattr(self.context, fieldname, None)
                 if img_field and IImage.providedBy(img_field):
-                    fields.append((fieldname, img_field))
-
-            return fields
+                    yield (fieldname, img_field)
 
         def image_fields(self):
             """ read interface
