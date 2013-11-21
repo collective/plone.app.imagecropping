@@ -21,7 +21,7 @@ msgstr "Доступные поля изображений"
 
 #: plone/app/imagecropping/browser/editor.pt:51
 msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
-msgstr "Доступные маштабы изображения для поля"
+msgstr "Доступные для использования размеры кадрирования изображений"
 
 #: plone/app/imagecropping/browser/editor.pt:112
 msgid "Close"
@@ -29,75 +29,75 @@ msgstr "Закрыть"
 
 #: plone/app/imagecropping/browser/settings.py:36
 msgid "Crop Editor Large Size"
-msgstr "Редактирование обрезки для большого размера"
+msgstr "Редактор кадрирования большого размера"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Cropping"
-msgstr "Обрезка"
+msgstr "Кадрирование"
 
 #: plone/app/imagecropping/browser/editor.py:153
 msgid "Cropping area deleted"
-msgstr "Обрезаная область удалена"
+msgstr "Кадрирование удалено"
 
 #: plone/app/imagecropping/browser/settings.py:50
 msgid "Enable to constrain cropable scales"
-msgstr "Включить ограничение для маштабов обрезки"
+msgstr "Включить ограничение для параметров кадрирования"
 
 #: plone/app/imagecropping/browser/settings.py:51
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
-msgstr "Включить уменьшение маштаба для обрезки в списке маштабов которые потдерживают обрезку."
+msgstr "Активировать масштабирование размеров кадрирования."
 
 #: plone/app/imagecropping/browser/editor.pt:15
 msgid "Here you can define cropping areas for each scale of the available imagefields. This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
-msgstr "Сдесь вы можете определить области обрезки для каждого доступного поля с изображением. Эта операция не разрушит оригинальный размер картинки и данние не будут потеряны для обрезанного маштаба. После удалени области обрезка маштаб вернентся к стандартному поведению: изменение размеров без обрезки."
+msgstr "Здесь вы можете определить области кадрирования для каждого поля с изображением. Эта операция не изменит оригинальный размер картинки и данные не будут потеряны. После удаления области кадрирования, изображение вернется к исходному состоянию"
 
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
-msgstr "Редактор обрезки изображений"
+msgstr "Редактор кадрирования изображений"
 
 #: plone/app/imagecropping/browser/settings.py:85
 msgid "Image Cropping Settings"
-msgstr "Настройки обрезки изображений"
+msgstr "Настройки кадрирования изображений"
 
 #: plone/app/imagecropping/browser/settings.py:58
 msgid "List of scales with crop support"
-msgstr "Список маштабов с потдержкой обрезки"
+msgstr "Список параметров кадрирования с поддержкой обрезки"
 
 #: plone/app/imagecropping/browser/settings.py:43
 msgid "Minimum Crop Area Size"
-msgstr "Минимальный размер обрезки"
+msgstr "Минимальный размер кадрирования"
 
 #: plone/app/imagecropping/browser/editor.pt:102
 msgid "Remove cropping information"
-msgstr "Удалить информацию обрезки"
+msgstr "Удалить информацию о кадрировании"
 
 #: plone/app/imagecropping/browser/editor.pt:92
 msgid "Save cropping information"
-msgstr "Сохранить информацию обрезки"
+msgstr "Сохранить информацию о кадрировании"
 
 #: plone/app/imagecropping/browser/editor.pt:98
 msgid "Save this cropping area for the selected scale."
-msgstr "Сохранить эту обрезь для выбраного маштаба."
+msgstr "Сохранить этот вариант кадрирования."
 
 #: plone/app/imagecropping/browser/settings.py:59
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
-msgstr "Выберите маштабы потдержка для которых будет включена."
+msgstr "Выберите параметры кадрирования, поддержка для которых будет включена."
 
 #: plone/app/imagecropping/browser/editor.py:165
 msgid "Successfully saved cropped area"
-msgstr "Успешно созранена обрезаная область"
+msgstr "Кадрирование сохранено. "
 
 #: plone/app/imagecropping/browser/editor.pt:108
 msgid "The selected scale gets reverted to the default behaviour: resize, no crop."
-msgstr "Выбранный маштаб будет возврящен для стандартного поведения: изменение размеров, без обрезки."
+msgstr "Сброс кадрирования: исходное состояние, без обрезки."
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
-msgstr "Показать редактор обрезки для этого объекта"
+msgstr "Показать редактор кадрирования для этого объекта"
 
 #: plone/app/imagecropping/browser/editor.py:195
 msgid "Your changes will be lost. Continue?"
-msgstr "Ваши изменения будут потеряны. Продолжить?"
+msgstr "Ваши изменения будут утрачены. Продолжить?"
 
 #: plone/app/imagecropping/browser/editor.pt:38
 msgid "no image available"
