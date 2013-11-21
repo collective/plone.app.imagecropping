@@ -22,6 +22,8 @@ class PloneAppImagecropping(PloneSandboxLayer):
             plone.app.imagecropping,
             context=configurationContext
         )
+        import plone.app.dexterity
+        self.loadZCML(package=plone.app.dexterity)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'plone.app.imagecropping:testing')

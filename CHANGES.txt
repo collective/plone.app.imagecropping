@@ -17,6 +17,9 @@ Changelog
 - Added Russian translations
   [bogdangi]
 
+- Prevent fieldname loosing for for current field
+  [bogdangi]
+
 
 0.1rc2 (2013-05-03)
 -------------------
