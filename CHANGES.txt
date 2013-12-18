@@ -4,6 +4,9 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
+- Update Jcrop to version 0.9.12.
+  [hvelarde]
+
 - Check for plone.namedfile not Dexterity. It can be used seperately
   [tom_gross]
 
