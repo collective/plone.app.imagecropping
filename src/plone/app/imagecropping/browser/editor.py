@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from DateTime.DateTime import DateTime
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -11,7 +12,6 @@ from plone.registry.interfaces import IRegistry
 from zope import component
 from zope.component._api import getUtility
 import json
-
 
 JS_MESSAGES = """\
 if(typeof(imagecropping) != "undefined") {
@@ -157,6 +157,8 @@ class CroppingEditor(BrowserView):
             x2 = int(round(float(self.request.form.get('x2'))))
             y2 = int(round(float(self.request.form.get('y2'))))
             scale_name = self.request.form.get('scalename')
+            # Avoid browser cache
+            self.context.setModificationDate(DateTime())
             cropping_util._crop(fieldname=self.fieldname,
                                 scale=scale_name,
                                 box=(x1, y1, x2, y2),
