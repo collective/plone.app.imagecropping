@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from DateTime.DateTime import DateTime
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -157,12 +156,14 @@ class CroppingEditor(BrowserView):
             x2 = int(round(float(self.request.form.get('x2'))))
             y2 = int(round(float(self.request.form.get('y2'))))
             scale_name = self.request.form.get('scalename')
-            # Avoid browser cache
-            self.context.setModificationDate(DateTime())
             cropping_util._crop(fieldname=self.fieldname,
                                 scale=scale_name,
                                 box=(x1, y1, x2, y2),
                                 interface=self.interface)
+            # Avoid browser cache
+            # an empty call of setModificationDate uses current timestamp
+            self.context.setModificationDate()
+            self.context.reindexObject()
             IStatusMessage(self.request).add(
                 _(u"Successfully saved cropped area"))
 
