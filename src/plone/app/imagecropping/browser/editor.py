@@ -142,28 +142,31 @@ class CroppingEditor(BrowserView):
             height=int(self.default_editor_size[1]))
         return scaled_img and scaled_img.url or ''
 
+    def _crop(self):
+        coordinate = lambda x: int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        scale_name = self.request.form.get('scalename')
+        cropping_util = self.context.restrictedTraverse('@@crop-image')
+        cropping_util._crop(fieldname=self.fieldname,
+                            scale=scale_name,
+                            box=(x1, y1, x2, y2),
+                            interface=self.interface)
+        # Avoid browser cache
+        # an empty call of setModificationDate uses current timestamp
+        self.context.setModificationDate()
+        self.context.reindexObject()
+
     def __call__(self):
         form = self.request.form
-        cropping_util = self.context.restrictedTraverse('@@crop-image')
-
         if form.get('form.button.Delete', None) is not None:
-            cropping_util._remove(self.fieldname,
-                self.request.form.get('scalename'))
+            cropping_util = self.context.restrictedTraverse('@@crop-image')
+            cropping_util._remove(self.fieldname, form.get('scalename'))
             IStatusMessage(self.request).add(_(u"Cropping area deleted"))
         if form.get('form.button.Save', None) is not None:
-            x1 = int(round(float(self.request.form.get('x1'))))
-            y1 = int(round(float(self.request.form.get('y1'))))
-            x2 = int(round(float(self.request.form.get('x2'))))
-            y2 = int(round(float(self.request.form.get('y2'))))
-            scale_name = self.request.form.get('scalename')
-            cropping_util._crop(fieldname=self.fieldname,
-                                scale=scale_name,
-                                box=(x1, y1, x2, y2),
-                                interface=self.interface)
-            # Avoid browser cache
-            # an empty call of setModificationDate uses current timestamp
-            self.context.setModificationDate()
-            self.context.reindexObject()
+            self._crop()
             IStatusMessage(self.request).add(
                 _(u"Successfully saved cropped area"))
 
