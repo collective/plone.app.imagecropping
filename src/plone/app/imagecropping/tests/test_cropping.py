@@ -117,3 +117,24 @@ class TestExample(unittest.TestCase):
         # XXX: fixme
         # self.assertEqual(open(croppedData).format, 'JPEG',
         #    "cropped scale does not have same format as the original")
+
+    def test_modify_context(self):
+        """ See https://github.com/collective/plone.app.imagecropping/issues/21
+        """
+
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        unscaled_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+        thumb = scales.scale('image', 'thumb')
+        self.failIfEqual(thumb.data, unscaled_thumb.data)
+
+        self.img.setTitle('A new title')
+        self.img.reindexObject()
+
+        thumb2 = scales.scale('image', 'thumb')
+        self.assertEqual(thumb.data, thumb2.data)

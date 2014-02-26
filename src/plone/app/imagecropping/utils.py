@@ -82,9 +82,10 @@ class CroppingUtilsArchetype(BaseUtil):
         return image_size
 
     def save_cropped(
-            self, fieldname, field, scale, image_file, interface=None):
+            self, fieldname, scale, image_file, interface=None):
         """ see interface
         """
+        field = self.get_image_field(fieldname)
         handler = IImageScaleHandler(field)
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]
@@ -103,6 +104,10 @@ class CroppingUtilsArchetype(BaseUtil):
                 data['data'], result=result, **parameters)
             result.close()
             return blob, image_format, dimensions
+
+        # Avoid browser cache
+        # calling reindexObject updates the modified metadate too
+        self.context.reindexObject()
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
@@ -162,7 +167,7 @@ if HAS_NAMEDFILE:
             return image_size
 
         def save_cropped(
-                self, fieldname, field, scale, image_file, interface=None):
+                self, fieldname, scale, image_file, interface=None):
             """ see interface
             """
             sizes = getAllowedSizes()
@@ -173,6 +178,7 @@ if HAS_NAMEDFILE:
                 if result is not None:
                     data, format, dimensions = result
                     mimetype = 'image/%s' % format.lower()
+                    field = self.get_image_field(fieldname)
                     value = field.__class__(
                         data,
                         contentType=mimetype,

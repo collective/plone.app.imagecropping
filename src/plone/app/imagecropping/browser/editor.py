@@ -154,10 +154,6 @@ class CroppingEditor(BrowserView):
                             scale=scale_name,
                             box=(x1, y1, x2, y2),
                             interface=self.interface)
-        # Avoid browser cache
-        # an empty call of setModificationDate uses current timestamp
-        self.context.setModificationDate()
-        self.context.reindexObject()
 
     def __call__(self):
         form = self.request.form

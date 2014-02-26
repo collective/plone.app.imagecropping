@@ -30,7 +30,7 @@ class IImageCroppingUtils(Interface):
            (100, 200)
         """
 
-    def save_cropped(fieldname, field, scale, image_file, interface=None):
+    def save_cropped(fieldname, scale, image_file, interface=None):
         """ Save the cropped iamge under the name of the selected scale in
             plone.scale.storage.AnnotationStorage, so that it is available
             in plone.app.imaging @@images view

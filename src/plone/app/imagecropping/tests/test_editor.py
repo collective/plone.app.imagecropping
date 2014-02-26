@@ -58,7 +58,8 @@ class EditorTestCase(unittest.TestCase):
 
     def test_editview_crop(self):
         request = self.layer['request']
-        request.form.update({'x1': 1.0, 'y1': 2.7, 'x2': 10.6, 'y2': 8.4})
+        request.form.update({'x1': 1.0, 'y1': 2.7, 'x2': 10.6, 'y2': 8.4,
+                             'scalename': 'mini'})
         cropview = self.img.restrictedTraverse('@@croppingeditor')
         cropview._crop()
 
