@@ -52,4 +52,20 @@
       allowed_interface="plone.app.imaging.interfaces.IImageScaling"
       permission="zope2.View" />
 
+ <browser:page
+      zcml:condition="installed Products.ATContentTypes"
+      for="Products.ATContentTypes.interfaces.IATNewsItem"
+      name="images"
+      class=".scaling.ImageScaling"
+      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+      permission="zope2.View" />
+
+ <browser:page
+      zcml:condition="installed plone.namedfile"
+      for=".scaling.IImageCroppingScale"
+      name="images"
+      class=".scaling.NamedfileImageScaling"
+      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+      permission="zope2.View" />
+
 </configure>
