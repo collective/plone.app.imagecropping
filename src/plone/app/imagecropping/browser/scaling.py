@@ -21,7 +21,7 @@ class ImageScaling(BaseImageScaling):
               width=None,
               **parameters):
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
-        if '%s_%s' % (fieldname, scale) in cropped:
+        if cropped and '%s_%s' % (fieldname, scale) in cropped:
             self._rescale = False
         else:
             self._rescale = True
@@ -43,7 +43,7 @@ try:
 
 	def modified(self):
 	    if self._rescale:
-		return super(ImageScaling, self).modified()
+		return super(NamedfileImageScaling, self).modified()
 	    else:
 		return 1
 
@@ -55,11 +55,12 @@ try:
                   direction='thumbnail',
 		  **parameters):
 	    cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
-	    if '%s_%s' % (fieldname, scale) in cropped:
+	    if cropped and '%s_%s' % (fieldname, scale) in cropped:
 		self._rescale = False
 	    else:
 		self._rescale = True
-	    return super(ImageScaling, self).scale(fieldname, scale, height, width, direction, **parameters)
+	    return super(NamedfileImageScaling, self).scale(
+                fieldname, scale, height, width, direction, **parameters)
 
 except ImportError:
     pass
