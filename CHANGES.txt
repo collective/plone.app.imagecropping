@@ -5,7 +5,7 @@ Changelog
 -------------------
 
 - Check for plone.namedfile not Dexterity. It can be used seperately
-  [tom_gross]
+  [tomgross]
 
 - Rename ``imagecropping_keywords.txt`` to ``keywords.robot`` to allow simple
   reusage in ``plone.app.robotframework``.
@@ -19,6 +19,9 @@ Changelog
 
 - Prevent fieldname loosing for for current field
   [bogdangi]
+
+- Fixed #21 (cropping was reset on modifying image)
+  [tomgross]
 
 
 0.1rc2 (2013-05-03)
