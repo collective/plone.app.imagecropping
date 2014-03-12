@@ -4,8 +4,11 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
-- Check for plone.namedfile not Dexterity. It can be used seperately
-  [tom_gross]
+- Fix package dependencies.
+  [hvelarde]
+
+- Drop support for Plone 4.1 (closes `#36`_).
+  [hvelarde]
 
 - Rename ``imagecropping_keywords.txt`` to ``keywords.robot`` to allow simple
   reusage in ``plone.app.robotframework``.
@@ -95,3 +98,5 @@ Changelog
   [petschki]
 - Package created using templer
   [fRiSi]
+
+.. _`#36`: https://github.com/collective/plone.app.imagecropping/issues/36
