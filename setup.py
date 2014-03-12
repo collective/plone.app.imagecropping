@@ -56,6 +56,7 @@ setup(name='plone.app.imagecropping',
           'test': [
               'plone.app.testing[robot]>=4.2.2',
               'plone.app.dexterity',
+              'plone.namedfile>=2.0.1'
           ],
       },
       entry_points="""
