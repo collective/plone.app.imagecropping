@@ -42,7 +42,6 @@
     &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
- <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
  <alias from="sharing" to="@@sharing"/>
