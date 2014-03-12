@@ -23,7 +23,6 @@ setup(name='plone.app.imagecropping',
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
         "Intended Audience :: End Users/Desktop",
@@ -50,7 +49,7 @@ setup(name='plone.app.imagecropping',
           'Pillow',
           'plone.app.imaging',
           'Products.ATContentTypes',
-          'Products.CMFPlone>=4.1'
+          'Products.CMFPlone >=4.2'
       ],
       extras_require={
           'test': [

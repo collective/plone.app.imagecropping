@@ -1,27 +1,21 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from OFS.Image import Pdata
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
-from Products.Archetypes.interfaces.field import IImageField
-from ZODB.blob import Blob
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imagecropping import HAS_DEXTERITY
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.interfaces import IImageScaleHandler
 from plone.app.imaging.utils import getAllowedSizes
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+from Products.Archetypes.interfaces.field import IImageField
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
+from ZODB.blob import Blob
 from zope.component import adapts
 from zope.interface import implements
 from zope.interface.declarations import providedBy
 
 import time
-
-from plone.app.imagecropping import HAS_NAMEDFILE
-if HAS_NAMEDFILE:
-    from plone.behavior.interfaces import IBehaviorAssignable
-    from plone.namedfile.interfaces import IImage
-    from plone.namedfile.interfaces import IImageScaleTraversable
-    from zope.schema import getFieldsInOrder
 
 
 class BaseUtil(object):
@@ -110,7 +104,12 @@ class CroppingUtilsArchetype(BaseUtil):
         storage.scale(
             factory=crop_factory, fieldname=field.__name__, width=w, height=h)
 
-if HAS_NAMEDFILE:
+if HAS_DEXTERITY:
+    from plone.behavior.interfaces import IBehaviorAssignable
+    from plone.namedfile.interfaces import IImage
+    from plone.namedfile.interfaces import IImageScaleTraversable
+    from zope.schema import getFieldsInOrder
+
     class CroppingUtilsDexterity(BaseUtil):
         """TODO"""
 

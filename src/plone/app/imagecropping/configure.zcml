@@ -62,7 +62,7 @@
   <adapter factory=".utils.CroppingUtilsArchetype" />
 
   <!-- dexterity adapter -->
-  <adapter zcml:condition="installed plone.namedfile"
+  <adapter zcml:condition="installed plone.app.dexterity"
            factory=".utils.CroppingUtilsDexterity" />
 
 </configure>
