@@ -1,7 +1,16 @@
 from setuptools import setup, find_packages
 import os
+import pkg_resources
 
 version = '0.1rc3.dev0'
+
+
+test_requires = [
+    'plone.app.testing[robot]>=4.2.2',
+    ]
+
+if pkg_resources.get_distribution('Products.CMFPlone').version >= '4.2':
+    test_requires.append('plone.app.dexterity')
 
 long_description = (
     open('README.rst').read()
@@ -53,11 +62,7 @@ setup(name='plone.app.imagecropping',
           'Products.CMFPlone>=4.1'
       ],
       extras_require={
-          'test': [
-              'plone.app.testing[robot]>=4.2.2',
-              'plone.app.dexterity',
-              'plone.namedfile>=2.0.1'
-          ],
+          'test': test_requires,
       },
       entry_points="""
       # -*- Entry points: -*-

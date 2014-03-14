@@ -6,7 +6,7 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.imagecropping">
 
-  <five:registerPackage package="." initialize=".initialize" />
+  <five:registerPackage package="." />
 
   <genericsetup:registerProfile
       name="default"
