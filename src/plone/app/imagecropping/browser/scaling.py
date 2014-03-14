@@ -42,7 +42,7 @@ try:
     from plone.namedfile.interfaces import IImageScaleTraversable
     from plone.app.imagecropping.interfaces import IImageCropping
 
-    plone_namedfile_version = pkg_resources.get_distribution('plone_namedfile').version
+    plone_namedfile_version = pkg_resources.get_distribution('plone.namedfile').version
 
     class IImageCroppingScale(IImageScaleTraversable, IImageCropping):
         pass
