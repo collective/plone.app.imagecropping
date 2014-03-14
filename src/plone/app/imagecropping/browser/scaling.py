@@ -6,15 +6,10 @@ from plone.app.imaging.scaling import ImageScaling as BaseImageScaling
 import pkg_resources
 from distutils.version import LooseVersion
 
+
 class ScalingOverrides(object):
 
     _rescale = True
-
-    def modified(self):
-        if self._rescale:
-            return super(ImageScaling, self).modified()
-        else:
-            return 1
 
     def need_rescale(self, fieldname, scale):
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
@@ -24,8 +19,13 @@ class ScalingOverrides(object):
             self._rescale = True
 
 
-
 class ImageScaling(ScalingOverrides, BaseImageScaling):
+
+    def modified(self):
+        if self._rescale:
+            return super(ImageScaling, self).modified()
+        else:
+            return 1
 
     def scale(self,
               fieldname=None,
@@ -53,6 +53,12 @@ try:
             This view checks, if image crops are available and
             prevents rescaling in this case.
         """
+
+        def modified(self):
+            if self._rescale:
+                return super(NamedfileImageScaling, self).modified()
+            else:
+                return 1
 
         if LooseVersion(plone_namedfile_version) >= LooseVersion('2.0.1'):
             def scale(self,
