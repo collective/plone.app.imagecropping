@@ -1,16 +1,17 @@
 from setuptools import setup, find_packages
 import os
 import pkg_resources
+from distutils.version import LooseVersion
 
-version = '0.1rc3.dev0'
-
+version = '1.0.dev0'
 
 test_requires = [
     'plone.app.testing[robot]>=4.2.2',
     ]
 
-if pkg_resources.get_distribution('Products.CMFPlone').version >= '4.2':
-    test_requires.append('plone.app.dexterity')
+plone_version = pkg_resources.get_distribution('Products.CMFPlone').version
+if LooseVersion(plone_version) >= LooseVersion('4.2'):
+    test_requires.append('plone.app.contenttypes')
 
 long_description = (
     open('README.rst').read()
