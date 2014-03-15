@@ -4,7 +4,8 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
-- Check for plone.namedfile not Dexterity. It can be used seperately
+- Check for plone.namedfile not Dexterity. It can be used seperately.
+  *If plone.namedfile is used it needs to be at least version 2.0.1*
   [tomgross]
 
 - Rename ``imagecropping_keywords.txt`` to ``keywords.robot`` to allow simple
@@ -23,6 +24,8 @@ Changelog
 - Fixed #21 (cropping was reset on modifying image)
   [tomgross]
 
+- Only test Plone 4.2 and 4.3 with Python 2.7 on Travis-CI
+  [tomgross]
 
 0.1rc2 (2013-05-03)
 -------------------
