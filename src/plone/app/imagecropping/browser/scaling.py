@@ -3,9 +3,6 @@ from zope.annotation.interfaces import IAnnotations
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imaging.scaling import ImageScaling as BaseImageScaling
 
-import pkg_resources
-from distutils.version import LooseVersion
-
 
 class ScalingOverrides(object):
 
@@ -42,7 +39,6 @@ try:
     from plone.namedfile.interfaces import IImageScaleTraversable
     from plone.app.imagecropping.interfaces import IImageCropping
 
-    plone_namedfile_version = pkg_resources.get_distribution('plone.namedfile').version
 
     class IImageCroppingScale(IImageScaleTraversable, IImageCropping):
         pass
@@ -60,27 +56,16 @@ try:
             else:
                 return 1
 
-        if LooseVersion(plone_namedfile_version) >= LooseVersion('2.0.1'):
-            def scale(self,
-                  fieldname=None,
-                  scale=None,
-                  height=None,
-                  width=None,
-                  direction='thumbnail',
-                  **parameters):
-                self.need_rescale(fieldname, scale)
-                return super(NamedfileImageScaling, self).scale(
-                        fieldname, scale, height, width, direction, **parameters)
-        else:
-            def scale(self,
-                  fieldname=None,
-                  scale=None,
-                  height=None,
-                  width=None,
-                  **parameters):
-                self.need_rescale(fieldname, scale)
-                return super(NamedfileImageScaling, self).scale(
-                        fieldname, scale, height, width, **parameters)
+        def scale(self,
+              fieldname=None,
+              scale=None,
+              height=None,
+              width=None,
+              direction='thumbnail',
+              **parameters):
+            self.need_rescale(fieldname, scale)
+            return super(NamedfileImageScaling, self).scale(
+                    fieldname, scale, height, width, direction, **parameters)
 
 
 except ImportError:
