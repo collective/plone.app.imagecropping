@@ -45,21 +45,14 @@
     />
 
  <browser:page
-      zcml:condition="installed Products.ATContentTypes"
-      for="Products.ATContentTypes.interfaces.IATImage"
+      zcml:condition="installed Products.Archetypes"
+      for="Products.Archetypes.BaseObject.BaseObject"
       name="images"
       class=".scaling.ImageScaling"
       allowed_interface="plone.app.imaging.interfaces.IImageScaling"
       permission="zope2.View" />
 
- <browser:page
-      zcml:condition="installed Products.ATContentTypes"
-      for="Products.ATContentTypes.interfaces.IATNewsItem"
-      name="images"
-      class=".scaling.ImageScaling"
-      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
-      permission="zope2.View" />
-
+ 
  <browser:page
       zcml:condition="installed plone.namedfile"
       for=".scaling.IImageCroppingScale"
