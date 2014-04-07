@@ -15,7 +15,12 @@
       <tal:noScales condition="not: view/showCropping">
         <p class="documentDescription"
             i18n:translate="noscales_message">
-          There are no scales to crop. Make sure to add them to the <a href="#" i18n:name="link" i18n:translate="">List of scales with crop support</a> in the controlpanel.
+          There are no scales to crop. Make sure to add them to the
+          <a href="#" i18n:name="link" i18n:translate=""
+            tal:define="portal context/@@plone_portal_state/portal_url"
+            tal:attributes="href string:$portal/@@imagecropping-settings">
+            List of scales with crop support</a>
+          in the controlpanel.
         </p>
       </tal:noScales>
       
