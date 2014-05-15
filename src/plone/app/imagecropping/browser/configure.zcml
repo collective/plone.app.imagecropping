@@ -46,7 +46,7 @@
 
  <browser:page
       zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.BaseObject.BaseObject"
+      for="plone.app.imagecropping.interfaces.IImageCropping"
       name="images"
       class=".scaling.ImageScaling"
       allowed_interface="plone.app.imaging.interfaces.IImageScaling"

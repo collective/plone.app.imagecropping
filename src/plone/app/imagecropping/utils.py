@@ -4,15 +4,23 @@ from OFS.Image import Pdata
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Archetypes.interfaces.field import IImageField
 from ZODB.blob import Blob
+from plone.app.blob.config import blobScalesAttr
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imagecropping import PAI_STORAGE_KEY
+from plone.app.imagecropping.interfaces import IImageCropping
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.app.imaging.traverse import ImageTraverser as BaseImageTraverser
 from plone.app.imaging.utils import getAllowedSizes
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.interface import implements
 from zope.interface.declarations import providedBy
+from zope.publisher.interfaces import IRequest
+
 
 import time
 
@@ -204,3 +212,14 @@ if HAS_NAMEDFILE:
                 width=w,
                 height=h,
             )
+
+
+class ImageTraverser(BaseImageTraverser):
+
+     adapts(IImageCropping, IRequest)
+
+     def publishTraverse(self, request, name):
+         # remove scales information, if image has changed
+         if not hasattr(aq_base(self.context), blobScalesAttr):
+             del IAnnotations(self.context)[PAI_STORAGE_KEY]
+         return super(ImageTraverser, self).publishTraverse(request, name)

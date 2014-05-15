@@ -65,4 +65,7 @@
   <adapter zcml:condition="installed plone.namedfile"
            factory=".utils.CroppingUtilsDexterity" />
 
+ <adapter
+       factory=".utils.ImageTraverser" />
+
 </configure>
