@@ -33,6 +33,15 @@ class CroppingEditor(BrowserView):
         return self._editor_settings.large_size.split(":")
 
     @property
+    def showCropping(self):
+        """returns True if there are any croppable scales on any of the fields
+        """
+        for field in self.image_field_names():
+            if len(self.scales(field)) > 0:
+                return True
+        return False
+            
+    @property
     def fieldname(self):
         if 'fieldname' in self.request.form.keys():
             # TODO: check if requested fieldname is available
