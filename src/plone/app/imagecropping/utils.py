@@ -220,6 +220,7 @@ class ImageTraverser(BaseImageTraverser):
 
      def publishTraverse(self, request, name):
          # remove scales information, if image has changed
-         if not hasattr(aq_base(self.context), blobScalesAttr):
-             del IAnnotations(self.context)[PAI_STORAGE_KEY]
+         if ((not hasattr(aq_base(self.context), blobScalesAttr)) and
+             (PAI_STORAGE_KEY in IAnnotations(self.context))):
+                 del IAnnotations(self.context)[PAI_STORAGE_KEY]
          return super(ImageTraverser, self).publishTraverse(request, name)
