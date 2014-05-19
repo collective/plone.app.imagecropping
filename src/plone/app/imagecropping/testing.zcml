@@ -15,6 +15,7 @@
 
   <class class="plone.dexterity.content.DexterityContent">
       <implements interface="plone.app.imagecropping.interfaces.IImageCropping" />
+      <implements interface="plone.app.imagecropping.browser.scaling.IImageCroppingScale" />
   </class>
 
 </configure>

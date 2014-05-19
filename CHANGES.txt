@@ -30,7 +30,7 @@ Changelog
   [bogdangi]
 
 - Fixed #21 (cropping was reset on modifying image)
-  [tomgross]
+  [tomgross, fRiSi]
 
 - Only test Plone 4.2 and 4.3 with Python 2.7 on Travis-CI
   [tomgross]
