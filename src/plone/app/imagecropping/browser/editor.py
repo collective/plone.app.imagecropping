@@ -62,7 +62,7 @@ class CroppingEditor(BrowserView):
             fieldname = self.fieldname
         image_size = croputils.get_image_size(fieldname, self.interface)
         all_sizes = getAllowedSizes()
-        current_selected = self.request.get('scalename', all_sizes.keys()[0])
+        current_selected = self.request.get('scalename', None)
         large_image_url = self.image_url(fieldname)
         constrain_cropping = self._editor_settings.constrain_cropping
         cropping_for = self._editor_settings.cropping_for
