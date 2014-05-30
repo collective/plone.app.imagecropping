@@ -12,9 +12,6 @@ Changelog
   in the controlpanel if there are no croppable scales to show.
   (previously this caused a `SiteError`)
   [fRiSi]
-  
-- Check for plone.namedfile not Dexterity. It can be used seperately
-  [tom_gross]
 
 - Rename ``imagecropping_keywords.txt`` to ``keywords.robot`` to allow simple
   reusage in ``plone.app.robotframework``.
