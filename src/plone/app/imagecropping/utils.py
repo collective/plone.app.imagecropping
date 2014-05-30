@@ -215,6 +215,10 @@ if HAS_NAMEDFILE:
 
 
 class ImageTraverser(BaseImageTraverser):
+    """extend the standard image traverser to remove our cropping annotations
+    (if present) in case the original image has been removed/replaced
+    (no blobScalesAttr)
+    """
 
     adapts(IImageCropping, IRequest)
 

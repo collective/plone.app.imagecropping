@@ -6,20 +6,33 @@ from plone.app.imaging.scaling import ImageScaling as BaseImageScaling
 
 class ScalingOverrides(object):
 
-    _rescale = True
+    _allow_rescale = True
 
-    def need_rescale(self, fieldname, scale):
+    def _need_rescale(self, fieldname, scale):
+        """if we've got a cropping annotation for the given fieldname and scale,
+        set self._rescale to False, to prevent plone.app.imaging traverser to 
+        overwrite our cropped scale
+        
+        since the self.modified() method does not know about the currently
+        requested scale name, we need to use the _rescale property
+        """
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
         if cropped and '%s_%s' % (fieldname, scale) in cropped:
-            self._rescale = False
+            self._allow_rescale = False
         else:
-            self._rescale = True
+            self._allow_rescale = True
 
 
 class ImageScaling(ScalingOverrides, BaseImageScaling):
 
     def modified(self):
-        if self._rescale:
+        """we overwrite the default method that would return the modification 
+        time of the context,
+        to return a way back modification time in case the currently requested
+        scale is a cropped scale. (so plone.scale does not create a new scale
+        w/o cropping information
+        """
+        if self._allow_rescale:
             return super(ImageScaling, self).modified()
         else:
             return 1
@@ -30,7 +43,7 @@ class ImageScaling(ScalingOverrides, BaseImageScaling):
               height=None,
               width=None,
               **parameters):
-        self.need_rescale(fieldname, scale)
+        self._need_rescale(fieldname, scale)
         return super(ImageScaling, self).scale(fieldname, scale, height, width, **parameters)
 
 try:
@@ -51,7 +64,13 @@ try:
         """
 
         def modified(self):
-            if self._rescale:
+            """we overwrite the default method that would return the modification 
+            time of the context,
+            to return a way back modification time in case the currently requested
+            scale is a cropped scale. (so plone.scale does not create a new scale
+            w/o cropping information
+            """
+            if self._allow_rescale:
                 return super(NamedfileImageScaling, self).modified()
             else:
                 return 1
@@ -63,7 +82,7 @@ try:
               width=None,
               direction='thumbnail',
               **parameters):
-            self.need_rescale(fieldname, scale)
+            self._need_rescale(fieldname, scale)
             return super(NamedfileImageScaling, self).scale(
                     fieldname, scale, height, width, direction, **parameters)
 
