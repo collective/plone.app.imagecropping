@@ -1,7 +1,9 @@
 from setuptools import setup, find_packages
 import os
+import pkg_resources
+from distutils.version import LooseVersion
 
-version = '0.1rc3.dev0'
+version = '1.0.dev0'
 
 long_description = (
     open('README.rst').read()
@@ -23,7 +25,6 @@ setup(name='plone.app.imagecropping',
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
         "Intended Audience :: End Users/Desktop",
@@ -31,7 +32,6 @@ setup(name='plone.app.imagecropping',
         "Operating System :: OS Independent",
         "Programming Language :: JavaScript",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Topic :: Software Development :: Libraries :: Python Modules",
       ],
@@ -56,6 +56,7 @@ setup(name='plone.app.imagecropping',
           'test': [
               'plone.app.testing[robot]>=4.2.2',
               'plone.app.dexterity',
+              'plone.namedfile>=2.0.1',
           ],
       },
       entry_points="""

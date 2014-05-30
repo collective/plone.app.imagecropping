@@ -14,6 +14,3 @@ HAS_DEXTERITY = HAS_NAMEDFILE
 imagecroppingMessageFactory = MessageFactory("plone.app.imagecropping")
 PRODUCT_NAME = PAI_STORAGE_KEY = "plone.app.imagecropping"
 
-
-def initialize(context):
-    """Initializer called when used as a Zope 2 product."""

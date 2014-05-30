@@ -62,7 +62,6 @@ if (jQuery) {
         };
 
         imagecropping.option_change = function(option) {
-
             var config = jQuery.parseJSON(option.attr('data-jcrop_config')),
                 scale_name = option.attr('data-scale_name'),
                 jcrop_config = {
@@ -91,9 +90,6 @@ if (jQuery) {
                 selected = $('ul.scales li.selected');
 
             if(scales.length) {
-                if(selected.length == 0) {
-                    selected = scales[0];
-                }
                 scales.click(function(e) {
                     if(imagecropping.unsaved_changes()) {
                         return false;

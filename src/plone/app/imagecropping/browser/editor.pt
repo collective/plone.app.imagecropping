@@ -30,7 +30,6 @@
           This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale.
           By removing a cropping area, the scale gets back to its default functionality: resize, no crop.
         </p>
-        xxx check if self/scales is empty and show a message in this case
         <div class="row"
              tal:define="image_field_names view/image_field_names;
                          multiple_flds python:len(image_field_names) &gt; 1;

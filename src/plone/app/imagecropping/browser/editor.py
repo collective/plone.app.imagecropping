@@ -12,7 +12,6 @@ from zope import component
 from zope.component._api import getUtility
 import json
 
-
 JS_MESSAGES = """\
 if(typeof(imagecropping) != "undefined") {
     imagecropping.i18n_message_ids = {
@@ -63,7 +62,7 @@ class CroppingEditor(BrowserView):
             fieldname = self.fieldname
         image_size = croputils.get_image_size(fieldname, self.interface)
         all_sizes = getAllowedSizes()
-        current_selected = self.request.get('scalename', all_sizes.keys()[0])
+        current_selected = self.request.get('scalename', None)
         large_image_url = self.image_url(fieldname)
         constrain_cropping = self._editor_settings.constrain_cropping
         cropping_for = self._editor_settings.cropping_for
@@ -152,24 +151,27 @@ class CroppingEditor(BrowserView):
             height=int(self.default_editor_size[1]))
         return scaled_img and scaled_img.url or ''
 
+    def _crop(self):
+        coordinate = lambda x: int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        scale_name = self.request.form.get('scalename')
+        cropping_util = self.context.restrictedTraverse('@@crop-image')
+        cropping_util._crop(fieldname=self.fieldname,
+                            scale=scale_name,
+                            box=(x1, y1, x2, y2),
+                            interface=self.interface)
+
     def __call__(self):
         form = self.request.form
-        cropping_util = self.context.restrictedTraverse('@@crop-image')
-
         if form.get('form.button.Delete', None) is not None:
-            cropping_util._remove(self.fieldname,
-                self.request.form.get('scalename'))
+            cropping_util = self.context.restrictedTraverse('@@crop-image')
+            cropping_util._remove(self.fieldname, form.get('scalename'))
             IStatusMessage(self.request).add(_(u"Cropping area deleted"))
         if form.get('form.button.Save', None) is not None:
-            x1 = int(round(float(self.request.form.get('x1'))))
-            y1 = int(round(float(self.request.form.get('y1'))))
-            x2 = int(round(float(self.request.form.get('x2'))))
-            y2 = int(round(float(self.request.form.get('y2'))))
-            scale_name = self.request.form.get('scalename')
-            cropping_util._crop(fieldname=self.fieldname,
-                                scale=scale_name,
-                                box=(x1, y1, x2, y2),
-                                interface=self.interface)
+            self._crop()
             IStatusMessage(self.request).add(
                 _(u"Successfully saved cropped area"))
 

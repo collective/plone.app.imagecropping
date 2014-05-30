@@ -24,6 +24,23 @@ class TestExample(unittest.TestCase):
         f = file(join(dirname(tests.__file__), 'plone-logo.png'))
         self.img.setImage(f)
         f.close()
+        
+
+    def _jpegImage(self):
+        """convert our testimage to jpeg format
+        and return it's data
+        """
+        
+        from cStringIO import StringIO
+        from PIL.Image import open
+        
+        img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
+        out = StringIO()
+        img.save(out, format='JPEG', quality=75)
+        out.seek(0)
+        result = out.getvalue()
+        out.close()
+        return result       
 
     def test_image_and_annotation(self):
         """check that our cropping view is able to store a cropped image
@@ -96,16 +113,12 @@ class TestExample(unittest.TestCase):
         self.assertEqual(open(croppedData).format, 'PNG',
             "cropped scale does not have same format as the original")
 
-        # create a jpeg image out of the png file:
-        img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
-        out = StringIO()
-        img.save(out, format='JPEG', quality=75)
-        out.seek(0)
 
+        # create a jpeg image out of the png file
         # and test if created scale is jpeg too
         _createObjectByType('Image', self.portal, 'testjpeg')
         jpg = self.portal.testjpeg
-        jpg.setImage(out.getvalue())
+        jpg.setImage(self._jpegImage())
 
         org_data = StringIO(jpg.getImage().data)
         self.assertEqual(open(org_data).format, 'JPEG')
@@ -117,3 +130,58 @@ class TestExample(unittest.TestCase):
         # XXX: fixme
         # self.assertEqual(open(croppedData).format, 'JPEG',
         #    "cropped scale does not have same format as the original")
+
+    def test_modify_context(self):
+        """ See https://github.com/collective/plone.app.imagecropping/issues/21
+        """
+
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        unscaled_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+        
+        # images accessed via context/@@images/image/thumb
+        # stored in plone.scale annotation
+        # see https://github.com/plone/plone.scale/pull/3#issuecomment-28597087
+        thumb = scales.scale('image', 'thumb')
+        self.failIfEqual(thumb.data, unscaled_thumb.data)
+        
+        #images accessed via context/image_thumb
+        #stored in attribute_storage
+        thumb_attr = traverse(self.img, 'image_thumb')
+        self.failIfEqual(thumb_attr.data, unscaled_thumb.data)
+        
+        #import pdb;pdb.set_trace()
+        self.assertEqual((thumb.width, thumb.height), (thumb_attr.width, thumb_attr.height))
+        
+        
+
+        self.img.setTitle('A new title')
+        self.img.reindexObject()
+
+        
+        thumb2 = scales.scale('image', 'thumb')
+        self.assertEqual(thumb.data, thumb2.data, 'context/@@images/image/thumb accessor lost cropped scale')
+        
+        thumb2_attr = traverse(self.img, 'image_thumb')
+        self.assertEqual((thumb.width, thumb.height),
+                         (thumb2_attr.width, thumb2_attr.height),
+                         'context/image_thumb accessor lost cropped scale')
+        
+        
+
+        # set a different image, this should invalidate scales
+        self.img.setImage(self._jpegImage())
+        
+        jpeg_thumb_attr = traverse(self.img, 'image_thumb')
+        self.failIfEqual((jpeg_thumb_attr.width, jpeg_thumb_attr.height),
+                         (128, 128),
+                         'context/image_thumb returns old cropped scale after setting a new image')
+        
+        jpeg_thumb = scales.scale('image', 'thumb')
+        self.failIfEqual((jpeg_thumb.width, jpeg_thumb.height), (128, 128),
+                         'context/@@images/image/thumb returns old cropped scale after setting a new image')
