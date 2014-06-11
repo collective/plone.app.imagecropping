@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface.interface import Interface
 from plone.app.imaging.interfaces import IImageScaling
 from plone.app.blob.interfaces import IBlobImageField

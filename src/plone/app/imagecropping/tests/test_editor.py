@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import tests
@@ -7,7 +8,7 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 
 import transaction
-import unittest2 as unittest
+import unittest
 
 
 class EditorTestCase(unittest.TestCase):
