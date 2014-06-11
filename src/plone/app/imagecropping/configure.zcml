@@ -66,5 +66,6 @@
              factory=".utils.CroppingUtilsDexterity" />
 
     <adapter factory=".utils.ImageTraverser" />
+    <subscriber handler=".subscribers.apply_crops_after_copy" />
 
 </configure>

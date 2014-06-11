@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_parent
 from Products.CMFPlone.utils import _createObjectByType
 from os.path import dirname
 from os.path import join
@@ -198,4 +199,57 @@ class TestExample(unittest.TestCase):
             (128, 128),
             'context/@@images/image/thumb returns old cropped scale after '
             'setting a new image'
+        )
+
+    def test_copy_context(self):
+        """ See https://github.com/collective/plone.app.imagecropping/issues/21
+        """
+
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        unscaled_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+
+        # images accessed via context/@@images/image/thumb
+        # stored in plone.scale annotation
+        # see https://github.com/plone/plone.scale/pull/3#issuecomment-28597087
+        thumb = scales.scale('image', 'thumb')
+        self.assertNotEqual(thumb.data, unscaled_thumb.data)
+
+        # images accessed via context/image_thumb
+        # stored in attribute_storage
+        thumb_attr = traverse(self.img, 'image_thumb')
+        self.assertNotEqual(thumb_attr.data, unscaled_thumb.data)
+        self.assertEqual(
+            (thumb.width, thumb.height),
+            (thumb_attr.width, thumb_attr.height)
+        )
+
+        # Copy image
+        container = aq_parent(self.img)
+        container.manage_pasteObjects(
+            container.manage_copyObjects(ids=[self.img.id, ]))
+
+        # Be sure copied image is there
+        self.assertIn('copy_of_testimage', container.objectIds())
+        copy_img = container['copy_of_testimage']
+
+        jpeg_thumb_attr = traverse(copy_img, 'image_thumb')
+        self.assertNotEqual(
+            (jpeg_thumb_attr.width, jpeg_thumb_attr.height),
+            (128, 128),
+            'context/image_thumb returns old cropped scale after '
+            'copying image'
+        )
+
+        jpeg_thumb = scales.scale('image', 'thumb')
+        self.assertNotEqual(
+            (jpeg_thumb.width, jpeg_thumb.height),
+            (128, 128),
+            'context/@@images/image/thumb returns old cropped scale after '
+            'copying image'
         )
