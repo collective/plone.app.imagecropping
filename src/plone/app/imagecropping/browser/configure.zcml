@@ -8,19 +8,17 @@
     <include package="Products.CMFCore" file="permissions.zcml" />
 
     <!-- utilities -->
-    <utility 
-        factory=".settings.SizesVocabulary" 
+    <utility
+        factory=".settings.SizesVocabulary"
         name="plone.app.imagecropping.all_sizes" />
 
     <!--resources-->
-
     <browser:resourceDirectory
         name="plone.app.imagecropping.static"
         directory="static"
         />
 
     <!-- configlet -->
-
     <browser:page
         name="imagecropping-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
@@ -29,7 +27,6 @@
         />
 
     <!-- views -->
-
     <browser:page
         for="*"
         name="crop-image"
@@ -38,27 +35,28 @@
         />
 
     <browser:page
-      class=".editor.CroppingEditor"
-      for="*"
-      name="croppingeditor"
-      permission="cmf.ModifyPortalContent"
-    />
+        class=".editor.CroppingEditor"
+        for="*"
+        name="croppingeditor"
+        permission="cmf.ModifyPortalContent"
+        />
 
- <browser:page
-      zcml:condition="installed Products.Archetypes"
-      for="plone.app.imagecropping.interfaces.IImageCropping"
-      name="images"
-      class=".scaling.ImageScaling"
-      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
-      permission="zope2.View" />
+    <browser:page
+        zcml:condition="installed Products.Archetypes"
+        for="plone.app.imagecropping.interfaces.IImageCropping"
+        name="images"
+        class=".scaling.ImageScaling"
+        allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+        permission="zope2.View"
+        />
 
- 
- <browser:page
-      zcml:condition="installed plone.namedfile"
-      for=".scaling.IImageCroppingScale"
-      name="images"
-      class=".scaling.NamedfileImageScaling"
-      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
-      permission="zope2.View" />
+    <browser:page
+        zcml:condition="installed plone.namedfile"
+        for=".scaling.IImageCroppingScale"
+        name="images"
+        class=".scaling.NamedfileImageScaling"
+        allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+        permission="zope2.View"
+        />
 
 </configure>

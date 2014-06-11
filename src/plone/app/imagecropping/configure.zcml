@@ -6,66 +6,65 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.imagecropping">
 
-  <five:registerPackage package="." />
+    <five:registerPackage package="." />
 
-  <genericsetup:registerProfile
-      name="default"
-      title="plone.app.imagecropping"
-      directory="profiles/default"
-      description="Installs the plone.app.imagecropping package"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    <genericsetup:registerProfile
+        name="default"
+        title="plone.app.imagecropping"
+        directory="profiles/default"
+        description="Installs the plone.app.imagecropping package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
-  <genericsetup:upgradeStep
-      title="Upgrade plone.app.imagecropping to profile 0003"
-      description="Migrates plone.app.imagecropping upgrade to 0003"
-      source="0002"
-      destination="0003"
-      handler=".setuphandler.migrate0002to0003"
-      sortkey="1"
-      profile="plone.app.imagecropping:default"
-      />
-  
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="plone.app.imagecropping Uninstallation"
-      directory="profiles/uninstall"
-      description="Uninstalls resources from the plone.app.imagecropping package"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    <genericsetup:upgradeStep
+        title="Upgrade plone.app.imagecropping to profile 0003"
+        description="Migrates plone.app.imagecropping upgrade to 0003"
+        source="0002"
+        destination="0003"
+        handler=".setuphandler.migrate0002to0003"
+        sortkey="1"
+        profile="plone.app.imagecropping:default"
+        />
 
-  <i18n:registerTranslations directory="locales" />
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="plone.app.imagecropping Uninstallation"
+        directory="profiles/uninstall"
+        description="Uninstalls resources from the plone.app.imagecropping package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
-  <include package=".browser" />
+    <i18n:registerTranslations directory="locales" />
 
-  <class zcml:condition="installed Products.ATContentTypes"
-         class="Products.ATContentTypes.content.image.ATImage">
-      <implements interface=".interfaces.IImageCropping" />
-  </class>
+    <include package=".browser" />
 
-  <class zcml:condition="installed Products.ATContentTypes"
-         class="Products.ATContentTypes.content.newsitem.ATNewsItem">
-      <implements interface=".interfaces.IImageCropping" />
-  </class>
+    <configure zcml:condition="installed Products.ATContentTypes">
+        <class="Products.ATContentTypes.content.image.ATImage">
+            <implements interface=".interfaces.IImageCropping" />
+        </class>
 
-  <class zcml:condition="installed plone.app.blob"
+        <class="Products.ATContentTypes.content.newsitem.ATNewsItem">
+            <implements interface=".interfaces.IImageCropping" />
+        </class>
+    </configure>
+
+    <class zcml:condition="installed plone.app.blob"
          class="plone.app.blob.content.ATBlob">
-      <implements interface=".interfaces.IImageCropping" />
-  </class>
+        <implements interface=".interfaces.IImageCropping" />
+    </class>
 
-  <class zcml:condition="installed plone.app.contenttypes"
-    class="plone.app.contenttypes.content.Image">
-      <implements interface=".interfaces.IImageCropping" />
-  </class>
+    <class zcml:condition="installed plone.app.contenttypes"
+           class="plone.app.contenttypes.content.Image">
+        <implements interface=".interfaces.IImageCropping" />
+    </class>
 
-   <!-- archetypes adapter -->
-  <adapter factory=".utils.CroppingUtilsArchetype" />
+    <!-- archetypes adapter -->
+    <adapter factory=".utils.CroppingUtilsArchetype" />
 
-  <!-- dexterity adapter -->
-  <adapter zcml:condition="installed plone.namedfile"
-           factory=".utils.CroppingUtilsDexterity" />
+    <!-- dexterity adapter -->
+    <adapter zcml:condition="installed plone.namedfile"
+             factory=".utils.CroppingUtilsDexterity" />
 
- <adapter
-       factory=".utils.ImageTraverser" />
+    <adapter factory=".utils.ImageTraverser" />
 
 </configure>

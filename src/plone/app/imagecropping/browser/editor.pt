@@ -11,7 +11,7 @@
           i18n:translate="">
           Image Cropping Editor
       </h1>
-      
+
       <tal:noScales condition="not: view/showCropping">
         <p class="documentDescription"
             i18n:translate="noscales_message">
@@ -23,7 +23,7 @@
           in the controlpanel.
         </p>
       </tal:noScales>
-      
+
       <tal:scales condition="view/showCropping">
         <p class="documentDescription" i18n:translate="">
           Here you can define cropping areas for each scale of the available imagefields.
@@ -56,10 +56,10 @@
                       </li>
                   </ul>
             </div>
-  
+
             <div class="cell width-1:4"
                  tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
-  
+
               <h3 i18n:translate="">Available Image Scales for Field: &quot;<span i18n:name="field_name" tal:content="view/fieldname" tal:omit-tag="">Field Name</span>&quot;</h3>
               <ul class="scales visualNoMarker">
                   <li tal:repeat="scale scales"
@@ -82,16 +82,16 @@
                   </li>
               </ul>
             </div>
-  
+
             <div class="cell width-1:2 position-1:2"
                  tal:attributes="class python:'cell width-%s position-%s' % (multiple_flds and '1:2' or '3:4', multiple_flds and '1:2' or '1:4')">
-  
+
               <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
                                                              tal:condition="scales">
-  
+
                   <!--JCrop Editor-->
                   <img class="cropbox" tal:attributes="src current_scale/image_url;" />
-  
+
                   <div>
                     <input type="hidden" size="4" id="x1" name="x1" />
                     <input type="hidden" size="4" id="y1" name="y1" />
@@ -100,7 +100,7 @@
                     <input type="hidden" id="scalename" name="scalename" value=""
                       tal:attributes="value current_scale/id" />
                     <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value request/fieldname|view/fieldname" />
-  
+
                   </div>
                   <input type="submit"
                     class="context"
@@ -129,24 +129,24 @@
                     i18n:attributes="value"
                     name="form.button.Cancel"
                     />
-  
+
                   <input type="hidden" name="ajax_load"
                       tal:condition="ajax_load"
                       tal:attributes="value ajax_load" />
               </form>
-  
+
             </div>
-  
+
             <div class="visualClear"><!-- --></div>
         </div>
-  
+
       <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
       <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
       <script type="text/javascript" tal:content="view/js_messages"></script>
       <script type="text/javascript">
           imagecropping.init_editor();
       </script>
-      
+
     </tal:scales>
     </metal:main>
 
