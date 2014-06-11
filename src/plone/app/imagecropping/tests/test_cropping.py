@@ -153,12 +153,12 @@ class TestExample(unittest.TestCase):
         # stored in plone.scale annotation
         # see https://github.com/plone/plone.scale/pull/3#issuecomment-28597087
         thumb = scales.scale('image', 'thumb')
-        self.failIfEqual(thumb.data, unscaled_thumb.data)
+        self.assertNotEqual(thumb.data, unscaled_thumb.data)
 
         # images accessed via context/image_thumb
         # stored in attribute_storage
         thumb_attr = traverse(self.img, 'image_thumb')
-        self.failIfEqual(thumb_attr.data, unscaled_thumb.data)
+        self.assertNotEqual(thumb_attr.data, unscaled_thumb.data)
         self.assertEqual(
             (thumb.width, thumb.height),
             (thumb_attr.width, thumb_attr.height)
