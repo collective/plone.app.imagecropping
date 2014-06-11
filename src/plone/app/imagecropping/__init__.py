@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.i18nmessageid.message import MessageFactory
 import pkg_resources
 
@@ -13,4 +14,3 @@ HAS_DEXTERITY = HAS_NAMEDFILE
 
 imagecroppingMessageFactory = MessageFactory("plone.app.imagecropping")
 PRODUCT_NAME = PAI_STORAGE_KEY = "plone.app.imagecropping"
-

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from plone.testing import z2
-from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import applyProfile
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.testing import z2
 from zope.configuration import xmlconfig
 
 
@@ -44,10 +44,10 @@ class PloneAppImagecropping(PloneSandboxLayer):
 PLONE_APP_IMAGECROPPING = PloneAppImagecropping()
 PLONE_APP_IMAGECROPPING_INTEGRATION = IntegrationTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING_INTEGRATION")
+    name="PLONE_APP_IMAGECROPPING:Integration")
 PLONE_APP_IMAGECROPPING_FUNCTIONAL = FunctionalTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING_FUNCTIONAL")
+    name="PLONE_APP_IMAGECROPPING:Functional")
 PLONE_APP_IMAGECROPPING_ROBOT = FunctionalTesting(
     bases=(PLONE_APP_IMAGECROPPING, z2.ZSERVER_FIXTURE),
-    name="PLONE_APP_IMAGECROPPING_ROBOT")
+    name="PLONE_APP_IMAGECROPPING:Robot")

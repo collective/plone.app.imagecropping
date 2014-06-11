@@ -10,6 +10,7 @@ from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from zope import component
 from zope.component._api import getUtility
+
 import json
 
 JS_MESSAGES = """\
@@ -40,7 +41,7 @@ class CroppingEditor(BrowserView):
             if len(self.scales(field)) > 0:
                 return True
         return False
-            
+
     @property
     def fieldname(self):
         if 'fieldname' in self.request.form.keys():
@@ -147,8 +148,8 @@ class CroppingEditor(BrowserView):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
         scaled_img = scales.scale(fieldname,
-            width=int(self.default_editor_size[0]),
-            height=int(self.default_editor_size[1]))
+                                  width=int(self.default_editor_size[0]),
+                                  height=int(self.default_editor_size[1]))
         return scaled_img and scaled_img.url or ''
 
     def _crop(self):
