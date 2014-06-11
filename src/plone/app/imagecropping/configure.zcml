@@ -39,17 +39,17 @@
     <include package=".browser" />
 
     <configure zcml:condition="installed Products.ATContentTypes">
-        <class="Products.ATContentTypes.content.image.ATImage">
+        <class class="Products.ATContentTypes.content.image.ATImage">
             <implements interface=".interfaces.IImageCropping" />
         </class>
 
-        <class="Products.ATContentTypes.content.newsitem.ATNewsItem">
+        <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
             <implements interface=".interfaces.IImageCropping" />
         </class>
     </configure>
 
     <class zcml:condition="installed plone.app.blob"
-         class="plone.app.blob.content.ATBlob">
+           class="plone.app.blob.content.ATBlob">
         <implements interface=".interfaces.IImageCropping" />
     </class>
 
