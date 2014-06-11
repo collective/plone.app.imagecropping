@@ -8,6 +8,7 @@ before_install:
   - mkdir -p buildout-cache/downloads
   - mkdir -p buildout-cache/eggs
 install:
+  - sed -ie "s#test-4.3.cfg#test-$PLONE_VERSION.cfg#" buildout.cfg
   - python bootstrap.py -c test-$PLONE_VERSION.cfg
   - bin/buildout -t 10 -Nc test-$PLONE_VERSION.cfg
 before_script:
