@@ -4,6 +4,16 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
+- Cleanup code, align to all coding conventions for Plone.
+  Pep8, Flake8, pep3101, sort imports, remove grouped imports, ...
+  [saily]
+
+- Cleanup/refactor javascript code, don't define global variables.
+  [saily]
+
+- Add coveralls, code-analysis and update travis configuration.
+  [saily]
+
 - Check for plone.namedfile not Dexterity. It can be used seperately.
   *If plone.namedfile is used it needs to be at least version 2.0.1*
   [tomgross]
