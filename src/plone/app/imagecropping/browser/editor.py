@@ -16,7 +16,7 @@ import json
 JS_MESSAGES = """\
 if(typeof(imagecropping) != "undefined") {
     imagecropping.i18n_message_ids = {
-        confirm_discard_changes: "%(discard_changes)s"
+        confirm_discard_changes: "{discard_changes:s}"
     };
 }"""
 
@@ -31,7 +31,7 @@ class CroppingEditor(BrowserView):
 
     @property
     def default_editor_size(self):
-        return self._editor_settings.large_size.split(":")
+        return self._editor_settings.large_size.split(':')
 
     @property
     def showCropping(self):
@@ -87,32 +87,32 @@ class CroppingEditor(BrowserView):
                 is_cropped = False
 
             config = dict([
-                ("allowResize", True),
-                ("allowMove", True),
-                ("trueSize", [image_size[0], image_size[1]]),
-                ("boxWidth", self.default_editor_size[0]),
-                ("boxHeight", self.default_editor_size[1]),
-                ("setSelect", select_box),
-                ("aspectRatio", "%.2f" % (
+                ('allowResize', True),
+                ('allowMove', True),
+                ('trueSize', [image_size[0], image_size[1]]),
+                ('boxWidth', self.default_editor_size[0]),
+                ('boxHeight', self.default_editor_size[1]),
+                ('setSelect', select_box),
+                ('aspectRatio', '%.2f' % (
                     float(ratio_width) / float(ratio_height))),
-                ("minSize", [min_width, min_height]),
-                ("maxSize", [max_width, max_height]),
-                ("imageURL", large_image_url),
+                ('minSize', [min_width, min_height]),
+                ('maxSize', [max_width, max_height]),
+                ('imageURL', large_image_url),
             ])
-            scale["config"] = json.dumps(config)
+            scale['config'] = json.dumps(config)
             # scale value/id
-            scale["id"] = size
-            scale["title"] = "%s %s" % (size, all_sizes[size])
-            scale["selected"] = size == current_selected and 'selected' or ''
+            scale['id'] = size
+            scale['title'] = '{0:s} {1:s}'.format(size, all_sizes[size])
+            scale['selected'] = size == current_selected and 'selected' or ''
             # flag if saved cropped scale was found
             # this helps to prevent generating unused
             # default scales in preview column
-            scale["is_cropped"] = is_cropped
+            scale['is_cropped'] = is_cropped
             # TODO: this is for thumbnail live-preview
-            scale["thumb_width"] = ratio_width
-            scale["thumb_height"] = ratio_height
+            scale['thumb_width'] = ratio_width
+            scale['thumb_height'] = ratio_height
             # safe original image url
-            scale["image_url"] = large_image_url
+            scale['image_url'] = large_image_url
 
             scales.append(scale)
         return scales
@@ -132,7 +132,7 @@ class CroppingEditor(BrowserView):
             current = current[0]
         if current is not None:
             for image in images:
-                if image["id"] == current:
+                if image['id'] == current:
                     current_image = image
         return current_image
 
@@ -144,7 +144,7 @@ class CroppingEditor(BrowserView):
         )
         return context_state.current_page_url()
 
-    def image_url(self, fieldname="image"):
+    def image_url(self, fieldname='image'):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
         scaled_img = scales.scale(fieldname,
@@ -170,11 +170,11 @@ class CroppingEditor(BrowserView):
         if form.get('form.button.Delete', None) is not None:
             cropping_util = self.context.restrictedTraverse('@@crop-image')
             cropping_util._remove(self.fieldname, form.get('scalename'))
-            IStatusMessage(self.request).add(_(u"Cropping area deleted"))
+            IStatusMessage(self.request).add(_(u'Cropping area deleted'))
         if form.get('form.button.Save', None) is not None:
             self._crop()
             IStatusMessage(self.request).add(
-                _(u"Successfully saved cropped area"))
+                _(u'Successfully saved cropped area'))
 
         # disable columns
         self.request.set('disable_plone.leftcolumn', 1)
@@ -204,5 +204,5 @@ class CroppingEditor(BrowserView):
 
     def js_messages(self):
         return JS_MESSAGES % dict(
-            discard_changes=_("Your changes will be lost. Continue?")
+            discard_changes=_('Your changes will be lost. Continue?')
         )

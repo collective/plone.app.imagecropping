@@ -19,7 +19,7 @@ class TestExample(unittest.TestCase):
         self.portal = self.layer['portal']
 
         _createObjectByType('Image', self.portal, 'testimage',
-                            title="I'm a testing Image")
+                            title='I\'m a testing Image')
 
         self.img = self.portal.testimage
         f = file(join(dirname(tests.__file__), 'plone-logo.png'))
@@ -56,7 +56,7 @@ class TestExample(unittest.TestCase):
 
         # there is also no annotations yet for cropped sizes on this image
         self.assertIsNone(IAnnotations(self.img).get(PAI_STORAGE_KEY),
-                          "fresh image should not have any annotations")
+                          'fresh image should not have any annotations')
 
         # store cropped version for thumb and check if the result
         # is a square now
@@ -74,7 +74,7 @@ class TestExample(unittest.TestCase):
                          "there's only one scale that is cropped")
         self.assertEqual(
             IAnnotations(self.img).get(PAI_STORAGE_KEY)['image_thumb'],
-            (14, 14, 218, 218), "wrong box information has been stored")
+            (14, 14, 218, 218), 'wrong box information has been stored')
 
     def test_accessing_images(self):
         """Test if accessing the images works for our users
@@ -95,7 +95,7 @@ class TestExample(unittest.TestCase):
         self.assertEqual(
             (thumb2.width, thumb2.height),
             (128, 128),
-            "imagescaling does not return cropped image"
+            'imagescaling does not return cropped image'
         )
 
     def test_image_formats(self):

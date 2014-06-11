@@ -42,8 +42,6 @@ class BaseUtil(object):
 
 
 class CroppingUtilsArchetype(BaseUtil):
-    """TODO"""
-
     implements(IImageCroppingUtils)
     adapts(IATContentType)
 
@@ -183,7 +181,7 @@ if HAS_NAMEDFILE:
                 result = scaleImage(image_file.read(), **parameters)
                 if result is not None:
                     data, format, dimensions = result
-                    mimetype = 'image/%s' % format.lower()
+                    mimetype = 'image/{0:s}'.format(format.lower())
                     field = self.get_image_field(fieldname)
                     value = field.__class__(
                         data,

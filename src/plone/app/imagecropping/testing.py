@@ -32,22 +32,22 @@ class PloneAppImagecropping(PloneSandboxLayer):
                                            ['Manager'],
                                            [])
         login(portal, 'admin')
-        portal.portal_workflow.setDefaultChain("simple_publication_workflow")
+        portal.portal_workflow.setDefaultChain('simple_publication_workflow')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         portal.invokeFactory(
-            "Folder",
-            id="acceptance-test-folder",
-            title=u"Test Folder"
+            'Folder',
+            id='acceptance-test-folder',
+            title=u'Test Folder'
         )
 
 
 PLONE_APP_IMAGECROPPING = PloneAppImagecropping()
 PLONE_APP_IMAGECROPPING_INTEGRATION = IntegrationTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING:Integration")
+    name='PLONE_APP_IMAGECROPPING:Integration')
 PLONE_APP_IMAGECROPPING_FUNCTIONAL = FunctionalTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING:Functional")
+    name='PLONE_APP_IMAGECROPPING:Functional')
 PLONE_APP_IMAGECROPPING_ROBOT = FunctionalTesting(
     bases=(PLONE_APP_IMAGECROPPING, z2.ZSERVER_FIXTURE),
-    name="PLONE_APP_IMAGECROPPING:Robot")
+    name='PLONE_APP_IMAGECROPPING:Robot')

@@ -18,7 +18,7 @@ class ScalingOverrides(object):
            property
         """
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
-        if cropped and '%s_%s' % (fieldname, scale) in cropped:
+        if cropped and '{0:s}_{1:s}'.format(fieldname, scale) in cropped:
             self._allow_rescale = False
         else:
             self._allow_rescale = True

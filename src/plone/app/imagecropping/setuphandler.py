@@ -8,7 +8,7 @@ from zope.component import queryUtility
 import logging
 
 logger = logging.getLogger('plone.app.imagecropping')
-PROFILE_ID = 'profile-%s:default' % PRODUCT_NAME
+PROFILE_ID = 'profile-{0:s}:default'.format(PRODUCT_NAME)
 
 
 def migrate0002to0003(context):
