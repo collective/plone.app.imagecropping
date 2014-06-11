@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from zope.interface.interface import Interface
-from plone.app.imaging.interfaces import IImageScaling
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imaging.interfaces import IImageScaling
+from zope.interface.interface import Interface
 
 
 class IImageCropping(Interface):

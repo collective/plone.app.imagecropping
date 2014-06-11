@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
-import unittest2 as unittest
+import unittest
 
 
 class ControlPanelTestCase(unittest.TestCase):
