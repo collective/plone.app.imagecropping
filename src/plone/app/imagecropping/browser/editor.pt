@@ -142,10 +142,11 @@
 
       <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
       <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
-      <script type="text/javascript" tal:content="view/js_messages"></script>
-      <script type="text/javascript">
-          imagecropping.init_editor();
-      </script>
+      <script type="text/javascript"
+              tal:content="string:
+          var imagecropping = new ImageCropping();
+          imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
+          imagecropping.init_editor()"></script>
 
     </tal:scales>
     </metal:main>

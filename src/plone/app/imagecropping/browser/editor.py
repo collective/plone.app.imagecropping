@@ -10,15 +10,9 @@ from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from zope import component
 from zope.component._api import getUtility
+from zope.i18n import translate
 
 import json
-
-JS_MESSAGES = """\
-if(typeof(imagecropping) != "undefined") {
-    imagecropping.i18n_message_ids = {
-        confirm_discard_changes: "{discard_changes:s}"
-    };
-}"""
 
 
 class CroppingEditor(BrowserView):
@@ -202,7 +196,10 @@ class CroppingEditor(BrowserView):
         settings = registry.forInterface(ISettings)
         return settings
 
-    def js_messages(self):
-        return JS_MESSAGES % dict(
-            discard_changes=_('Your changes will be lost. Continue?')
-        )
+    @property
+    def translated_confirm_discard_changes(self):
+        # Escape for javascript
+        return translate(
+            _(u'Your changes will be lost. Continue?'),
+            target_language=self.request.get('LANGUAGE', 'en'),
+        ).replace('\'', '\\\'')
