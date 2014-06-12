@@ -1,36 +1,12 @@
+*** Variables ***
+${TEST_FOLDER} =  ${PLONE_URL}/acceptance-test-folder
 
 *** Keywords ***
+i am logged in as a ${role}
+    Enable autologin as  ${role}
 
-Suite Setup
-    Open Browser  ${front-page}  browser=${BROWSER}  desired_capabilities=Capture Page Screenshot
-
-Suite Teardown
-    Close All Browsers
-
-Log in
-    [Documentation]  Log in to the site as ${userid} using ${password}. There
-    ...              is no guarantee of where in the site you are once this is
-    ...              done. (You are responsible for knowing where you are and
-    ...              where you want to be)
-    [Arguments]  ${userid}  ${password}
-
-    Go to  ${PLONE_URL}/login_form
-    Page should contain element  __ac_name
-    Page should contain element  __ac_password
-    Page should contain button  Log in
-    Input text  __ac_name  ${userid}
-    Input text  __ac_password  ${password}
-    Click Button  Log in
-
-Log in as site owner
-    [Documentation]  Log in as the SITE_OWNER provided by plone.app.testing,
-    ...              with all the rights and privileges of that user.
-    Log in  ${SITE_OWNER_NAME}  ${SITE_OWNER_PASSWORD}
-
-
-Create Image
-    [Arguments]  ${title}
-    Go to  ${test-folder}
+i create an image called '${title}'
+    Go to  ${TEST_FOLDER}
     Open Add New Menu
     Click Link  link=Image
 
@@ -48,14 +24,11 @@ Create Image
     Page Should Contain  Changes saved.
     Page Should Contain  Cropping
 
-
-Open Cropping Editor
+i click on the cropping tab
     Click Link  link=Cropping
-    Page Should Contain  Image Cropping Editor
+    Page Should Contain Element  css=#coords
 
-
-Crop On Image Size
-    [Arguments]  ${scale}  ${left}  ${top}
+i crop the image size '${scale}' to ${left} x ${top}
     Click Element  xpath=//li[@data-scale_name=\"${scale}\"]/a
     Wait Until Page Contains Element  xpath=//form[@id=\"coords\"]/div[1]/div[1]
 
@@ -65,28 +38,13 @@ Crop On Image Size
     Click Button  name=form.button.Save
     Page Should Contain  Successfully saved cropped area
 
-
-Open Menu
-    [Arguments]  ${elementId}
-    Element Should Not Be Visible  css=dl#${elementId} dd.actionMenuContent
-    Click link  css=dl#${elementId} dt.actionMenuHeader a
-    Wait until keyword succeeds  1  5  Element Should Be Visible  css=dl#${elementId} dd.actionMenuContent
-
-
-Image Must Be Cropped
-    Go to  ${test-folder}/test-image/view
-
+image should be cropped
+    Go to  ${TEST_FOLDER}/test-image/view
     Page Should Contain Element  xpath=//div[@id=\"content-core\"]//img[@width=\"232\" and @height=\"233\"]
-    #Capture Page Screenshot  after-crop.png
+    # Capture Page Screenshot  after-crop.png
 
-
-Open Add New Menu
-    Open Menu  plone-contentmenu-factories
-
-
-Create dexterity content type with two image fields
-    [Arguments]  ${title}
-    Go to  ${test-folder}
+i create a two-image-field containing type called '${title}'
+    Go to  ${TEST_FOLDER}
     Open Add New Menu
     Click Link  link=dexterity content type with two image fields
     Input text  name=form.widgets.IDublinCore.title  ${title}
@@ -96,17 +54,19 @@ Create dexterity content type with two image fields
     Page Should Contain  Item created
     Page Should Contain  Cropping
 
-
-Image Must Be Cropped For 
-    [Arguments]  ${content-id}  ${field-name}
-    Go to  ${test-folder}/${content-id}
-    Execute JavaScript  $('#form-widgets-${field-name} img').attr('src', '${test-folder}/${content-id}/@@images/${field-name}/preview').removeAttr('width').removeAttr('height').attr('width',$('#form-widgets-${field-name} img').width()).attr('height',$('#form-widgets-${field-name} img').height());
-    Execute JavaScript  $('#form-widgets-${field-name}').parent().parent().find('label').text('${field-name} size is ' + $('#form-widgets-${field-name} img').width() + 'x' + $('#form-widgets-${field-name} img').height());
+'${content-id}' image in field '${field-name}' should be cropped
+    Go to  ${TEST_FOLDER}/${content-id}
+    Execute JavaScript  $('#form-widgets-${field-name} img')
+    ...     .attr('src', '${TEST_FOLDER}/${content-id}/@@images/${field-name}/preview')
+    ...     .removeAttr('width')
+    ...     .removeAttr('height')
+    ...     .attr('width', $('#form-widgets-${field-name} img').width())
+    ...     .attr('height', $('#form-widgets-${field-name} img').height())
+    Execute JavaScript  $('#form-widgets-${field-name}')
+    ...     .parent().parent().find('label')
+    ...     .text('${field-name} size is ' + $('#form-widgets-${field-name} img').width() + 'x' + $('#form-widgets-${field-name} img').height());
     Page Should Contain  ${field-name} size is 232x233
 
-
-Open Cropping Editor For
-    [Arguments]  ${field-name}
-    Click Link  link=Cropping
+i choose field '${field-name}' in cropping editor
+    i click on the cropping tab
     Click Link  link=${field-name}
-    Page Should Contain  Image Cropping Editor

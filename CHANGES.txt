@@ -4,6 +4,11 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
+- Use ``plone.app.robotframework`` instead of writing all keywords from
+  scratch. This brings us autologin support for faster robot tests. Rewrite
+  tests to test scenarios.
+  [saily]
+
 - Drop Plone 4.1 support and tests.
   [saily]
 
