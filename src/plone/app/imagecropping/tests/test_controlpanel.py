@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
-import unittest2 as unittest
+import unittest
 
 
 class ControlPanelTestCase(unittest.TestCase):
@@ -61,20 +60,21 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_available_sections_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'large_size'))
-        self.assertEqual(self.settings.large_size, u"768:768")
+        self.assertEqual(self.settings.large_size, u'768:768')
 
     def test_default_section_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'min_size'))
-        self.assertEqual(self.settings.min_size, u"50:50")
+        self.assertEqual(self.settings.min_size, u'50:50')
 
     def test_records_removed_on_uninstall(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
 
-        BASE_REGISTRY = 'plone.app.imagecropping.browser.settings.ISettings.%s'
+        BASE_REGISTRY = \
+            'plone.app.imagecropping.browser.settings.ISettings.{0:s}'
         records = (
-            BASE_REGISTRY % 'large_size',
-            BASE_REGISTRY % 'min_size',
+            BASE_REGISTRY.format('large_size'),
+            BASE_REGISTRY.format('min_size'),
         )
 
         for r in records:

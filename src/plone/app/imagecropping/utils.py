@@ -4,19 +4,25 @@ from OFS.Image import Pdata
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Archetypes.interfaces.field import IImageField
 from ZODB.blob import Blob
+from plone.app.blob.config import blobScalesAttr
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imagecropping import HAS_NAMEDFILE
+from plone.app.imagecropping import PAI_STORAGE_KEY
+from plone.app.imagecropping.interfaces import IImageCropping
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.app.imaging.traverse import ImageTraverser as BaseImageTraverser
 from plone.app.imaging.utils import getAllowedSizes
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.interface import implements
 from zope.interface.declarations import providedBy
+from zope.publisher.interfaces import IRequest
 
 import time
 
-from plone.app.imagecropping import HAS_NAMEDFILE
 if HAS_NAMEDFILE:
     from plone.behavior.interfaces import IBehaviorAssignable
     from plone.namedfile.interfaces import IImage
@@ -36,8 +42,6 @@ class BaseUtil(object):
 
 
 class CroppingUtilsArchetype(BaseUtil):
-    """TODO"""
-
     implements(IImageCroppingUtils)
     adapts(IATContentType)
 
@@ -82,9 +86,10 @@ class CroppingUtilsArchetype(BaseUtil):
         return image_size
 
     def save_cropped(
-            self, fieldname, field, scale, image_file, interface=None):
+            self, fieldname, scale, image_file, interface=None):
         """ see interface
         """
+        field = self.get_image_field(fieldname)
         handler = IImageScaleHandler(field)
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]
@@ -103,6 +108,10 @@ class CroppingUtilsArchetype(BaseUtil):
                 data['data'], result=result, **parameters)
             result.close()
             return blob, image_format, dimensions
+
+        # Avoid browser cache
+        # calling reindexObject updates the modified metadate too
+        self.context.reindexObject()
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
@@ -162,7 +171,7 @@ if HAS_NAMEDFILE:
             return image_size
 
         def save_cropped(
-                self, fieldname, field, scale, image_file, interface=None):
+                self, fieldname, scale, image_file, interface=None):
             """ see interface
             """
             sizes = getAllowedSizes()
@@ -172,7 +181,8 @@ if HAS_NAMEDFILE:
                 result = scaleImage(image_file.read(), **parameters)
                 if result is not None:
                     data, format, dimensions = result
-                    mimetype = 'image/%s' % format.lower()
+                    mimetype = 'image/{0:s}'.format(format.lower())
+                    field = self.get_image_field(fieldname)
                     value = field.__class__(
                         data,
                         contentType=mimetype,
@@ -198,3 +208,19 @@ if HAS_NAMEDFILE:
                 width=w,
                 height=h,
             )
+
+
+class ImageTraverser(BaseImageTraverser):
+    """extend the standard image traverser to remove our cropping annotations
+    (if present) in case the original image has been removed/replaced
+    (no blobScalesAttr)
+    """
+
+    adapts(IImageCropping, IRequest)
+
+    def publishTraverse(self, request, name):
+        # remove scales information, if image has changed
+        if not hasattr(aq_base(self.context), blobScalesAttr) \
+           and PAI_STORAGE_KEY in IAnnotations(self.context):
+                del IAnnotations(self.context)[PAI_STORAGE_KEY]
+        return super(ImageTraverser, self).publishTraverse(request, name)

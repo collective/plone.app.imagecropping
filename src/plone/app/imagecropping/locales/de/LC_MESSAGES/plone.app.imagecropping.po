@@ -1,10 +1,11 @@
+# Harald Friessnegger <harald@webmeisterei.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2013-04-15 07:41+0000\n"
-"PO-Revision-Date: 2013-04-15 09:42+0100\n"
-"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
-"Language-Team: frisi, petschki <office@kombinat.at>\n"
+"POT-Creation-Date: 2014-04-07 14:37+0000\n"
+"PO-Revision-Date: 2014-04-07 16:39+0200\n"
+"Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,18 +14,18 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Lokalize 1.5\n"
 "Language: German\n"
 
-#: plone/app/imagecropping/browser/editor.pt:28
+#: plone/app/imagecropping/browser/editor.pt:36
 msgid "Available Image Fields"
 msgstr "Vorhandene Bilder"
 
-#: plone/app/imagecropping/browser/editor.pt:51
+#: plone/app/imagecropping/browser/editor.pt:59
 msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
 msgstr "Bildgrößen für: \"${field_name}\""
 
-#: plone/app/imagecropping/browser/editor.pt:112
+#: plone/app/imagecropping/browser/editor.pt:121
 msgid "Close"
 msgstr "Schließen"
 
@@ -36,7 +37,7 @@ msgstr "Bildgröße für Vorschau im Jcrop Editor (Jcrop: boxWidth: boxHeight)"
 msgid "Cropping"
 msgstr "Zuschneiden"
 
-#: plone/app/imagecropping/browser/editor.py:153
+#: plone/app/imagecropping/browser/editor.py:162
 msgid "Cropping area deleted"
 msgstr "Zuschnitt gelöscht"
 
@@ -52,7 +53,7 @@ msgstr ""
 "Aktivieren, wenn nicht alle Bildgrößen zuschneidbar sein sollen. Die Auswahl "
 "der eingeschränkten Bildgrößen folgt weiter unten."
 
-#: plone/app/imagecropping/browser/editor.pt:15
+#: plone/app/imagecropping/browser/editor.pt:23
 msgid ""
 "Here you can define cropping areas for each scale of the available "
 "imagefields. This operation is non-destructive which means, your original "
@@ -72,6 +73,7 @@ msgstr "Zuschnitts Editor"
 msgid "Image Cropping Settings"
 msgstr "Cropping-Editor Einstellungen"
 
+#: plone/app/imagecropping/browser/editor.pt:18
 #: plone/app/imagecropping/browser/settings.py:58
 msgid "List of scales with crop support"
 msgstr "Bildgrößen für Cropping Editor"
@@ -80,15 +82,15 @@ msgstr "Bildgrößen für Cropping Editor"
 msgid "Minimum Crop Area Size"
 msgstr "minimal erlaubter Ausschnitt (Jcrop: minSize)"
 
-#: plone/app/imagecropping/browser/editor.pt:102
+#: plone/app/imagecropping/browser/editor.pt:111
 msgid "Remove cropping information"
 msgstr "Cropping Informationen entfernen"
 
-#: plone/app/imagecropping/browser/editor.pt:92
+#: plone/app/imagecropping/browser/editor.pt:101
 msgid "Save cropping information"
 msgstr "Bildzuschnitt speichern"
 
-#: plone/app/imagecropping/browser/editor.pt:98
+#: plone/app/imagecropping/browser/editor.pt:107
 msgid "Save this cropping area for the selected scale."
 msgstr "Speichern die den ausgewählten Bereich der Bildgröße."
 
@@ -100,11 +102,11 @@ msgstr ""
 "Wählen Sie die Bildgrößen, welche zuschneidbar sein sollen. Nur aktiv, wenn "
 "die Einschränkung aktiviert ist."
 
-#: plone/app/imagecropping/browser/editor.py:165
+#: plone/app/imagecropping/browser/editor.py:174
 msgid "Successfully saved cropped area"
 msgstr "Zuschnitt erfolgreich gespeichert"
 
-#: plone/app/imagecropping/browser/editor.pt:108
+#: plone/app/imagecropping/browser/editor.pt:117
 msgid ""
 "The selected scale gets reverted to the default behaviour: resize, no crop."
 msgstr ""
@@ -115,14 +117,23 @@ msgstr ""
 msgid "View the image cropping editor for this object"
 msgstr "zeige den Zuschnitts Editor für dieses Bild"
 
-#: plone/app/imagecropping/browser/editor.py:195
+#: plone/app/imagecropping/browser/editor.py:204
 msgid "Your changes will be lost. Continue?"
 msgstr "Die Änderungen gehen verloren. Fortfahren?"
 
-#: plone/app/imagecropping/browser/editor.pt:38
+#: plone/app/imagecropping/browser/editor.pt:46
 msgid "no image available"
 msgstr "kein Bild vorhanden"
+
+#. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
+#: plone/app/imagecropping/browser/editor.pt:18
+msgid "noscales_message"
+msgstr ""
+"Derzeit sind keine zuschneidbaren Bildgrößen definiert. Sie können diese "
+"unter ${link} hinzufügen."
 
 #: plone/app/imagecropping/browser/settings.py:37
 msgid "width:height"
 msgstr "breite (in px):höhe (in px)"
+
+

@@ -1,12 +1,14 @@
-from .browser.settings import ISettings
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from plone.app.imagecropping import PRODUCT_NAME
+from plone.app.imagecropping.browser.settings import ISettings
 from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
+
 import logging
 
 logger = logging.getLogger('plone.app.imagecropping')
-PROFILE_ID = 'profile-%s:default' % PRODUCT_NAME
+PROFILE_ID = 'profile-{0:s}:default'.format(PRODUCT_NAME)
 
 
 def migrate0002to0003(context):

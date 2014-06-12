@@ -1,6 +1,9 @@
 .. image:: https://travis-ci.org/collective/plone.app.imagecropping.png?branch=master
     :target: http://travis-ci.org/collective/plone.app.imagecropping
 
+.. image:: https://coveralls.io/repos/collective/plone.app.imagecropping/badge.png
+    :target: https://coveralls.io/r/collective/plone.app.imagecropping
+
 .. contents::
 
 History
@@ -86,6 +89,7 @@ some javascript. For example::
             })
 
             $(document).bind("formOverlayLoadSuccess", function() {
+                imagecropping = new ImageCropping();
                 imagecropping.init_editor();
             })
         })

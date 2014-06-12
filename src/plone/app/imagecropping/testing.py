@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-from plone.testing import z2
-from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import TEST_USER_ID
+from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing import applyProfile
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.testing import z2
 from zope.configuration import xmlconfig
 
 
@@ -22,8 +23,6 @@ class PloneAppImagecropping(PloneSandboxLayer):
             plone.app.imagecropping,
             context=configurationContext
         )
-        import plone.app.dexterity
-        self.loadZCML(package=plone.app.dexterity)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'plone.app.imagecropping:testing')
@@ -32,22 +31,26 @@ class PloneAppImagecropping(PloneSandboxLayer):
                                            ['Manager'],
                                            [])
         login(portal, 'admin')
-        portal.portal_workflow.setDefaultChain("simple_publication_workflow")
+        portal.portal_workflow.setDefaultChain('one_state_workflow')
         setRoles(portal, TEST_USER_ID, ['Manager'])
         portal.invokeFactory(
-            "Folder",
-            id="acceptance-test-folder",
-            title=u"Test Folder"
+            'Folder',
+            id='acceptance-test-folder',
+            title=u'Test Folder'
         )
 
 
 PLONE_APP_IMAGECROPPING = PloneAppImagecropping()
 PLONE_APP_IMAGECROPPING_INTEGRATION = IntegrationTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING_INTEGRATION")
+    name='plone.app.imagecropping:Integration')
 PLONE_APP_IMAGECROPPING_FUNCTIONAL = FunctionalTesting(
     bases=(PLONE_APP_IMAGECROPPING, ),
-    name="PLONE_APP_IMAGECROPPING_FUNCTIONAL")
+    name='plone.app.imagecropping:Functional')
 PLONE_APP_IMAGECROPPING_ROBOT = FunctionalTesting(
-    bases=(PLONE_APP_IMAGECROPPING, z2.ZSERVER_FIXTURE),
-    name="PLONE_APP_IMAGECROPPING_ROBOT")
+    bases=(
+        AUTOLOGIN_LIBRARY_FIXTURE,
+        PLONE_APP_IMAGECROPPING,
+        z2.ZSERVER_FIXTURE
+    ),
+    name='plone.app.imagecropping:Robot')

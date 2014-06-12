@@ -3,38 +3,40 @@
 # Packages
 *.egg
 *.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
+/dist
+/build
+/eggs
+/parts
+/bin
+/var
+/sdist
+/develop-eggs
 
 # Installer logs
 pip-log.txt
 
 # Unit test / coverage reports
-.coverage
-.tox
+/.coverage
+/.tox
+/htmlcov
 
-#Translations
+# Translations
 *.mo
 
-#Mr Developer
-.mr.developer.cfg
-.installed.cfg
-.project
-.pydevproject
-.settings
+# mr.developer
+/.mr.developer.cfg
+/.installed.cfg
 
+# developement
+/.project
+/.pydevproject
+/.settings
 .DS_Store
+*.swp
+local.cfg
 
 # virtualenv
-include
-lib
+/include
+/lib
+/.Python
 
-# Local development
-local.cfg
