@@ -4,6 +4,14 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
+- Use ``plone.app.robotframework`` instead of writing all keywords from
+  scratch. This brings us autologin support for faster robot tests. Rewrite
+  tests to test scenarios.
+  [saily]
+
+- Drop Plone 4.1 support and tests.
+  [saily]
+
 - Cleanup code, align to all coding conventions for Plone.
   Pep8, Flake8, pep3101, sort imports, remove grouped imports, ...
   [saily]
