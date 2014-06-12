@@ -3,6 +3,11 @@ python: 2.7
 env:
   - PLONE_VERSION=4.2
   - PLONE_VERSION=4.3
+  - PLONE_VERSION=5.0
+matrix:
+  allow_failures:
+    - env: PLONE_VERSION=4.2
+    - env: PLONE_VERSION=5.0
 before_install:
   - sudo apt-get install -y libjpeg-dev libgif-dev libpng-dev libz-dev
   - mkdir -p buildout-cache/downloads
@@ -22,4 +27,7 @@ after_success:
   - pip install -q coveralls
   - coveralls
 after_failure:
+  - bin/csslint --version
+  - bin/jshint --version
+  - bin/jscs --version
   - firefox -v
