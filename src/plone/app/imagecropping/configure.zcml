@@ -46,6 +46,10 @@
         <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
             <implements interface=".interfaces.IImageCropping" />
         </class>
+
+        <!-- archetypes adapter -->
+        <adapter factory=".utils.CroppingUtilsArchetype" />
+
     </configure>
 
     <class zcml:condition="installed plone.app.blob"
@@ -53,13 +57,13 @@
         <implements interface=".interfaces.IImageCropping" />
     </class>
 
-    <class zcml:condition="installed plone.app.contenttypes"
-           class="plone.app.contenttypes.content.Image">
-        <implements interface=".interfaces.IImageCropping" />
-    </class>
+    <configure zcml:condition="installed plone.app.contenttypes">
+        <include package="plone.app.contenttypes" />
 
-    <!-- archetypes adapter -->
-    <adapter factory=".utils.CroppingUtilsArchetype" />
+        <class class="plone.app.contenttypes.content.Image">
+            <implements interface=".interfaces.IImageCropping" />
+        </class>
+    </configure>
 
     <!-- dexterity adapter -->
     <adapter zcml:condition="installed plone.namedfile"
