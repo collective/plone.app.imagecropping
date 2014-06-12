@@ -4,6 +4,9 @@ Changelog
 0.1rc3 (unreleased)
 -------------------
 
+- Update Jcrop to version 0.9.12.
+  [hvelarde]
+
 - Use ``plone.app.robotframework`` instead of writing all keywords from
   scratch. This brings us autologin support for faster robot tests. Rewrite
   tests to test scenarios.
