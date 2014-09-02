@@ -48,6 +48,7 @@ How it works
 There is a view @@croppingeditor available for every content type
 implementing ``IImageCroppingMarker`` via an object action. There are specific
 markers for Archetypes and Dexterity based types:
+
 - ``plone.app.imagecropping.dx.IImageCroppingDX``
 - ``plone.app.imagecropping.at.IImageCroppingAT``
 
@@ -56,9 +57,9 @@ plone.app.contenttypes image.
 
 The editor view shows at maximum three columns:
 
- - Image fields column (only visible when more than one image field is available)
- - Image scales column (only visible when more than one scale is available)
- - Cropping editor column
+- Image fields column (only visible when more than one image field is available)
+- Image scales column (only visible when more than one scale is available)
+- Cropping editor column
 
 The aspect ratio for the cropping area in JCrop editor is automatically set
 to the image scale selected by the user.
