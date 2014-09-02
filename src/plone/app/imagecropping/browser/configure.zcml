@@ -43,18 +43,18 @@
 
     <browser:page
         zcml:condition="installed Products.Archetypes"
-        for="plone.app.imagecropping.interfaces.IImageCropping"
+        for="plone.app.imagecropping.at.IImageCroppingAT"
         name="images"
-        class=".scaling.ImageScaling"
+        class=".scalingat.ImageScalingAT"
         allowed_interface="plone.app.imaging.interfaces.IImageScaling"
         permission="zope2.View"
         />
 
     <browser:page
         zcml:condition="installed plone.namedfile"
-        for=".scaling.IImageCroppingScale"
+        for="plone.app.imagecropping.dx.IImageCroppingDX"
         name="images"
-        class=".scaling.NamedfileImageScaling"
+        class=".scalingdx.ImageScalingDX"
         allowed_interface="plone.app.imaging.interfaces.IImageScaling"
         permission="zope2.View"
         />

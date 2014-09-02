@@ -11,6 +11,7 @@
 /var
 /sdist
 /develop-eggs
+/local
 
 # Installer logs
 pip-log.txt

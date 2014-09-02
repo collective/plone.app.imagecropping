@@ -16,7 +16,7 @@
     <!-- Note: This provides cropping functionality for our contenttype
          created through the testing profile. -->
     <class class="plone.dexterity.content.DexterityContent">
-        <implements interface="plone.app.imagecropping.browser.scaling.IImageCroppingScale" />
+        <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
     </class>
 
 </configure>

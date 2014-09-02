@@ -22,7 +22,7 @@ class CroppingView(BrowserView):
 
         return True
 
-    def _crop(self, fieldname, scale, box, interface=None):
+    def _crop(self, fieldname, scale, box):
         """switch between dexterity and Archetypes
         """
         croputils = IImageCroppingUtils(self.context)
@@ -37,8 +37,7 @@ class CroppingView(BrowserView):
         cropped_image.save(cropped_image_file, image_format, quality=100)
         cropped_image_file.seek(0)
 
-        croputils.save_cropped(
-            fieldname, scale, cropped_image_file, interface)
+        croputils.save_cropped(fieldname, scale, cropped_image_file)
 
         # store crop information in annotations
         self._store(fieldname, scale, box)

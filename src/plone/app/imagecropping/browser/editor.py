@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
@@ -20,7 +19,6 @@ class CroppingEditor(BrowserView):
 
     template = ViewPageTemplateFile('editor.pt')
 
-    interface = IATContentType
     default_cropping_max_size = (0, 0)
 
     @property
@@ -55,7 +53,7 @@ class CroppingEditor(BrowserView):
         cropview = self.context.restrictedTraverse('@@crop-image')
         if fieldname is None:
             fieldname = self.fieldname
-        image_size = croputils.get_image_size(fieldname, self.interface)
+        image_size = croputils.get_image_size(fieldname)
         all_sizes = getAllowedSizes()
         current_selected = self.request.get('scalename', None)
         large_image_url = self.image_url(fieldname)
@@ -156,8 +154,7 @@ class CroppingEditor(BrowserView):
         cropping_util = self.context.restrictedTraverse('@@crop-image')
         cropping_util._crop(fieldname=self.fieldname,
                             scale=scale_name,
-                            box=(x1, y1, x2, y2),
-                            interface=self.interface)
+                            box=(x1, y1, x2, y2))
 
     def __call__(self):
         form = self.request.form

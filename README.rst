@@ -46,13 +46,17 @@ How it works
 ============
 
 There is a view @@croppingeditor available for every content type
-implementing ``IImageCropping`` via an object action.
+implementing ``IImageCroppingMarker`` via an object action. There are specific
+markers for Archetypes and Dexterity based types:
+- ``plone.app.imagecropping.dx.IImageCroppingDX``
+- ``plone.app.imagecropping.at.IImageCroppingAT``
 
-The Interface is implemented by default for ATImage and plone.app.contenttypes image.
+The interfaces are implemented by default for ATImage/NewsItem and
+plone.app.contenttypes image.
 
 The editor view shows at maximum three columns:
 
- - Image Fields column (only visible when more than one image field is available)
+ - Image fields column (only visible when more than one image field is available)
  - Image scales column (only visible when more than one scale is available)
  - Cropping editor column
 
@@ -133,7 +137,21 @@ Design decisions
   in the editor
 
 
+Information about changes from version 0.1 to 1.0
+-------------------------------------------------
 
+The marker interface for archetypes changed from
+``plone.app.imagecropping.interfaces.IImageCropping`` to
+``plone.app.imagecropping.at.IImageCroppingAT``.
+
+The marker interface for dexterity based types changed from
+``plone.app.imagecropping.browser.scaling.interfaces.IImageCroppingScale`` to
+``plone.app.imagecropping.dx.IImageCroppingDX``.
+
+The genric base interface is now
+``plone.app.imagecropping.interfaces.IImageCroppingMarker``.
+Do not use it directly as a marker, but use it to bind view or other adapters
+to image-cropping enabled types.
 
 
 Possible extensions / changes for the future

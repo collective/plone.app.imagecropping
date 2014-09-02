@@ -9,10 +9,11 @@
 - Wolfgang Thomas (pysailor)
 - Héctor Velarde (hvelarde)
 - Tom Gross (tom_gross)
+- Jens W. Klein (jensens)
 
 Credits
 -------
 
-The basic concept of ``plone.app.imagcropping`` has already been implemented in `Yiorgis's branch of plone.app.imaging`_
+The basic concept of ``plone.app.imagecropping`` has already been implemented in `Yiorgis's branch of plone.app.imaging`_
 
 .. _`Yiorgis's branch of plone.app.imaging`: https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
