@@ -21,4 +21,3 @@ class ScalingOverrides(object):
             self._allow_rescale = False
         else:
             self._allow_rescale = True
-
