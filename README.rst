@@ -6,34 +6,20 @@
 
 .. contents::
 
-History
-=======
-
-There has been a need for cropping for a long time and there are lots of addons around
-that have different ways to achieve this.
-
-There is `plip #10174`_ asking for adding image cropping to plone core
-which recently got rejected by the FWT. The cropping functionality should go
-into an addon first that also work for dexterity and can be pliped into core.
-
-.. _`plip #10174`: http://dev.plone.org/plone/ticket/10174
-
-This package aims to be THE cropping solution for plone that `just works TM`.
-
 
 Why do I need this?
 ===================
 
-Automatic cropping is already possible, `plone.app.imaging`_ does already handle this
-via the ``direction`` parameter::
+Automatic cropping is already possible, `plone.app.imaging`_ does already
+handle this via the ``direction`` parameter::
 
   <img tal:define="scales context/@@images"
        tal:replace="structure python: scales.tag('image',
                     width=1200, height=800, direction='down')"
        />
 
-However it only crops from the top/center of the image,
-so in some ocasions this is not what you want.
+However it only crops from the top/center of the image, so in some ocasions
+this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually
 for each available image scale using the `JCrop editor`_
@@ -52,8 +38,9 @@ markers for Archetypes and Dexterity based types:
 - ``plone.app.imagecropping.dx.IImageCroppingDX``
 - ``plone.app.imagecropping.at.IImageCroppingAT``
 
-The interfaces are implemented by default for ATImage/NewsItem and
-plone.app.contenttypes image.
+The interfaces are implemented by default for ``Products.ATContentTypes``
+(Plone 4.x) ``ATImage`` and ``ATNewsItem`` and Dexterity based
+``plone.app.contenttypes`` (Plone 5 or Plone 4.x as addon) ``Image``.
 
 The editor view shows at maximum three columns:
 
@@ -82,8 +69,8 @@ Load editor as overlay
 ----------------------
 
 The editor can also be loaded as an overlay anywhere. Just place a link to the
-@@croppingeditor url of an image (<image_base_url>/@@croppingeditor) and add
-some javascript. For example::
+``@@croppingeditor`` url of an image (``<image_base_url>/@@croppingeditor``)
+and add some javascript. For example::
 
     (function($) {
         $(function() {
@@ -104,12 +91,12 @@ some javascript. For example::
 Configuration
 -------------
 
-A Configlet is registered in Plone Site Setup. There you can adjust the
-maximum Size of the jCrop Editor Image (large_size) and the minimum selectable
-size of the cropped area (min_size).
+A Configlet is registered in ``Plone Site Setup``. There you can adjust the
+maximum size of the jCrop Editor Image (``large_size``) and the minimum selectable
+size of the cropped area (``min_size``).
 
 You can also set those values in the profile of your (policy)product using
-p.a.registry mechanism (registry.xml)::
+``plone.app.registry`` mechanism (file ``registry.xml``)::
 
   <registry>
     <records interface="plone.app.imagecropping.browser.settings.ISettings">
@@ -117,6 +104,24 @@ p.a.registry mechanism (registry.xml)::
         <value key="min_size">10:10</value>
     </records>
   </registry>
+
+
+Further Information
+===================
+
+History
+-------
+
+There has been a need for cropping for a long time and there are lots of addons around
+that have different ways to achieve this.
+
+There is `plip #10174`_ asking for adding image cropping to plone core
+which recently got rejected by the FWT. The cropping functionality should go
+into an addon first that also work for dexterity and can be pliped into core.
+
+.. _`plip #10174`: http://dev.plone.org/plone/ticket/10174
+
+This package aims to be THE cropping solution for plone that 'just works TM'.
 
 
 Design decisions
