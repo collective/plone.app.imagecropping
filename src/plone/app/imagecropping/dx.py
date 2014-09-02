@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+from plone.app.imagecropping.utils import BaseUtil
 from plone.app.imaging.utils import getAllowedSizes
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.namedfile.interfaces import IImage
@@ -9,8 +11,6 @@ from plone.scale.storage import AnnotationStorage
 from zope.component import adapter
 from zope.interface import implementer
 from zope.schema import getFieldsInOrder
-from .utils import BaseUtil
-from .interfaces import IImageCroppingMarker
 
 
 class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):

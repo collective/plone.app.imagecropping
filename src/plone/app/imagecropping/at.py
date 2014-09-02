@@ -5,15 +5,15 @@ from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Archetypes.interfaces.field import IImageField
 from ZODB.blob import Blob
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+from plone.app.imagecropping.utils import BaseUtil
 from plone.app.imaging.interfaces import IImageScaleHandler
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface.declarations import providedBy
-from .utils import BaseUtil
-from .interfaces import IImageCroppingMarker
 
 
 class IImageCroppingAT(IImageCroppingMarker):

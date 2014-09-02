@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.namedfile.scaling import ImageScaling as NFImageScaling
 from .scaling import ScalingOverrides
+from plone.namedfile.scaling import ImageScaling as NFImageScaling
 
 
 class ImageScalingDX(ScalingOverrides, NFImageScaling):
