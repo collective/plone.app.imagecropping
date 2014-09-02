@@ -9,8 +9,8 @@ setup(
     description="allows images to be manually cropped using JCrop JS library",
     long_description='\n\n'.join([
         open('README.rst').read(),
-        open('CONTRIBUTORS.txt').read(),
-        open('CHANGES.txt').read(),
+        open('CONTRIBUTORS.rst').read(),
+        open('CHANGES.rst').read(),
     ]),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
