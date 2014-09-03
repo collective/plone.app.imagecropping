@@ -146,7 +146,9 @@
               tal:content="string:
           var imagecropping = new ImageCropping();
           imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
-          imagecropping.init_editor()"></script>
+          $$(document).ready(function(){
+             imagecropping.init_editor();
+          });"></script>
 
     </tal:scales>
     </metal:main>
