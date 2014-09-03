@@ -2,6 +2,7 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
+from operator import itemgetter
 from plone.app.imagecropping import imagecroppingMessageFactory as _
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
@@ -59,26 +60,22 @@ class CroppingEditor(BrowserView):
         large_image_url = self.image_url(fieldname)
         constrain_cropping = self._editor_settings.constrain_cropping
         cropping_for = self._editor_settings.cropping_for
-
-        for size in all_sizes:
+        for size, dim in sorted(all_sizes.iteritems(), key=itemgetter(1)):
             if constrain_cropping and size not in cropping_for:
                 continue
             scale = dict()
             # scale jcrop config
-            min_width, min_height = self._min_size(image_size, all_sizes[size])
+            min_width, min_height = self._min_size(image_size, dim)
             max_width, max_height = self.default_cropping_max_size[0], \
                 self.default_cropping_max_size[1]
-            ratio_width, ratio_height = all_sizes[size][0], all_sizes[size][1]
+            ratio_width, ratio_height = dim[0], dim[1]
 
             # lookup saved crop info
             select_box = cropview._read(fieldname, size)
             is_cropped = True
 
             if select_box is None:
-                select_box = self._initial_size(
-                    image_size,
-                    all_sizes[size]
-                )
+                select_box = self._initial_size(image_size, dim)
                 is_cropped = False
 
             config = dict([
@@ -97,7 +94,7 @@ class CroppingEditor(BrowserView):
             scale['config'] = json.dumps(config)
             # scale value/id
             scale['id'] = size
-            scale['title'] = '{0:s} {1:s}'.format(size, all_sizes[size])
+            scale['title'] = '{0:s} {1:s}'.format(size, dim)
             scale['selected'] = size == current_selected and 'selected' or ''
             # flag if saved cropped scale was found
             # this helps to prevent generating unused
@@ -139,7 +136,7 @@ class CroppingEditor(BrowserView):
         )
         return context_state.current_page_url()
 
-    def image_url(self, fieldname='image'):
+    def image_url(self, fieldname):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
         scaled_img = scales.scale(
@@ -198,9 +195,16 @@ class CroppingEditor(BrowserView):
         better.
         """
         ix, iy = map(float, image_size)
-        ir = ix / iy
+        if iy > 0:
+            ir = ix / iy
+        else:
+            ir = 1
+
         sx, sy = map(float, scale_size)
-        sr = sx / sy
+        if sy > 0:
+            sr = sx / sy
+        else:
+            sr = 1
 
         if ir > sr:
             rx1, ry1 = ix * sr, iy

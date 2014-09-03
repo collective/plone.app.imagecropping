@@ -6,6 +6,7 @@ function ImageCropping() {
     this.y1 = 0;
     this.x2 = 0;
     this.y2 = 0;
+    this.changed = false;
 
     this.i18n_message_ids = {
         confirm_discard_changes: "Your changes will be lost. Continue?"
@@ -20,41 +21,14 @@ function ImageCropping() {
     };
 
     this.saveCoords = function() {
-        this.x1 = $("#x1").val();
-        this.y1 = $("#y1").val();
-        this.x2 = $("#x2").val();
-        this.y2 = $("#y2").val();
-    };
-
-    this.doChange = function(c) {
-        // show coords
-        $('#x1').val(c.x);
-        $('#y1').val(c.y);
-        $('#x2').val(c.x2);
-        $('#y2').val(c.y2);
-
-        // render thumbnail
-        /*
-        rx = c.w / 100;
-        ry = c.h / 100;
-        prev_node = $('#preview-' + $("#scalename").val());
-        cropbox_img = $('img.cropbox');
-        thumb_img = $('<img />');
-        thumb_img.attr('src', cropbox_img.attr('src'));
-        prev_node.html(thumb_img);
-        $("img", prev_node).css({
-            width: Math.round(rx * cropbox_img.attr('width')) + 'px',
-            height: Math.round(ry * cropbox_img.attr('height')) + 'px',
-            marginLeft: '-' + Math.round(rx * c.x) + 'px',
-            marginTop: '-' + Math.round(ry * c.y) + 'px'
-        });
-        */
+        this.x1 = parseFloat($("#x1").val());
+        this.y1 = parseFloat($("#y1").val());
+        this.x2 = parseFloat($("#x2").val());
+        this.y2 = parseFloat($("#y2").val());
     };
 
     this.unsaved_changes = function() {
-        /* actual coords */
-        if(this.x1 != $("#x1").val() || this.y1 != $("#y1").val() ||
-           this.x2 != $("#x2").val() || this.y2 != $("#y2").val()) {
+        if (this.changed) {
             return !confirm(this.i18n_message_ids.confirm_discard_changes);
         }
         return false;
@@ -64,9 +38,17 @@ function ImageCropping() {
         var obj = this,
             config = jQuery.parseJSON(option.attr('data-jcrop_config')),
             scale_name = option.attr('data-scale_name'),
+            doChange = function(c) {
+                // show coords
+                $('#x1').val(c.x);
+                $('#y1').val(c.y);
+                $('#x2').val(c.x2);
+                $('#y2').val(c.y2);
+                obj.changed = true;
+            },
             jcrop_config = {
-                onChange: obj.doChange,
-                onSelect: obj.doChange,
+                onChange: doChange,
+                onSelect: doChange,
                 onRelease: obj.clearCoords
             };
         jQuery.extend(jcrop_config, config);
@@ -83,6 +65,10 @@ function ImageCropping() {
         $('#coords img.cropbox').Jcrop(jcrop_config);
 
         option.addClass('selected').siblings().removeClass('selected');
+
+        /* quite hacky, but needed for at least chrome. */
+        setTimeout(function(){obj.changed = false;}, 100);
+
     };
 
     this.init_editor = function() {

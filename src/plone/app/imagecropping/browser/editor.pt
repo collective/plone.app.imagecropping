@@ -86,13 +86,14 @@
             </div>
 
             <div class="cell width-1:2 position-1:2"
-                 tal:attributes="class python:'cell width-%s position-%s' % (multiple_flds and '1:2' or '3:4', multiple_flds and '1:2' or '1:4')">
+                 tal:attributes="class python:'cell width-%s position-%s' % (multiple_flds and '1:2' or '3:4', multiple_flds and '1:2' or '1:4')"
+                 tal:define="fieldname request/fieldname|view/fieldname">
 
               <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
                                                              tal:condition="scales">
 
                   <!--JCrop Editor-->
-                  <img class="cropbox" tal:attributes="src view/image_url;" />
+                  <img class="cropbox" tal:attributes="src python:view.image_url(fieldname);" />
 
                   <div>
                     <input type="hidden" size="4" id="x1" name="x1" />
@@ -101,7 +102,7 @@
                     <input type="hidden" size="4" id="y2" name="y2" />
                     <input type="hidden" id="scalename" name="scalename" value=""
                       tal:attributes="value current_scale/id" />
-                    <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value request/fieldname|view/fieldname" />
+                    <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value fieldname" />
 
                   </div>
                   <input type="submit"
