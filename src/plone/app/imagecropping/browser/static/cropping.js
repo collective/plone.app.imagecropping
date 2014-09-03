@@ -92,7 +92,7 @@ function ImageCropping() {
 
         if(scales.length) {
             if (selected.length===0) {
-                selected = $('ul.scales li:first')
+                selected = $('ul.scales li:first');
             }
             scales.click(function(e) {
                 if(obj.unsaved_changes()) {
