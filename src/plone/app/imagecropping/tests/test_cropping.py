@@ -205,28 +205,32 @@ class TestExample(unittest.TestCase):
         """ See https://github.com/collective/plone.app.imagecropping/issues/21
         """
 
-        view = self.img.restrictedTraverse('@@crop-image')
+        org_view = self.img.restrictedTraverse('@@crop-image')
         traverse = self.portal.REQUEST.traverseName
-        scales = traverse(self.img, '@@images')
-        unscaled_thumb = scales.scale('image', 'thumb')
+        org_scales = traverse(self.img, '@@images')
+        org_unscaled_thumb = org_scales.scale('image', 'thumb')
 
         # store cropped version for thumb and check if the result
         # is a square now
-        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+        org_view._crop(
+            fieldname='image',
+            scale='thumb',
+            box=(14, 14, 218, 218)
+        )
 
         # images accessed via context/@@images/image/thumb
         # stored in plone.scale annotation
         # see https://github.com/plone/plone.scale/pull/3#issuecomment-28597087
-        thumb = scales.scale('image', 'thumb')
-        self.assertNotEqual(thumb.data, unscaled_thumb.data)
+        org_thumb = org_scales.scale('image', 'thumb')
+        self.assertNotEqual(org_thumb.data, org_unscaled_thumb.data)
 
         # images accessed via context/image_thumb
         # stored in attribute_storage
-        thumb_attr = traverse(self.img, 'image_thumb')
-        self.assertNotEqual(thumb_attr.data, unscaled_thumb.data)
+        org_thumb_attr = traverse(self.img, 'image_thumb')
+        self.assertNotEqual(org_thumb_attr.data, org_unscaled_thumb.data)
         self.assertEqual(
-            (thumb.width, thumb.height),
-            (thumb_attr.width, thumb_attr.height)
+            (org_thumb.width, org_thumb.height),
+            (org_thumb_attr.width, org_thumb_attr.height)
         )
 
         # Copy image
@@ -236,20 +240,21 @@ class TestExample(unittest.TestCase):
 
         # Be sure copied image is there
         self.assertIn('copy_of_testimage', container.objectIds())
-        copy_img = container['copy_of_testimage']
 
-        jpeg_thumb_attr = traverse(copy_img, 'image_thumb')
-        self.assertNotEqual(
-            (jpeg_thumb_attr.width, jpeg_thumb_attr.height),
-            (128, 128),
-            'context/image_thumb returns old cropped scale after '
-            'copying image'
+        copy_img = container['copy_of_testimage']
+        copy_scales = traverse(copy_img, '@@images')
+        copy_thumb = copy_scales.scale('image', 'thumb')
+        self.assertEqual(
+            org_thumb.data,
+            copy_thumb.data,
+            'new thumb is different from old thumb scale after '
+            'copying image (@@images access)'
         )
 
-        jpeg_thumb = scales.scale('image', 'thumb')
-        self.assertNotEqual(
-            (jpeg_thumb.width, jpeg_thumb.height),
-            (128, 128),
-            'context/@@images/image/thumb returns old cropped scale after '
-            'copying image'
+        copy_thumb_attr = traverse(copy_img, 'image_thumb')
+        self.assertEqual(
+            org_thumb_attr.data,
+            copy_thumb_attr.data,
+            'new thumb is different from old thumb scale after '
+            'copying image (attribute access)'
         )
