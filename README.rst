@@ -42,6 +42,9 @@ The interfaces are implemented by default for ``Products.ATContentTypes``
 (Plone 4.x) ``ATImage`` and ``ATNewsItem`` and Dexterity based
 ``plone.app.contenttypes`` (Plone 5 or Plone 4.x as addon) ``Image``.
 
+There is also a behavior called ``Enable Image Cropping`` which can be applied
+on custom content types containing at least one image.
+
 The editor view shows at maximum three columns:
 
 - Image fields column (only visible when more than one image field is available)
@@ -155,7 +158,7 @@ The marker interface for dexterity based types changed from
 
 The generic base interface is now
 ``plone.app.imagecropping.interfaces.IImageCroppingMarker``.
-Do not use it directly on your, but use the marker to bind view or other 
+Do not use it directly on your, but use the marker to bind view or other
 adapters to image-cropping enabled types.
 
 
