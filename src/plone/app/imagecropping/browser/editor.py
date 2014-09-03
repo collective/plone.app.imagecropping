@@ -146,7 +146,7 @@ class CroppingEditor(BrowserView):
             fieldname,
             width=int(self.default_editor_size[0]),
             height=int(self.default_editor_size[1]),
-            direction="keep",
+            direction='keep',
         )
         return scaled_img and scaled_img.url or ''
 
@@ -208,7 +208,6 @@ class CroppingEditor(BrowserView):
             rx1, ry1 = ix, iy * sr
 
         rx0, ry0, rx1, ry1 = 0, 0, int(round(rx1)), int(round(ry1))
-        print rx0, ry0, rx1, ry1
         return rx0, ry0, rx1, ry1
 
     @property
