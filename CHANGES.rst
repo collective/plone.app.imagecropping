@@ -3,6 +3,13 @@ Changelog
 
 1.0 (unreleased)
 -------------------
+
+- Added subscriber to recreate all scales on copied objects.
+  [saily, jensens]
+
+- fixed some glitches in JCrop init process.
+  [jensens]
+
 - added dexterity behavior for image cropping.
   [benniboy]
 
