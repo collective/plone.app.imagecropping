@@ -48,6 +48,7 @@ setup(
             'plone.app.robotframework',
             'plone.app.contenttypes',
             'plone.namedfile>=2.0.1',
+            'zope.globalrequest',
         ],
         'archetypes': [
             'Products.ATContentTypes',

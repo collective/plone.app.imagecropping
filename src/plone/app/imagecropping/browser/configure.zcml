@@ -28,7 +28,7 @@
 
     <!-- views -->
     <browser:page
-        for="*"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
         name="crop-image"
         class=".crop.CroppingView"
         permission="cmf.ModifyPortalContent"
@@ -36,7 +36,7 @@
 
     <browser:page
         class=".editor.CroppingEditor"
-        for="*"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
         name="croppingeditor"
         permission="cmf.ModifyPortalContent"
         />
