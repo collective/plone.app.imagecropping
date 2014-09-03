@@ -5,8 +5,8 @@ from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getMultiAdapter
-from zope.lifecycleevent.interfaces import IObjectCopiedEvent
 from zope.globalrequest import getRequest
+from zope.lifecycleevent.interfaces import IObjectCopiedEvent
 
 
 @adapter(IImageCroppingMarker, IObjectCopiedEvent)
