@@ -4,16 +4,21 @@ from OFS.Image import Pdata
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from Products.Archetypes.interfaces.field import IImageField
 from ZODB.blob import Blob
+from plone.app.blob.config import blobScalesAttr
 from plone.app.blob.interfaces import IBlobImageField
+from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
-from plone.app.imagecropping.utils import BaseUtil
 from plone.app.imaging.interfaces import IImageScaleHandler
+from plone.app.imaging.traverse import ImageTraverser as BaseImageTraverser
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface.declarations import providedBy
+from zope.publisher.interfaces import IRequest
+import time
 
 
 class IImageCroppingAT(IImageCroppingMarker):
@@ -21,9 +26,16 @@ class IImageCroppingAT(IImageCroppingMarker):
     """
 
 
+def _millis():
+    return int(time.time() * 1000)
+
+
 @implementer(IImageCroppingUtils)
 @adapter(IATContentType)
-class CroppingUtilsArchetype(BaseUtil):
+class CroppingUtilsArchetype(object):
+
+    def __init__(self, context):
+        self.context = context
 
     def image_fields(self):
         """ read interface
@@ -94,6 +106,21 @@ class CroppingUtilsArchetype(BaseUtil):
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
-        storage = AnnotationStorage(self.context, self.now_millis)
+        storage = AnnotationStorage(self.context, _millis)
         storage.scale(
             factory=crop_factory, fieldname=field.__name__, width=w, height=h)
+
+
+@adapter(IImageCroppingAT, IRequest)
+class ImageTraverser(BaseImageTraverser):
+    """extend the standard image traverser to remove our cropping annotations
+    (if present) in case the original image has been removed/replaced
+    (no blobScalesAttr)
+    """
+
+    def publishTraverse(self, request, name):
+        # remove scales information, if image has changed
+        if not hasattr(aq_base(self.context), blobScalesAttr) \
+           and PAI_STORAGE_KEY in IAnnotations(self.context):
+                del IAnnotations(self.context)[PAI_STORAGE_KEY]
+        return super(ImageTraverser, self).publishTraverse(request, name)

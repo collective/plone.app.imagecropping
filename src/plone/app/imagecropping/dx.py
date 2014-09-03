@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
-from plone.app.imagecropping.utils import BaseUtil
 from plone.app.imaging.utils import getAllowedSizes
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.namedfile.interfaces import IImage
@@ -11,6 +10,7 @@ from plone.scale.storage import AnnotationStorage
 from zope.component import adapter
 from zope.interface import implementer
 from zope.schema import getFieldsInOrder
+import time
 
 
 class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):
@@ -18,11 +18,18 @@ class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):
     """
 
 
+def _millis():
+    return int(time.time() * 1000)
+
+
 @implementer(IImageCroppingUtils)
 @adapter(IImageScaleTraversable)
-class CroppingUtilsDexterity(BaseUtil):
+class CroppingUtilsDexterity(object):
     """Dexterity variant of scaling adapter
     """
+
+    def __init__(self, context):
+        self.context = context
 
     def _image_field_info(self):
         type_info = self.context.getTypeInfo()
@@ -90,7 +97,7 @@ class CroppingUtilsDexterity(BaseUtil):
 
         # call storage with actual time in milliseconds
         # this always invalidates old scales
-        storage = AnnotationStorage(self.context, self.now_millis)
+        storage = AnnotationStorage(self.context, _millis)
 
         # We need to pass direction='thumbnail' since this is the default
         # used by plone.namedfile.scaling, also for retrieval of scales.

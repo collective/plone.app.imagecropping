@@ -8,6 +8,8 @@
     i18n_domain="plone.app.imagecropping">
 
     <five:registerPackage package="." />
+    <i18n:registerTranslations directory="locales" />
+    <include package=".browser" />
 
     <genericsetup:registerProfile
         name="default"
@@ -35,10 +37,10 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <i18n:registerTranslations directory="locales" />
 
-    <include package=".browser" />
+    <subscriber handler=".subscribers.apply_crops_after_copy" />
 
+    <!-- ATCT adapter -->
     <configure zcml:condition="installed Products.ATContentTypes">
         <class class="Products.ATContentTypes.content.image.ATImage">
             <implements interface=".at.IImageCroppingAT" />
@@ -48,37 +50,53 @@
             <implements interface=".at.IImageCroppingAT" />
         </class>
 
-        <!-- archetypes adapter -->
-        <adapter factory=".at.CroppingUtilsArchetype" />
 
     </configure>
 
+
+    <!-- ATBlob Adapter -->
     <class zcml:condition="installed plone.app.blob"
            class="plone.app.blob.content.ATBlob">
         <implements interface=".at.IImageCroppingAT" />
     </class>
 
+
+    <!-- archetypes specific -->
+    <configure zcml:condition="installed Products.Archetypes">
+
+        <!-- archetypes cropping adapter-->
+        <adapter factory=".at.CroppingUtilsArchetype" />
+
+        <!-- Archetypes FIELDNAME_SCALE traverser adaptions -->
+        <adapter factory=".at.ImageTraverser" />
+
+    </configure>
+
+
+    <!-- plone.app.contenttypes specific -->
     <configure zcml:condition="installed plone.app.contenttypes">
         <include package="plone.app.contenttypes" />
 
         <class class="plone.app.contenttypes.content.Image">
             <implements interface=".dx.IImageCroppingDX" />
         </class>
+
     </configure>
 
-    <!-- dexterity adapter -->
-    <adapter zcml:condition="installed plone.namedfile"
-             factory=".dx.CroppingUtilsDexterity" />
 
-    <adapter factory=".utils.ImageTraverser" />
-    <subscriber handler=".subscribers.apply_crops_after_copy" />
+    <!-- dexterity specific -->
+    <configure zcml:condition="installed plone.dexterity">
 
+        <!-- dexterity cropping adapter -->
+        <adapter factory=".dx.CroppingUtilsDexterity" />
 
-    <plone:behavior
-        title="Enable Image Cropping"
-        description="Provides imagecropping functionality for DX contenttypes"
-        provides=".behaviors.IImageCroppingBehavior"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+        <!-- dexterity behaviour -->
+        <plone:behavior
+            title="Enable Image Cropping"
+            description="Provides imagecropping functionality for DX contenttypes"
+            provides=".behaviors.IImageCroppingBehavior"
+            for="plone.dexterity.interfaces.IDexterityContent"
+            />
+    </configure>
 
 </configure>

@@ -4,6 +4,10 @@ Changelog
 1.0 (unreleased)
 -------------------
 
+- Fix: Removed registration of Traverse for dexterity types since its
+  base class does not support dexterity either.
+  [jensens]
+
 - Added subscriber to recreate all scales on copied objects.
   [saily, jensens]
 
