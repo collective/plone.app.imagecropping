@@ -75,7 +75,10 @@ class CroppingEditor(BrowserView):
             is_cropped = True
 
             if select_box is None:
-                select_box = (0, 0, min_width, min_height)
+                select_box = self._initial_size(
+                    image_size,
+                    all_sizes[size]
+                )
                 is_cropped = False
 
             config = dict([
@@ -139,9 +142,12 @@ class CroppingEditor(BrowserView):
     def image_url(self, fieldname='image'):
         """Returns the url to the unscaled image"""
         scales = self.context.restrictedTraverse('@@images')
-        scaled_img = scales.scale(fieldname,
-                                  width=int(self.default_editor_size[0]),
-                                  height=int(self.default_editor_size[1]))
+        scaled_img = scales.scale(
+            fieldname,
+            width=int(self.default_editor_size[0]),
+            height=int(self.default_editor_size[1]),
+            direction="keep",
+        )
         return scaled_img and scaled_img.url or ''
 
     def _crop(self):
@@ -186,6 +192,24 @@ class CroppingEditor(BrowserView):
             height = image_size[1]
             width = float(width) * ratio
         return (int(round(width)), int(round(height)))
+
+    def _initial_size(self, image_size, scale_size):
+        """we need a best fit centered preselection to make editots life
+        better.
+        """
+        ix, iy = map(float, image_size)
+        ir = ix / iy
+        sx, sy = map(float, scale_size)
+        sr = sx / sy
+
+        if ir > sr:
+            rx1, ry1 = ix * sr, iy
+        else:
+            rx1, ry1 = ix, iy * sr
+
+        rx0, ry0, rx1, ry1 = 0, 0, int(round(rx1)), int(round(ry1))
+        print rx0, ry0, rx1, ry1
+        return rx0, ry0, rx1, ry1
 
     @property
     def _editor_settings(self):

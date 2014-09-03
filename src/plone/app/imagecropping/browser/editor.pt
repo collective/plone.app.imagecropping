@@ -67,15 +67,17 @@
                                       data-scale_name scale/id;
                                       class scale/selected">
                       <a href="javascript:void(0)">
-                          <span class="scaleDesc"
-                                tal:content="scale/title">
-                              mini (100, 100)
+                          <span class="scaleDesc">
+                            <span omit-tag=""
+                                  tal:content="scale/title">mini (100, 100)</span>
+                            <span omit-tag="" i18n:translate="" tal:condition="scale/is_cropped">cropped</span>
+                            <span omit-tag="" i18n:translate="" tal:condition="not: scale/is_cropped">uncropped</span>
                           </span><br />
                           <div class="thumbPreview"
                                tal:attributes="id string:preview-${scale/id};
                                                style string:width:${scale/thumb_width}px;;max-width:100%">
                               <img tal:define="is_cropped scale/is_cropped;
-                                               src python:is_cropped and '%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id']) or scale['image_url']"
+                                               src python:'%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id'])"
                                    tal:attributes="src src" />
                           </div>
                       </a>
@@ -90,7 +92,7 @@
                                                              tal:condition="scales">
 
                   <!--JCrop Editor-->
-                  <img class="cropbox" tal:attributes="src current_scale/image_url;" />
+                  <img class="cropbox" tal:attributes="src view/image_url;" />
 
                   <div>
                     <input type="hidden" size="4" id="x1" name="x1" />

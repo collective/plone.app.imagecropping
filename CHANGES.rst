@@ -4,6 +4,13 @@ Changelog
 1.0 (unreleased)
 -------------------
 
+- fixed jcrop image to not scale wrong (!). 
+  [jensens]
+
+- better initial selection for cropping, also mark scales in left column 
+  cropped/ uncropped and show uncropped in its default appereance.
+  [jensens]
+
 - Fix: Removed registration of Traverse for dexterity types since its
   base class does not support dexterity either.
   [jensens]
