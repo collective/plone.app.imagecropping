@@ -136,7 +136,6 @@ Design decisions
     (so it works in richtext editors too)
 
 * support archetypes and dexterity content
-  (XXX limitation for dexterity: this will only work for images in AttributeStorage)
 
 * a cropped image gets stored instead of the scaled image.
   if you want back the uncropped image scale you'll need to remove the cropped version
@@ -154,10 +153,10 @@ The marker interface for dexterity based types changed from
 ``plone.app.imagecropping.browser.scaling.interfaces.IImageCroppingScale`` to
 ``plone.app.imagecropping.dx.IImageCroppingDX``.
 
-The genric base interface is now
+The generic base interface is now
 ``plone.app.imagecropping.interfaces.IImageCroppingMarker``.
-Do not use it directly as a marker, but use it to bind view or other adapters
-to image-cropping enabled types.
+Do not use it directly on your, but use the marker to bind view or other 
+adapters to image-cropping enabled types.
 
 
 Possible extensions / changes for the future
@@ -169,5 +168,5 @@ Possible extensions / changes for the future
   controlpanel)
 
 
-
+* see also the `issue tracker <https://github.com/collective/plone.app.imagecropping/issues>`_
 
