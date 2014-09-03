@@ -45,7 +45,7 @@
         </class>
 
         <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
-            <implements interface=".dx.IImageCroppingDX" />
+            <implements interface=".at.IImageCroppingAT" />
         </class>
 
         <!-- archetypes adapter -->
