@@ -3,13 +3,15 @@ Changelog
 
 1.0 (unreleased)
 -------------------
+- added dexterity behavior for image cropping.
+  [benniboy]
 
 - Major cleanup and split up code and interfaces into Dexterity and Archtypes.
-  Also renamed/ moved Interfaces to be used as markers! Attention, in custom 
+  Also renamed/ moved Interfaces to be used as markers! Attention, in custom
   code minor changes are needed in order to point to the correct interfaces.
   see README for details.
-  Also removed some superfluos/unused ``interface=`` passes to methods of 
-  ``IImageCroppingUtils``. 
+  Also removed some superfluos/unused ``interface=`` passes to methods of
+  ``IImageCroppingUtils``.
   [jensens]
 
 - Update Jcrop to version 0.9.12.
