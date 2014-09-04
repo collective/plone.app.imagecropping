@@ -231,7 +231,6 @@ class CroppingEditor(BrowserView):
         # round to int
         rx0, ry0 = int(round(rx0)), int(round(ry0))
         rx1, ry1 = int(round(rx1)), int(round(ry1))
-        print rx0, ry0, rx1, ry1
         return rx0, ry0, rx1, ry1
 
     @property
