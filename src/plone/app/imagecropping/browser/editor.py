@@ -195,23 +195,43 @@ class CroppingEditor(BrowserView):
         better.
         """
         ix, iy = map(float, image_size)
+
+        # aspect ratio of original
         if iy > 0:
             ir = ix / iy
         else:
             ir = 1
 
         sx, sy = map(float, scale_size)
+
+        # aspect ratio of scale
         if sy > 0:
             sr = sx / sy
         else:
             sr = 1
 
+        # scale up to bounds
         if ir > sr:
-            rx1, ry1 = ix * sr, iy
+            rx1, ry1 = ix * sr / ir, iy
         else:
-            rx1, ry1 = ix, iy * sr
+            rx1, ry1 = ix, iy * ir / sr
 
-        rx0, ry0, rx1, ry1 = 0, 0, int(round(rx1)), int(round(ry1))
+        rx0, ry0 = 0, 0
+
+        # center box
+        if rx1 < ix:
+            deltax = ix - rx1
+            rx0 = deltax / 2
+            rx1 = rx1 + deltax / 2
+        if ry1 < iy:
+            deltay = iy - ry1
+            ry0 = deltay / 2
+            ry1 = ry1 + deltay / 2
+
+        # round to int
+        rx0, ry0 = int(round(rx0)), int(round(ry0))
+        rx1, ry1 = int(round(rx1)), int(round(ry1))
+        print rx0, ry0, rx1, ry1
         return rx0, ry0, rx1, ry1
 
     @property
