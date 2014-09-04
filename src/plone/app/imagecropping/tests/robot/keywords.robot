@@ -29,7 +29,6 @@ i click on the cropping tab
     Page Should Contain Element  css=#coords
 
 i crop the image size '${scale}' to ${left} x ${top}
-    Sleep  0.2s
     Click Element  xpath=//li[@data-scale_name=\"${scale}\"]/a
     Wait Until Page Contains Element  xpath=//form[@id=\"coords\"]/div[1]/div[1]
 
