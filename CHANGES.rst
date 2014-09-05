@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0 (unreleased)
--------------------
+1.0 (2014-09-05)
+----------------
 
 - fixed jcrop image to not scale wrong (!). 
   [jensens]
