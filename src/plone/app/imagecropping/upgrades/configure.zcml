@@ -1,0 +1,25 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:gs="http://namespaces.zope.org/genericsetup">
+
+  <include file="profiles.zcml" />
+
+  <gs:upgradeSteps
+    source="0003"
+    destination="0004"
+    profile="plone.app.imagecropping:default">
+
+    <gs:upgradeStep
+      title="remove stale interface from catalog"
+      handler=".to_0004" />
+
+    <gs:upgradeDepends
+      title="use new marker interface for the object action"
+      import_profile="plone.app.imagecropping.upgrades:0003_to_0004"
+      run_deps="True"/>
+
+  </gs:upgradeSteps>
+
+</configure>

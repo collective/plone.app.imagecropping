@@ -4,16 +4,16 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- add upgrade step for sane migration from 0.1 to 1.0
+  [fRiSi]
 
 1.0 (2014-09-05)
 ----------------
 
-- fixed jcrop image to not scale wrong (!). 
+- fixed jcrop image to not scale wrong (!).
   [jensens]
 
-- better initial selection for cropping, also mark scales in left column 
+- better initial selection for cropping, also mark scales in left column
   cropped/ uncropped and show uncropped in its default appereance.
   [jensens]
 
