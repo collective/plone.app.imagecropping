@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- scroll to selected scale in middle column after save.
+  [jensens]
+
 - use field names (not ids) in editor view. Slightly better style now.
   [jensens]
 

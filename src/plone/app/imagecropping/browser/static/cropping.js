@@ -90,6 +90,8 @@ var ImageCropping = {};
                 if (selected.length===0) {
                     selected = $('ul.scales li:first');
                 }
+                var anchor = $(selected).children('a');
+                location.hash = "#" + anchor.attr('id');
                 scales.click(function(e) {
                     if(obj.unsaved_changes()) {
                         return false;

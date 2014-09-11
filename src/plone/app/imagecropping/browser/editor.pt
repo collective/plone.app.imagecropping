@@ -67,7 +67,8 @@
                       tal:attributes="data-jcrop_config scale/config;
                                       data-scale_name scale/id;
                                       class scale/selected">
-                      <a href="javascript:void(0)">
+                      <a href="javascript:void(0)"
+                         tal:attributes="id string:imagescale_${scale/id}">
                           <span class="scaleDesc">
                             <span omit-tag=""
                                   tal:content="scale/title">mini (100, 100)</span>
