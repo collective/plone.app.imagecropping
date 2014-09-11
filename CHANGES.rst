@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- use field names (not ids) in editor view. Slightly better style now.
+  [jensens]
+
 - add upgrade step for sane migration from 0.1 to 1.0
   [fRiSi]
 

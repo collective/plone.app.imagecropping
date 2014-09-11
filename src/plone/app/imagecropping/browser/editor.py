@@ -23,6 +23,10 @@ class CroppingEditor(BrowserView):
     default_cropping_max_size = (0, 0)
 
     @property
+    def croputils(self):
+        return IImageCroppingUtils(self.context)
+
+    @property
     def default_editor_size(self):
         return self._editor_settings.large_size.split(':')
 
@@ -50,11 +54,10 @@ class CroppingEditor(BrowserView):
            on the current content with the given fieldname and interface."""
 
         scales = []
-        croputils = IImageCroppingUtils(self.context)
         cropview = self.context.restrictedTraverse('@@crop-image')
         if fieldname is None:
             fieldname = self.fieldname
-        image_size = croputils.get_image_size(fieldname)
+        image_size = self.croputils.get_image_size(fieldname)
         all_sizes = getAllowedSizes()
         current_selected = self.request.get('scalename', None)
         large_image_url = self.image_url(fieldname)
@@ -109,11 +112,8 @@ class CroppingEditor(BrowserView):
             scales.append(scale)
         return scales
 
-    def image_fields(self):
-        return IImageCroppingUtils(self.context).image_fields()
-
     def image_field_names(self):
-        return IImageCroppingUtils(self.context).image_field_names()
+        return self.croputils.image_field_names()
 
     def current_scale(self):
         """Returns information of the current selected scale"""
@@ -146,6 +146,9 @@ class CroppingEditor(BrowserView):
             direction='keep',
         )
         return scaled_img and scaled_img.url or ''
+
+    def field_label(self, fieldname):
+        return self.croputils.get_image_label(fieldname)
 
     def _crop(self):
         coordinate = lambda x: int(round(float(self.request.form.get(x))))

@@ -60,6 +60,10 @@ class CroppingUtilsArchetype(object):
         """
         return self.context.getField(fieldname)
 
+    def get_image_label(self, fieldname):
+        field = self.get_image_field(fieldname)
+        return field.widget.label
+
     def get_image_data(self, fieldname):
         """ read interface
         """

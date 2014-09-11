@@ -31,36 +31,43 @@ class CroppingUtilsDexterity(object):
     def __init__(self, context):
         self.context = context
 
-    def _image_field_info(self):
+    def _all_fields(self):
         type_info = self.context.getTypeInfo()
         schema = type_info.lookupSchema()
-        fields = getFieldsInOrder(schema)
-
+        for field in getFieldsInOrder(schema):
+            yield field
         behavior_assignable = IBehaviorAssignable(self.context)
         if behavior_assignable:
-            behaviors = behavior_assignable.enumerateBehaviors()
-            for behavior in behaviors:
-                fields += getFieldsInOrder(behavior.interface)
+            for behavior in behavior_assignable.enumerateBehaviors():
+                for field in getFieldsInOrder(behavior.interface):
+                    yield field
 
-        for fieldname, field in fields:
-            img_field = getattr(self.context, fieldname, None)
-            if img_field and IImage.providedBy(img_field):
-                yield (fieldname, img_field)
+    def _image_field_values(self):
+        for fieldname, field in self._all_fields():
+            value = getattr(self.context, fieldname, None)
+            if value and IImage.providedBy(value):
+                yield (fieldname, value)
 
     def image_fields(self):
         """ read interface
         """
-        return [info[1] for info in self._image_field_info()]
+        return [info[1] for info in self._image_field_values()]
 
     def image_field_names(self):
         """ read interface
         """
-        return [info[0] for info in self._image_field_info()]
+        return [info[0] for info in self._image_field_values()]
 
     def get_image_field(self, fieldname):
         """ read interface
         """
         return getattr(self.context, fieldname, None)
+
+    def get_image_label(self, fieldname):
+        for name, field in self._all_fields():
+            if name == fieldname:
+                return field.title
+        return fieldname
 
     def get_image_data(self, fieldname):
         """ read interface

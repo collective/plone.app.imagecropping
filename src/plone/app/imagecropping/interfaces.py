@@ -23,6 +23,9 @@ class IImageCroppingUtils(Interface):
     def get_image_field(fieldname):
         """Returns the image field"""
 
+    def get_image_label(fieldname):
+        """Returns the label of the image field"""
+
     def get_image_data(fieldname):
         """Returns the image data"""
 
