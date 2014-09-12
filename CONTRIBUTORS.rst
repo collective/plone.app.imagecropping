@@ -18,3 +18,15 @@ Credits
 The basic concept of ``plone.app.imagecropping`` has already been implemented in `Yiorgis's branch of plone.app.imaging`_
 
 .. _`Yiorgis's branch of plone.app.imaging`: https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
+
+Source Code
+-----------
+
+If you want to help with the development (improvement, update, bug-fixing, ...)
+of ``plone.app.imagecropping`` this is a great idea!
+
+The code is located in the
+`github collective <https://github.com/collective/plone.app.imagecropping>`_.
+
+You can clone it and send a pull request or `get access to the github-collective
+<http://collective.github.com/>`_ and work directly on the project.
