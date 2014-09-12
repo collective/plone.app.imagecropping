@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2014-09-13)
 ----------------
 
 - scroll to selected scale in middle column after save.
