@@ -58,6 +58,9 @@ i create a two-image-field containing type called '${title}'
     Go to  ${TEST_FOLDER}/${content-id}
     Execute JavaScript  $('#form-widgets-${field-name} img')
     ...     .attr('src', '${TEST_FOLDER}/${content-id}/@@images/${field-name}/preview')
+    # wait some time to load image
+    Sleep  0.15
+    Execute JavaScript  $('#form-widgets-${field-name} img')
     ...     .removeAttr('width')
     ...     .removeAttr('height')
     ...     .attr('width', $('#form-widgets-${field-name} img').width())
@@ -69,4 +72,4 @@ i create a two-image-field containing type called '${title}'
 
 i choose field '${field-name}' in cropping editor
     i click on the cropping tab
-    Click Link  link=${field-name}
+    Click Link  id=selectorlink-${field-name}

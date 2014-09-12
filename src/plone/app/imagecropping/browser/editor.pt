@@ -42,7 +42,8 @@
                       <li class="croppingimagefield"
                           tal:repeat="fieldname image_field_names">
                           <a tal:define="image_url python:view.image_url(fieldname)"
-                             tal:attributes="href string:${context_state/current_base_url}?fieldname=${fieldname}"
+                             tal:attributes="href string:${context_state/current_base_url}?fieldname=${fieldname};
+                                             id string:selectorlink-${fieldname}"
                              tal:omit-tag="not:image_url">
                               <h4 tal:content="python:view.field_label(fieldname)">image field label</h4>
                               <img style="max-width:100%;height:auto;"

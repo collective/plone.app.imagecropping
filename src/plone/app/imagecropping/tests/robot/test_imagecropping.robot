@@ -24,7 +24,7 @@ Scenario: Crop custom contenttype containing two image fields
      When i create a two-image-field containing type called 'test-two-image-fields'
       And i click on the cropping tab
       And i crop the image size 'preview' to 560 x 20
-     Then 'test-two-image-fields' image in field 'First Image' should be cropped
+     Then 'test-two-image-fields' image in field 'first_image' should be cropped
      When i choose field 'second_image' in cropping editor
       And i crop the image size 'preview' to 560 x 20
-     Then 'test-two-image-fields' image in field 'Second Image' should be cropped
+     Then 'test-two-image-fields' image in field 'second_image' should be cropped
