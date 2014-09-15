@@ -55,7 +55,7 @@
         for="plone.app.imagecropping.dx.IImageCroppingDX"
         name="images"
         class=".scalingdx.ImageScalingDX"
-        allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+        allowed_attributes="scale tag"
         permission="zope2.View"
         />
 
