@@ -22,7 +22,7 @@ import time
 
 
 class IImageCroppingAT(IImageCroppingMarker):
-    """Image cropping support marker interface for NamedFile/DX types
+    """Image cropping support marker interface for Archetypes based content
     """
 
 
