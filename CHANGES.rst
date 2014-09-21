@@ -4,7 +4,8 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- fix error with copy & paste for dx image types #52
+  [pysailor]
 
 
 1.1 (2014-09-13)
