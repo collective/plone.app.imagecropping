@@ -5,10 +5,11 @@ from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
-from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION_DX
+from plone.app.imagecropping.testing import \
+    PLONE_APP_IMAGECROPPING_INTEGRATION_DX
 from plone.namedfile.file import NamedBlobImage
-from zope.annotation.interfaces import IAnnotations
 from zope import event
+from zope.annotation.interfaces import IAnnotations
 from zope.lifecycleevent import ObjectModifiedEvent
 
 import unittest
@@ -150,7 +151,8 @@ class TestExample(unittest.TestCase):
         # self.assertEqual(open(croppedData).format, 'JPEG',
         #    "cropped scale does not have same format as the original")
 
-# XXX: cropping information is not purged in DX type when a new image is uploaded
+# XXX: cropping information is not purged in DX type when a new image is
+# uploaded
 # See https://github.com/collective/plone.app.imagecropping/issues/54
 # This test currently fails
 
