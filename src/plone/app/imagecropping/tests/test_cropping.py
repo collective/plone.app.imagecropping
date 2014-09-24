@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
+from Products.Archetypes.event import ObjectEditedEvent
 from Products.CMFPlone.utils import _createObjectByType
 from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from zope import event
 from zope.annotation.interfaces import IAnnotations
 
 import unittest
@@ -36,6 +38,7 @@ class TestCroppingAT(unittest.TestCase):
 
         img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
         out = StringIO()
+        img = img.rotate(90)
         img.save(out, format='JPEG', quality=75)
         out.seek(0)
         result = out.getvalue()
@@ -182,8 +185,36 @@ class TestCroppingAT(unittest.TestCase):
             'context/image_thumb accessor lost cropped scale'
         )
 
+    def test_modify_image(self):
+        """set a different image, this should invalidate scales
+        """
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        unscaled_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+
+        # images accessed via context/@@images/image/thumb
+        # stored in plone.scale annotation
+        # see https://github.com/plone/plone.scale/pull/3#issuecomment-28597087
+        thumb = scales.scale('image', 'thumb')
+        self.assertNotEqual(thumb.data, unscaled_thumb.data)
+
+        # images accessed via context/image_thumb
+        # stored in attribute_storage
+        thumb_attr = traverse(self.img, 'image_thumb')
+        self.assertNotEqual(thumb_attr.data, unscaled_thumb.data)
+        self.assertEqual(
+            (thumb.width, thumb.height),
+            (thumb_attr.width, thumb_attr.height)
+        )
+
         # set a different image, this should invalidate scales
         self.img.setImage(self._jpegImage())
+        event.notify(ObjectEditedEvent(self.img))
 
         jpeg_thumb_attr = traverse(self.img, 'image_thumb')
         self.assertNotEqual(
@@ -191,6 +222,16 @@ class TestCroppingAT(unittest.TestCase):
             (128, 128),
             'context/image_thumb returns old cropped scale after '
             'setting a new image'
+        )
+
+        scales = traverse(self.img, '@@images')
+
+        # make sure @@images return the rotated version
+        plain_image = scales.scale('image')
+        self.assertEqual(
+            (plain_image.width, plain_image.height),
+            (232, 776),
+            'context/@@images/image does not return the new rotated image'
         )
 
         jpeg_thumb = scales.scale('image', 'thumb')
