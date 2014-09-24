@@ -51,7 +51,6 @@
             <implements interface=".at.IImageCroppingAT" />
         </class>
 
-
     </configure>
 
 
