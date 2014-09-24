@@ -26,6 +26,7 @@
  <property name="behaviors">
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.imagecropping.behaviors.IImageCroppingBehavior"/>
  </property>
  <property name="schema"></property>
  <property

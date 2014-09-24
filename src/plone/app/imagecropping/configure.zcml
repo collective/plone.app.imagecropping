@@ -11,7 +11,6 @@
     <i18n:registerTranslations directory="locales" />
     <include package=".browser" />
     <include package=".upgrades" />
-    <include file="testing.zcml" />
 
     <genericsetup:registerProfile
         name="default"
