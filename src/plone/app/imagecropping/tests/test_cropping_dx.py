@@ -198,25 +198,21 @@ class TestCroppingDX(unittest.TestCase):
         #     'context/image_thumb accessor lost cropped scale'
         # )
 
-
-
     def test_modify_image(self):
         """set a different image, this should invalidate scales
 
-        (see and https://github.com/collective/plone.app.imagecropping/issues/54)
+        see and https://github.com/collective/plone.app.imagecropping/issues/54
         """
 
         view = self.img.restrictedTraverse('@@crop-image')
         traverse = self.portal.REQUEST.traverseName
         scales = traverse(self.img, '@@images')
-        unscaled_thumb = scales.scale('image', 'thumb')
 
         # store cropped version for thumb and check if the result
         # is a square now
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
-        cropped_thumb = scales.scale('image', 'thumb')
-        self.assertEqual((cropped_thumb.width, cropped_thumb.height), (128, 128))
-
+        cropped = scales.scale('image', 'thumb')
+        self.assertEqual((cropped.width, cropped.height), (128, 128))
 
         # upload another image file
         self.img.image = NamedBlobImage(data=self._jpegImage())
