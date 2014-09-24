@@ -33,6 +33,8 @@ class CroppingUtilsDexterity(object):
 
     def _all_fields(self):
         type_info = self.context.getTypeInfo()
+        if type_info is None:
+            return
         schema = type_info.lookupSchema()
         for field in getFieldsInOrder(schema):
             yield field

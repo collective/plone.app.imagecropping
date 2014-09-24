@@ -44,6 +44,7 @@ setup(
     ],
     extras_require={
         'test': [
+            'Products.DateRecurringIndex',
             'plone.app.testing[robot]>=4.2.2',
             'plone.app.robotframework',
             'plone.app.contenttypes',

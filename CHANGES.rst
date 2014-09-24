@@ -4,8 +4,17 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- fix error with copy & paste for dx image types #52
+  [pysailor]
 
+- do not include testing.zcml automatically and use the behavior for the
+  testing-dx-type.
+
+  ATTENTION: we no longer provide the cropping maker interface for
+  ``plone.dexterity.content.DexterityContent`` automatically, please use
+  ``plone.app.imagecropping.behaviors.IImageCroppingBehavior`` to enable
+  cropping for your dexterity types.
+  [fRiSi]
 
 1.1 (2014-09-13)
 ----------------
