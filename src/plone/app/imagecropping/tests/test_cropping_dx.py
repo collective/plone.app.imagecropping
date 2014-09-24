@@ -16,7 +16,6 @@ from zope.lifecycleevent import ObjectModifiedEvent
 import unittest
 
 
-
 def dummy_image():
     filename = join(dirname(__file__), u'plone-logo.png')
     return NamedBlobImage(
