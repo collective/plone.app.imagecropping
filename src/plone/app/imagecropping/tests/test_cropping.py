@@ -11,7 +11,7 @@ from zope.annotation.interfaces import IAnnotations
 import unittest
 
 
-class TestExample(unittest.TestCase):
+class TestCroppingAT(unittest.TestCase):
 
     layer = PLONE_APP_IMAGECROPPING_INTEGRATION
 
