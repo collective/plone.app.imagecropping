@@ -64,7 +64,7 @@ class TestCroppingDX(unittest.TestCase):
         # check that the image scaled to thumb is not rectangular yet
         self.img.restrictedTraverse('')
         scales = traverse(self.img, '@@images')
-        thumb = scales.scale(scale='thumb')
+        thumb = scales.scale('image', 'thumb')
         self.assertEqual((thumb.width, thumb.height), (128, 38))
 
         # there is also no annotations yet for cropped sizes on this image
@@ -74,7 +74,7 @@ class TestCroppingDX(unittest.TestCase):
         # store cropped version for thumb and check if the result
         # is a square now
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
-        thumb = scales.scale(scale='thumb')
+        thumb = scales.scale('image', 'thumb')
         self.assertEqual((thumb.width, thumb.height), (128, 128))
 
         # when storing a new crop-scale the crop-box information is
@@ -126,7 +126,7 @@ class TestCroppingDX(unittest.TestCase):
         traverse = self.portal.REQUEST.traverseName
 
         scales = traverse(self.img, '@@images')
-        cropped = scales.scale(scale='thumb')
+        cropped = scales.scale('image', 'thumb')
         croppedData = StringIO(cropped.data._data)
         self.assertEqual(
             open(croppedData).format,
@@ -145,7 +145,7 @@ class TestCroppingDX(unittest.TestCase):
 
         view = jpg.restrictedTraverse('@@crop-image')
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
-        cropped = scales.scale(scale='thumb')
+        cropped = scales.scale('image', 'thumb')
         croppedData = StringIO(cropped.data._data)
 
         # XXX: fixme
