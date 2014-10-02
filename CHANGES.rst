@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Remove hard dependency on plone.app.contenttypes to avoid compatibility issues with Plone 4.2 (fixes `#57`_).
+  [hvelarde]
+
 - Update package dependencies.
   [hvelarde]
 
@@ -185,3 +188,5 @@ Changelog
   [petschki]
 - Package created using templer
   [fRiSi]
+
+.. _`#57`: https://github.com/collective/collective.cover/issues/57
