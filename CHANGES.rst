@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Update package dependencies.
+  [hvelarde]
+
 - fix error with copy & paste for dx image types #52
   [pysailor]
 
