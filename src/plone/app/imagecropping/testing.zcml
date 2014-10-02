@@ -5,6 +5,8 @@
 
     <include file="configure.zcml" />
 
+    <include package="plone.app.dexterity" />
+
     <genericsetup:registerProfile
         name="testing"
         title="plone.app.imagecropping tests"
