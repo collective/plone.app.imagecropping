@@ -59,7 +59,6 @@ setup(
     extras_require={
         'test': [
             'AccessControl',
-            'plone.app.contenttypes',
             'plone.app.dexterity',
             'plone.app.robotframework',
             'plone.app.testing[robot]>=4.2.2',

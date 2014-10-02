@@ -9,7 +9,15 @@ from plone.app.testing import applyProfile
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.testing import z2
-from zope.configuration import xmlconfig
+
+import pkg_resources
+
+try:
+    pkg_resources.get_distribution('plone.app.contenttypes')
+except pkg_resources.DistributionNotFound:
+    HAS_DEXTERITY_CONTENTTYPES = False
+else:
+    HAS_DEXTERITY_CONTENTTYPES = True
 
 
 class PloneAppImagecropping(PloneSandboxLayer):
@@ -18,11 +26,7 @@ class PloneAppImagecropping(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import plone.app.imagecropping
-        xmlconfig.file(
-            'testing.zcml',
-            plone.app.imagecropping,
-            context=configurationContext
-        )
+        self.loadZCML('testing.zcml', package=plone.app.imagecropping)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'plone.app.imagecropping:testing')
@@ -46,22 +50,17 @@ class PloneAppImagecroppingDX(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         z2.installProduct(app, 'Products.DateRecurringIndex')
-        import plone.app.contenttypes
-        xmlconfig.file(
-            'configure.zcml',
-            plone.app.contenttypes,
-            context=configurationContext
-        )
+        if HAS_DEXTERITY_CONTENTTYPES:
+            import plone.app.contenttypes
+            self.loadZCML(package=plone.app.contenttypes)
 
         import plone.app.imagecropping
-        xmlconfig.file(
-            'testing.zcml',
-            plone.app.imagecropping,
-            context=configurationContext
-        )
+        self.loadZCML('testing.zcml', package=plone.app.imagecropping)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'plone.app.contenttypes:default')
+        if HAS_DEXTERITY_CONTENTTYPES:
+            applyProfile(portal, 'plone.app.contenttypes:default')
+
         applyProfile(portal, 'plone.app.imagecropping:testing')
         portal.acl_users.userFolderAddUser('admin',
                                            'secret',
