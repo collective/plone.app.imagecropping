@@ -4,8 +4,8 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Remove hard dependency on plone.app.contenttypes to avoid compatibility issues with Plone 4.2 (fixes `#57`_).
-  [hvelarde]
+- Fix Chameleon compatibility
+  [datakurre]
 
 - Update package dependencies.
   [hvelarde]
