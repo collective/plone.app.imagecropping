@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-10-10 11:08+0000\n"
+"PO-Revision-Date: 2014-10-10 14:22+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: plone/app/imagecropping/browser/editor.pt:40
+msgid "Available Image Fields"
+msgstr "Kuvalliset kentät"
+
+#: plone/app/imagecropping/browser/editor.pt:65
+msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
+msgstr "Kuvakoot kentälle: &quot;${field_name}&quot;"
+
+#: plone/app/imagecropping/browser/editor.pt:131
+msgid "Close"
+msgstr "Sulje"
+
+#: plone/app/imagecropping/browser/settings.py:28
+msgid "Crop Editor Large Size"
+msgstr "Rajauseditorin suurin kuvakoko"
+
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "Cropping"
+msgstr "Rajaus"
+
+#: plone/app/imagecropping/browser/editor.py:170
+msgid "Cropping area deleted"
+msgstr "Poistettiin rajaus"
+
+#: plone/app/imagecropping/browser/settings.py:42
+msgid "Enable to constrain cropable scales"
+msgstr "Rajoita rajattavia kuvakokoja"
+
+#: plone/app/imagecropping/browser/settings.py:43
+msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
+msgstr "Valitse tämä, jos haluta rajoittaa, mitä kuvakokoja sivustolla saa rajata."
+
+#: plone/app/imagecropping/browser/editor.pt:28
+msgid "Here you can define cropping areas for each scale of the available imagefields. This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
+msgstr "Valitse haluamasi kuvakoko, rajaa kuva ja tallenna rajaus. Kuvan rajaaminen ei muuta alkuperäistä kuvaa ja voit korjata rajausta koska tahansa. Jokaisen kuvakoon voi rajata erikseen."
+
+#: plone/app/imagecropping/browser/editor.pt:10
+msgid "Image Cropping Editor"
+msgstr "Kuvanrajauseditori"
+
+#: plone/app/imagecropping/browser/settings.py:76
+msgid "Image Cropping Settings"
+msgstr "Kuvien rajauksen asetukset"
+
+#: plone/app/imagecropping/browser/editor.pt:19
+#: plone/app/imagecropping/browser/settings.py:50
+msgid "List of scales with crop support"
+msgstr "Rajattavissa olevat kuvakoot"
+
+#: plone/app/imagecropping/browser/settings.py:35
+msgid "Minimum Crop Area Size"
+msgstr "Pienin rajattava kuvakoko"
+
+#: plone/app/imagecropping/browser/editor.pt:121
+msgid "Remove cropping information"
+msgstr "Poista rajaus"
+
+#: plone/app/imagecropping/browser/editor.pt:111
+msgid "Save cropping information"
+msgstr "Rajaa kuva"
+
+#: plone/app/imagecropping/browser/editor.pt:117
+msgid "Save this cropping area for the selected scale."
+msgstr "Tallentaa tämän tämän kuvakoon rajauksen."
+
+#: plone/app/imagecropping/browser/settings.py:51
+msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
+msgstr "Valitse ne kuvakoot, joissa rajaus on sallittu, kun rajattavien kuvakokojen rajoitus on valittu."
+
+#: plone/app/imagecropping/browser/editor.py:174
+msgid "Successfully saved cropped area"
+msgstr "Kuvakoko rajattu onnistuneesti."
+
+#: plone/app/imagecropping/browser/editor.pt:127
+msgid "The selected scale gets reverted to the default behaviour: resize, no crop."
+msgstr "Poistaa tältä kuvakoolta rajauksen."
+
+#: plone/app/imagecropping/profiles/default/actions.xml
+msgid "View the image cropping editor for this object"
+msgstr "Rajaa kuvaa"
+
+#: plone/app/imagecropping/browser/editor.py:249
+msgid "Your changes will be lost. Continue?"
+msgstr "Haluatko menettää tekemästi muutokset?"
+
+#: plone/app/imagecropping/browser/editor.pt:76
+msgid "cropped"
+msgstr "rajattu"
+
+#: plone/app/imagecropping/browser/editor.pt:52
+msgid "no image available"
+msgstr "Kuvaa ei löytynyt."
+
+#. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
+#: plone/app/imagecropping/browser/editor.pt:19
+msgid "noscales_message"
+msgstr "Sivustolla ei ole määritetty kuvakokoja. Määritä kuvakoot osoitteessa ${link}."
+
+#: plone/app/imagecropping/browser/editor.pt:77
+msgid "uncropped"
+msgstr "rajaamaton"
+
+#: plone/app/imagecropping/browser/settings.py:29
+msgid "width:height"
+msgstr "leveys:korkeus"
