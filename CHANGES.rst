@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Add Finnish localization
+  [datakurre]
+
 - Fix Chameleon compatibility
   [datakurre]
 
