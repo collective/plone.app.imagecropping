@@ -7,7 +7,11 @@ Changelog
 - Add Finnish localization
   [datakurre]
 
-- Remove hard dependency on plone.app.contenttypes to avoid compatibility issues with Plone 4.2 (fixes `#57`_).
+- Fix Chameleon compatibility
+  [datakurre]
+
+- Remove hard dependency on plone.app.contenttypes to avoid compatibility
+  issues with Plone 4.2 (fixes `#57`_).
   [hvelarde]
 
 - Update package dependencies.

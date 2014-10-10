@@ -152,7 +152,7 @@
               tal:content="string:
           var imagecropping = new ImageCropping();
           imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
-          $$(document).ready(function(){
+          jQuery(function(jq) {
              imagecropping.init_editor();
           });"></script>
 
