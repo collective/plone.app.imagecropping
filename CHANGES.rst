@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.3 (unreleased)
+----------------
+
+- Refactor upgrade step to reduce memory consumption and avoid restarts on instances running with supervisor's memmon.
+  [hvelarde]
+
 1.2 (unreleased)
 ----------------
 
