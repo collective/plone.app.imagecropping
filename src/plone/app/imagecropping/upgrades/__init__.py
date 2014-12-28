@@ -18,8 +18,10 @@ def to_0004(context):
     """
     iface = 'plone.app.imagecropping.interfaces.IImageCropping'
     cat = getToolByName(context, 'portal_catalog')
-    brains = cat(object_provides=iface)
 
-    for brain in brains:
-        obj = brain.getObject()
+    # this consumes a lot of memory if we have too many objects to
+    # update; we better use a generator to reduce memory usage and
+    # avoid restarts on instances running with supervisor's memmon
+    results = (b.getObject() for b in cat(object_provides=iface))
+    for obj in results:
         obj.reindexObject(idxs=['object_provides'])
