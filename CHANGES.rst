@@ -7,7 +7,7 @@ Changelog
 - Refactor upgrade step to reduce memory consumption and avoid restarts on instances running with supervisor's memmon.
   [hvelarde]
 
-1.2 (unreleased)
+1.2 (2014-10-15)
 ----------------
 
 - Add Finnish localization
