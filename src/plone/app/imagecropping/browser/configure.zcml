@@ -59,4 +59,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".utils.RecreateCroppedScales"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="recreate-cropscales"
+        permission="plone.app.controlpanel.Overview"
+        />
+
 </configure>
