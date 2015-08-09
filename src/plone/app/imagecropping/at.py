@@ -43,8 +43,7 @@ class CroppingUtilsArchetype(object):
         fields = []
 
         for field in self.context.Schema().fields():
-            if IBlobImageField in providedBy(field).interfaces() or \
-               IImageField in providedBy(field).interfaces() and \
+            if IBlobImageField.providedBy(field) or IImageField.providedBy(field) and \
                field.get_size(self.context) > 0:
                 fields.append(field)
 
@@ -124,7 +123,15 @@ class ImageTraverser(BaseImageTraverser):
 
     def publishTraverse(self, request, name):
         # remove scales information, if image has changed
-        if not hasattr(aq_base(self.context), blobScalesAttr) \
+        # We have no way of knowing if a non-blob image has changed, since we
+        # don't have a time marker for when crops were generated.
+        has_blobs = False
+        for field in self.context.Schema().fields():
+            if IBlobImageField.providedBy(field):
+                has_blobs = True
+                break
+
+        if has_blobs and not hasattr(aq_base(self.context), blobScalesAttr) \
            and PAI_STORAGE_KEY in IAnnotations(self.context):
                 del IAnnotations(self.context)[PAI_STORAGE_KEY]
         return super(ImageTraverser, self).publishTraverse(request, name)
