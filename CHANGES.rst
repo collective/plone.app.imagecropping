@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Purge proxy caches if needed on crop.
+  [alecm]
+
 - Fix issue with crops disappearing for non-blob images (e.g. ATNewsItem images)
   [alecm]
 
