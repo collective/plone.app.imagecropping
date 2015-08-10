@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Fix issue with crops disappearing for non-blob images (e.g. ATNewsItem images)
+  [alecm]
+
 - Refactor upgrade step to reduce memory consumption and avoid restarts on instances running with supervisor's memmon.
   [hvelarde]
 
