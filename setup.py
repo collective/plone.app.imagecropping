@@ -55,6 +55,7 @@ setup(
         'zope.interface',
         'zope.lifecycleevent',
         'zope.schema',
+        'z3c.caching',
     ],
     extras_require={
         'test': [
