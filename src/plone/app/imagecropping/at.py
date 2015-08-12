@@ -16,7 +16,6 @@ from plone.scale.storage import AnnotationStorage
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import implementer
-from zope.interface.declarations import providedBy
 from zope.publisher.interfaces import IRequest
 import time
 

@@ -5,7 +5,9 @@ from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.scale.storage import AnnotationStorage
+from z3c.caching.purge import Purge
 from zope.annotation.interfaces import IAnnotations
+from zope.event import notify
 
 import PIL.Image
 
@@ -41,6 +43,9 @@ class CroppingView(BrowserView):
 
         # store crop information in annotations
         self._store(fieldname, scale, box)
+
+        # Purge caches if needed
+        notify(Purge(self.context))
 
     @property
     def _storage(self):
