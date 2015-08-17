@@ -9,7 +9,7 @@ class ScalingOverrides(object):
 
     def _need_rescale(self, fieldname, scale):
         """If we've got a cropping annotation for the given fieldname
-           and scale, set self._rescale to False, to prevent
+           and scale, set self._allow_rescale to False, to prevent
            plone.app.imaging traverser to overwrite our cropped scale
 
            since the self.modified() method does not know about the

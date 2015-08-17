@@ -25,5 +25,10 @@ class ImageScalingDX(ScalingOverrides, NFImageScaling):
     def scale(self, fieldname=None, scale=None, height=None, width=None,
               direction='thumbnail', **parameters):
         self._need_rescale(fieldname, scale)
+        # XXX: introduce a new direction 'autodown'
+        # this returns the cropped scale if available, otherwise the
+        # normal 'down'-scaled scale
+        if direction == 'autodown':
+            direction = self._allow_rescale and 'down' or 'thumbnail'
         return super(ImageScalingDX, self).scale(
             fieldname, scale, height, width, direction, **parameters)
