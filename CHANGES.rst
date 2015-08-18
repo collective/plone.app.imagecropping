@@ -4,8 +4,7 @@ Changelog
 1.3 (unreleased)
 ----------------
 
-- Introducting new scale direction "autodown". If no cropped scale is available
-  deliver direction="down" scale.
+- fix direction='down' handling. Deliver cropped scale if we have one.
   [petschki]
 
 - Purge proxy caches if needed on crop.

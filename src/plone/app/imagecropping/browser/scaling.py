@@ -13,7 +13,7 @@ class ScalingOverrides(object):
            plone.app.imaging traverser to overwrite our cropped scale
 
            since the self.modified() method does not know about the
-           currently requested scale name, we need to use the _rescale
+           currently requested scale name, we need to use the _allow_rescale
            property
         """
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
