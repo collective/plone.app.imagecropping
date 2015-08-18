@@ -258,3 +258,21 @@ class TestCroppingAT(unittest.TestCase):
             'new thumb is different from old thumb scale after '
             'copying image (attribute access)'
         )
+
+    def test_autocrop(self):
+        """ check direction='down' for cropped and un-cropped image scales
+        """
+        traverse = self.portal.REQUEST.traverseName
+
+        # auto-cropped scale
+        img_scales = traverse(self.img, '@@images')
+        auto_crop = img_scales.scale('image', 'thumb', direction='down')
+
+        # cropped scale
+        view = self.img.restrictedTraverse('@@crop-image')
+        view._crop(fieldname='image', scale='thumb', box=(0, 0, 200, 200))
+        manual_crop = img_scales.scale('image', 'thumb', direction='down')
+        self.assertEqual(
+            (auto_crop.width, auto_crop.height),
+            (manual_crop.width, manual_crop.height))
+        self.assertNotEqual(auto_crop.data, manual_crop.data)

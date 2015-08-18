@@ -68,6 +68,13 @@ In TinyMCE it will be possible to access the cropping editor directly
 out of the image plugin right below the scale selection
 
 
+Automatic cropping behavior
+---------------------------
+
+You can use ``direction='down'`` for autocropped scales as usual.
+This package overrides the direction and delivers the cropped scale if it is available.
+
+
 Load editor as overlay
 ----------------------
 

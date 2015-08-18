@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- fix direction='down' handling. Deliver cropped scale if we have one.
+  [petschki]
+
 - Purge proxy caches if needed on crop.
   [alecm]
 
