@@ -20,7 +20,7 @@ class ImageScalingAT(ScalingOverrides, BaseImageScaling):
     def scale(self, fieldname=None, scale=None, height=None, width=None,
               **parameters):
         self._need_rescale(fieldname, scale)
-        # XXX: if direction is 'down' and we have a cropped scale
+        # if direction is 'down' and we have a cropped scale
         # deliver it instead of standard 'down' scale
         p_dir = parameters.get('direction', '')
         if p_dir == 'down' and not self._allow_rescale:
