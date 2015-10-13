@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Use "application/javascript" media type instead of the obsolete "text/javascript".
+  [hvelarde]
+
 - fix direction='down' handling. Deliver cropped scale if we have one.
   [petschki]
 
