@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- remove initial content scrolling (aka location.hash)
+  [petschki]
+
 - Use "application/javascript" media type instead of the obsolete "text/javascript".
   [hvelarde]
 
