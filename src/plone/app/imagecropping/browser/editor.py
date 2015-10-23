@@ -170,7 +170,7 @@ class CroppingEditor(BrowserView):
         if form.get('form.button.Delete', None) is not None:
             cropping_util = self.context.restrictedTraverse('@@crop-image')
             cropping_util._remove(self.fieldname, form.get('scalename'))
-            nofity(CroppingInfoRemovedEvent(self.context))
+            notify(CroppingInfoRemovedEvent(self.context))
             IStatusMessage(self.request).add(_(u'Cropping area deleted'))
         if form.get('form.button.Save', None) is not None:
             self._crop()
