@@ -4,6 +4,9 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- introduce Changed/Removed events after editing cropping information
+  [petschki]
+
 - remove initial content scrolling (aka location.hash)
   [petschki]
 

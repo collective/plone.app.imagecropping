@@ -5,11 +5,14 @@ from Products.statusmessages.interfaces import IStatusMessage
 from operator import itemgetter
 from plone.app.imagecropping import imagecroppingMessageFactory as _
 from plone.app.imagecropping.browser.settings import ISettings
+from plone.app.imagecropping.events import CroppingInfoChangedEvent
+from plone.app.imagecropping.events import CroppingInfoRemovedEvent
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from zope import component
 from zope.component._api import getUtility
+from zope.event import notify
 from zope.i18n import translate
 
 import json
@@ -167,9 +170,11 @@ class CroppingEditor(BrowserView):
         if form.get('form.button.Delete', None) is not None:
             cropping_util = self.context.restrictedTraverse('@@crop-image')
             cropping_util._remove(self.fieldname, form.get('scalename'))
+            nofity(CroppingInfoRemovedEvent(self.context))
             IStatusMessage(self.request).add(_(u'Cropping area deleted'))
         if form.get('form.button.Save', None) is not None:
             self._crop()
+            notify(CroppingInfoChangedEvent(self.context))
             IStatusMessage(self.request).add(
                 _(u'Successfully saved cropped area'))
 
