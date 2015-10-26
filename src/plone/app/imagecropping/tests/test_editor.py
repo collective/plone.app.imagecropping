@@ -2,10 +2,15 @@
 from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import tests
+from plone.app.imagecropping.events import CroppingInfoChangedEvent
+from plone.app.imagecropping.events import CroppingInfoRemovedEvent
+from plone.app.imagecropping.interfaces import ICroppingInfoChangedEvent
+from plone.app.imagecropping.interfaces import ICroppingInfoRemovedEvent
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_FUNCTIONAL
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
+from zope.component import getGlobalSiteManager
 
 import transaction
 import unittest
@@ -58,12 +63,48 @@ class EditorTestCase(unittest.TestCase):
         self.assertIn(u'Save cropping information', self.browser.contents)
         self.assertIn(u'Remove cropping information', self.browser.contents)
 
-    def test_editview_crop(self):
+    def test_editview_crop(self, check_assert=True):
+        scale_name = 'mini'
         request = self.layer['request']
-        request.form.update({'x1': 1.0, 'y1': 2.7, 'x2': 10.6, 'y2': 8.4,
-                             'scalename': 'mini'})
+        request.form.update({
+            'x1': 1.0, 'y1': 2.7, 'x2': 10.6, 'y2': 8.4,
+            'scalename': scale_name, 'form.button.Save': '1'})
+
+        def get_cropped_scale(scales):
+            return [s for s in scales if s['id'] == scale_name][0]
+
         cropview = self.img.restrictedTraverse('@@croppingeditor')
-        cropview._crop()
+        cropview()
+        cropped_scale = get_cropped_scale(cropview.scales())
+        if check_assert:
+            self.assertEqual(cropped_scale['is_cropped'], True)
+
+        del request.form['form.button.Save']
+        request.form.update({'form.button.Delete': '1'})
+        cropview()
+        removed_scale = get_cropped_scale(cropview.scales())
+        if check_assert:
+            self.assertEqual(removed_scale['is_cropped'], False)
+
+    def test_events(self):
+        sm = getGlobalSiteManager()
+        firedEvents = []
+
+        def recordEvent(event):
+            firedEvents.append(event.__class__)
+
+        sm.registerHandler(recordEvent, (ICroppingInfoChangedEvent,))
+        sm.registerHandler(recordEvent, (ICroppingInfoRemovedEvent,))
+
+        # do some cropping and removing
+        self.test_editview_crop(check_assert=False)
+
+        self.assertItemsEqual(firedEvents, [
+            CroppingInfoChangedEvent,
+            CroppingInfoRemovedEvent,
+        ])
+        sm.unregisterHandler(recordEvent, (ICroppingInfoChangedEvent,))
+        sm.unregisterHandler(recordEvent, (ICroppingInfoRemovedEvent,))
 
     def tearDown(self):
         self.portal.manage_delObjects(['testimage', ])
