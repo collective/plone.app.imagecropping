@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3 (unreleased)
+1.3 (2015-12-10)
 ----------------
 
 - introduce Changed/Removed events after editing cropping information
