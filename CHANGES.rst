@@ -4,7 +4,8 @@ Changelog
 1.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add French translations
+  [laulaz]
 
 
 1.3 (2015-12-10)
