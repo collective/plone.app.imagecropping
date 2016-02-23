@@ -4,7 +4,10 @@ Changelog
 1.4 (unreleased)
 ----------------
 
-- Add French translations
+- Added more Dutch translations.
+  [maurits]
+
+- Added French translations.
   [laulaz]
 
 

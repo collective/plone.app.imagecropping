@@ -1,10 +1,13 @@
+# Translators:
+# Martijn Zweistra <martijn.zweistra@edition1.nl>
+# Maurits van Rees <m.van.rees@zestsoftware.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
 "POT-Creation-Date: 2016-02-23 09:15+0000\n"
-"PO-Revision-Date: 2012-10-16 15:42+0100\n"
-"Last-Translator: Martijn Zweistra <martijn.zweistra@edition1.nl>\n"
-"Language-Team: themask96\n"
+"PO-Revision-Date: 2016-02-23 19:35+0100\n"
+"Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
+"Language-Team: Zest Software <info@zestsoftware.nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,15 +21,15 @@ msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:40
 msgid "Available Image Fields"
-msgstr ""
+msgstr "Beschikbare afbeeldingsvelden"
 
 #: plone/app/imagecropping/browser/editor.pt:65
 msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
-msgstr ""
+msgstr "Beschikbare afbeeldingsschalen voor veld: &quot;${field_name}&quot;"
 
 #: plone/app/imagecropping/browser/editor.pt:131
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: plone/app/imagecropping/browser/settings.py:28
 msgid "Crop Editor Large Size"
@@ -34,31 +37,31 @@ msgstr "Groot formaat bijsnijd editor "
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Cropping"
-msgstr ""
+msgstr "Bijsnijden"
 
 #: plone/app/imagecropping/browser/editor.py:174
 msgid "Cropping area deleted"
-msgstr ""
+msgstr "Bijsnijdinfo verwijderd"
 
 #: plone/app/imagecropping/configure.zcml:101
 msgid "Enable Image Cropping"
-msgstr ""
+msgstr "Schakel afbeelding bijsnijden in"
 
 #: plone/app/imagecropping/browser/settings.py:42
 msgid "Enable to constrain cropable scales"
-msgstr ""
+msgstr "Schakel in om de schalen te beperken die bij te snijden zijn."
 
 #: plone/app/imagecropping/browser/settings.py:43
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
-msgstr ""
+msgstr "Schakel in om de lijst met schalen te beperken die bij te snijden zijn."
 
 #: plone/app/imagecropping/browser/editor.pt:28
 msgid "Here you can define cropping areas for each scale of the available imagefields. This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
-msgstr ""
+msgstr "Hier kan je voor elke schaal van de beschikbare afbeeldingsvelden de basisafbeelding bijsnijden. De oorspronkelijke afbeelding blijft bewaard. Door bijsnijdinfo weer te verwijderen, krijgt de schaal zijn oorspronkelijke functionaliteit: de grootte wordt geschaald zonder de afbeelding bij te snijden."
 
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
-msgstr ""
+msgstr "Afbeelding bijsnijd editor"
 
 #: plone/app/imagecropping/browser/settings.py:76
 msgid "Image Cropping Settings"
@@ -66,12 +69,12 @@ msgstr "Afbeelding bijsnijd instellingen"
 
 #: plone/app/imagecropping/configure.zcml:21
 msgid "Installs the plone.app.imagecropping package"
-msgstr ""
+msgstr "Installeert het plone.app.imagecropping pakket"
 
 #: plone/app/imagecropping/browser/editor.pt:19
 #: plone/app/imagecropping/browser/settings.py:50
 msgid "List of scales with crop support"
-msgstr ""
+msgstr "Lijst van schalen die bijgesneden kunnen worden"
 
 #: plone/app/imagecropping/browser/settings.py:35
 msgid "Minimum Crop Area Size"
@@ -79,76 +82,76 @@ msgstr "Minimum bijsnijd gebiedsgrootte"
 
 #: plone/app/imagecropping/configure.zcml:101
 msgid "Provides imagecropping functionality for DX contenttypes"
-msgstr ""
+msgstr "Geeft afbeeldingsbijsnijd functionaliteit aan dexterity contenttypes"
 
 #: plone/app/imagecropping/browser/editor.pt:121
 msgid "Remove cropping information"
-msgstr ""
+msgstr "Verwijder bijsnijdinformatie"
 
 #: plone/app/imagecropping/browser/editor.pt:111
 msgid "Save cropping information"
-msgstr ""
+msgstr "Bewaar bijsnijdinformatie"
 
 #: plone/app/imagecropping/browser/editor.pt:117
 msgid "Save this cropping area for the selected scale."
-msgstr ""
+msgstr "Bewaar dit bijsnijdgebied voor de geselecteerde schaal."
 
 #: plone/app/imagecropping/browser/settings.py:51
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
-msgstr ""
+msgstr "Selecteer de schalen die je wil kunnen bijsnijden. Alleen actief indien aangevinkt."
 
 #: plone/app/imagecropping/testing.zcml:16
 msgid "Steps to ease tests of plone.app.imagecropping"
-msgstr ""
+msgstr "Stappen om het testen van plone.app.imagecropping makkelijker te maken"
 
 #: plone/app/imagecropping/browser/editor.py:179
 msgid "Successfully saved cropped area"
-msgstr ""
+msgstr "Bijsnijdgebied succesvol bewaard"
 
 #: plone/app/imagecropping/browser/editor.pt:127
 msgid "The selected scale gets reverted to the default behaviour: resize, no crop."
-msgstr ""
+msgstr "De geselecteerde schaal gaat terug naar de oorspronkelijke functionaliteit: de grootte wordt geschaald zonder de afbeelding bij te snijden."
 
 #: plone/app/imagecropping/configure.zcml:39
 msgid "Uninstalls resources from the plone.app.imagecropping package"
-msgstr ""
+msgstr "Deïnstalleert het plone.app.imagecropping pakket"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
-msgstr ""
+msgstr "Bekijk de afbeelding bijsnijd editor voor dit object"
 
 #: plone/app/imagecropping/browser/editor.py:254
 msgid "Your changes will be lost. Continue?"
-msgstr ""
+msgstr "Je wijzigingen zullen verloren gaan. Doorgaan?"
 
 #: plone/app/imagecropping/browser/editor.pt:76
 msgid "cropped"
-msgstr ""
+msgstr "bijgesneden"
 
 #: plone/app/imagecropping/browser/editor.pt:52
 msgid "no image available"
-msgstr ""
+msgstr "geen afbeelding beschikbaar"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
 #: plone/app/imagecropping/browser/editor.pt:19
 msgid "noscales_message"
-msgstr ""
+msgstr "Er zijn geen schalen om bij te snijden. Voeg ze toe aan  de ${link} in het controlepaneel."
 
 #: plone/app/imagecropping/configure.zcml:21
 msgid "plone.app.imagecropping"
-msgstr ""
+msgstr "plone.app.imagecropping"
 
 #: plone/app/imagecropping/configure.zcml:39
 msgid "plone.app.imagecropping Uninstallation"
-msgstr ""
+msgstr "plone.app.imagecropping deïnstallatie"
 
 #: plone/app/imagecropping/testing.zcml:16
 msgid "plone.app.imagecropping tests"
-msgstr ""
+msgstr "plone.app.imagecropping tests"
 
 #: plone/app/imagecropping/browser/editor.pt:77
 msgid "uncropped"
-msgstr ""
+msgstr "niet bijgesneden"
 
 #: plone/app/imagecropping/browser/settings.py:29
 msgid "width:height"
