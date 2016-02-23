@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2014-04-07 14:37+0000\n"
+"POT-Creation-Date: 2016-02-23 09:15+0000\n"
 "PO-Revision-Date: 2014-04-07 16:39+0200\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Language: German\n"
 
-#: plone/app/imagecropping/browser/editor.pt:36
+#: plone/app/imagecropping/browser/editor.pt:40
 msgid "Available Image Fields"
 msgstr "Vorhandene Bilder"
 
-#: plone/app/imagecropping/browser/editor.pt:59
+#: plone/app/imagecropping/browser/editor.pt:65
 msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
 msgstr "Bildgrößen für: \"${field_name}\""
 
-#: plone/app/imagecropping/browser/editor.pt:121
+#: plone/app/imagecropping/browser/editor.pt:131
 msgid "Close"
 msgstr "Schließen"
 
-#: plone/app/imagecropping/browser/settings.py:36
+#: plone/app/imagecropping/browser/settings.py:28
 msgid "Crop Editor Large Size"
 msgstr "Bildgröße für Vorschau im Jcrop Editor (Jcrop: boxWidth: boxHeight)"
 
@@ -37,103 +37,120 @@ msgstr "Bildgröße für Vorschau im Jcrop Editor (Jcrop: boxWidth: boxHeight)"
 msgid "Cropping"
 msgstr "Zuschneiden"
 
-#: plone/app/imagecropping/browser/editor.py:162
+#: plone/app/imagecropping/browser/editor.py:174
 msgid "Cropping area deleted"
 msgstr "Zuschnitt gelöscht"
 
-#: plone/app/imagecropping/browser/settings.py:50
+#: plone/app/imagecropping/configure.zcml:101
+msgid "Enable Image Cropping"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:42
 msgid "Enable to constrain cropable scales"
 msgstr "Zuschneidbare Bildgrößen einschränken?"
 
-#: plone/app/imagecropping/browser/settings.py:51
-msgid ""
-"Enable to reduce the scales shown for cropping in the list of scales with "
-"crop support."
-msgstr ""
-"Aktivieren, wenn nicht alle Bildgrößen zuschneidbar sein sollen. Die Auswahl "
-"der eingeschränkten Bildgrößen folgt weiter unten."
+#: plone/app/imagecropping/browser/settings.py:43
+msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
+msgstr "Aktivieren, wenn nicht alle Bildgrößen zuschneidbar sein sollen. Die Auswahl der eingeschränkten Bildgrößen folgt weiter unten."
 
-#: plone/app/imagecropping/browser/editor.pt:23
-msgid ""
-"Here you can define cropping areas for each scale of the available "
-"imagefields. This operation is non-destructive which means, your original "
-"image data doesn't get lost when cropping a scale. By removing a cropping "
-"area, the scale gets back to its default functionality: resize, no crop."
-msgstr ""
-"Hier können Sie die Bildzuschnittsbereiche für jedes Bild und dessen Größe "
-"definieren. Das originale Bild wird nicht gelöscht, wenn sie es zuschneiden. "
-"Sie können die Bereiche jederzeit wieder entfernen um zur "
-"Standardfunktionalität zurückzukehren: skalieren ohne zuschneiden."
+#: plone/app/imagecropping/browser/editor.pt:28
+msgid "Here you can define cropping areas for each scale of the available imagefields. This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
+msgstr "Hier können Sie die Bildzuschnittsbereiche für jedes Bild und dessen Größe definieren. Das originale Bild wird nicht gelöscht, wenn sie es zuschneiden. Sie können die Bereiche jederzeit wieder entfernen um zur Standardfunktionalität zurückzukehren: skalieren ohne zuschneiden."
 
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
 msgstr "Zuschnitts Editor"
 
-#: plone/app/imagecropping/browser/settings.py:85
+#: plone/app/imagecropping/browser/settings.py:76
 msgid "Image Cropping Settings"
 msgstr "Cropping-Editor Einstellungen"
 
-#: plone/app/imagecropping/browser/editor.pt:18
-#: plone/app/imagecropping/browser/settings.py:58
+#: plone/app/imagecropping/configure.zcml:21
+msgid "Installs the plone.app.imagecropping package"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:19
+#: plone/app/imagecropping/browser/settings.py:50
 msgid "List of scales with crop support"
 msgstr "Bildgrößen für Cropping Editor"
 
-#: plone/app/imagecropping/browser/settings.py:43
+#: plone/app/imagecropping/browser/settings.py:35
 msgid "Minimum Crop Area Size"
 msgstr "minimal erlaubter Ausschnitt (Jcrop: minSize)"
 
-#: plone/app/imagecropping/browser/editor.pt:111
+#: plone/app/imagecropping/configure.zcml:101
+msgid "Provides imagecropping functionality for DX contenttypes"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:121
 msgid "Remove cropping information"
 msgstr "Cropping Informationen entfernen"
 
-#: plone/app/imagecropping/browser/editor.pt:101
+#: plone/app/imagecropping/browser/editor.pt:111
 msgid "Save cropping information"
 msgstr "Bildzuschnitt speichern"
 
-#: plone/app/imagecropping/browser/editor.pt:107
+#: plone/app/imagecropping/browser/editor.pt:117
 msgid "Save this cropping area for the selected scale."
 msgstr "Speichern die den ausgewählten Bereich der Bildgröße."
 
-#: plone/app/imagecropping/browser/settings.py:59
-msgid ""
-"Select the scales with cropping support enabled. Only active if enabled with "
-"checkbox."
-msgstr ""
-"Wählen Sie die Bildgrößen, welche zuschneidbar sein sollen. Nur aktiv, wenn "
-"die Einschränkung aktiviert ist."
+#: plone/app/imagecropping/browser/settings.py:51
+msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
+msgstr "Wählen Sie die Bildgrößen, welche zuschneidbar sein sollen. Nur aktiv, wenn die Einschränkung aktiviert ist."
 
-#: plone/app/imagecropping/browser/editor.py:174
+#: plone/app/imagecropping/testing.zcml:16
+msgid "Steps to ease tests of plone.app.imagecropping"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.py:179
 msgid "Successfully saved cropped area"
 msgstr "Zuschnitt erfolgreich gespeichert"
 
-#: plone/app/imagecropping/browser/editor.pt:117
-msgid ""
-"The selected scale gets reverted to the default behaviour: resize, no crop."
+#: plone/app/imagecropping/browser/editor.pt:127
+msgid "The selected scale gets reverted to the default behaviour: resize, no crop."
+msgstr "Die ausgewählte Bildgröße wird auf die Standardfunktionalität zurückgesetzt: skalieren ohne zuschneiden."
+
+#: plone/app/imagecropping/configure.zcml:39
+msgid "Uninstalls resources from the plone.app.imagecropping package"
 msgstr ""
-"Die ausgewählte Bildgröße wird auf die Standardfunktionalität zurückgesetzt: "
-"skalieren ohne zuschneiden."
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
 msgstr "zeige den Zuschnitts Editor für dieses Bild"
 
-#: plone/app/imagecropping/browser/editor.py:204
+#: plone/app/imagecropping/browser/editor.py:254
 msgid "Your changes will be lost. Continue?"
 msgstr "Die Änderungen gehen verloren. Fortfahren?"
 
-#: plone/app/imagecropping/browser/editor.pt:46
+#: plone/app/imagecropping/browser/editor.pt:76
+msgid "cropped"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:52
 msgid "no image available"
 msgstr "kein Bild vorhanden"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
-#: plone/app/imagecropping/browser/editor.pt:18
+#: plone/app/imagecropping/browser/editor.pt:19
 msgid "noscales_message"
-msgstr ""
-"Derzeit sind keine zuschneidbaren Bildgrößen definiert. Sie können diese "
-"unter ${link} hinzufügen."
+msgstr "Derzeit sind keine zuschneidbaren Bildgrößen definiert. Sie können diese unter ${link} hinzufügen."
 
-#: plone/app/imagecropping/browser/settings.py:37
+#: plone/app/imagecropping/configure.zcml:21
+msgid "plone.app.imagecropping"
+msgstr ""
+
+#: plone/app/imagecropping/configure.zcml:39
+msgid "plone.app.imagecropping Uninstallation"
+msgstr ""
+
+#: plone/app/imagecropping/testing.zcml:16
+msgid "plone.app.imagecropping tests"
+msgstr ""
+
+#: plone/app/imagecropping/browser/editor.pt:77
+msgid "uncropped"
+msgstr ""
+
+#: plone/app/imagecropping/browser/settings.py:29
 msgid "width:height"
 msgstr "breite (in px):höhe (in px)"
-
-
