@@ -39,7 +39,7 @@ class ISettings(Interface):
     )
 
     constrain_cropping = schema.Bool(
-        title=_(u'Enable to constrain cropable scales'),
+        title=_(u'Enable to constrain croppable scales'),
         description=_(u'Enable to reduce the scales shown for cropping in the '
                       u'list of scales with crop support.'),
         default=False,

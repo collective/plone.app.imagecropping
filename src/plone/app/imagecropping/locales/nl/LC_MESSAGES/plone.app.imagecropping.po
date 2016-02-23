@@ -48,7 +48,7 @@ msgid "Enable Image Cropping"
 msgstr "Schakel afbeelding bijsnijden in"
 
 #: plone/app/imagecropping/browser/settings.py:42
-msgid "Enable to constrain cropable scales"
+msgid "Enable to constrain croppable scales"
 msgstr "Schakel in om de schalen te beperken die bij te snijden zijn."
 
 #: plone/app/imagecropping/browser/settings.py:43

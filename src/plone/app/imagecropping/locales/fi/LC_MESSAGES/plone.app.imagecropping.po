@@ -43,7 +43,7 @@ msgid "Enable Image Cropping"
 msgstr ""
 
 #: plone/app/imagecropping/browser/settings.py:42
-msgid "Enable to constrain cropable scales"
+msgid "Enable to constrain croppable scales"
 msgstr "Rajoita rajattavia kuvakokoja"
 
 #: plone/app/imagecropping/browser/settings.py:43
