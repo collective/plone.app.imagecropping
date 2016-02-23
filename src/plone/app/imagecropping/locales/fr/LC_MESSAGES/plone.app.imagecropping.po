@@ -131,7 +131,7 @@ msgstr "aucune image disponible"
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
 #: plone/app/imagecropping/browser/editor.pt:19
 msgid "noscales_message"
-msgstr "Il n'y a pas d'échelles pour la découpe. Vérifiez d'en ajouter sur ${link} via le panneau de configuration."
+msgstr "Il n'y a pas d'échelles pour la découpe. Veuillez en ajouter dans la ${link} via le panneau de configuration."
 
 #: plone/app/imagecropping/configure.zcml:21
 msgid "plone.app.imagecropping"
