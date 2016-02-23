@@ -1,155 +1,154 @@
-# Héctor Velarde <hector.velarde@gmal.com>, 2013.
-# Herson Rodrigues <hersonrodrigues@gmal.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2016-02-23 09:15+0000\n"
-"PO-Revision-Date: 2013-03-21 12:00-0300\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"POT-Creation-Date: 2016-02-23 09:26+0000\n"
+"PO-Revision-Date: 2016-02-23 09:15+0000\n"
+"Last-Translator: Laurent Lasudry <laurent.lasudry@affinitic.be>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
 #: plone/app/imagecropping/browser/editor.pt:40
 msgid "Available Image Fields"
-msgstr "Campos de imagem disponíveis"
+msgstr "Champs image disponibles"
 
 #: plone/app/imagecropping/browser/editor.pt:65
 msgid "Available Image Scales for Field: &quot;${field_name}&quot;"
-msgstr "Escalas disponíveis para o Campo: &quot;${field_name}&quot;"
+msgstr "Echelles d'image disponibles pour le Champ : &quot;${field_name}&quot;"
 
 #: plone/app/imagecropping/browser/editor.pt:131
 msgid "Close"
-msgstr "Fechar"
+msgstr "Fermer"
 
 #: plone/app/imagecropping/browser/settings.py:28
 msgid "Crop Editor Large Size"
-msgstr "Tamanho grande do editor de recortes"
+msgstr "Taille large de l'éditeur de découpe"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "Cropping"
-msgstr "Recorte"
+msgstr "Découpe"
 
 #: plone/app/imagecropping/browser/editor.py:174
 msgid "Cropping area deleted"
-msgstr "Área de recorte apagada"
+msgstr "Zone de découpe supprimée"
 
 #: plone/app/imagecropping/configure.zcml:101
 msgid "Enable Image Cropping"
-msgstr ""
+msgstr "Activer la découpe d'image"
 
 #: plone/app/imagecropping/browser/settings.py:42
 msgid "Enable to constrain cropable scales"
-msgstr "Habilitar restrição na área de recorte"
+msgstr "Activer pour contraindre les échelles de découpe"
 
 #: plone/app/imagecropping/browser/settings.py:43
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
-msgstr "Ative para reduzir as escalas mostradas baseada na lista de escalas com suporte ao recorte."
+msgstr "Activer pour limiter les échelles de la liste aux échelles avec prise en charge de la découpe."
 
 #: plone/app/imagecropping/browser/editor.pt:28
 msgid "Here you can define cropping areas for each scale of the available imagefields. This operation is non-destructive which means, your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
-msgstr "Aqui você pode definir áreas de recorte para cada escala dos campos de imagem disponíveis. Esta operação não é destrutiva, o que significa que os dados das imagem originais não serão perdidos quando realizar o recorte de uma escala. Ao remover a área de recorte, a escala recebe de volta à sua funcionalidade padrão: redimensionar, sem corte"
+msgstr "Vous pouvez définir les zones de découpe pour chaque échelle sur les champs Image disponibles. Cette opération est non destructice, ce qui veut dire que votre image originale n'est pas perdue lorsque vous découpez l'image pour une échelle. En supprimant une zone de découpe pour une échelle, celle-ci reviendra à son fonctionnement par défaut : redimensionnement, sans découpe."
 
 #: plone/app/imagecropping/browser/editor.pt:10
 msgid "Image Cropping Editor"
-msgstr "Editor de recorte de imagens"
+msgstr "Editeur de découpe d'image"
 
 #: plone/app/imagecropping/browser/settings.py:76
 msgid "Image Cropping Settings"
-msgstr "Configuração do editor de recorte de imagens"
+msgstr "Paramètres de découpe d'image"
 
 #: plone/app/imagecropping/configure.zcml:21
 msgid "Installs the plone.app.imagecropping package"
-msgstr ""
+msgstr "Installe le module plone.app.imagecropping"
 
 #: plone/app/imagecropping/browser/editor.pt:19
 #: plone/app/imagecropping/browser/settings.py:50
 msgid "List of scales with crop support"
-msgstr "Lista de escalas com suporte ao recorte"
+msgstr "Liste des échelles avec prise en charge de la découpe"
 
 #: plone/app/imagecropping/browser/settings.py:35
 msgid "Minimum Crop Area Size"
-msgstr "Tamanho da área mínima de recorte"
+msgstr "Taille minimale de la zone de découpe"
 
 #: plone/app/imagecropping/configure.zcml:101
 msgid "Provides imagecropping functionality for DX contenttypes"
-msgstr ""
+msgstr "Fournit la fonctionnalité de découpe d'image pour les types de contenu DX"
 
 #: plone/app/imagecropping/browser/editor.pt:121
 msgid "Remove cropping information"
-msgstr "Remove a informação da área de corte"
+msgstr "Supprimer les informations de découpe"
 
 #: plone/app/imagecropping/browser/editor.pt:111
 msgid "Save cropping information"
-msgstr "Salva a informação da área de corte"
+msgstr "Sauver les informations de découpe"
 
 #: plone/app/imagecropping/browser/editor.pt:117
 msgid "Save this cropping area for the selected scale."
-msgstr "Salva a área de corte baseada em uma escala selecionada"
+msgstr "Sauver cette zone de découpe pour cette échelle."
 
 #: plone/app/imagecropping/browser/settings.py:51
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
-msgstr "Seleciona as escalas com suporte a área de corte habilitado. Somente se a marcação estiver ativada."
+msgstr "Sélectionnez les échelles avec prise en charge de la découpe. Actif uniquement si la case est cochée."
 
 #: plone/app/imagecropping/testing.zcml:16
 msgid "Steps to ease tests of plone.app.imagecropping"
-msgstr ""
+msgstr "Etapes pour faciliter les tests de plone.app.imagecropping"
 
 #: plone/app/imagecropping/browser/editor.py:179
 msgid "Successfully saved cropped area"
-msgstr "Área recortada salva com sucesso"
+msgstr "Zone de découpe sauvegardée avec succès"
 
 #: plone/app/imagecropping/browser/editor.pt:127
 msgid "The selected scale gets reverted to the default behaviour: resize, no crop."
-msgstr "A escala selecionada será revertida para o padrão: redimensionar, sem crote."
+msgstr "L'échelle sélectionnée reviendra à son fonctionnement par défaut : redimensionnement, sans découpe."
 
 #: plone/app/imagecropping/configure.zcml:39
 msgid "Uninstalls resources from the plone.app.imagecropping package"
-msgstr ""
+msgstr "Désinstalle les ressources du module plone.app.imagecropping"
 
 #: plone/app/imagecropping/profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
-msgstr "Ver o editor de recorte de imagens para esse objeto"
+msgstr "Voir l'éditeur de découpe d'image pour cet objet"
 
 #: plone/app/imagecropping/browser/editor.py:254
 msgid "Your changes will be lost. Continue?"
-msgstr "As alterações serão perdidas. Continuar?"
+msgstr "Vos changements vont être perdus. Continuer?"
 
 #: plone/app/imagecropping/browser/editor.pt:76
 msgid "cropped"
-msgstr ""
+msgstr "découpée"
 
 #: plone/app/imagecropping/browser/editor.pt:52
 msgid "no image available"
-msgstr "não tem imagem disponível"
+msgstr "aucune image disponible"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
 #: plone/app/imagecropping/browser/editor.pt:19
 msgid "noscales_message"
-msgstr ""
+msgstr "Il n'y a pas d'échelles pour la découpe. Vérifiez d'en ajouter sur ${link} via le panneau de configuration."
 
 #: plone/app/imagecropping/configure.zcml:21
 msgid "plone.app.imagecropping"
-msgstr ""
+msgstr "plone.app.imagecropping"
 
 #: plone/app/imagecropping/configure.zcml:39
 msgid "plone.app.imagecropping Uninstallation"
-msgstr ""
+msgstr "Désinstallation de plone.app.imagecropping"
 
 #: plone/app/imagecropping/testing.zcml:16
 msgid "plone.app.imagecropping tests"
-msgstr ""
+msgstr "Tests de plone.app.imagecropping"
 
 #: plone/app/imagecropping/browser/editor.pt:77
 msgid "uncropped"
-msgstr ""
+msgstr "non découpée"
 
 #: plone/app/imagecropping/browser/settings.py:29
 msgid "width:height"
-msgstr "largura:altura"
+msgstr "largeur:hauteur"
