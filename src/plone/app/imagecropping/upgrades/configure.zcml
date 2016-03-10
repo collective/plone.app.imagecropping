@@ -1,25 +1,42 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:five="http://namespaces.zope.org/five"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  xmlns:gs="http://namespaces.zope.org/genericsetup">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n">
 
-  <include file="profiles.zcml" />
+  <gs:registerProfile
+      name="0003_to_0004"
+      title="Upgrade policy GS profile to 0004"
+      directory="profiles/0003_to_0004"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+  />
 
+  <gs:upgradeStep
+      description="Migrates plone.app.imagecropping upgrade to 0003"
+      source="0002"
+      destination="0003"
+      handler=".upgradesteps.migrate0002to0003"
+      profile="plone.app.imagecropping:default"
+      sortkey="1"
+      title="Upgrade plone.app.imagecropping to profile 0003"
+  />
   <gs:upgradeSteps
-    source="0003"
-    destination="0004"
-    profile="plone.app.imagecropping:default">
+      source="0003"
+      destination="0004"
+      profile="plone.app.imagecropping:default">
 
     <gs:upgradeStep
-      title="remove stale interface from catalog"
-      handler=".to_0004" />
+        handler=".upgradesteps.to_0004"
+        title="remove stale interface from catalog"
+    />
 
     <gs:upgradeDepends
-      title="use new marker interface for the object action"
-      import_profile="plone.app.imagecropping.upgrades:0003_to_0004"
-      run_deps="True"/>
+        import_profile="plone.app.imagecropping.upgrades:0003_to_0004"
+        run_deps="True"
+        title="use new marker interface for the object action"
+    />
 
   </gs:upgradeSteps>
-
 </configure>

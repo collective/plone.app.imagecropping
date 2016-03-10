@@ -20,16 +20,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:upgradeStep
-        title="Upgrade plone.app.imagecropping to profile 0003"
-        description="Migrates plone.app.imagecropping upgrade to 0003"
-        source="0002"
-        destination="0003"
-        handler=".setuphandler.migrate0002to0003"
-        sortkey="1"
-        profile="plone.app.imagecropping:default"
-        />
-
     <genericsetup:registerProfile
         name="uninstall"
         title="plone.app.imagecropping Uninstallation"
