@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- Housekeeping: upgrades at one place, zca decorators, travis caching
+  [jensens]
+
 - Added more Dutch translations.
   [maurits]
 
