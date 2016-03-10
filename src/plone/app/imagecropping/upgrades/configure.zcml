@@ -5,7 +5,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n">
 
   <gs:registerProfile
-      name="0003_to_0004"
+      name="upgrade_0003_to_0004"
       title="Upgrade policy GS profile to 0004"
       directory="profiles/0003_to_0004"
       description=""
@@ -33,7 +33,7 @@
     />
 
     <gs:upgradeDepends
-        import_profile="plone.app.imagecropping.upgrades:0003_to_0004"
+        import_profile="plone.app.imagecropping.upgrades:upgrade_0003_to_0004"
         run_deps="True"
         title="use new marker interface for the object action"
     />
