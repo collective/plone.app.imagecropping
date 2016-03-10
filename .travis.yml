@@ -7,10 +7,17 @@ env:
 matrix:
   allow_failures:
     - env: PLONE_VERSION=5.0
+cache:
+  pip: true
+  directories:
+    - $HOME/buildout-cache
+
 before_install:
-  - sudo apt-get install -y libjpeg-dev libgif-dev libpng-dev libz-dev
-  - mkdir -p buildout-cache/downloads
-  - mkdir -p buildout-cache/eggs
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - mkdir $HOME/.buildout
+  - echo "[buildout]" > $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
 install:
   - sed -ie "s#test-4.3.cfg#test-$PLONE_VERSION.cfg#" buildout.cfg
   - python bootstrap.py -c travis.cfg
