@@ -154,7 +154,8 @@ class CroppingEditor(BrowserView):
         return self.croputils.get_image_label(fieldname)
 
     def _crop(self):
-        coordinate = lambda x: int(round(float(self.request.form.get(x))))
+        def coordinate(value):
+            return int(round(float(self.request.form.get(value))))
         x1 = coordinate('x1')
         y1 = coordinate('y1')
         x2 = coordinate('x2')

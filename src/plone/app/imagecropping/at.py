@@ -42,8 +42,11 @@ class CroppingUtilsArchetype(object):
         fields = []
 
         for field in self.context.Schema().fields():
-            if IBlobImageField.providedBy(field) or IImageField.providedBy(field) and \
-               field.get_size(self.context) > 0:
+            if (
+                IBlobImageField.providedBy(field) or
+                IImageField.providedBy(field) and
+                field.get_size(self.context) > 0
+            ):
                 fields.append(field)
 
         return fields
