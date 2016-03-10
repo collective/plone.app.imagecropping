@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .dx import IImageCroppingDX
+from plone.app.imagecropping.dx import IImageCroppingDX
 
 
 class IImageCroppingBehavior(IImageCroppingDX):
