@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.app.imagecropping.testing import \
-    PLONE_APP_IMAGECROPPING_ROBOT
+from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_ROBOT
 from plone.testing import layered
 
 import os

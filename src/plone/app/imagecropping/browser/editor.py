@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.statusmessages.interfaces import IStatusMessage
 from operator import itemgetter
 from plone.app.imagecropping import imagecroppingMessageFactory as _
 from plone.app.imagecropping.browser.settings import ISettings
@@ -10,6 +7,9 @@ from plone.app.imagecropping.events import CroppingInfoRemovedEvent
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
 from zope import component
 from zope.component._api import getUtility
 from zope.event import notify

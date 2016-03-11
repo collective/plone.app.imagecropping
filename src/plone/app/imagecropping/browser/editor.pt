@@ -35,7 +35,7 @@
                          multiple_flds python:len(image_field_names) &gt; 1;
                          scales view/scales;
                          current_scale view/current_scale">
-            <div class="cell width-1:4 position-0"
+            <div class="cell width-1:4 position-0 col-md-4"
                  tal:condition="multiple_flds">
                   <h3 i18n:translate="">Available Image Fields</h3>
                   <ul class="fields visualNoMarker">
@@ -59,7 +59,7 @@
                   </ul>
             </div>
 
-            <div class="cell width-1:4"
+            <div class="cell width-1:4 col-md-8"
                  tal:attributes="class python:'cell width-1:4 position-%s' % (multiple_flds and '1:4' or '0')">
 
               <h3 i18n:translate="">Available Image Scales for Field: &quot;<span i18n:name="field_name" tal:content="python:view.field_label(view.fieldname)" tal:omit-tag="">Field Name</span>&quot;</h3>

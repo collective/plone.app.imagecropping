@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
-from Products.CMFPlone.utils import _createObjectByType
 from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from Products.CMFPlone.utils import _createObjectByType
 from zope.annotation.interfaces import IAnnotations
 
 import unittest

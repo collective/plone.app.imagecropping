@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from Products.CMFCore.utils import getToolByName
 
 import unittest
 

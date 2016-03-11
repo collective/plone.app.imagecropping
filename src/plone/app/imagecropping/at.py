@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from OFS.Image import Pdata
-from Products.ATContentTypes.interfaces.interfaces import IATContentType
-from Products.Archetypes.interfaces.field import IImageField
-from ZODB.blob import Blob
 from plone.app.blob.config import blobScalesAttr
 from plone.app.blob.interfaces import IBlobImageField
 from plone.app.imagecropping import PAI_STORAGE_KEY
@@ -13,10 +10,14 @@ from plone.app.imaging.interfaces import IImageScaleHandler
 from plone.app.imaging.traverse import ImageTraverser as BaseImageTraverser
 from plone.scale.scale import scaleImage
 from plone.scale.storage import AnnotationStorage
+from Products.Archetypes.interfaces.field import IImageField
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
+from ZODB.blob import Blob
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces import IRequest
+
 import time
 
 

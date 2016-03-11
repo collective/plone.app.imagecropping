@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.app.imagecropping import PRODUCT_NAME
+from Products.CMFCore.utils import getToolByName
+
 
 UNINSTALL_PROFILE = 'profile-{0:s}:uninstall'.format(PRODUCT_NAME)
 
