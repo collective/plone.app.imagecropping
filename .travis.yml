@@ -11,14 +11,16 @@ matrix:
 cache:
   pip: true
   directories:
-    - $HOME/buildout-cache
+    - $HOME/.cache/buildout
 
 before_install:
-  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - mkdir -p $HOME/.cache/{eggs,downloads}
+  - ls -p $HOME/.cache/eggs
+  - ls -p $HOME/.cache/downloads
   - mkdir $HOME/.buildout
   - echo "[buildout]" > $HOME/.buildout/default.cfg
-  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
-  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/.cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/.cache/eggs" >> $HOME/.buildout/default.cfg
 install:
   - sed -ie "s#test-4.3.cfg#test-$PLONE_VERSION.cfg#" buildout.cfg
   - python bootstrap.py -c travis.cfg
