@@ -179,4 +179,3 @@ Possible extensions / changes for the future
 
 
 * see also the `issue tracker <https://github.com/collective/plone.app.imagecropping/issues>`_
-

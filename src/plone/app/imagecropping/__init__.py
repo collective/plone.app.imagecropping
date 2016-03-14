@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from zope.i18nmessageid.message import MessageFactory
+
 import pkg_resources
+
 
 try:
     pkg_resources.get_distribution('plone.namedfile')

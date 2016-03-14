@@ -136,5 +136,5 @@ class ImageTraverser(BaseImageTraverser):
 
         if has_blobs and not hasattr(aq_base(self.context), blobScalesAttr) \
            and PAI_STORAGE_KEY in IAnnotations(self.context):
-                del IAnnotations(self.context)[PAI_STORAGE_KEY]
+            del IAnnotations(self.context)[PAI_STORAGE_KEY]
         return super(ImageTraverser, self).publishTraverse(request, name)

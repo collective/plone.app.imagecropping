@@ -122,6 +122,3 @@ for the integrator::
 
   #and even nicer:
   scales.scale('imagefield', scale='mini').grayscale(0.5)
-
-
-
