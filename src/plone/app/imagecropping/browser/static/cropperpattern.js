@@ -149,6 +149,31 @@ require([
       }
       this.while_reset = false;
     },
+    limit_minimum_cropping_size: function() {
+      var current = this.$image.cropper('getData'),
+          newbox = {};
+      if (current.width <  this.options.target_width ||
+          current.height <  this.options.target_height) {
+        newbox.width = this.options.target_width;
+        newbox.height = this.options.target_height;
+        if (current.x + this.options.target_width > this.options.true_width) {
+          newbox.x = this.options.true_width - this.options.target_width;
+        } else {
+          newbox.x = current.x;
+        }
+        if (current.y + this.options.target_height > this.options.true_height) {
+          newbox.y = this.options.true_height - this.options.target_height;
+        } else {
+          newbox.y = current.y;
+        }
+        newbox.rotate = current.rotate;
+        newbox.scaleX = current.scaleX;
+        newbox.scaleY = current.scaleY;
+        this.while_reset = true;
+        this.cropper.setData(newbox);
+        this.while_reset = false;
+      }
+    },
     init: function() {
       var self = this,
           area_inactive = self.$el.parent().hasClass('inactive'),
@@ -170,6 +195,8 @@ require([
       self.options.current_h = parseFloat(self.options.current_h);
       self.options.true_width = parseFloat(self.options.true_width);
       self.options.true_height = parseFloat(self.options.true_height);
+      self.options.target_width = parseFloat(self.options.target_width);
+      self.options.target_height = parseFloat(self.options.target_height);
       self.options.is_cropped = self.options.is_cropped == "True" ? true : false;
 
       // the scale we came in with from server side
@@ -208,6 +235,7 @@ require([
             if (self.while_init || self.while_reset) {
               return;
             }
+            self.limit_minimum_cropping_size();
             self.update_badges();
             self.visualize_selected_area();
           },
