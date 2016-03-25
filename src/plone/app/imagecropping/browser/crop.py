@@ -15,6 +15,7 @@ from zope.event import notify
 import logging
 import PIL.Image
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -47,7 +48,6 @@ class CroppingView(BrowserView):
 
         original_file = StringIO(data)
         image = PIL.Image.open(original_file)
-        print image.size
         image_format = image.format or self.DEFAULT_FORMAT
 
         cropped_image = image.crop(box)
