@@ -72,51 +72,53 @@
                             </ul>
                         </div>
                         <div class="col-md-8 allcroppingarea">
-                            <div class="row singlecroppingarea ${python:'active' if repeat.scale.start else 'inactive'}"
-                                 id="croppingarea-${fieldname}-${scale/id}"
-                                 tal:repeat="scale python:view.scales_info(fieldname)">
-                                <div class="col-md-12">
-                                    <span i18n:translate="">
-                                        Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
-                                    </span>
-                                    <br />
-                                    <span i18n:translate="">Selected</span>
-                                    <span class="cropw">${scale/current/w}</span>&times;<span class="croph">${scale/current/h}</span>, offset
-                                    <span class="cropx">${scale/current/x}</span>, <span class="cropy">${scale/current/y}</span>
+                            <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
+                                <div tal:condition="scale/can_scale"
+                                     class="row singlecroppingarea ${python:'active' if repeat.scale.start else 'inactive'}"
+                                     id="croppingarea-${fieldname}-${scale/id}">
+                                    <div class="col-md-12">
+                                        <span i18n:translate="">
+                                            Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
+                                        </span>
+                                        <br />
+                                        <span i18n:translate="">Selected</span>
+                                        <span class="cropw">${scale/current/w}</span>&times;<span class="croph">${scale/current/h}</span>, offset
+                                        <span class="cropx">${scale/current/x}</span>, <span class="cropy">${scale/current/y}</span>
 
-                                    <div class="plone-btn-group pull-right">
-                                        <button class="plone-btn plone-btn-primary save"
-                                                disabled=""
-                                                title="Store the choosen cropping area permanently on the server and scale area down to ${scale/target_width}px&times;${scale/target_height}px">
-                                            Save ${python:view.field_label(fieldname)} ${python:scale['title']}</button>
-                                        <button class="plone-btn plone-btn-danger remove"
-                                                title="Delete the manual choosen cropping area and auto scale on the server side.">Remove</button>
-                                        <button class="plone-btn plone-btn-warning reset"
-                                                title="Set to initial value of ${scale/current/w}&times;${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}">Reset</button>
+                                        <div class="plone-btn-group pull-right">
+                                            <button class="plone-btn plone-btn-primary save"
+                                                    disabled=""
+                                                    title="Store the choosen cropping area permanently on the server and scale area down to ${scale/target_width}px&times;${scale/target_height}px">
+                                                Save ${python:view.field_label(fieldname)} ${python:scale['title']}</button>
+                                            <button class="plone-btn plone-btn-danger remove"
+                                                    title="Delete the manual choosen cropping area and auto scale on the server side.">Remove</button>
+                                            <button class="plone-btn plone-btn-warning reset"
+                                                    title="Set to initial value of ${scale/current/w}&times;${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}">Reset</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 pat-image-cropper"
+                                         data-pat-image-cropper="identifier: ${fieldname}-${scale/id};
+                                                                 fieldname: ${fieldname};
+                                                                 scalename: ${scale/id};
+                                                                 saveurl: ${context/absolute_url}/@@crop-image;
+                                                                 authenticator: ${context/@@authenticator/token};
+                                                                 preview: #preview-${fieldname}-${scale/id};
+                                                                 aspect_ratio: ${scale/aspect_ratio};
+                                                                 is_cropped: ${scale/is_cropped};
+                                                                 current_x: ${scale/current/x};
+                                                                 current_y: ${scale/current/y};
+                                                                 current_w: ${scale/current/w};
+                                                                 current_h: ${scale/current/h};
+                                                                 true_width: ${scale/true_width};
+                                                                 true_height: ${scale/true_height};
+                                                                 target_width: ${scale/target_width};
+                                                                 target_height: ${scale/target_height};">
+
+                                        <img class="main-image" src="${python:view.original_url(fieldname)}"  />
+
                                     </div>
                                 </div>
-                                <div class="col-md-12 pat-image-cropper"
-                                     data-pat-image-cropper="identifier: ${fieldname}-${scale/id};
-                                                             fieldname: ${fieldname};
-                                                             scalename: ${scale/id};
-                                                             saveurl: ${context/absolute_url}/@@crop-image;
-                                                             authenticator: ${context/@@authenticator/token};
-                                                             preview: #preview-${fieldname}-${scale/id};
-                                                             aspect_ratio: ${scale/aspect_ratio};
-                                                             is_cropped: ${scale/is_cropped};
-                                                             current_x: ${scale/current/x};
-                                                             current_y: ${scale/current/y};
-                                                             current_w: ${scale/current/w};
-                                                             current_h: ${scale/current/h};
-                                                             true_width: ${scale/true_width};
-                                                             true_height: ${scale/true_height};
-                                                             target_width: ${scale/target_width};
-                                                             target_height: ${scale/target_height};">
-
-                                    <img class="main-image" src="${python:view.original_url(fieldname)}"  />
-
-                                </div>
-                            </div>
+                            </tal:loop>
                         </div>
                     </div>
                 </fieldset>
