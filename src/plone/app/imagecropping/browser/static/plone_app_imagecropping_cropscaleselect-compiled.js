@@ -116,7 +116,7 @@ require([
       $('fieldset', self.$el).each(
         function(findex) {
           var fieldset = this;
-          $('li.list-group-item', $(fieldset)).each(
+          $('li.list-group-item.scalable', $(fieldset)).each(
             function(lindex) {
               var li = this;
               self.set_preview_dimensions(li);

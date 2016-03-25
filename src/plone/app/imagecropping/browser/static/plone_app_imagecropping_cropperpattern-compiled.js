@@ -3148,11 +3148,6 @@ require([
           newbox = {};
       if (current.width <  this.options.target_width ||
           current.height <  this.options.target_height) {
-        console.log('LIMIT');
-        console.log(current.width);
-        console.log(current.height);
-        console.log(this.options.target_width);
-        console.log(this.options.target_height);
         newbox.width = this.options.target_width;
         newbox.height = this.options.target_height;
         if (current.x + this.options.target_width > this.options.true_width) {

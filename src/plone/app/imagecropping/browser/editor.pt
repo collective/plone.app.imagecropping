@@ -43,23 +43,32 @@
                     <div class="row">
                         <div class="col-md-4 items scaleselector">
                             <ul class="list-group">
-                                <li tal:repeat="scale python:view.scales_info(fieldname)"
-                                    data-cropping-area="#croppingarea-${fieldname}-${scale/id}"
-                                    id="select-${fieldname}-${scale/id}"
-                                    class="list-group-item ${python:'active' if repeat.scale.start else 'inactive'}">
-                                    <strong>${scale/title}</strong>
-                                    ${scale/target_width}&times;${scale/target_height}
-                                    <span class="label label-success cropped" i18n:translate="">cropped</span>
-                                    <span class="label label-primary uncropped" i18n:translate="">uncropped</span>
-                                    <span class="label label-warning changed" i18n:translate="">crop changed</span>
-                                    <div class="preview-container"
-                                         data-target-width="${scale/target_width}"
-                                         data-target-height="${scale/target_height}">
-                                        <div id="preview-${fieldname}-${scale/id}"
-                                             class="crop-preview">
+                                <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
+                                    <li tal:condition="scale/can_scale"
+                                        data-cropping-area="#croppingarea-${fieldname}-${scale/id}"
+                                        id="select-${fieldname}-${scale/id}"
+                                        class="list-group-item scalable ${python:'active' if repeat.scale.start else 'inactive'}">
+                                        <strong>${scale/title}</strong>
+                                        ${scale/target_width}&times;${scale/target_height}
+                                        <span class="label label-success cropped" i18n:translate="">cropped</span>
+                                        <span class="label label-primary uncropped" i18n:translate="">uncropped</span>
+                                        <span class="label label-warning changed" i18n:translate="">crop changed</span>
+                                        <div class="preview-container"
+                                             data-target-width="${scale/target_width}"
+                                             data-target-height="${scale/target_height}">
+                                            <div id="preview-${fieldname}-${scale/id}"
+                                                 class="crop-preview">
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                    <li tal:condition="not: scale/can_scale"
+                                        class="list-group-item impossible">
+                                            <strong>${scale/title}</strong>
+                                            ${scale/target_width}&times;${scale/target_height}:
+                                            <span class="label label-danger" i18n:translate="">not croppable</span>
+                                            <p i18n:translate="">Target dimensions are larger than original image.</p>
+                                    </li>
+                                </tal:loop>
                             </ul>
                         </div>
                         <div class="col-md-8 allcroppingarea">
