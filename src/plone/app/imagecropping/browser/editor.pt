@@ -76,15 +76,20 @@
                                 <div tal:condition="scale/can_scale"
                                      class="row singlecroppingarea ${python:'active' if repeat.scale.start else 'inactive'}"
                                      id="croppingarea-${fieldname}-${scale/id}">
-                                    <div class="col-md-12">
-                                        <span i18n:translate="">
-                                            Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
+                                    <div class="col-md-6 scale-info">
+                                        <span class="nowrap">
+                                            <span i18n:translate="">
+                                                Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
+                                            </span>
+                                            &mdash;
                                         </span>
-                                        <br />
-                                        <span i18n:translate="">Selected</span>
-                                        <span class="cropw">${scale/current/w}</span>&times;<span class="croph">${scale/current/h}</span>, offset
-                                        <span class="cropx">${scale/current/x}</span>, <span class="cropy">${scale/current/y}</span>
-
+                                        <span class="nowrap">
+                                            <span i18n:translate="">Selected</span>
+                                            <span class="cropw">${scale/current/w}</span>&times;<span class="croph">${scale/current/h}</span>, offset
+                                            <span class="cropx">${scale/current/x}</span>, <span class="cropy">${scale/current/y}</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="plone-btn-group pull-right">
                                             <button class="plone-btn plone-btn-primary save"
                                                     disabled=""
