@@ -8,7 +8,7 @@ version = '2.0b1.dev0'
 setup(
     name='plone.app.imagecropping',
     version=version,
-    description='Cropped image in Plone using patternslibs imagecrop',
+    description='Crops Images in Plone manually using cropper JS library',
     long_description='\n\n'.join([
         open('README.rst').read(),
         open('CONTRIBUTORS.rst').read(),
