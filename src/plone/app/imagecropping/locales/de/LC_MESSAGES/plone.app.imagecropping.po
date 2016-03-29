@@ -103,7 +103,7 @@ msgstr "Zurücksetzen"
 #. Default: "Save ${python:view.field_label(fieldname)} ${python:scale['title']}"
 #: ../browser/editor.pt:98
 msgid "button_save"
-msgstr ""
+msgstr "Speichere"
 
 #. Default: "Save all"
 #: ../browser/editor.pt:39
@@ -113,7 +113,7 @@ msgstr "Alles speichern"
 #. Default: "Target dimensions are larger than original image."
 #: ../browser/editor.pt:73
 msgid "description_not_croppable"
-msgstr "kein Zuschnitt möglich"
+msgstr "Die Ziel-Größe ist größer als das Original-Bild."
 
 #. Default: "Instructions"
 #: ../browser/editor.pt:143
@@ -128,17 +128,17 @@ msgstr "Lege pro Bild-Feld und dort pro möglicher Skalierung einen Bereich für
 #. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
 #: ../browser/editor.pt:147
 msgid "instructions_p2"
-msgstr "Als erstes wähle das Bild aus: Wenn mehrere Bilder pro Inhaltstyp möglich sind, verwende die Reiter oben um das Bild auszuwählen. Für jedes Bild gibt es einen oder mehrere vorgegeben Größen bzw. Skalierungen. Wähle eine Skalierung aus dem Seitenmenu."
+msgstr "Als erstes wähle das Bild aus: Wenn mehrere Bilder pro Inhaltstyp möglich sind, verwende die Reiter oben um das Bild auszuwählen. Für jedes Bild gibt es einen oder mehrere vorgegebene Größen bzw. Skalierungen. Wähle eine Skalierung aus dem Seitenmenu."
 
 #. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
 #: ../browser/editor.pt:153
 msgid "instructions_p3"
-msgstr "Um das Bild zuzuschneiden, ziehen den Rahmen in dem Haupt-Bild bis der gewünschte Ausschnitt gefunden ist. Eine Vorschau ist sofort im Seitenmenu zu sehen. Wenn das Seitenmenu schmaler als ist als die Zielgröße, dann wird die Vorschau herunterskaliert. Benutze die Schaltfläche Speichern um das Bild so dauerhaft am Server zu speichern. Mit der Zurücksetzen Schaltfläche wird der Zustand wie beim Laden der Seite wiederhergestellt - entweder nicht zugeschnitten, oder wenn bereits ein Zuschnitt gespeichert war zu dieser Auswahl."
+msgstr "Um das Bild zuzuschneiden, ziehe den Rahmen in dem Haupt-Bild bis der gewünschte Ausschnitt gefunden ist. Eine Vorschau ist sofort im Seitenmenu zu sehen. Wenn das Seitenmenu schmaler als ist als die Zielgröße, dann wird die Vorschau herunterskaliert. Benutze die Schaltfläche Speichern um das Bild so dauerhaft am Server zu speichern. Mit der Zurücksetzen Schaltfläche wird der Zustand wie beim Laden der Seite wiederhergestellt: entweder nicht zugeschnitten oder - wenn bereits ein Zuschnitt gespeichert - war zu dieser Zuschnitts-Auswahl."
 
 #. Default: "This cropping operation is non-destructive, which means your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
 #: ../browser/editor.pt:159
 msgid "instructions_p4"
-msgstr "Die Zuschnitte arbeiten Zerstörungsfrei. D.h. das Original Bild geht niemals verloren wenn ein Zuschnitt angelegt wird. Wird ein Zuschnitt entfernt, so werden wieder die Standardeinstellungen (skalieren ohne Zuschnitt) verwendet."
+msgstr "Die Zuschnitte arbeiten zerstörungsfrei. D.h. das Original Bild geht niemals verloren, wenn ein Zuschnitt angelegt wird. Wird ein Zuschnitt entfernt, so werden wieder die Standardeinstellungen (skalieren ohne Zuschnitt) verwendet."
 
 #. Default: "changed"
 #: ../browser/editor.pt:58
@@ -158,7 +158,7 @@ msgstr "kein Zuschnitt möglich"
 #. Default: "saving"
 #: ../browser/editor.pt:59
 msgid "label_saving"
-msgstr "speichere"
+msgstr "speichere..."
 
 #. Default: "uncropped"
 #: ../browser/editor.pt:57
