@@ -19,6 +19,9 @@ The basic concept of ``plone.app.imagecropping`` has already been implemented in
 
 .. _`Yiorgis's branch of plone.app.imaging`: https://github.com/plone/plone.app.imaging/tree/ggozad-cropping
 
+The library `cropper <https://github.com/fengyuanchen/cropper>`_ by Fengyuan Chen was published under MIT License and is used since plone.app.imagecropping Version 2.0 for the JS part to select a croppig area.
+
+
 Source Code
 -----------
 
@@ -29,4 +32,4 @@ The code is located in the
 `github collective <https://github.com/collective/plone.app.imagecropping>`_.
 
 You can clone it and send a pull request or `get access to the github-collective
-<http://collective.github.com/>`_ and work directly on the project.
+<http://collective.github.com/>`_ and work directly on a branch of the project.

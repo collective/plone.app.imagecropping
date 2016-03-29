@@ -1,8 +1,18 @@
 Changelog
 =========
 
-1.4 (unreleased)
-----------------
+2.0b1 (unreleased)
+------------------
+
+- Run i18ndude and translated new/missing strings to German.
+  [jensens]
+
+- Use more modern cropper Javascript library, kick out JCrop and rewrite all JS.
+  It uses patterns now to initialize the cropper and image selections.
+  [jensens]
+
+- Code refactoring and big overhaul to make it work with Plone 5 (only) and the new JS.
+  [jensens]
 
 - Housekeeping: upgrades at one place, zca decorators, travis caching
   [jensens]
