@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b1 (unreleased)
+2.0b1 (2016-03-29)
 ------------------
 
 - Run i18ndude and translated new/missing strings to German.
