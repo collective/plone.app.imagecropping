@@ -1,5 +1,7 @@
 i18ndude rebuild-pot --pot ./plone.app.imagecropping.pot --create plone.app.imagecropping ../ || exit 1
+i18ndude rebuild-pot --pot ./plone.pot --create plone ../ || exit 1
 i18ndude sync --pot ./plone.app.imagecropping.pot ./*/LC_MESSAGES/plone.app.imagecropping.po
+i18ndude sync --pot ./plone.pot ./*/LC_MESSAGES/plone.po
 
 WARNINGS=`find . -name "*pt" | xargs i18ndude find-untranslated | grep -e '^-WARN' | wc -l`
 ERRORS=`find . -name "*pt" | xargs i18ndude find-untranslated | grep -e '^-ERROR' | wc -l`

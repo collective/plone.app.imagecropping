@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2016-03-29 09:55+0000\n"
+"POT-Creation-Date: 2016-03-29 18:17+0000\n"
 "PO-Revision-Date: 2014-04-07 16:39+0200\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -100,8 +100,9 @@ msgstr "Entfernen"
 msgid "button_reset"
 msgstr "Zurücksetzen"
 
-#. Default: "Save ${python:view.field_label(fieldname)} ${python:scale['title']}"
-#: ../browser/editor.pt:98
+#. Default: "Save"
+#: ../browser/editor.pt:103
+#, fuzzy
 msgid "button_save"
 msgstr "Speichere"
 
@@ -155,8 +156,9 @@ msgstr "zugeschnitten"
 msgid "label_not_croppable"
 msgstr "kein Zuschnitt möglich"
 
-#. Default: "saving"
+#. Default: "saving..."
 #: ../browser/editor.pt:59
+#, fuzzy
 msgid "label_saving"
 msgstr "speichere..."
 

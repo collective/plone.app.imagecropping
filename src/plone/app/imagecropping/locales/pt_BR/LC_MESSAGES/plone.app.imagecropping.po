@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2016-03-29 09:55+0000\n"
+"POT-Creation-Date: 2016-03-29 18:17+0000\n"
 "PO-Revision-Date: 2013-03-21 12:00-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,8 +99,8 @@ msgstr ""
 msgid "button_reset"
 msgstr ""
 
-#. Default: "Save ${python:view.field_label(fieldname)} ${python:scale['title']}"
-#: ../browser/editor.pt:98
+#. Default: "Save"
+#: ../browser/editor.pt:103
 msgid "button_save"
 msgstr ""
 
@@ -154,7 +154,7 @@ msgstr ""
 msgid "label_not_croppable"
 msgstr ""
 
-#. Default: "saving"
+#. Default: "saving..."
 #: ../browser/editor.pt:59
 msgid "label_saving"
 msgstr ""
