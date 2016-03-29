@@ -47,8 +47,6 @@ The editor view hav a tabbed navigation on the top and two columns:
 
 The aspect ratio for the cropping area in the editor is automatically set to the image scale selected by the user.
 
-TODO: New screenshot
-
 .. image:: https://raw.github.com/collective/plone.app.imagecropping/master/docs/editor.png
 
 The image stored for this scale gets replaced with the cropped and scaled version.
