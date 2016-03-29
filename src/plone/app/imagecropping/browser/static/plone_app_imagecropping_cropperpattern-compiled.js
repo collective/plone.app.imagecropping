@@ -3062,7 +3062,7 @@ require([
         return false;
       }
       if (!$('.cropper-container', this.$image.parent()).is(':visible')) {
-        return self._changed;
+        return this._changed;
       }
       var current = this.$image.cropper('getData');
       var xc = (this.original_data.x -1) < current.x  && current.x < (this.original_data.x +1),
@@ -3110,7 +3110,7 @@ require([
       );
     },
     save: function() {
-      console.log('SAVE');
+      console.log('SAVE ' + this.identifier);
       var self = this,
           crop_data = this.$image.cropper('getData'),
           postData = {
@@ -3131,6 +3131,7 @@ require([
           data: postData,
           success: function(data, textStatus, jqXHR) {
             self.options.is_cropped = true;
+            self._changed = false;
             self.original_data = $.extend({}, self.cropper.getData());
             self.while_saving = false;
             self.update_badges();
@@ -3192,6 +3193,7 @@ require([
           sel_select = '#select-' + self.options.identifier,
           sel_cropper = '#croppingarea-' + self.options.identifier,
           sel_form = '#croppingarea-' + self.options.identifier;
+      self.identifier = self.options.identifier;
       self.$image = $('img.main-image', self.$el);
       self.$badge_cropped = $(sel_select + ' .label.cropped');
       self.$badge_uncropped = $(sel_select + ' .label.uncropped');
@@ -3200,6 +3202,7 @@ require([
       self.$button_save = $(sel_form + ' button.save');
       self.$button_remove = $(sel_form + ' button.remove');
       self.$button_reset = $(sel_form + ' button.reset');
+      self.$button_save_all = $('button.save-all');
 
       // we need to make coords floats
       self.options.current_x = parseFloat(self.options.current_x);
@@ -3234,6 +3237,15 @@ require([
       self.$button_reset.click(function() {self.reset();});
       self.$button_remove.click(function() {self.remove();});
       self.$button_save.click(function() {self.save();});
+      self.$button_save_all.on(
+        'click',
+        {identifier: self.identifier},
+        function(event) {
+          if (self.crop_changed()) {
+            self.save();
+          }
+        }
+      );
 
       // configure and init cropper
       var configuration = {
