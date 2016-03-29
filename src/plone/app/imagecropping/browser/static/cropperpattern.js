@@ -10,6 +10,7 @@ require([
     parser: 'mockup',
     while_reset: false,
     while_init: true,
+    while_saving: false,
     _changed: false,
     defaults: {
       identifier: null,
@@ -29,6 +30,15 @@ require([
       true_height: null,
     },
     update_badges: function() {
+      if (this.while_saving) {
+        this.$badge_saving.show();
+        this.$button_save.prop('disabled', true);
+        this.$button_reset.prop('disabled', true);
+        this.$button_remove.prop('disabled', true);
+        return;
+      } else {
+        this.$badge_saving.hide();
+      }
       if (this.options.is_cropped) {
         this.$button_remove.prop('disabled', false);
         this.$badge_uncropped.hide();
@@ -85,7 +95,8 @@ require([
         scale: this.options.scalename,
         _authenticator: this.options.authenticator
       };
-      console.log(postData);
+      self.while_saving = true;
+      self.update_badges();
       $.ajax(
         {
           url: this.options.saveurl,
@@ -93,9 +104,12 @@ require([
           data: postData,
           success: function(data, textStatus, jqXHR) {
             self.options.is_cropped = false;
+            self.while_saving = false;
             self.update_badges();
          },
           error: function(jqXHR, textStatus, errorThrown) {
+            self.while_saving = false;
+            self.update_badges();
             alert(textStatus, errorThrown);
           }
         }
@@ -114,7 +128,8 @@ require([
             scale: this.options.scalename,
             _authenticator: this.options.authenticator
           };
-      console.log(postData);
+      self.while_saving = true;
+      self.update_badges();
       $.ajax(
         {
           url: this.options.saveurl,
@@ -123,9 +138,12 @@ require([
           success: function(data, textStatus, jqXHR) {
             self.options.is_cropped = true;
             self.original_data = $.extend({}, self.cropper.getData());
+            self.while_saving = false;
             self.update_badges();
           },
           error: function(jqXHR, textStatus, errorThrown) {
+            self.while_saving = false;
+            self.update_badges();
             alert(textStatus, errorThrown);
           }
         }
@@ -184,6 +202,7 @@ require([
       self.$badge_cropped = $(sel_select + ' .label.cropped');
       self.$badge_uncropped = $(sel_select + ' .label.uncropped');
       self.$badge_changed = $(sel_select + ' .label.changed');
+      self.$badge_saving = $(sel_select + ' .label.saving');
       self.$button_save = $(sel_form + ' button.save');
       self.$button_remove = $(sel_form + ' button.remove');
       self.$button_reset = $(sel_form + ' button.reset');

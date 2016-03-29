@@ -149,7 +149,7 @@ msgstr ""
 
 #: plone/app/imagecropping/browser/editor.pt:77
 msgid "uncropped"
-msgstr ""
+msgstr "unbeschnitten"
 
 #: plone/app/imagecropping/browser/settings.py:29
 msgid "width:height"

@@ -52,7 +52,8 @@
                                         ${scale/target_width}&times;${scale/target_height}
                                         <span class="label label-success cropped" i18n:translate="">cropped</span>
                                         <span class="label label-primary uncropped" i18n:translate="">uncropped</span>
-                                        <span class="label label-warning changed" i18n:translate="">crop changed</span>
+                                        <span class="label label-warning changed" i18n:translate="">changed</span>
+                                        <span class="label label-info saving" i18n:translate="">saving</span>
                                         <div class="preview-container"
                                              data-target-width="${scale/target_width}"
                                              data-target-height="${scale/target_height}">
