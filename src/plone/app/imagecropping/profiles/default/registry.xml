@@ -1,6 +1,84 @@
 <?xml version="1.0"?>
 <registry>
 
-    <records interface="plone.app.imagecropping.browser.settings.ISettings" />
+  <!-- image cropping settings ============================================== -->
+
+  <records interface="plone.app.imagecropping.browser.settings.ISettings" />
+
+
+  <!-- javascript/less ====================================================== -->
+
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropper">
+    <value key="js">++resource++plone.app.imagecropping.static/cropper-dist/cropper.js</value>
+    <value key="css">
+      <element>++resource++plone.app.imagecropping.static/cropper-dist/cropper.css</element>
+    </value>
+  </records>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropperpattern">
+    <value key="js">++resource++plone.app.imagecropping.static/cropperpattern.js</value>
+  </records>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropscaleselect">
+    <value key="js">++resource++plone.app.imagecropping.static/cropscaleselect.js</value>
+    <value key="css">
+      <element>++resource++plone.app.imagecropping.static/cropscaleselect.less</element>
+    </value>
+  </records>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IBundleRegistry"
+      prefix="plone.bundles/plone_app_imagecropping">
+    <value key="resources">
+      <element>plone_app_imagecropping_cropperpattern</element>
+      <element>plone_app_imagecropping_cropscaleselect</element>
+    </value>
+    <value key="enabled">False</value>
+    <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-compiled.js</value>
+    <value key="csscompilation">++resource++plone.app.imagecropping.static/imagecropping.css</value>
+    <value key="last_compilation">2015-11-26 00:00:00</value>
+    <value key="compile">True</value>
+    <value key="depends">plone-logged-in</value>
+
+    <!-- these stubs are copied over from plone-logged-in and may need updates
+         the whole js story isnt perfect her :/
+    -->
+    <value key="stub_js_modules">
+      <element>backbone</element>
+      <element>bootstrap-dropdown</element>
+      <element>bootstrap-tooltip</element>
+      <element>jquery.cookie</element>
+      <element>jquery.event.drag</element>
+      <element>jquery.event.drop</element>
+      <element>jquery.form</element>
+      <element>jquery</element>
+      <element>mockup-i18n</element>
+      <element>mockup-patterns-autotoc</element>
+      <element>mockup-patterns-backdrop</element>
+      <element>mockup-patterns-base</element>
+      <element>mockup-patterns-modal</element>
+      <element>mockup-patterns-moment</element>
+      <element>mockup-patterns-pickadate</element>
+      <element>mockup-patterns-select2</element>
+      <element>mockup-router</element>
+      <element>mockup-utils</element>
+      <element>pat-base</element>
+      <element>pat-compat</element>
+      <element>pat-logger</element>
+      <element>pat-mockup-parser</element>
+      <element>pat-registry</element>
+      <element>pat-utils</element>
+      <element>select2</element>
+      <element>translate</element>
+      <element>underscore</element>
+      <element>moment</element>
+    </value>
+  </records>
 
 </registry>

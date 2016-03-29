@@ -1,94 +1,80 @@
 <configure
+    i18n_domain="plone.app.imagecropping"
+    xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="plone.app.imagecropping">
+    xmlns:zcml="http://namespaces.zope.org/zcml">
 
-    <five:registerPackage package="." />
-    <i18n:registerTranslations directory="locales" />
-    <include package=".browser" />
-    <include package=".upgrades" />
+  <five:registerPackage package="." />
+  <i18n:registerTranslations directory="locales" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="plone.app.imagecropping"
-        directory="profiles/default"
-        description="Installs the plone.app.imagecropping package"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <include package=".browser" />
+  <include package=".upgrades" />
 
-    <genericsetup:registerProfile
-        name="uninstall"
-        title="plone.app.imagecropping Uninstallation"
-        directory="profiles/uninstall"
-        description="Uninstalls resources from the plone.app.imagecropping package"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+      description="Installs the plone.app.imagecropping package"
+      directory="profiles/default"
+      name="default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="Image Cropping Support"
+  />
 
+  <genericsetup:registerProfile
+      description="Uninstalls resources from the plone.app.imagecropping package"
+      directory="profiles/uninstall"
+      name="uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="Image Cropping Uninstallation"
+  />
 
-    <subscriber handler=".subscribers.apply_crops_after_copy" />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="plone.app.imagecropping-hiddenprofiles" />
 
-    <!-- ATCT adapter -->
-    <configure zcml:condition="installed Products.ATContentTypes">
-        <class class="Products.ATContentTypes.content.image.ATImage">
-            <implements interface=".at.IImageCroppingAT" />
-        </class>
+  <subscriber handler=".subscribers.apply_crops_after_copy" />
 
-        <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
-            <implements interface=".at.IImageCroppingAT" />
-        </class>
+  <class class="plone.app.contenttypes.content.Image">
+    <implements interface=".dx.IImageCroppingDX" />
+  </class>
 
-    </configure>
+  <!-- dexterity cropping adapter -->
+  <adapter factory=".dx.CroppingUtilsDexterity" />
 
+  <!-- dexterity behaviour -->
+  <plone:behavior
+      description="Provides imagecropping functionality for DX contenttypes"
+      provides=".behaviors.IImageCroppingBehavior"
+      title="Enable Image Cropping"
+  />
 
-    <!-- ATBlob Adapter -->
-    <class zcml:condition="installed plone.app.blob"
-           class="plone.app.blob.content.ATBlob">
-        <implements interface=".at.IImageCroppingAT" />
+  <!-- ATCT adapter -->
+  <configure zcml:condition="installed Products.ATContentTypes">
+    <class class="Products.ATContentTypes.content.image.ATImage">
+      <implements interface=".at.IImageCroppingAT" />
     </class>
+    <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
+      <implements interface=".at.IImageCroppingAT" />
+    </class>
+  </configure>
 
+  <!-- ATBlob Adapter -->
+  <class
+      class="plone.app.blob.content.ATBlob"
+      zcml:condition="installed plone.app.blob">
+    <implements interface=".at.IImageCroppingAT" />
+  </class>
 
-    <!-- archetypes specific -->
-    <configure zcml:condition="installed Products.Archetypes">
+  <!-- archetypes specific -->
+  <configure zcml:condition="installed Products.Archetypes">
 
-        <!-- archetypes cropping adapter-->
-        <adapter factory=".at.CroppingUtilsArchetype" />
+    <!-- archetypes cropping adapter-->
+    <adapter factory=".at.CroppingUtilsArchetype" />
 
-        <!-- Archetypes FIELDNAME_SCALE traverser adaptions -->
-        <adapter factory=".at.ImageTraverser" />
+    <!-- Archetypes FIELDNAME_SCALE traverser adaptions -->
+    <adapter factory=".at.ImageTraverser" />
 
-    </configure>
-
-
-    <!-- plone.app.contenttypes specific -->
-    <configure zcml:condition="installed plone.app.contenttypes">
-        <include package="plone.app.contenttypes" />
-
-        <class class="plone.app.contenttypes.content.Image">
-            <implements interface=".dx.IImageCroppingDX" />
-        </class>
-
-    </configure>
-
-
-    <!-- dexterity specific -->
-    <configure zcml:condition="installed plone.dexterity">
-
-        <include package="plone.behavior" file="meta.zcml" />
-
-        <!-- dexterity cropping adapter -->
-        <adapter factory=".dx.CroppingUtilsDexterity" />
-
-        <!-- dexterity behaviour -->
-        <plone:behavior
-            title="Enable Image Cropping"
-            description="Provides imagecropping functionality for DX contenttypes"
-            provides=".behaviors.IImageCroppingBehavior"
-            for="plone.dexterity.interfaces.IDexterityContent"
-            />
-    </configure>
+  </configure>
 
 </configure>

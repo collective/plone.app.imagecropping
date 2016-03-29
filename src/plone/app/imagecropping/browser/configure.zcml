@@ -36,6 +36,7 @@
 
     <browser:page
         class=".editor.CroppingEditor"
+        template="editor.pt"
         for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
         name="croppingeditor"
         permission="cmf.ModifyPortalContent"

@@ -1,0 +1,152 @@
+@import "@{bowerPath}/bootstrap/less/variables.less";
+@import "@{bowerPath}/bootstrap/less/mixins.less";
+@import "@{bowerPath}/bootstrap/less/labels.less";
+@import (inline) 'cropper-dist/cropper.min.css';
+
+.pat-imagecrop-scaleselect {
+    div.items.scaleselector {
+        padding-left: 0px;
+        padding-right: 0px;
+        .list-group {
+            padding-left: 0;
+            .list-group-item {
+                position: relative;
+                display: block;
+                padding: 10px 15px;
+                margin-bottom: -1px;
+                background: #f2f1f1;
+                border: 1px solid @plone-gray-lighter;
+                cursor: pointer;
+                div.preview-container {
+                    div.crop-preview {
+                        overflow: hidden;
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+                }
+                &:first-child {
+                    border-top-right-radius: 4px;
+                    border-top-left-radius: 4px;
+                }
+                &:last-child {
+                    border-bottom-right-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+                &.active {
+                    border-right: 0;
+                    background: white;
+                    cursor: default;
+                }
+                &.active:first-child {
+                    border-top-right-radius: 0px;
+                }
+                &.active:last-child {
+                    border-botton-right-radius: 0px;
+                }
+                &.inactive div.preview-container {
+                    display: none;
+                }
+                .label {
+                    float: right;
+                }
+                &.impossible {
+                    cursor: default;
+                }
+            }
+        }
+    }
+    div.singlecroppingarea {
+        padding-left: 0px;
+        padding-right: 0px;
+        .pat-image-crop {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        &.active {
+            display: block;
+        }
+        &.inactive {
+            display: none;
+        }
+        .pat-image-cropper {
+            padding: 4px 0px;
+            img {
+                width: 100%
+            }
+        }
+        .scale-info {
+            padding: 10px 6px 10px 12px;
+            .nowrap {
+                white-space: nowrap;
+            }
+        }
+        .crop-buttons {
+            padding-right: 7px;
+        }
+    }
+    nav {
+        float: none;
+        padding: 0;
+        margin: 0 0 0.3em 0;
+        border: 0;
+        border-bottom: 1px solid #DDD;
+        background: #EEE none repeat scroll 0 0;
+        -webkit-border-radius: 4px 4px 0 0;
+        -moz-border-radius: 4px 4px 0 0;
+        -ie-border-radius: 4px 4px 0 0;
+        -o-border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 0;
+        &:after {
+            content: "";
+            display: table;
+            line-height: 0;
+        }
+        a {
+            display: inline-block;
+            margin: 0.5em 0 -1px 0.5em;
+            line-height: 32px;
+            padding: 12px 12px;
+            text-decoration: none;
+            -webkit-border-radius: 4px 4px 0 0;
+            -moz-border-radius: 4px 4px 0 0;
+            -ie-border-radius: 4px 4px 0 0;
+            -o-border-radius: 4px 4px 0 0;
+            border-radius: 4px 4px 0 0;
+            background-color: #FFF;
+            height: 50px;
+            img {
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -ie-border-radius: 3px;
+                -o-border-radius: 3px;
+                border-radius: 3px;
+            }
+            &:focus {
+                outline-style: none;
+            }
+            &.active {
+                border: 1px solid #DDD;
+                border-bottom-color: #FFF;
+                color: #555555;
+                cursor: default;
+            }
+            &.inactive {
+                border: 1px solid #EEE;
+                border-bottom-color: #DDD;
+            }
+            &.inactive:hover {
+                border: 1px solid #DDD;
+                border-bottom-color: #FFF;
+            }
+        }
+        button.save-all {
+            margin: 7px;
+        }
+    }
+    fieldset {
+        &.inactive {
+            display: none;
+        }
+    }
+}

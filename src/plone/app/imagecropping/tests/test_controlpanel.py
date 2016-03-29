@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.app.imagecropping.browser.settings import ISettings
-from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -13,7 +13,7 @@ import unittest
 
 class ControlPanelTestCase(unittest.TestCase):
 
-    layer = PLONE_APP_IMAGECROPPING_INTEGRATION
+    layer = IMAGECROPPING_INTEGRATION
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -23,34 +23,25 @@ class ControlPanelTestCase(unittest.TestCase):
 
     def test_controlpanel_has_view(self):
         view = getMultiAdapter(
-            (self.portal, self.portal.REQUEST), name='imagecropping-settings')
+            (self.portal, self.portal.REQUEST),
+            name='imagecropping-settings'
+        )
         view = view.__of__(self.portal)
         self.assertTrue(view())
 
     def test_controlpanel_view_is_protected(self):
         from AccessControl import Unauthorized
         logout()
-        self.assertRaises(Unauthorized,
-                          self.portal.restrictedTraverse,
-                          '@@imagecropping-settings')
-
-    def test_controlpanel_installed(self):
-        actions = [a.getAction(self)['id']
-                   for a in self.controlpanel.listActions()]
-        self.assertIn('imagecropping.settings', actions,
-                      'control panel was not installed')
-
-    def test_controlpanel_removed_on_uninstall(self):
-        self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
-        actions = [a.getAction(self)['id']
-                   for a in self.controlpanel.listActions()]
-        self.assertNotIn('imagecropping.settings', actions,
-                         'control panel was not removed')
+        self.assertRaises(
+            Unauthorized,
+            self.portal.restrictedTraverse,
+            '@@imagecropping-settings'
+        )
 
 
 class RegistryTestCase(unittest.TestCase):
 
-    layer = PLONE_APP_IMAGECROPPING_INTEGRATION
+    layer = IMAGECROPPING_INTEGRATION
 
     def setUp(self):
         self.portal = self.layer['portal']

@@ -1,31 +1,20 @@
 language: python
-python: 2.7
 sudo: false
-env:
-  - PLONE_VERSION=4.2
-  - PLONE_VERSION=4.3
-  - PLONE_VERSION=5.0
-matrix:
-  allow_failures:
-    - env: PLONE_VERSION=5.0
 cache:
   pip: true
   directories:
-    - $HOME/.cache/buildout
-
+    - $HOME/buildout-cache
+python:
+  - 2.7
 before_install:
-  - mkdir -p $HOME/.cache/{eggs,downloads}
-  - ls -p $HOME/.cache/eggs
-  - ls -p $HOME/.cache/downloads
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - mkdir $HOME/.buildout
   - echo "[buildout]" > $HOME/.buildout/default.cfg
-  - echo "download-cache = $HOME/.cache/downloads" >> $HOME/.buildout/default.cfg
-  - echo "eggs-directory = $HOME/.cache/eggs" >> $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
 install:
-  - sed -ie "s#test-4.3.cfg#test-$PLONE_VERSION.cfg#" buildout.cfg
-  - python bootstrap.py -c travis.cfg
-  - bin/buildout -Nc travis.cfg annotate
-  - bin/buildout -t 10 -Nc travis.cfg
+  - pip install -U zc.buildout setuptools pip
+  - buildout -t 10 -Nc travis.cfg
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
@@ -33,8 +22,8 @@ script:
   - bin/code-analysis
   - bin/test
 after_success:
-  - bin/createcoverage run bin/test
-  - pip install -q coveralls
+  - bin/createcoverage
+  - pip install coveralls
   - coveralls
 after_failure:
   - bin/csslint --version

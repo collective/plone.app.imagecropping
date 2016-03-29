@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object
+    meta_type="Plone Control Panel Tool"
+    name="portal_controlpanel">
+  <configlet
+      action_id="imagecropping.settings"
+      appId="ImageCroppingSettings"
+      remove="True"
+      title="Image Cropping"></configlet>
+</object>

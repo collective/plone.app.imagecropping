@@ -15,6 +15,7 @@
 
 # Installer logs
 pip-log.txt
+pip-selfcheck.json
 
 # Unit test / coverage reports
 /.coverage
@@ -30,6 +31,7 @@ pip-log.txt
 # mr.developer
 /.mr.developer.cfg
 /.installed.cfg
+/devsrc
 
 # developement
 /.project
@@ -38,6 +40,10 @@ pip-log.txt
 .DS_Store
 *.swp
 local.cfg
+/temp_resources
+/node_modules
+Gruntfile.js
+package.json
 
 # virtualenv
 /include
