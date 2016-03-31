@@ -4,7 +4,8 @@ Changelog
 2.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Give IImageCroppingBehavior a shortname.
+  [jensens]
 
 
 2.0b1 (2016-03-29)

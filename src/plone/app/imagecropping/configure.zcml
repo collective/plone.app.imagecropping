@@ -44,9 +44,10 @@
 
   <!-- dexterity behaviour -->
   <plone:behavior
+      name="plone.imagecropping"
+      title="Enable Image Cropping"
       description="Provides imagecropping functionality for DX contenttypes"
       provides=".behaviors.IImageCroppingBehavior"
-      title="Enable Image Cropping"
   />
 
   <!-- ATCT adapter -->
