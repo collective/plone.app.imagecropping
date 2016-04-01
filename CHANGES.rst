@@ -7,13 +7,16 @@ Changelog
 - Enable accidentially disabled JS bundle in resource registry.
   [jensens]
 
+
+2.0b2 (2016-04-01)
+------------------
+
 - Give IImageCroppingBehavior a shortname.
   [jensens]
 
-2.0b2 (2016-04-29)
-------------------
+- Fix: Make croppingeditor play nice with pat-modal.
+  [jensens]
 
-- Brown bag release.
 
 2.0b1 (2016-03-29)
 ------------------

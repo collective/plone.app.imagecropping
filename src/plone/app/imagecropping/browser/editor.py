@@ -5,7 +5,6 @@ from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
-from Products.CMFPlone.resources import add_bundle_on_request
 from Products.Five.browser import BrowserView
 from zope.component._api import getUtility
 
@@ -15,7 +14,6 @@ class CroppingEditor(BrowserView):
 
     def __init__(self, context, request):
         super(CroppingEditor, self).__init__(context, request)
-        add_bundle_on_request(request, 'plone_app_imagecropping')
         request.set('disable_plone.leftcolumn', 1)
         request.set('disable_plone.rightcolumn', 1)
 
