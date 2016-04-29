@@ -39,7 +39,7 @@
       <element>plone_app_imagecropping_cropperpattern</element>
       <element>plone_app_imagecropping_cropscaleselect</element>
     </value>
-    <value key="enabled">False</value>
+    <value key="enabled">True</value>
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-compiled.js</value>
     <value key="csscompilation">++resource++plone.app.imagecropping.static/imagecropping.css</value>
     <value key="last_compilation">2015-11-26 00:00:00</value>

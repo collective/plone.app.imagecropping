@@ -4,6 +4,9 @@ Changelog
 2.0b2 (unreleased)
 ------------------
 
+- Enable accidentially disabled JS bundle in resource registry.
+  [jensens]
+
 - Give IImageCroppingBehavior a shortname.
   [jensens]
 
