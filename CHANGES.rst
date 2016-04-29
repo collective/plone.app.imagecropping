@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b3 (unreleased)
+2.0b3 (2016-04-29)
 ------------------
 
 - Enable accidentially disabled JS bundle in resource registry.
