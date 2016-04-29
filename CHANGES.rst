@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b2 (2016-04-29)
+2.0b3 (unreleased)
 ------------------
 
 - Enable accidentially disabled JS bundle in resource registry.
@@ -10,6 +10,10 @@ Changelog
 - Give IImageCroppingBehavior a shortname.
   [jensens]
 
+2.0b2 (2016-04-29)
+------------------
+
+- Brown bag release.
 
 2.0b1 (2016-03-29)
 ------------------
