@@ -72,5 +72,5 @@ class TestUninstall(unittest.TestCase):
             a.getAction(self)
             for a in self.portal['portal_controlpanel'].listActions()
             if a.getAction(self)['id'] == 'imagecropping.settings'
-        ][0]
-        self.assertFalse(action['visible'])
+        ]
+        self.assertEqual(len(action), 0)
