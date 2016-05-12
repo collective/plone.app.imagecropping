@@ -135,7 +135,7 @@ Design decisions
 Information about changes from version 1.x to 2.0
 -------------------------------------------------
 
-- Plone 5 only.
+- Plone 5.1 only.
 - New js library `cropper`_.
 - Complete Javascript rewrite using patterns.
 - New editor layout.
