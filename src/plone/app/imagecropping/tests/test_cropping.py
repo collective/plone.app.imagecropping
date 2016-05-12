@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
 from plone.app.imagecropping import PAI_STORAGE_KEY
-from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
+from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
 from plone.app.imagecropping.tests import dummy_named_blob_png_image
 from Products.CMFPlone.utils import _createObjectByType
@@ -15,7 +15,7 @@ import unittest
 
 class TestCroppingDX(unittest.TestCase):
 
-    layer = IMAGECROPPING_INTEGRATION
+    layer = IMAGECROPPING_FUNCTIONAL
 
     def setUp(self):
         self.app = self.layer['app']
@@ -46,8 +46,11 @@ class TestCroppingDX(unittest.TestCase):
         self.assertEqual((thumb.width, thumb.height), (128, 38))
 
         # there is also no annotations yet for cropped sizes on this image
-        self.assertIsNone(IAnnotations(self.img).get(PAI_STORAGE_KEY),
-                          'fresh image should not have any annotations')
+        self.assertEqual(
+            IAnnotations(self.img).get(PAI_STORAGE_KEY),
+            {},
+            'fresh image should not have any annotations'
+        )
 
         # store cropped version for thumb and check if the result
         # is a square now
@@ -67,7 +70,9 @@ class TestCroppingDX(unittest.TestCase):
         )
         self.assertEqual(
             IAnnotations(self.img).get(PAI_STORAGE_KEY)['image_thumb'],
-            (14, 14, 218, 218), 'wrong box information has been stored')
+            (14, 14, 218, 218),
+            'wrong box information has been stored'
+        )
 
     def test_accessing_images(self):
         """Test if accessing the images works for our users
@@ -75,16 +80,9 @@ class TestCroppingDX(unittest.TestCase):
 
         view = self.img.restrictedTraverse('@@crop-image')
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
-        traverse = self.portal.REQUEST.traverseName
 
-        # XXX: traversal does not seem to work in the DX test fixture
-        # # one way to access the cropped image is via the traverser
-        # # <fieldname>_<scalename>
-        # thumb = traverse(self.img, 'image_thumb')
-        # self.assertEqual((thumb.width, thumb.height), (128, 128))
-
-        # another is to use plone.app.imaging's ImageScaling view
-        scales = traverse(self.img, '@@images')
+        # another use-case: call plone.app.imaging's ImageScaling view
+        scales = self.img.restrictedTraverse('@@images')
         thumb2 = scales.scale('image', 'thumb')
         self.assertEqual(
             (thumb2.width, thumb2.height),

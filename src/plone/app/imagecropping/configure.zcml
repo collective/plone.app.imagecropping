@@ -42,6 +42,9 @@
   <!-- dexterity cropping adapter -->
   <adapter factory=".dx.CroppingUtilsDexterity" />
 
+  <!-- dexterity image scaling factory  -->
+  <adapter factory=".dx.CroppingImageScalingFactory" />
+
   <!-- dexterity behaviour -->
   <plone:behavior
       name="plone.imagecropping"

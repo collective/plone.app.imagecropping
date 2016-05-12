@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
+from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
-from plone.app.imaging.utils import getAllowedSizes
+from plone.app.imagecropping.storage import Storage
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.namedfile.interfaces import IImage
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.scale.scale import scaleImage
-from plone.scale.storage import AnnotationStorage
+from plone.namedfile.scaling import DefaultImageScalingFactory
+from plone.registry.interfaces import IRegistry
+from StringIO import StringIO
 from zope.component import adapter
+from zope.component._api import getUtility
 from zope.interface import implementer
 from zope.schema import getFieldsInOrder
 
-import time
+import PIL
 
 
 class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):
@@ -19,8 +22,58 @@ class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):
     """
 
 
-def _millis():
-    return int(time.time() * 1000)
+@adapter(IImageCroppingDX)  # this would work almost also on AT!
+class CroppingImageScalingFactory(DefaultImageScalingFactory):
+
+    def _crop(self, data, box, default_format='PNG'):
+        """crop data (image as open file) to box
+        """
+        image = PIL.Image.open(data)
+        image_format = image.format or default_format
+        cropped_image = image.crop(box)
+        cropped_image_file = StringIO()
+        cropped_image.save(cropped_image_file, image_format, quality=100)
+        cropped_image_file.seek(0)
+        return cropped_image_file
+
+    def create_scale(self, data, direction, height, width, **parameters):
+        if self.box or direction == 'down':
+            # do crop stuff first
+            data = self._crop(data, self.box)
+        return super(CroppingImageScalingFactory, self).create_scale(
+            data,
+            direction,
+            height,
+            width,
+            **parameters
+        )
+
+    def __call__(
+        self,
+        fieldname=None,
+        direction='thumbnail',
+        height=None,
+        width=None,
+        scale=None,
+        **parameters
+    ):
+        storage = Storage(self.context)
+        self.box = storage.read(fieldname, scale)
+        if self.box:
+            direction = 'down'
+        else:
+            registry = getUtility(IRegistry)
+            settings = registry.forInterface(ISettings)
+            if fieldname in settings.cropping_for:
+                direction = 'down'
+        return super(CroppingImageScalingFactory, self).__call__(
+            fieldname=fieldname,
+            direction=direction,
+            height=height,
+            width=width,
+            scale=scale,
+            **parameters
+        )
 
 
 @implementer(IImageCroppingUtils)
@@ -88,37 +141,5 @@ class CroppingUtilsDexterity(object):
     def save_cropped(self, fieldname, scale, image_file):
         """ see interface
         """
-        sizes = getAllowedSizes()
-        w, h = sizes[scale]
-
-        def crop_factory(fieldname, **parameters):
-            result = scaleImage(image_file.read(), **parameters)
-            if result is not None:
-                data, format, dimensions = result
-                mimetype = 'image/{0:s}'.format(format.lower())
-                field = self.get_image_field(fieldname)
-                value = field.__class__(
-                    data,
-                    contentType=mimetype,
-                    filename=field.filename
-                )
-                value.fieldname = fieldname
-                return value, format, dimensions
-
-        # call storage with actual time in milliseconds
-        # this always invalidates old scales
-        storage = AnnotationStorage(self.context, _millis)
-
-        # We need to pass direction='thumbnail' since this is the default
-        # used by plone.namedfile.scaling, also for retrieval of scales.
-        # Otherwise the key under which the scaled and cropped image is
-        # saved in plone.scale.storage.AnnotationStorage will not match the
-        # key used for retrieval (= the cropped scaled image will not be
-        # found)
-        storage.scale(
-            factory=crop_factory,
-            direction='thumbnail',
-            fieldname=fieldname,
-            width=w,
-            height=h,
-        )
+        # BBB - this is superseeded by usage of scaling factories
+        pass

@@ -45,6 +45,8 @@ class IImageCroppingUtils(Interface):
         """ Save the cropped iamge under the name of the selected scale in
             plone.scale.storage.AnnotationStorage, so that it is available
             in plone.app.imaging @@images view
+
+            BBB - this is superseeded by usage of scaling factories
         """
 
 

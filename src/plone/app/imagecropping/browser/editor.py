@@ -3,6 +3,7 @@ from operator import itemgetter
 from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
+from plone.app.imagecropping.storage import Storage
 from plone.app.imaging.utils import getAllowedSizes
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
@@ -102,11 +103,8 @@ class CroppingEditor(BrowserView):
         min_width, min_height = self._min_size(true_size, target_size)
 
         # lookup saved crop info
-        current_box = api.content.get_view(
-            'crop-image',
-            self.context,
-            self.request
-        )._read(fieldname, scale_id)
+        storage = Storage(self.context)
+        current_box = storage.read(fieldname, scale_id)
 
         if current_box is None:
             current_box = self._initial_size(true_size, target_size)

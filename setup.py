@@ -18,7 +18,7 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Plone',
-        'Framework :: Plone :: 5.0',
+        'Framework :: Plone :: 5.1',
         'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
         'Operating System :: OS Independent',
@@ -38,7 +38,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone>5.0.2',
+        'Products.CMFPlone>=5.1.a1',
+        'plone.namedfile>=3.999',
         'setuptools',
     ],
     extras_require={

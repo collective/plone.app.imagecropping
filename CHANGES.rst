@@ -4,13 +4,16 @@ Changelog
 2.0b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix: Scales got lost after content with image was modified.
+  This is solved by using the new scale factories from ``plone.scale``/``plone.namedfile``.
+  Needs plone.namedfile 4.0+ and plone.scale 1.5+.
+  [jensens]
 
 
 2.0b3 (2016-04-29)
 ------------------
 
-- Enable accidentially disabled JS bundle in resource registry.
+- Fix: Enable accidentially disabled JS bundle in resource registry.
   [jensens]
 
 
