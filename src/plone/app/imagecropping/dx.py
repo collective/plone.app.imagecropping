@@ -37,7 +37,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         return cropped_image_file
 
     def create_scale(self, data, direction, height, width, **parameters):
-        if self.box or direction == 'down':
+        if self.box:
             # do crop stuff first
             data = self._crop(data, self.box)
         return super(CroppingImageScalingFactory, self).create_scale(
@@ -64,7 +64,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         else:
             registry = getUtility(IRegistry)
             settings = registry.forInterface(ISettings)
-            if fieldname in settings.cropping_for:
+            if scale in settings.cropping_for:
                 direction = 'down'
         return super(CroppingImageScalingFactory, self).__call__(
             fieldname=fieldname,
