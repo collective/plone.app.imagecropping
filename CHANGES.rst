@@ -37,6 +37,9 @@ Changelog
 - Code refactoring and big overhaul to make it work with Plone 5 (only) and the new JS.
   [jensens]
 
+- Ensure cropped scales are re-generated, rather than uncropped ones, when stored scales go missing.
+  [alecm]
+
 - Housekeeping: upgrades at one place, zca decorators, travis caching
   [jensens]
 
