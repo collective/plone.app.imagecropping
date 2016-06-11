@@ -1,38 +1,58 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
+from Products.CMFPlone.utils import _createObjectByType
+from os.path import dirname
+from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
-from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
-from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
-from plone.app.imagecropping.tests import dummy_named_blob_png_image
+from plone.app.imagecropping.testing import \
+    PLONE_APP_IMAGECROPPING_INTEGRATION_DX
+from plone.namedfile.file import NamedBlobImage
 from plone.scale.storage import AnnotationStorage
-from Products.CMFPlone.utils import _createObjectByType
 from unittest2.case import skip
 from zope import event
-
 from zope.annotation.interfaces import IAnnotations
 from zope.lifecycleevent import ObjectModifiedEvent
 
 import unittest
 
 
+def dummy_image():
+    filename = join(dirname(__file__), u'plone-logo.png')
+    return NamedBlobImage(
+        data=open(filename, 'r').read(),
+        filename=filename
+    )
+
+
 class TestCroppingDX(unittest.TestCase):
 
-    layer = IMAGECROPPING_INTEGRATION
+    layer = PLONE_APP_IMAGECROPPING_INTEGRATION_DX
 
     def setUp(self):
         self.app = self.layer['app']
         self.portal = self.layer['portal']
 
-        _createObjectByType(
-            'Image',
-            self.portal,
-            'testimage',
-            title='I\'m a testing Image'
-        )
+        _createObjectByType('Image', self.portal, 'testimage',
+                            title='I\'m a testing Image')
 
         self.img = self.portal.testimage
-        self.img.image = dummy_named_blob_png_image()
+        self.img.image = dummy_image()
+
+    def _jpegImage(self):
+        """Convert our testimage to jpeg format and return it's data
+        """
+
+        from cStringIO import StringIO
+        from PIL.Image import open
+
+        img = open(file(join(dirname(tests.__file__), 'plone-logo.png')))
+        out = StringIO()
+        img.save(out, format='JPEG', quality=75)
+        out.seek(0)
+        result = out.getvalue()
+        out.close()
+        return result
 
     def test_image_and_annotation(self):
         """Check that our cropping view is able to store a cropped image
@@ -63,11 +83,9 @@ class TestCroppingDX(unittest.TestCase):
         # this allows us to fire up the editor with the correct box when
         # editing the scale and it also allows us to identify if a scale
         # is cropped or simply resized
-        self.assertEqual(
-            IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
-            ['image_thumb'],
-            'there\'s only one scale that is cropped'
-        )
+        self.assertEqual(IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
+                         ['image_thumb'],
+                         "there's only one scale that is cropped")
         self.assertEqual(
             IAnnotations(self.img).get(PAI_STORAGE_KEY)['image_thumb'],
             (14, 14, 218, 218), 'wrong box information has been stored')
@@ -121,7 +139,7 @@ class TestCroppingDX(unittest.TestCase):
         # and test if created scale is jpeg too
         _createObjectByType('Image', self.portal, 'testjpeg')
         jpg = self.portal.testjpeg
-        jpg.image = dummy_named_blob_jpg_image()
+        jpg.image = NamedBlobImage(data=self._jpegImage())
 
         org_data = StringIO(jpg.image.data)
         self.assertEqual(open(org_data).format, 'JPEG')
@@ -200,7 +218,7 @@ class TestCroppingDX(unittest.TestCase):
         self.assertEqual((cropped.width, cropped.height), (128, 128))
 
         # upload another image file
-        self.img.image = dummy_named_blob_jpg_image()
+        self.img.image = NamedBlobImage(data=self._jpegImage())
         event.notify(ObjectModifiedEvent(self.img))
 
         # XXX: traversal does not seem to work in the DX test fixture
@@ -306,7 +324,9 @@ class TestCroppingDX(unittest.TestCase):
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
 
         thumb = scales.scale('image', 'thumb')
-        self.assertNotEqual(thumb.data, uncropped_thumb.data)
+        self.assertNotEqual(
+            (uncropped_thumb.width, uncropped_thumb.height),
+            (thumb.width, thumb.height))
 
         storage = AnnotationStorage(self.img)
         self.assertEqual(len(storage), 1)
@@ -318,4 +338,6 @@ class TestCroppingDX(unittest.TestCase):
         # Newly created scale should be cropped
         scales = traverse(self.img, '@@images')
         new_thumb = scales.scale('image', 'thumb')
-        self.assertEqual(new_thumb.data, thumb.data)
+        self.assertEqual(
+            (new_thumb.width, new_thumb.height),
+            (thumb.width, thumb.height))
