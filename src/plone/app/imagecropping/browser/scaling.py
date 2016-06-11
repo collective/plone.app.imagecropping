@@ -44,6 +44,9 @@ class ScalingOverrides(object):
         if cropped:
             return cropped.get('{0:s}_{1:s}'.format(fieldname, scale))
 
+    def _wrap_image(self, data, fmt='PNG', fieldname=None):
+        return data
+
     def _cropped_image(self, fieldname, box, direction='keep', **parameters):
         croputils = IImageCroppingUtils(self.context)
         data = croputils.get_image_data(fieldname)
@@ -61,8 +64,10 @@ class ScalingOverrides(object):
             imaging_schema = IImagingSchema(getSite())
             parameters['quality'] = getattr(imaging_schema, 'quality', None)
 
-        return scaleImage(cropped_image_file, direction=direction,
-                          **parameters)
+        data, fmt, size = scaleImage(cropped_image_file, direction=direction,
+                                     **parameters)
+
+        return self._wrap_image(data, fmt, fieldname), fmt, size
 
     def create(self, fieldname, direction='keep', **parameters):
         """ override factory for image scale creation to perform cropping,

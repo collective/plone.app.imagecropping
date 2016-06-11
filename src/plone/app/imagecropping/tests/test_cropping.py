@@ -6,6 +6,7 @@ from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION
+from plone.scale.storage import AnnotationStorage
 from zope.annotation.interfaces import IAnnotations
 
 import unittest
@@ -276,3 +277,28 @@ class TestCroppingAT(unittest.TestCase):
             (auto_crop.width, auto_crop.height),
             (manual_crop.width, manual_crop.height))
         self.assertNotEqual(auto_crop.data, manual_crop.data)
+
+    def test_crops_recreated(self):
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        uncropped_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+
+        thumb = scales.scale('image', 'thumb')
+        self.assertNotEqual(thumb.data, uncropped_thumb.data)
+
+        storage = AnnotationStorage(self.img)
+        self.assertEqual(len(storage), 1)
+
+        # Maunally clear image crops from storage
+        storage.clear()
+        self.assertEqual(len(storage), 0)
+
+        # Newly created scale should be cropped
+        scales = traverse(self.img, '@@images')
+        new_thumb = scales.scale('image', 'thumb')
+        self.assertEqual(new_thumb.data, thumb.data)

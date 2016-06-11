@@ -33,14 +33,12 @@ class ImageScalingDX(ScalingOverrides, NFImageScaling):
         return super(ImageScalingDX, self).scale(
             fieldname, scale, height, width, direction, **parameters)
 
-    def _cropped_image(self, fieldname, box, direction='keep', **parameters):
+    def _wrap_image(self, data, fmt='PNG', fieldname=None):
+        if not fieldname:
+            return
         orig_value = getattr(self.context, fieldname)
         if orig_value is None:
             return
-
-        data, fmt, dimensions = super(ImageScalingDX, self)._cropped_image(
-            fieldname, box, direction, **parameters)
-
         mimetype = 'image/%s' % fmt.lower()
         value = orig_value.__class__(
             data, contentType=mimetype, filename=orig_value.filename)

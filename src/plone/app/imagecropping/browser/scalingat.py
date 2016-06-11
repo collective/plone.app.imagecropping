@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .scaling import ScalingOverrides
 from plone.app.imaging.scaling import ImageScaling as BaseImageScaling
+from ZODB.blob import Blob
 
 
 class ImageScalingAT(ScalingOverrides, BaseImageScaling):
@@ -16,6 +17,13 @@ class ImageScalingAT(ScalingOverrides, BaseImageScaling):
             return super(ImageScalingAT, self).modified()
         else:
             return 1
+
+    def _wrap_image(self, data, fmt='PNG', fieldname=None):
+        blob = Blob()
+        result = blob.open('w')
+        result.write(data)
+        result.close()
+        return blob
 
     def scale(self, fieldname=None, scale=None, height=None, width=None,
               **parameters):
