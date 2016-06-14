@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+- Ensure cropped scales are re-generated, rather than uncropped ones, when stored scales go missing.
+  [alecm]
+
 - Housekeeping: upgrades at one place, zca decorators, travis caching
   [jensens]
 

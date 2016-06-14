@@ -8,6 +8,7 @@ from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import \
     PLONE_APP_IMAGECROPPING_INTEGRATION_DX
 from plone.namedfile.file import NamedBlobImage
+from plone.scale.storage import AnnotationStorage
 from unittest2.case import skip
 from zope import event
 from zope.annotation.interfaces import IAnnotations
@@ -311,3 +312,39 @@ class TestCroppingDX(unittest.TestCase):
             (auto_crop.width, auto_crop.height),
             (manual_crop.width, manual_crop.height))
         self.assertNotEqual(auto_crop.data, manual_crop.data)
+
+    def test_crops_recreated(self):
+        view = self.img.restrictedTraverse('@@crop-image')
+        traverse = self.portal.REQUEST.traverseName
+        scales = traverse(self.img, '@@images')
+        uncropped_thumb = scales.scale('image', 'thumb')
+
+        # store cropped version for thumb and check if the result
+        # is a square now
+        view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
+
+        thumb = scales.scale('image', 'thumb')
+        self.assertNotEqual(
+            (uncropped_thumb.width, uncropped_thumb.height),
+            (thumb.width, thumb.height))
+
+        storage = AnnotationStorage(self.img)
+        orig_len = len(storage)
+        self.assertGreaterEqual(orig_len, 1)
+
+        # Maunally clear image crops from storage (clear doesn't work on Plone 4.2?)
+        for k in storage.keys():
+            try:
+                del storage[k]
+            except KeyError:
+                pass
+
+        # We have removed some, but not (on Plone 4.2) all items
+        self.assertLess(len(storage), orig_len)
+
+        # Newly created scale should be cropped
+        scales = traverse(self.img, '@@images')
+        new_thumb = scales.scale('image', 'thumb')
+        self.assertEqual(
+            (new_thumb.width, new_thumb.height),
+            (thumb.width, thumb.height))
