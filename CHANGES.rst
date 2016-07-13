@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b4 (unreleased)
+2.0b4 (2016-07-13)
 ------------------
 
 - Fix: Scales got lost after content with image was modified.
