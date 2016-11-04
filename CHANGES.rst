@@ -4,6 +4,9 @@ Changelog
 2.0b5 (unreleased)
 ------------------
 
+- Align editor template layout to Plone standards and place it within ``content-core`` macros.
+  [thet]
+
 - Restrict image in navigation tab to not exceed the tabs size.
   [thet]
 
