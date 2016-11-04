@@ -4,7 +4,8 @@ Changelog
 2.0b5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restrict image in navigation tab to not exceed the tabs size.
+  [thet]
 
 
 2.0b4 (2016-07-13)
