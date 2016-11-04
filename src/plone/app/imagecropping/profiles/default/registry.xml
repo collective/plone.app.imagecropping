@@ -42,7 +42,7 @@
     <value key="enabled">True</value>
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-compiled.js</value>
     <value key="csscompilation">++resource++plone.app.imagecropping.static/imagecropping.css</value>
-    <value key="last_compilation">2015-11-26 00:00:00</value>
+    <value key="last_compilation">2016-11-04 00:00:00</value>
     <value key="compile">True</value>
     <value key="depends">plone-logged-in</value>
 
