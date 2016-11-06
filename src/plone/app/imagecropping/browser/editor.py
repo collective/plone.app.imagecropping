@@ -4,7 +4,7 @@ from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imagecropping.storage import Storage
-from plone.app.imaging.utils import getAllowedSizes
+from plone.namedfile.interfaces import IAvailableSizes
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from zope.component._api import getUtility
@@ -139,8 +139,9 @@ class CroppingEditor(BrowserView):
     def _scales(self, fieldname):
         constrain_cropping = self._editor_settings.constrain_cropping
         cropping_for = self._editor_settings.cropping_for
+        allowed_sizes = getUtility(IAvailableSizes)() or []
         sizes_iterator = sorted(
-            getAllowedSizes().iteritems(),
+            allowed_sizes.iteritems(),
             key=itemgetter(1)
         )
         for scale_id, target_size in sizes_iterator:
