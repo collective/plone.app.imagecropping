@@ -10,7 +10,7 @@
 Why do I need this?
 ===================
 
-Automatic cropping is already possible, `plone.app.imaging`_ does already handle this via the ``direction`` parameter::
+Automatic cropping is already possible, `plone.namedfile`_ does already handle this via the ``direction`` parameter::
 
   <img tal:define="scales context/@@images"
        tal:replace="structure python: scales.tag('image',
@@ -22,7 +22,7 @@ so in some ocasions this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually for each available image scale using the `cropper`_  Javascript library
 
-.. _`plone.app.imaging`: http://pypi.python.org/pypi/plone.app.imaging
+.. _`plone.namedfile`: http://pypi.python.org/pypi/plone.namedfile
 .. _`cropper`: https://github.com/fengyuanchen/cropper
 
 
@@ -119,7 +119,7 @@ Design decisions
 
 * make this package as minimally invasive as possible
 
-  - therefore we store the cropped image immediately, so plone.app.imaging
+  - therefore we store the cropped image immediately, so ``plone.namedfile``
     traverser doesn't need to care about cropping
 
   - users can access cropped images the same way as the access scales
@@ -160,8 +160,8 @@ Do not use it directly on your, but use the marker to bind view or other adapter
 Possible extensions / changes for the future
 --------------------------------------------
 
-* allow to mark scales as `auto-croppable` in the plone.app.imaging controlpanel.
-  this enables cropped scales w/o manually defining the cropping area but would require some changes in plone.app.imaging
+* allow to mark scales as `auto-croppable` in the imaging controlpanel.
+  this enables cropped scales w/o manually defining the cropping area but would require some changes in Plone
   (extend traverser, change controlpanel)
 
 * see also the `issue tracker <https://github.com/collective/plone.app.imagecropping/issues>`_

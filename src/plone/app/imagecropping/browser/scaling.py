@@ -14,7 +14,9 @@ class ScalingOverrides(object):
 
            since the self.modified() method does not know about the
            currently requested scale name, we need to use the _allow_rescale
-           property
+           property.
+
+           AT only! Solved for dexterity.
         """
         cropped = IAnnotations(self.context).get(PAI_STORAGE_KEY)
         if cropped and '{0:s}_{1:s}'.format(fieldname, scale) in cropped:

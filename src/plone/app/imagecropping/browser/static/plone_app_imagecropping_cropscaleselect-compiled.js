@@ -102,8 +102,7 @@ require([
       $preview.height(height);
     },
     init: function() {
-      var self = this,
-          selector = 'div.crop-preview';
+      var self = this;
       $('nav a', self.$el).each(
         function(findex) {
           var nava = this;
@@ -139,5 +138,5 @@ require([
   return ImageCropSelect;
 });
 
-define("/home/workspacejensens/bda.aaf.site/devsrc/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropscaleselect.js", function(){});
+define("/home/thet-data/data/dev/aaf/buildout-aaf/src-addons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropscaleselect.js", function(){});
 

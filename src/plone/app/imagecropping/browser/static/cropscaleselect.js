@@ -102,8 +102,7 @@ require([
       $preview.height(height);
     },
     init: function() {
-      var self = this,
-          selector = 'div.crop-preview';
+      var self = this;
       $('nav a', self.$el).each(
         function(findex) {
           var nava = this;
