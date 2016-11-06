@@ -42,11 +42,11 @@ class IImageCroppingUtils(Interface):
         """
 
     def save_cropped(fieldname, scale, image_file):
-        """ Save the cropped iamge under the name of the selected scale in
+        """ Save the cropped image under the name of the selected scale in
             plone.scale.storage.AnnotationStorage, so that it is available
             in plone.app.imaging @@images view
 
-            BBB - this is superseeded by usage of scaling factories
+            DEPRECATED/ BBB - this is superseeded by usage of scaling factories
         """
 
 
