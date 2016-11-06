@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b5 (unreleased)
+2.0b5 (2016-11-06)
 ------------------
 
 - Align editor template layout to Plone standards and place it within ``content-core`` macros.
