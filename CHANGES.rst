@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.0b3.1 (unreleased)
+--------------------
+
+- Add Spanish translation
+  [erral]
+
 2.0b3 (2016-04-29)
 ------------------
 
