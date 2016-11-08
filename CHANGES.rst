@@ -4,8 +4,8 @@ Changelog
 2.0b6 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add Spanish translation 
+  [erral]
 
 2.0b5 (2016-11-06)
 ------------------
