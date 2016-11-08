@@ -3,17 +3,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
 "POT-Creation-Date: 2016-03-29 18:17+0000\n"
-"PO-Revision-Date: 2013-03-21 11:55-0300\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-11-08 12:38+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Language-Team: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../browser/settings.py:28
 msgid "Crop Editor Large Size"
@@ -25,15 +27,15 @@ msgstr "Recortar"
 
 #: ../configure.zcml:50
 msgid "Enable Image Cropping"
-msgstr ""
+msgstr "Activar recortado de imágenes"
 
 #: ../browser/settings.py:42
 msgid "Enable to constrain croppable scales"
-msgstr ""
+msgstr "Seleccionar para limitar las escalas con soporte de recortado"
 
 #: ../browser/settings.py:43
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
-msgstr ""
+msgstr "Activar para reducir las escalas que se muestran para recortar en el listado de escalas con soporte de recortado."
 
 #: ../browser/editor.pt:10
 msgid "Image Cropping Editor"
@@ -45,20 +47,19 @@ msgstr "Configuración del recorte de imágenes"
 
 #: ../configure.zcml:22
 msgid "Image Cropping Support"
-msgstr ""
+msgstr "Soporte de recortado de imágenes"
 
 #: ../configure.zcml:30
 msgid "Image Cropping Uninstallation"
-msgstr ""
+msgstr "Desinstalar recortado de imágenes"
 
 #: ../configure.zcml:22
 msgid "Installs the plone.app.imagecropping package"
-msgstr ""
+msgstr "Instala el paquete plone.app.imagecropping"
 
-#: ../browser/editor.pt:19
-#: ../browser/settings.py:50
+#: ../browser/editor.pt:19 ../browser/settings.py:50
 msgid "List of scales with crop support"
-msgstr ""
+msgstr "Listado de escalas con soporte de recortado"
 
 #: ../browser/settings.py:35
 msgid "Minimum Crop Area Size"
@@ -66,23 +67,23 @@ msgstr "Tamaño del área mínima de recorte"
 
 #: ../configure.zcml:50
 msgid "Provides imagecropping functionality for DX contenttypes"
-msgstr ""
+msgstr "Añade la funcionalidad de recortado para elementos Dexterity"
 
 #: ../browser/settings.py:51
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
-msgstr ""
+msgstr "Seleccionar las escalas con soporte de recortado. Solo están activas si la opción está seleccionada."
 
 #: ../browser/editor.pt:91
 msgid "Selected"
-msgstr ""
+msgstr "Seleccionado"
 
 #: ../testing.zcml:16
 msgid "Steps to ease tests of plone.app.imagecropping"
-msgstr ""
+msgstr "Pasos para facilitar los tests de plone.app.imagecropping"
 
 #: ../configure.zcml:30
 msgid "Uninstalls resources from the plone.app.imagecropping package"
-msgstr ""
+msgstr "Desinstala los recursos del paquete plone.app.imagecropping"
 
 #: ../profiles/default/actions.xml
 msgid "View the image cropping editor for this object"
@@ -91,82 +92,82 @@ msgstr "Ver el editor de recorte de imágenes para este objeto"
 #. Default: "Remove"
 #: ../browser/editor.pt:104
 msgid "button_remove"
-msgstr ""
+msgstr "Eliminar"
 
 #. Default: "Reset"
 #: ../browser/editor.pt:108
 msgid "button_reset"
-msgstr ""
+msgstr "Restablecer"
 
 #. Default: "Save"
 #: ../browser/editor.pt:103
 msgid "button_save"
-msgstr ""
+msgstr "Guardar"
 
 #. Default: "Save all"
 #: ../browser/editor.pt:39
 msgid "button_save_all"
-msgstr ""
+msgstr "Guardar todos"
 
 #. Default: "Target dimensions are larger than original image."
 #: ../browser/editor.pt:73
 msgid "description_not_croppable"
-msgstr ""
+msgstr "Las dimensiones son mayores que el tamaño original"
 
 #. Default: "Instructions"
 #: ../browser/editor.pt:143
 msgid "instructions_heading"
-msgstr ""
+msgstr "Instrucciones"
 
 #. Default: "Define cropping areas for each scale of the available image-fields."
 #: ../browser/editor.pt:144
 msgid "instructions_p1"
-msgstr ""
+msgstr "Define las áreas de recortado para cada una de las escalas existentes en las imágenes."
 
 #. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
 #: ../browser/editor.pt:147
 msgid "instructions_p2"
-msgstr ""
+msgstr "Selecciona primero qué imagen quieres recortar: si hay más de una imagen en este elemento, utiliza las pestañas para seleccionarla. Para cada imagen hay una o más escalas predefinidas. Selecciona la escala a recortar utilizando el menú lateral."
 
 #. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
 #: ../browser/editor.pt:153
 msgid "instructions_p3"
-msgstr ""
+msgstr "Para recortar una imagen, arrastra el cuadro sobre la imagen principal hasta que cubra el área que quieres mostrar. Si el tamaña es menor que la escala, le previsualización se adapta. Utiliza el botón Guardar para almacenar el recorte en el servidor. El botón Restablecer restaura el estado a cuando hayas cargado la página, pudiendo ser la situación previa al recorte o -si ya había un recorte previo- al recorte previo."
 
 #. Default: "This cropping operation is non-destructive, which means your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
 #: ../browser/editor.pt:159
 msgid "instructions_p4"
-msgstr ""
+msgstr "Esta operación de recorte no es destructiva, es decir, la imagen original no desaparece al recortar. Eliminando una area, la escala se generará otra vez automáticamente a su funcionamiento habitual de redimensionado sin recortar."
 
 #. Default: "changed"
 #: ../browser/editor.pt:58
 msgid "label_changed"
-msgstr ""
+msgstr "modificado"
 
 #. Default: "cropped"
 #: ../browser/editor.pt:56
 msgid "label_cropped"
-msgstr ""
+msgstr "recortado"
 
 #. Default: "not croppable"
 #: ../browser/editor.pt:72
 msgid "label_not_croppable"
-msgstr ""
+msgstr "no se puede recortar"
 
 #. Default: "saving..."
 #: ../browser/editor.pt:59
 msgid "label_saving"
-msgstr ""
+msgstr "guardando..."
 
 #. Default: "uncropped"
 #: ../browser/editor.pt:57
 msgid "label_uncropped"
-msgstr ""
+msgstr "sin recortar"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
 #: ../browser/editor.pt:19
 msgid "noscales_message"
-msgstr ""
+msgstr "No hay escalas para recortar. Asegúrate de añadirlas en ${link} en el panel de control."
 
 #: ../browser/editor.pt:92
 msgid "offset"
@@ -175,11 +176,11 @@ msgstr ""
 #. Default: "Original ${size}"
 #: ../browser/editor.pt:86
 msgid "original_size"
-msgstr ""
+msgstr "Original ${size}"
 
 #: ../testing.zcml:16
 msgid "plone.app.imagecropping tests"
-msgstr ""
+msgstr "plone.app.imagecropping tests"
 
 #: ../browser/settings.py:29
 msgid "width:height"
