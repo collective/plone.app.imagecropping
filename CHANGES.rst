@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4 (unreleased)
+1.4 (2016-11-14)
 ----------------
 
 - Ensure cropped scales are re-generated, rather than uncropped ones, when stored scales go missing.
