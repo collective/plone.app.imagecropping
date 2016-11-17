@@ -138,5 +138,5 @@ require([
   return ImageCropSelect;
 });
 
-define("/home/thet-data/data/dev/aaf/buildout-aaf/src-addons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropscaleselect.js", function(){});
+define("/Users/peter/workspace/sba/srcaddons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropscaleselect.js", function(){});
 

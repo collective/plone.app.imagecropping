@@ -3282,5 +3282,5 @@ require([
   return ImageCropper;
 });
 
-define("/home/thet-data/data/dev/aaf/buildout-aaf/src-addons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropperpattern.js", function(){});
+define("/Users/peter/workspace/sba/srcaddons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/cropperpattern.js", function(){});
 
