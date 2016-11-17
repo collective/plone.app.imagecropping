@@ -30,3 +30,7 @@ after_failure:
   - bin/jshint --version
   - bin/jscs --version
   - firefox -v
+after_script:
+# Firefox may have trouble saying goodbye.
+# So kill it, but don't complain when it is not there.
+- pkill -9 firefox || true
