@@ -96,17 +96,17 @@
                           </div>
                           <div class="col-md-7 crop-buttons">
                               <div class="plone-btn-group pull-right">
-                                  <button class="plone-btn plone-btn-primary save"
+                                  <button class="plone-btn plone-btn-primary save standalone"
                                           disabled=""
                                           title="Store the choosen cropping area permanently on the server and scale area down to ${scale/target_width}px&times;${scale/target_height}px"
 
                                           i18n:attributes="button_save_description">
                                       <span i18n:translate="button_save">Save</span> ${python:view.field_label(fieldname)} ${python:scale['title']}</button>
-                                  <button class="plone-btn plone-btn-danger remove"
+                                  <button class="plone-btn plone-btn-danger remove standalone"
                                           title="Delete the manual choosen cropping area and auto scale on the server side."
                                           i18n:translate="button_remove"
                                           i18n:attributes="button_remove_description">Remove</button>
-                                  <button class="plone-btn plone-btn-warning reset"
+                                  <button class="plone-btn plone-btn-warning reset standalone"
                                           title="Set to initial value of ${scale/current/w}&times;${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}"
                                           i18n:translate="button_reset"
                                           i18n:attributes="button_reset_description">Reset</button>
