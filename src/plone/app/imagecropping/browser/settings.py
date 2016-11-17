@@ -25,20 +25,6 @@ class SizesVocabulary(object):
 class ISettings(Interface):
     ' Define settings data structure '
 
-    large_size = schema.TextLine(
-        title=_(u'Crop Editor Large Size'),
-        description=_(u'width:height'),
-        required=False,
-        default=u'768:768',
-    )
-
-    min_size = schema.TextLine(
-        title=_(u'Minimum Crop Area Size'),
-        description=_(u'width:height'),
-        required=False,
-        default=u'50:50',
-    )
-
     constrain_cropping = schema.Bool(
         title=_(u'Enable to constrain croppable scales'),
         description=_(u'Enable to reduce the scales shown for cropping in the '

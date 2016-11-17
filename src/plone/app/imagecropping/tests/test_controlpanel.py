@@ -49,14 +49,6 @@ class RegistryTestCase(unittest.TestCase):
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISettings)
 
-    def test_available_sections_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'large_size'))
-        self.assertEqual(self.settings.large_size, u'768:768')
-
-    def test_default_section_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'min_size'))
-        self.assertEqual(self.settings.min_size, u'50:50')
-
     def test_records_removed_on_uninstall(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
