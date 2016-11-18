@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b6 (unreleased)
+2.0b6 (2016-11-18)
 ------------------
 
 - Add Spanish translation 
