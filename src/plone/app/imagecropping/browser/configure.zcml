@@ -42,13 +42,4 @@
         permission="cmf.ModifyPortalContent"
         />
 
-    <browser:page
-        zcml:condition="installed Products.Archetypes"
-        for="plone.app.imagecropping.at.IImageCroppingAT"
-        name="images"
-        class=".scalingat.ImageScalingAT"
-        allowed_interface="plone.app.imaging.interfaces.IImageScaling"
-        permission="zope2.View"
-        />
-
 </configure>

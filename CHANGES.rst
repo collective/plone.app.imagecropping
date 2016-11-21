@@ -4,13 +4,15 @@ Changelog
 2.0b7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Depend on Products.CMFPlone instead of Plone (no Archetypes by default).
+  Fix conditional zcml.
+  [jensens]
 
 
 2.0b6 (2016-11-18)
 ------------------
 
-- Add Spanish translation 
+- Add Spanish translation
   [erral]
 
 2.0b5 (2016-11-06)

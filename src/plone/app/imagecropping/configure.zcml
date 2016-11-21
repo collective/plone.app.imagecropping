@@ -13,6 +13,10 @@
   <include package=".browser" />
   <include package=".upgrades" />
 
+  <configure zcml:condition="installed products.archetypes">
+    <include file="at.zcml" />
+  </configure>
+
   <genericsetup:registerProfile
       description="Installs the plone.app.imagecropping package"
       directory="profiles/default"
@@ -53,32 +57,5 @@
       provides=".behaviors.IImageCroppingBehavior"
   />
 
-  <!-- ATCT adapter -->
-  <configure zcml:condition="installed Products.ATContentTypes">
-    <class class="Products.ATContentTypes.content.image.ATImage">
-      <implements interface=".at.IImageCroppingAT" />
-    </class>
-    <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
-      <implements interface=".at.IImageCroppingAT" />
-    </class>
-  </configure>
-
-  <!-- ATBlob Adapter -->
-  <class
-      class="plone.app.blob.content.ATBlob"
-      zcml:condition="installed plone.app.blob">
-    <implements interface=".at.IImageCroppingAT" />
-  </class>
-
-  <!-- archetypes specific -->
-  <configure zcml:condition="installed Products.Archetypes">
-
-    <!-- archetypes cropping adapter-->
-    <adapter factory=".at.CroppingUtilsArchetype" />
-
-    <!-- Archetypes FIELDNAME_SCALE traverser adaptions -->
-    <adapter factory=".at.ImageTraverser" />
-
-  </configure>
 
 </configure>

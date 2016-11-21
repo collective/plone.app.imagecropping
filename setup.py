@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Plone>=5.1.a1',
+        'Products.CMFPlone>=5.1.a1',
         'plone.namedfile>=3.999',
         'setuptools',
     ],
