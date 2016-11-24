@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0b7 (unreleased)
-------------------
+2.0 (2016-11-24)
+----------------
 
 - Load plone_app_imagecropping bundle only for logged in users.
   [agitator]
