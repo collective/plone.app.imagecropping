@@ -27,7 +27,7 @@
 </tal:noScales>
 
 <tal:scales condition="python:view.show_cropping">
-  <div class="row pat-imagecrop-scaleselect imagecrop-tabs autotabs imagecropping"
+  <div class="pat-imagecrop-scaleselect imagecrop-tabs autotabs imagecropping"
        tal:define="image_field_names view/image_field_names">
       <nav class="col-md-12">
           <tal:loop tal:repeat="fieldname image_field_names">

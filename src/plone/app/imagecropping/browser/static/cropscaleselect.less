@@ -4,7 +4,11 @@
 
 .pat-imagecrop-scaleselect {
     @import "@{bowerPath}/bootstrap/less/labels.less";
+    &.autotabs {
+        padding: 1em;
+    }
     div.items.scaleselector {
+        margin-top: 5em;
         padding-left: 0px;
         padding-right: 0px;
         .list-group {
@@ -34,7 +38,7 @@
                     border-bottom-left-radius: 4px;
                 }
                 &.active {
-                    border-right: 0;
+                    // border-right: 0;
                     background: white;
                     cursor: default;
                 }
@@ -56,8 +60,14 @@
             }
         }
     }
+    #fieldset-image {
+        width: 100%;
+    }
+    div.allcroppingarea {
+        padding: 1em 1em 0 1em;
+    }
     div.singlecroppingarea {
-        padding-left: 0px;
+        padding-left: 1.5em;
         padding-right: 0px;
         .pat-image-crop {
             padding-left: 15px;
@@ -76,7 +86,7 @@
             }
         }
         .scale-info {
-            padding: 10px 6px 10px 12px;
+            padding: 0 6px 10px 0;
             .nowrap {
                 white-space: nowrap;
             }
@@ -105,7 +115,6 @@
         a {
             display: inline-block;
             margin: 0.5em 0 -1px 0.5em;
-            line-height: 32px;
             padding: 12px 12px;
             text-decoration: none;
             -webkit-border-radius: 4px 4px 0 0;
