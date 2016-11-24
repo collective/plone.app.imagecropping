@@ -11,6 +11,7 @@
 - Tom Gross (tom_gross)
 - Jens W. Klein (jensens)
 - Benjamin Stefaner (benniboy)
+- Peter Holzer (agitator)
 
 Credits
 -------

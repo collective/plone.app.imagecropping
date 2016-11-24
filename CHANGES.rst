@@ -4,6 +4,10 @@ Changelog
 2.0b7 (unreleased)
 ------------------
 
+- Updated styles
+  Removed unused settings
+  [agitator]
+
 - Depend on Products.CMFPlone instead of Plone (no Archetypes by default).
   Fix conditional zcml.
   [jensens]
