@@ -45,6 +45,7 @@
     <value key="last_compilation">2016-11-04 00:00:00</value>
     <value key="compile">True</value>
     <value key="depends">plone-logged-in</value>
+    <value key="expression">python: member is not None</value>
 
     <!-- these stubs are copied over from plone-logged-in and may need updates
          the whole js story isnt perfect her :/
