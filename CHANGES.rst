@@ -1,6 +1,9 @@
 Changelog
 =========
 
+NOTE: please use branch 1.4.x (for Plone 4.3) or 1.5.x (for Plone 5.0).
+
+
 1.4.1 (unreleased)
 ------------------
 

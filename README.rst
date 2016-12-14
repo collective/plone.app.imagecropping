@@ -1,3 +1,5 @@
+NOTE: please use branch 1.4.x (for Plone 4.3) or 1.5.x (for Plone 5.0).
+
 .. image:: https://travis-ci.org/collective/plone.app.imagecropping.png?branch=master
     :target: http://travis-ci.org/collective/plone.app.imagecropping
 
@@ -179,4 +181,3 @@ Possible extensions / changes for the future
 
 
 * see also the `issue tracker <https://github.com/collective/plone.app.imagecropping/issues>`_
-
