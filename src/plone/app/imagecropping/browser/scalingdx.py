@@ -39,7 +39,7 @@ class ImageScalingDX(ScalingOverrides, NFImageScaling):
         orig_value = getattr(self.context, fieldname)
         if orig_value is None:
             return
-        mimetype = 'image/%s' % fmt.lower()
+        mimetype = 'image/{0}'.format(fmt.lower())
         value = orig_value.__class__(
             data, contentType=mimetype, filename=orig_value.filename)
         value.fieldname = fieldname
