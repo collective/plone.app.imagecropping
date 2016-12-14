@@ -16,8 +16,8 @@ try:
     from plone.scale.scale import scaleImage
 except ImportError:
     logger = getLogger('plone.app.imaging')
-    logger.warn("Warning: no Python Imaging Libraries (PIL) found. "
-                "Can't scale images.")
+    logger.warn('Warning: no Python Imaging Libraries (PIL) found. '
+                'Cannot scale images.')
 
 
 class ScalingOverrides(object):
