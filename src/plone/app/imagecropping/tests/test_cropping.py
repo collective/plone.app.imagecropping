@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
 from plone.app.imagecropping import PAI_STORAGE_KEY
-from plone.app.imagecropping import tests
 from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
 from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
 from plone.app.imagecropping.tests import dummy_named_blob_png_image
