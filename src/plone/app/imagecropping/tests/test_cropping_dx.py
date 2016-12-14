@@ -4,7 +4,7 @@ from os.path import dirname
 from os.path import join
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping import tests
-from plone.app.imagecropping.testing import PLONE_APP_IMAGECROPPING_INTEGRATION_DX  # noqa
+from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
 from plone.namedfile.file import NamedBlobImage
 from plone.scale.storage import AnnotationStorage
 from Products.CMFPlone.utils import _createObjectByType
@@ -26,7 +26,7 @@ def dummy_image():
 
 class TestCroppingDX(unittest.TestCase):
 
-    layer = PLONE_APP_IMAGECROPPING_INTEGRATION_DX
+    layer = IMAGECROPPING_INTEGRATION
 
     def setUp(self):
         self.app = self.layer['app']

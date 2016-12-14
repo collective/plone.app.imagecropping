@@ -67,10 +67,12 @@ class TestUninstall(unittest.TestCase):
         )
 
     def test_controlpanel_removed(self):
-        # controlpanel configlets are not removed but set to invisible
+        # There was a remark here that controlpanel configlets are not removed
+        # but set to invisible, but this is not true.  If it suddenly *does*
+        # become true, this may be fine.
         action = [
             a.getAction(self)
             for a in self.portal['portal_controlpanel'].listActions()
             if a.getAction(self)['id'] == 'imagecropping.settings'
-        ][0]
-        self.assertFalse(action['visible'])
+        ]
+        self.assertFalse(action)
