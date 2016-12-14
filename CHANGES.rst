@@ -1,31 +1,23 @@
 Changelog
 =========
 
-2.0b3.1 (unreleased)
---------------------
+1.5 (unreleased)
+----------------
+
+- Moved changes from 2.0b3 to 1.5 so we can have a Plone 5.0 compatible release.
+  [erral, maurits]
 
 - Add Spanish translation
   [erral]
 
-2.0b3 (2016-04-29)
-------------------
-
 - Enable accidentially disabled JS bundle in resource registry.
   [jensens]
-
-
-2.0b2 (2016-04-01)
-------------------
 
 - Give IImageCroppingBehavior a shortname.
   [jensens]
 
 - Fix: Make croppingeditor play nice with pat-modal.
   [jensens]
-
-
-2.0b1 (2016-03-29)
-------------------
 
 - Run i18ndude and translated new/missing strings to German.
   [jensens]
@@ -36,6 +28,10 @@ Changelog
 
 - Code refactoring and big overhaul to make it work with Plone 5 (only) and the new JS.
   [jensens]
+
+
+1.4 (2016-11-14)
+----------------
 
 - Ensure cropped scales are re-generated, rather than uncropped ones, when stored scales go missing.
   [alecm]
