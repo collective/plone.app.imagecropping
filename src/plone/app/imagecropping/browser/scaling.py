@@ -2,14 +2,14 @@
 from cStringIO import StringIO
 from logging import exception
 from logging import getLogger
-
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.interfaces.controlpanel import IImagingSchema
-from zope.component import getUtility
-from zope.annotation.interfaces import IAnnotations
 from ZODB.POSException import ConflictError
+from zope.annotation.interfaces import IAnnotations
+from zope.component import getUtility
+
 
 try:
     import PIL.Image

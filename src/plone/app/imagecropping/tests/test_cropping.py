@@ -9,7 +9,6 @@ from plone.scale.storage import AnnotationStorage
 from Products.CMFPlone.utils import _createObjectByType
 from unittest2.case import skip
 from zope import event
-
 from zope.annotation.interfaces import IAnnotations
 from zope.lifecycleevent import ObjectModifiedEvent
 
