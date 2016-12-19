@@ -1,4 +1,4 @@
-require([
+define([
     'pat-base',
     'jquery'
 ], function(Base, $) {

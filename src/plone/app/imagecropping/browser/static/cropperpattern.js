@@ -1,4 +1,4 @@
-require([
+define([
     'pat-base',
     'jquery',
     'plone_app_imagecropping_cropper' // defines itself as jq plugin: Cropper
