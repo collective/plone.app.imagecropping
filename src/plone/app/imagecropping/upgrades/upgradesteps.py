@@ -49,3 +49,19 @@ def migrate0002to0003(context):
         settings.default_cropping_for = []
     logger.info('Registry cleanup operation performed')
     logger.info('Migrated to profile version 0003')
+
+
+def migrate2000to2001(context):
+    setup_tool = getToolByName(context, 'portal_setup')
+    setup_tool.runImportStepFromProfile(PROFILE_ID, 'plone.app.registry')
+
+    registry = queryUtility(IRegistry)
+    settings = registry.forInterface(ISettings, check=False)
+    if not hasattr(settings, 'constrain_cropping'):
+        settings.constrain_cropping = False
+    if not hasattr(settings, 'cropping_for'):
+        settings.cropping_for = []
+    if not hasattr(settings, 'default_cropping_for'):
+        settings.default_cropping_for = []
+    logger.info('Registry cleanup operation performed')
+    logger.info('Migrated to profile version 0003')

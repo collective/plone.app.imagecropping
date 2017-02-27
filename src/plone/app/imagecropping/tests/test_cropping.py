@@ -5,7 +5,7 @@ from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
 from plone.app.imagecropping.tests import dummy_named_blob_png_image
 from Products.CMFPlone.utils import _createObjectByType
-from unittest2.case import skip
+from unittest.case import skip
 from zope import event
 from zope.annotation.interfaces import IAnnotations
 from zope.lifecycleevent import ObjectModifiedEvent

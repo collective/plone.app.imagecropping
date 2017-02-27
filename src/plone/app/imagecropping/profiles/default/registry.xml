@@ -33,16 +33,24 @@
   </records>
 
   <records
+      prefix="plone.resources/plone_app_imagecropping"
+      interface="Products.CMFPlone.interfaces.IResourceRegistry">
+    <value key="js">++resource++plone.app.imagecropping.static/bundle.js</value>
+    <value key="css">
+      <element>++resource++plone.app.imagecropping.static/bundle.less</element>
+    </value>
+  </records>
+
+  <records
       interface="Products.CMFPlone.interfaces.IBundleRegistry"
       prefix="plone.bundles/plone_app_imagecropping">
     <value key="resources">
-      <element>plone_app_imagecropping_cropperpattern</element>
-      <element>plone_app_imagecropping_cropscaleselect</element>
+      <element>plone_app_imagecropping</element>
     </value>
     <value key="enabled">True</value>
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-compiled.js</value>
     <value key="csscompilation">++resource++plone.app.imagecropping.static/imagecropping.css</value>
-    <value key="last_compilation">2016-11-04 00:00:00</value>
+    <value key="last_compilation">2016-12-19 00:00:00</value>
     <value key="compile">True</value>
     <value key="depends">plone-logged-in</value>
     <value key="expression">python: member is not None</value>

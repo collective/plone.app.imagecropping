@@ -4,7 +4,8 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Register resources according to Plone best practices.
+  [thet]
 
 
 2.0 (2016-11-24)
