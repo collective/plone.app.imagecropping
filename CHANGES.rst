@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
+2.0.1 (2017-02-27)
 ------------------
 
 - Register resources according to Plone best practices.
