@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.app.imagecropping\n"
+"POT-Creation-Date: 2016-03-29 18:17+0000\n"
+"PO-Revision-Date: 2012-10-15 15:39+0100\n"
+"Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
+"Language-Team: themask96\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Language: Italian\n"
+"X-Generator: Poedit 1.5.3\n"
+
+#: ../browser/settings.py:28
+msgid "Crop Editor Large Size"
+msgstr ""
+
+#: ../profiles/default/actions.xml
+msgid "Cropping"
+msgstr "Ritaglio miniature"
+
+#: ../configure.zcml:50
+msgid "Enable Image Cropping"
+msgstr "Abilita il ritaglio delle immagini"
+
+#: ../browser/settings.py:42
+msgid "Enable to constrain croppable scales"
+msgstr "Limita le miniature ritagliabili"
+
+#: ../browser/settings.py:43
+msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
+msgstr "Con questa impostazione abilitata, si può decidere quali miniature poter ritagliare con l'editor."
+
+#: ../browser/editor.pt:10
+msgid "Image Cropping Editor"
+msgstr "Editor per il ritaglio delle miniature"
+
+#: ../browser/settings.py:76
+msgid "Image Cropping Settings"
+msgstr "Impostazioni per il ritaglio delle miniature"
+
+#: ../configure.zcml:22
+msgid "Image Cropping Support"
+msgstr ""
+
+#: ../configure.zcml:30
+msgid "Image Cropping Uninstallation"
+msgstr ""
+
+#: ../configure.zcml:22
+msgid "Installs the plone.app.imagecropping package"
+msgstr "Installa il prodotto plone.app.imagecropping"
+
+#: ../browser/editor.pt:19
+#: ../browser/settings.py:50
+msgid "List of scales with crop support"
+msgstr "Elenco delle miniature con il supporto per il ritaglio"
+
+#: ../browser/settings.py:35
+msgid "Minimum Crop Area Size"
+msgstr "Dimensione minima dell'area di ritaglio"
+
+#: ../configure.zcml:50
+msgid "Provides imagecropping functionality for DX contenttypes"
+msgstr "Aggiunge la funzionalità per il ritaglio delle miniature ai contenuti di tipo DX"
+
+#: ../browser/settings.py:51
+msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
+msgstr "Seleziona le miniature per cui abilitare il supporto del ritaglio immagini. Questo elenco è valido solo se è stato abilitato il campo precedente."
+
+#: ../browser/editor.pt:91
+msgid "Selected"
+msgstr "Selezionata"
+
+#: ../testing.zcml:16
+msgid "Steps to ease tests of plone.app.imagecropping"
+msgstr ""
+
+#: ../configure.zcml:30
+msgid "Uninstalls resources from the plone.app.imagecropping package"
+msgstr ""
+
+#: ../profiles/default/actions.xml
+msgid "View the image cropping editor for this object"
+msgstr "Visualizza l'editor di ritaglio miniature per questo oggetto"
+
+#. Default: "Remove"
+#: ../browser/editor.pt:104
+msgid "button_remove"
+msgstr "Rimuovi"
+
+#. Default: "Reset"
+#: ../browser/editor.pt:108
+msgid "button_reset"
+msgstr ""
+
+#. Default: "Save"
+#: ../browser/editor.pt:103
+msgid "button_save"
+msgstr "Salva"
+
+#. Default: "Save all"
+#: ../browser/editor.pt:39
+msgid "button_save_all"
+msgstr "Salva tutto"
+
+#. Default: "Target dimensions are larger than original image."
+#: ../browser/editor.pt:73
+msgid "description_not_croppable"
+msgstr "Le dimensioni della miniatura sono più grandi dell'immagine originale."
+
+#. Default: "Instructions"
+#: ../browser/editor.pt:143
+msgid "instructions_heading"
+msgstr "Istruzioni"
+
+#. Default: "Define cropping areas for each scale of the available image-fields."
+#: ../browser/editor.pt:144
+msgid "instructions_p1"
+msgstr "Definisci un'area di ritaglio per ogni miniatura dei campi immagine disponibili."
+
+#. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
+#: ../browser/editor.pt:147
+msgid "instructions_p2"
+msgstr "Per prima cosa seleziona quale immagine ritagliare: se il tipo di contenuto ha più di un campo immagine, utilizza i tab in cima per selezionare i vari campi. Per ogni immagine ci possono essere una o più miniature predefinite. Seleziona la miniatura da ritagliare nel menù laterale."
+
+#. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
+#: ../browser/editor.pt:153
+msgid "instructions_p3"
+msgstr "Per ritagliare una miniatura, sposta il riquadro nella posizione desiderata. Un'anteprima verrà mostrata immediatamente nel menù laterale. Se la dimensione dell'immagine nel menu laterale è più piccola della miniatura attualmente in elaborazione, l'anteprima verrà scalata di conseguenza. Per salvare le modifiche, premere sul bottone \"Salva\". Il bottone di Reset, ripristina le miniature allo stato iniziale (quando è stata caricata la pagina)."
+
+#. Default: "This cropping operation is non-destructive, which means your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
+#: ../browser/editor.pt:159
+msgid "instructions_p4"
+msgstr "Questa operazione di ritaglio non è distruttiva, cioè non va a sostituire completamente le miniature originali. Se si rimuove una modifica, verranno utilizzate le miniature originali generate in automatico."
+
+#. Default: "changed"
+#: ../browser/editor.pt:58
+msgid "label_changed"
+msgstr "modificata"
+
+#. Default: "cropped"
+#: ../browser/editor.pt:56
+msgid "label_cropped"
+msgstr "ritagliata"
+
+#. Default: "not croppable"
+#: ../browser/editor.pt:72
+msgid "label_not_croppable"
+msgstr "non ritagliabile"
+
+#. Default: "saving..."
+#: ../browser/editor.pt:59
+msgid "label_saving"
+msgstr "In salvataggio..."
+
+#. Default: "uncropped"
+#: ../browser/editor.pt:57
+msgid "label_uncropped"
+msgstr "non ritagliata"
+
+#. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
+#: ../browser/editor.pt:19
+msgid "noscales_message"
+msgstr "Non ci sono miniature da ritagliare. Controlla di averne aggiunte mediante il ${link} nel pannello di controllo."
+
+#: ../browser/editor.pt:92
+msgid "offset"
+msgstr ""
+
+#. Default: "Original ${size}"
+#: ../browser/editor.pt:86
+msgid "original_size"
+msgstr "Originale ${size}"
+
+#: ../testing.zcml:16
+msgid "plone.app.imagecropping tests"
+msgstr ""
+
+#: ../browser/settings.py:29
+msgid "width:height"
+msgstr ""

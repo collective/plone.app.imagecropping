@@ -18,6 +18,12 @@ def dummy_named_blob_png_image():
 def dummy_named_blob_jpg_image():
     img = Image.open(TEST_IMAGE_FILE)
     out = StringIO()
+    if img.mode in ('RGBA', 'LA'):
+        # need to remove the alpha channel for Pillow > 4.1.x
+        fill_color = '#FFFFFF'  # your background
+        background = Image.new(img.mode[:-1], img.size, fill_color)
+        background.paste(img, img.split()[-1])
+        img = background
     img.save(out, format='JPEG', quality=75)
     out.seek(0)
     bi = NamedBlobImage(data=out.getvalue())

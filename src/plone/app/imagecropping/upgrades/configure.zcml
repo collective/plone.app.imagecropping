@@ -47,4 +47,12 @@
       title="Upgrade plone.app.imagecropping to profile 2001"
   />
 
+  <gs:upgradeStep
+      description="Fix i18n domain for action button."
+      source="2001"
+      destination="2002"
+      handler=".upgradesteps.migrate2001to2002"
+      profile="plone.app.imagecropping:default"
+      title="Upgrade plone.app.imagecropping to profile 2002"
+  />
 </configure>
