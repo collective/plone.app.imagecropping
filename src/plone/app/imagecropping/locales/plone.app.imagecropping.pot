@@ -23,11 +23,11 @@ msgstr ""
 
 #: ../profiles/default/actions.xml
 msgid "Cropping"
-msgstr "Ritaglio miniature"
+msgstr ""
 
 #: ../configure.zcml:50
 msgid "Enable Image Cropping"
-msgstr "Abilita il Ritaglio delle miniature"
+msgstr ""
 
 #: ../browser/settings.py:42
 msgid "Enable to constrain croppable scales"
