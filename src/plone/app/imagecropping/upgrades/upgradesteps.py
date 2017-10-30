@@ -65,3 +65,9 @@ def migrate2000to2001(context):
         settings.default_cropping_for = []
     logger.info('Registry cleanup operation performed')
     logger.info('Migrated to profile version 0003')
+
+
+def migrate2001to2002(context):
+    setup_tool = getToolByName(context, 'portal_setup')
+    setup_tool.runImportStepFromProfile(PROFILE_ID, 'actions')
+    logger.info('Migrated to profile version 2002')
