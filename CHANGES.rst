@@ -4,8 +4,10 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add Italian translations.
+  [cekk]
+- Fix i18n domain for cropping action button
+  [cekk]
 
 2.0.1 (2017-02-27)
 ------------------
