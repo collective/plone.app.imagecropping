@@ -6,8 +6,12 @@ Changelog
 
 - Add Italian translations.
   [cekk]
+
 - Fix i18n domain for cropping action button
   [cekk]
+
+- Fix Archetypes compatibility.
+  [davisagli]
 
 2.0.1 (2017-02-27)
 ------------------
