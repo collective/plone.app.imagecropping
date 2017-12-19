@@ -13,7 +13,7 @@
   <include package=".browser" />
   <include package=".upgrades" />
 
-  <configure zcml:condition="installed products.archetypes">
+  <configure zcml:condition="installed Products.Archetypes">
     <include file="at.zcml" />
   </configure>
 

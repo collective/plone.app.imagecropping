@@ -12,6 +12,7 @@ before_install:
   - echo "[buildout]" > $HOME/.buildout/default.cfg
   - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
   - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+  - pip uninstall -y six
 install:
   - pip install -U zc.buildout setuptools pip
   - buildout -t 10 -Nc travis.cfg
