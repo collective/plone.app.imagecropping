@@ -127,9 +127,11 @@ class CroppingEditor(BrowserView):
             'w': current_box[2] - current_box[0],
             'h': current_box[3] - current_box[1],
         }
-        scale['aspect_ratio'] = '{0:.2f}'.format(
-            float(target_size[0]) / float(target_size[1])
-        )
+        scale['aspect_ratio'] = '1.777778'  # 16:9
+        if target_size[0] > 0 and target_size[1] > 0:
+            scale['aspect_ratio'] = '{0:.2f}'.format(
+                float(target_size[0]) / float(target_size[1])
+            )
         scale['can_scale'] = (
             target_size[0] <= true_size[0] and
             target_size[1] <= true_size[1]
