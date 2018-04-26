@@ -4,6 +4,9 @@ Changelog
 2.0.2 (unreleased)
 ------------------
 
+- Fix ``ZeroDivisionError`` when calculating the ``aspect_ratio`` for image sizes with one dimension set to ``0``.
+  [thet]
+
 - Add Italian translations.
   [cekk]
 
@@ -11,7 +14,7 @@ Changelog
   [cekk]
 
 - Fix Archetypes compatibility.
-  [davisagli]
+  [davisagli, thet]
 
 2.0.1 (2017-02-27)
 ------------------

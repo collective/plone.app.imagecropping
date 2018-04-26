@@ -1,25 +1,20 @@
 <configure
     i18n_domain="plone.app.imagecropping"
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:browser="http://namespaces.zope.org/browser">
   <!--
     ATCT adapter
   -->
-  <configure zcml:condition="installed Products.ATContentTypes">
-    <class class="Products.ATContentTypes.content.image.ATImage">
-      <implements interface=".at.IImageCroppingAT" />
-    </class>
-    <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
-      <implements interface=".at.IImageCroppingAT" />
-    </class>
-  </configure>
+  <class class="Products.ATContentTypes.content.image.ATImage">
+    <implements interface=".at.IImageCroppingAT" />
+  </class>
+  <class class="Products.ATContentTypes.content.newsitem.ATNewsItem">
+    <implements interface=".at.IImageCroppingAT" />
+  </class>
   <!--
     ATBlob Adapter
   -->
-  <class
-      class="plone.app.blob.content.ATBlob"
-      zcml:condition="installed plone.app.blob">
+  <class class="plone.app.blob.content.ATBlob">
     <implements interface=".at.IImageCroppingAT" />
   </class>
   <!--
