@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.2 (unreleased)
+2.1.0 (2018-07-03)
 ------------------
 
 - Fix ``ZeroDivisionError`` when calculating the ``aspect_ratio`` for image sizes with one dimension set to ``0``.
