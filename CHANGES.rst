@@ -4,7 +4,8 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Python 3 and Plone 5.2 compatibilty
+  [cillianderoiste]
 
 
 2.1.0 (2018-07-03)
