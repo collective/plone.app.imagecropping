@@ -40,6 +40,7 @@ setup(
         'Products.CMFPlone>=5.1.a1',
         'plone.namedfile>=3.999',
         'setuptools',
+        'six',
     ],
     extras_require={
         'test': [

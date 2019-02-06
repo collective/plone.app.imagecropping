@@ -64,7 +64,7 @@ class TestCroppingDX(unittest.TestCase):
         # editing the scale and it also allows us to identify if a scale
         # is cropped or simply resized
         self.assertEqual(
-            IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
+            list(IAnnotations(self.img).get(PAI_STORAGE_KEY).keys()),
             ['image_thumb'],
             'there\'s only one scale that is cropped'
         )

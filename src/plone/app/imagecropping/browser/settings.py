@@ -18,7 +18,7 @@ class SizesVocabulary(object):
 
     def __call__(self, context):
         allowed_sizes = getUtility(IAvailableSizes)()
-        size_names = allowed_sizes and allowed_sizes.keys() or []
+        size_names = allowed_sizes and list(allowed_sizes.keys()) or []
         return SimpleVocabulary.fromValues(size_names)
 
 
