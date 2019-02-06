@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
 from plone.app.testing import logout
@@ -10,6 +11,12 @@ from zope.component import getUtility
 
 import unittest
 
+try:
+    from Products.CMFPlone.utils import get_installer
+except ImportError:
+    # BBB for Plone 5.0 and lower.
+    get_installer = None
+
 
 class ControlPanelTestCase(unittest.TestCase):
 
@@ -18,7 +25,10 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.controlpanel = self.portal['portal_controlpanel']
-        self.qi_tool = self.portal['portal_quickinstaller']
+        if get_installer is None:
+            self.installer = api.portal.get_tool('portal_quickinstaller')
+        else:
+            self.installer = get_installer(self.portal)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_controlpanel_has_view(self):
@@ -45,13 +55,20 @@ class RegistryTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.qi_tool = self.portal['portal_quickinstaller']
+        if get_installer is None:
+            self.installer = api.portal.get_tool('portal_quickinstaller')
+        else:
+            self.installer = get_installer(self.portal)
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISettings)
 
     def test_records_removed_on_uninstall(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.qi_tool.uninstallProducts(products=['plone.app.imagecropping'])
+        if get_installer is None:
+            self.installer.uninstallProducts(
+                products=['plone.app.imagecropping'])
+        else:
+            self.installer.uninstall_product('plone.app.imagecropping')
 
         BASE_REGISTRY = \
             'plone.app.imagecropping.browser.settings.ISettings.{0:s}'
