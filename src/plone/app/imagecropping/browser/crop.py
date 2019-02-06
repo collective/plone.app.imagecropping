@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from cStringIO import StringIO
+from io import BytesIO
 from plone.app.imagecropping.dx import IImageCroppingDX
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imagecropping.storage import Storage
@@ -43,12 +43,12 @@ class CroppingView(BrowserView):
         croputils = IImageCroppingUtils(self.context)
         data = croputils.get_image_data(fieldname)
 
-        original_file = StringIO(data)
+        original_file = BytesIO(data)
         image = PIL.Image.open(original_file)
         image_format = image.format or self.DEFAULT_FORMAT
 
         cropped_image = image.crop(box)
-        cropped_image_file = StringIO()
+        cropped_image_file = BytesIO()
         cropped_image.save(cropped_image_file, image_format, quality=100)
         cropped_image_file.seek(0)
 
