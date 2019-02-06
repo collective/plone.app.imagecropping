@@ -36,7 +36,6 @@ class ControlPanelTestCase(unittest.TestCase):
             (self.portal, self.portal.REQUEST),
             name='imagecropping-settings'
         )
-        view = view.__of__(self.portal)
         self.assertTrue(view())
 
     def test_controlpanel_view_is_protected(self):
