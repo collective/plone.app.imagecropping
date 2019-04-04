@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from io import BytesIO
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
@@ -8,7 +9,6 @@ from plone.namedfile.interfaces import IImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.namedfile.scaling import DefaultImageScalingFactory
 from plone.registry.interfaces import IRegistry
-from StringIO import StringIO
 from zope.component import adapter
 from zope.component._api import getUtility
 from zope.interface import implementer
@@ -31,7 +31,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         image = PIL.Image.open(data)
         image_format = image.format or default_format
         cropped_image = image.crop(box)
-        cropped_image_file = StringIO()
+        cropped_image_file = BytesIO()
         cropped_image.save(cropped_image_file, image_format, quality=100)
         cropped_image_file.seek(0)
         return cropped_image_file

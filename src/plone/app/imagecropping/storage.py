@@ -27,14 +27,14 @@ class Storage(object):
             int(time.time())
         )
         # holzhammermethode
-        uids = scale_storage.keys()
+        uids = list(scale_storage.keys())
         for uid in uids:
             del scale_storage[uid]
 
     def remove(self, fieldname, scale, surpress_event=False):
         # remove info from annotation
         key = self._key(fieldname, scale)
-        if key in self._storage.keys():
+        if key in list(self._storage.keys()):
             del self._storage[key]
         self._invalidate_scale(fieldname, scale)
         if not surpress_event:

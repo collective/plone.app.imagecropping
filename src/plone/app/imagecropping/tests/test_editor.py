@@ -11,6 +11,7 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 from zope.component import getGlobalSiteManager
 
+import six
 import transaction
 import unittest
 
@@ -89,7 +90,7 @@ class EditorTestCase(unittest.TestCase):
         self.test_editview_crop(check_assert=False)
         self.test_editview_remove(check_assert=False)
 
-        self.assertItemsEqual(firedEvents, [
+        six.assertCountEqual(self, firedEvents, [
             CroppingInfoChangedEvent,
             CroppingInfoRemovedEvent,
         ])

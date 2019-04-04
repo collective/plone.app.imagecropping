@@ -64,7 +64,7 @@ class TestCroppingDX(unittest.TestCase):
         # editing the scale and it also allows us to identify if a scale
         # is cropped or simply resized
         self.assertEqual(
-            IAnnotations(self.img).get(PAI_STORAGE_KEY).keys(),
+            list(IAnnotations(self.img).get(PAI_STORAGE_KEY).keys()),
             ['image_thumb'],
             'there\'s only one scale that is cropped'
         )
@@ -94,9 +94,9 @@ class TestCroppingDX(unittest.TestCase):
         """make sure the scales have the same format as the original image
         """
 
-        from cStringIO import StringIO
+        from io import BytesIO
         from PIL.Image import open
-        org_data = StringIO(self.img.image.data)
+        org_data = BytesIO(self.img.image.data)
         self.assertEqual(open(org_data).format, 'PNG')
 
         view = self.img.restrictedTraverse('@@crop-image')
@@ -105,7 +105,7 @@ class TestCroppingDX(unittest.TestCase):
 
         scales = traverse(self.img, '@@images')
         cropped = scales.scale('image', 'thumb')
-        croppedData = StringIO(cropped.data._data)
+        croppedData = BytesIO(cropped.data._data)
         self.assertEqual(
             open(croppedData).format,
             'PNG',
@@ -118,13 +118,13 @@ class TestCroppingDX(unittest.TestCase):
         jpg = self.portal.testjpeg
         jpg.image = dummy_named_blob_jpg_image()
 
-        org_data = StringIO(jpg.image.data)
+        org_data = BytesIO(jpg.image.data)
         self.assertEqual(open(org_data).format, 'JPEG')
 
         view = jpg.restrictedTraverse('@@crop-image')
         view._crop(fieldname='image', scale='thumb', box=(14, 14, 218, 218))
         cropped = scales.scale('image', 'thumb')
-        croppedData = StringIO(cropped.data._data)
+        croppedData = BytesIO(cropped.data._data)
 
         # XXX: fixme
         # self.assertEqual(open(croppedData).format, 'JPEG',

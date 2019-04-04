@@ -8,6 +8,8 @@ from plone.namedfile.interfaces import IAvailableSizes
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from zope.component._api import getUtility
+import six
+from six.moves import map
 
 
 class CroppingEditor(BrowserView):
@@ -55,7 +57,7 @@ class CroppingEditor(BrowserView):
         """we need a best fit centered preselection to make editors life
         better.
         """
-        ix, iy = map(float, image_size)
+        ix, iy = list(map(float, image_size))
 
         # aspect ratio of original
         if iy > 0:
@@ -63,7 +65,7 @@ class CroppingEditor(BrowserView):
         else:
             ir = 1
 
-        sx, sy = map(float, scale_size)
+        sx, sy = list(map(float, scale_size))
 
         # aspect ratio of scale
         if sy > 0:
@@ -143,7 +145,7 @@ class CroppingEditor(BrowserView):
         cropping_for = self._editor_settings.cropping_for
         allowed_sizes = getUtility(IAvailableSizes)() or []
         sizes_iterator = sorted(
-            allowed_sizes.iteritems(),
+            six.iteritems(allowed_sizes),
             key=itemgetter(1)
         )
         for scale_id, target_size in sizes_iterator:
