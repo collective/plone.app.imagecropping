@@ -54,10 +54,12 @@ Scenario: Crop a two images fields containing type
 *** Variables *****************************************************************
 
 ${IMAGE_ID} =  my-image
+${BROWSER}  chrome
 
-# --- Given ------------------------------------------------------------------
 
 *** Keywords ******************************************************************
+
+# --- Given ------------------------------------------------------------------
 
 a image '${portal_type}'
   Create content  type=${portal_type}  id=my-image  title=My Image
@@ -68,7 +70,7 @@ a image '${portal_type}'
 I go to the cropping view
   Go to  ${PLONE_URL}/${IMAGE_ID}/view
   Click Link  link=Cropping
-  Page Should Contain Element  css=#coords
+  Page Should Contain Element  css=.pat-image-cropper
 
 I crop the images field '${fieldname}' at size '${scale}' to ${width} x ${height}
   TODO
