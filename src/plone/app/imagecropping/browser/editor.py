@@ -181,7 +181,7 @@ class CroppingEditor(BrowserView):
     def original_url(self, fieldname):
         """Returns the url to the unscaled image"""
         url = self.context.absolute_url()
-        return '{0}/images/{1}'.format(url, fieldname)
+        return '{0}/@@images/{1}'.format(url, fieldname)
 
     def field_label(self, fieldname):
         return self._croputils.get_image_label(fieldname)

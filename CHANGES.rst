@@ -4,6 +4,9 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
+- Fix bug when there is an 'images' folder inside context : #96
+  [laulaz]
+
 - Fix Python 3 and Plone 5.2 compatibilty
   [cillianderoiste]
 
