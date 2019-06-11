@@ -4,7 +4,8 @@ Changelog
 2.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add missing french translations
+  [mpeeters]
 
 
 2.2.0 (2019-04-24)

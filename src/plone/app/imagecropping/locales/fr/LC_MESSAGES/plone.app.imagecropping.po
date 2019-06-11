@@ -45,11 +45,11 @@ msgstr "Paramètres de découpe d'image"
 
 #: ../configure.zcml:22
 msgid "Image Cropping Support"
-msgstr ""
+msgstr "Support pour la découpe d'image"
 
 #: ../configure.zcml:30
 msgid "Image Cropping Uninstallation"
-msgstr ""
+msgstr "Désinstalle le module pour la découpe d'image"
 
 #: ../configure.zcml:22
 msgid "Installs the plone.app.imagecropping package"
@@ -74,7 +74,7 @@ msgstr "Sélectionnez les échelles avec prise en charge de la découpe. Actif u
 
 #: ../browser/editor.pt:91
 msgid "Selected"
-msgstr ""
+msgstr "Sélectionné"
 
 #: ../testing.zcml:16
 msgid "Steps to ease tests of plone.app.imagecropping"
@@ -91,77 +91,77 @@ msgstr "Voir l'éditeur de découpe d'image pour cet objet"
 #. Default: "Remove"
 #: ../browser/editor.pt:104
 msgid "button_remove"
-msgstr ""
+msgstr "Supprimer"
 
 #. Default: "Reset"
 #: ../browser/editor.pt:108
 msgid "button_reset"
-msgstr ""
+msgstr "Réinitialiser"
 
 #. Default: "Save"
 #: ../browser/editor.pt:103
 msgid "button_save"
-msgstr ""
+msgstr "Sauver"
 
 #. Default: "Save all"
 #: ../browser/editor.pt:39
 msgid "button_save_all"
-msgstr ""
+msgstr "Sauver toutes"
 
 #. Default: "Target dimensions are larger than original image."
 #: ../browser/editor.pt:73
 msgid "description_not_croppable"
-msgstr ""
+msgstr "La dimension souhaitée est plus large que l'image originale"
 
 #. Default: "Instructions"
 #: ../browser/editor.pt:143
 msgid "instructions_heading"
-msgstr ""
+msgstr "Instructions"
 
 #. Default: "Define cropping areas for each scale of the available image-fields."
 #: ../browser/editor.pt:144
 msgid "instructions_p1"
-msgstr ""
+msgstr "Definir les zones de découpe pour chaque échelle pour les champs images"
 
 #. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
 #: ../browser/editor.pt:147
 msgid "instructions_p2"
-msgstr ""
+msgstr "Pour commencer, sélectionné quelle image doit être découpée: Si il existe plus d'une image, utilisé les onglets en haut pour sélectionner l'image. Pour chaque image il existe une ou plusieurs échelles prédéfinies. Sélectionné une échelle à découper via le menu latéral."
 
 #. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
 #: ../browser/editor.pt:153
 msgid "instructions_p3"
-msgstr ""
+msgstr "Pour réaliser une découpe, utiliser le cadre sur l'image jusqu'à trouver la zone de découpe. Une prévisualisation est affichée automatiquement dans le menu latéral. Si la taille dans le menu latéral est plus petite que l'échelle souhaitée, la prévisualisation est redimensionnée pour s'adapter. Utilisé le bouton sauver pour enregistrer la découpe. Le bouton réinitialiser permet de revenir à l'état lors du chargement de la page, soit dans l'état non-découpé - si il y avait déjà une découpe - à la précédent découpe enregistrée."
 
 #. Default: "This cropping operation is non-destructive, which means your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
 #: ../browser/editor.pt:159
 msgid "instructions_p4"
-msgstr ""
+msgstr "L'opération de découpe est non destructrice, cela signifie que l'image originale n'est pas perdue lors d'une découpe. En supprimant un zone de découpe, l'échelle revient à son état initial: redimensionnée, non découpée."
 
 #. Default: "changed"
 #: ../browser/editor.pt:58
 msgid "label_changed"
-msgstr ""
+msgstr "modifiée"
 
 #. Default: "cropped"
 #: ../browser/editor.pt:56
 msgid "label_cropped"
-msgstr ""
+msgstr "découpée"
 
 #. Default: "not croppable"
 #: ../browser/editor.pt:72
 msgid "label_not_croppable"
-msgstr ""
+msgstr "non découpable"
 
 #. Default: "saving..."
 #: ../browser/editor.pt:59
 msgid "label_saving"
-msgstr ""
+msgstr "sauvegarde..."
 
 #. Default: "uncropped"
 #: ../browser/editor.pt:57
 msgid "label_uncropped"
-msgstr ""
+msgstr "non-découpée"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
 #: ../browser/editor.pt:19
@@ -170,12 +170,12 @@ msgstr "Il n'y a pas d'échelles pour la découpe. Veuillez en ajouter dans la $
 
 #: ../browser/editor.pt:92
 msgid "offset"
-msgstr ""
+msgstr "décalage"
 
 #. Default: "Original ${size}"
 #: ../browser/editor.pt:86
 msgid "original_size"
-msgstr ""
+msgstr "Original ${size}"
 
 #: ../testing.zcml:16
 msgid "plone.app.imagecropping tests"
