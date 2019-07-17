@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2.1 (unreleased)
+2.2.1 (2019-07-17)
 ------------------
 
 - Add missing french translations
