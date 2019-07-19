@@ -126,7 +126,7 @@ msgstr "Definir les zones de découpe pour chaque échelle pour les champs image
 #. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
 #: ../browser/editor.pt:147
 msgid "instructions_p2"
-msgstr "Pour commencer, sélectionné quelle image doit être découpée: Si il existe plus d'une image, utilisé les onglets en haut pour sélectionner l'image. Pour chaque image il existe une ou plusieurs échelles prédéfinies. Sélectionné une échelle à découper via le menu latéral."
+msgstr "Pour commencer, sélectionnez quelle image doit être découpée: S'il existe plus d'une image, utilisez les onglets en haut pour sélectionner l'image. Pour chaque image, il existe une ou plusieurs échelles prédéfinies. Sélectionnez une échelle à découper via le menu latéral."
 
 #. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
 #: ../browser/editor.pt:153
