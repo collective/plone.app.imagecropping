@@ -4,7 +4,8 @@ Changelog
 2.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid error when scale is not defined : #101
+  [laulaz]
 
 
 2.2.1 (2019-07-17)
