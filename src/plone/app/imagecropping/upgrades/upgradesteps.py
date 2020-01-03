@@ -29,6 +29,12 @@ class HiddenProfiles(object):
         """
         return [u"plone.app.imagecropping.upgrades"]
 
+    def getNonInstallableProfiles(self):  # pragma: no cover
+        """
+        No specific profiles to exclude.
+        """
+        return []
+
 
 def _cookResources(context):
     jstool = getToolByName(context, 'portal_javascripts')

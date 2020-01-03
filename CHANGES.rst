@@ -4,7 +4,8 @@ Changelog
 2.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Hide upgrade profiles from Plone add-on control panel.
+  [rpatterson]
 
 
 2.2.1 (2019-07-17)
