@@ -57,5 +57,7 @@ class Storage(object):
         notify(CroppingInfoChangedEvent(self.context))
 
     def read(self, fieldname, scale):
+        if not scale:
+            return
         key = self._key(fieldname, scale)
         return self._storage.get(key)
