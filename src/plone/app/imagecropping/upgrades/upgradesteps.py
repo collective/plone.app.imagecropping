@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+
+from zope import interface
+from zope.component import queryUtility
+
 from plone.app.imagecropping import PRODUCT_NAME
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.registry.interfaces import IRegistry
+from Products.CMFPlone import interfaces as plone_ifaces
 from Products.CMFPlone.utils import getToolByName
-from zope.component import queryUtility
 
 import logging
 
@@ -11,6 +15,25 @@ import logging
 logger = logging.getLogger(__name__)
 
 PROFILE_ID = 'profile-{0:s}:default'.format(PRODUCT_NAME)
+
+
+@interface.implementer(plone_ifaces.INonInstallable)
+class HiddenProfiles(object):
+    """
+    Exclude upgrade profiles on the Plone add-on control panel.
+    """
+
+    def getNonInstallableProducts(self):  # pragma: no cover
+        """
+        Exclude upgrade profiles on the Plone add-on control panel.
+        """
+        return [u"plone.app.imagecropping.upgrades"]
+
+    def getNonInstallableProfiles(self):  # pragma: no cover
+        """
+        No specific profiles to exclude.
+        """
+        return []
 
 
 def _cookResources(context):

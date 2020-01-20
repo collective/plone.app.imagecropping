@@ -6,6 +6,8 @@ Changelog
 
 - Avoid error when scale is not defined : #101
   [laulaz]
+- Hide upgrade profiles from Plone add-on control panel.
+  [rpatterson]
 
 
 2.2.1 (2019-07-17)

@@ -4,6 +4,11 @@
     xmlns:gs="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n">
 
+  <utility
+      factory=".upgradesteps.HiddenProfiles"
+      name="plone.app.imagecropping.upgrades"
+      provides="Products.CMFPlone.interfaces.INonInstallable"
+      />
   <gs:registerProfile
       name="upgrade_0003_to_0004"
       title="Upgrade policy GS profile to 0004"
