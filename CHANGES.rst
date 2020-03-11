@@ -1,11 +1,12 @@
 Changelog
 =========
 
-2.2.2 (unreleased)
+2.2.2 (2020-03-11)
 ------------------
 
 - Avoid error when scale is not defined : #101
   [laulaz]
+
 - Hide upgrade profiles from Plone add-on control panel.
   [rpatterson]
 
