@@ -47,7 +47,7 @@ msgstr "Cropping-Editor Einstellungen"
 
 #: ../configure.zcml:22
 msgid "Image Cropping Support"
-msgstr "Bild Zuschnitts Unterstützung"
+msgstr "Unterstützung für Bildzuschnitt"
 
 #: ../configure.zcml:30
 msgid "Image Cropping Uninstallation"
