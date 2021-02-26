@@ -90,6 +90,18 @@ class TestCroppingDX(unittest.TestCase):
             'imagescaling does not return cropped image'
         )
 
+    def test_accessing_custom_dimension(self):
+        """Test accessing an image with custom dimensions
+        """
+
+        scales = self.img.restrictedTraverse('@@images')
+        thumb3 = scales.scale('image', width=1200, height=800)
+        self.assertEqual(
+            (thumb3.width, thumb3.height),
+            (1200, 800),
+            'imagescaling does not return imgage with given dimensions'
+        )
+
     def test_image_formats(self):
         """make sure the scales have the same format as the original image
         """
