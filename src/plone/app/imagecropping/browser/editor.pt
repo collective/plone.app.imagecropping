@@ -96,7 +96,7 @@
                       <div tal:condition="scale/can_scale"
                            class="singlecroppingarea ${python:'d-block' if repeat.scale.start else 'd-none'}"
                            id="croppingarea-${fieldname}-${scale/id}">
-                          <div class="col-md-12 pat-image-cropper"
+                          <div class="pat-image-cropper"
                                data-pat-image-cropper="identifier: ${fieldname}-${scale/id};
                                                        fieldname: ${fieldname};
                                                        scalename: ${scale/id};
@@ -114,10 +114,10 @@
                                                        target_width: ${scale/target_width};
                                                        target_height: ${scale/target_height};">
 
-                              <img class="main-image" src="${python:view.original_url(fieldname)}"  />
+                              <img class="main-image" src="${python:view.original_url(fieldname)}" style="width:100%;height:auto" />
 
                           </div>
-                          <div class="col-md-12 scale-info mt-2">
+                          <div class="scale-info mt-2">
                               <span class="nowrap">
                                   <span i18n:translate="original_size">
                                       Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
