@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '2.2.3.dev0'
+version = '3.0.0.dev0'
 
 setup(
     name='plone.app.imagecropping',
@@ -41,7 +41,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone>=5.1.a1',
+        'Products.CMFPlone>=6.0a1.dev0',
         'plone.namedfile>=3.999',
         'setuptools',
         'six',

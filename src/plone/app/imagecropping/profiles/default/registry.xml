@@ -12,9 +12,6 @@
       interface="Products.CMFPlone.interfaces.IResourceRegistry"
       prefix="plone.resources/plone_app_imagecropping_cropper">
     <value key="js">++resource++plone.app.imagecropping.static/cropper-dist/cropper.js</value>
-    <value key="css">
-      <element>++resource++plone.app.imagecropping.static/cropper-dist/cropper.css</element>
-    </value>
   </records>
 
   <records
@@ -27,18 +24,12 @@
       interface="Products.CMFPlone.interfaces.IResourceRegistry"
       prefix="plone.resources/plone_app_imagecropping_cropscaleselect">
     <value key="js">++resource++plone.app.imagecropping.static/cropscaleselect.js</value>
-    <value key="css">
-      <element>++resource++plone.app.imagecropping.static/cropscaleselect.less</element>
-    </value>
   </records>
 
   <records
       prefix="plone.resources/plone_app_imagecropping"
       interface="Products.CMFPlone.interfaces.IResourceRegistry">
     <value key="js">++resource++plone.app.imagecropping.static/bundle.js</value>
-    <value key="css">
-      <element>++resource++plone.app.imagecropping.static/bundle.less</element>
-    </value>
   </records>
 
   <records
@@ -49,8 +40,8 @@
     </value>
     <value key="enabled">True</value>
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-compiled.js</value>
-    <value key="csscompilation">++resource++plone.app.imagecropping.static/imagecropping.css</value>
-    <value key="last_compilation">2016-12-19 00:00:00</value>
+    <value key="csscompilation">++resource++plone.app.imagecropping.static/cropper-dist/cropper.min.css</value>
+    <value key="last_compilation">2021-01-29 10:00:00</value>
     <value key="compile">True</value>
     <value key="depends">plone-logged-in</value>
     <value key="expression">python: member is not None</value>

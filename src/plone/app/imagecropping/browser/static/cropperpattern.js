@@ -195,16 +195,16 @@ define([
     },
     init: function() {
       var self = this,
-          area_inactive = self.$el.parent().hasClass('inactive'),
+          area_inactive = self.$el.parent().hasClass('d-none'),
           sel_select = '#select-' + self.options.identifier,
           sel_cropper = '#croppingarea-' + self.options.identifier,
           sel_form = '#croppingarea-' + self.options.identifier;
       self.identifier = self.options.identifier;
       self.$image = $('img.main-image', self.$el);
-      self.$badge_cropped = $(sel_select + ' .label.cropped');
-      self.$badge_uncropped = $(sel_select + ' .label.uncropped');
-      self.$badge_changed = $(sel_select + ' .label.changed');
-      self.$badge_saving = $(sel_select + ' .label.saving');
+      self.$badge_cropped = $(sel_select + ' .badge.cropped');
+      self.$badge_uncropped = $(sel_select + ' .badge.uncropped');
+      self.$badge_changed = $(sel_select + ' .badge.changed');
+      self.$badge_saving = $(sel_select + ' .badge.saving');
       self.$button_save = $(sel_form + ' button.save');
       self.$button_remove = $(sel_form + ' button.remove');
       self.$button_reset = $(sel_form + ' button.reset');

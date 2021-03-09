@@ -1,10 +1,11 @@
 Changelog
 =========
 
-2.2.3 (unreleased)
+2.3.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Plone6/Barecloneta LTS support
+  [petschki]
 
 
 2.2.2 (2020-03-11)

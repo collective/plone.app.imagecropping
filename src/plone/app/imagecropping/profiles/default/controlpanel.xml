@@ -9,7 +9,7 @@
         appId="ImageCroppingSettings"
         category="plone-content"
         condition_expr=""
-        icon_expr="string:$portal_url/++resource++plone.app.imagecropping.static/crop_icon.png"
+        icon_expr="string:crop"
         url_expr="string:${portal_url}/@@imagecropping-settings"
         visible="True"
         i18n:attributes="title">

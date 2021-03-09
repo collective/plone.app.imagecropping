@@ -3189,16 +3189,16 @@ define('plone_app_imagecropping_cropperpattern',[
     },
     init: function() {
       var self = this,
-          area_inactive = self.$el.parent().hasClass('inactive'),
+          area_inactive = self.$el.parent().hasClass('d-none'),
           sel_select = '#select-' + self.options.identifier,
           sel_cropper = '#croppingarea-' + self.options.identifier,
           sel_form = '#croppingarea-' + self.options.identifier;
       self.identifier = self.options.identifier;
       self.$image = $('img.main-image', self.$el);
-      self.$badge_cropped = $(sel_select + ' .label.cropped');
-      self.$badge_uncropped = $(sel_select + ' .label.uncropped');
-      self.$badge_changed = $(sel_select + ' .label.changed');
-      self.$badge_saving = $(sel_select + ' .label.saving');
+      self.$badge_cropped = $(sel_select + ' .badge.cropped');
+      self.$badge_uncropped = $(sel_select + ' .badge.uncropped');
+      self.$badge_changed = $(sel_select + ' .badge.changed');
+      self.$badge_saving = $(sel_select + ' .badge.saving');
       self.$button_save = $(sel_form + ' button.save');
       self.$button_remove = $(sel_form + ' button.remove');
       self.$button_reset = $(sel_form + ' button.reset');
@@ -3297,33 +3297,6 @@ define('plone_app_imagecropping_cropscaleselect',[
       var e = $.Event('CROPPERPATTERN.VISIBLE');
       $cropperimg.trigger(e);
     },
-    toggle_fieldset: function(nava) {
-      var fieldset_selector = $(nava).data('forfieldset'),
-          $fieldset = $(fieldset_selector);
-      if ($fieldset.hasClass('active')) {
-        // ignore any active
-        return;
-      }
-      // set prior active to inactive
-      $('fieldset.active', self.$el)
-      .removeClass('active')
-      .addClass('inactive');
-      $('nav a.active', self.$el)
-      .removeClass('active')
-      .addClass('inactive');
-
-      // set clicked tab to active
-      $fieldset
-      .removeClass('inactive')
-      .addClass('active');
-      $(nava)
-      .removeClass('inactive')
-      .addClass('active');
-
-      // trigger resize
-      var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
-      this.trigger_notify_visible($cropperimg);
-    },
     toggle_li: function(li) {
       var $li = $(li),
           $ul = $($li.parent());
@@ -3333,26 +3306,20 @@ define('plone_app_imagecropping_cropscaleselect',[
       }
       // set prior active to inactive
       $('li.list-group-item.active', $ul)
-      .removeClass('active')
-      .addClass('inactive');
+        .removeClass('active')
+        .addClass('inactive');
 
       // set clicked tab to active
-      $li
-      .removeClass('inactive')
-      .addClass('active');
+      $li.removeClass('inactive').addClass('active');
 
       // activate/ deactivate cropping area
       var $new_area = $($($li.data('cropping-area'))),
           $areas = $($new_area.parent()),
-          $old_area = $('.singlecroppingarea.active', $areas);
+          $old_area = $('.singlecroppingarea.d-block', $areas);
 
-      $old_area
-      .removeClass('active')
-      .addClass('inactive');
+      $old_area.removeClass('d-block').addClass('d-none');
 
-      $new_area
-      .removeClass('inactive')
-      .addClass('active');
+      $new_area.removeClass('d-none').addClass('d-block');
 
       // trigger repaint
       var $cropperimg = $('img.main-image', $new_area);
@@ -3386,17 +3353,14 @@ define('plone_app_imagecropping_cropscaleselect',[
       $preview.height(height);
     },
     init: function() {
-      var self = this;
-      $('nav a', self.$el).each(
-        function(findex) {
-          var nava = this;
-          $(nava).click(
-            function(){
-              self.toggle_fieldset(nava);
-            }
-          );
+      var self = this, tabEl = document.querySelector('a[data-bs-toggle="tab"]');
+      tabEl.addEventListener('shown.bs.tab', function (event) {
+        // trigger resize
+        var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
+        this.trigger_notify_visible($cropperimg);
       });
-      $('fieldset', self.$el).each(
+
+      $('.tab-pane', self.$el).each(
         function(findex) {
           var fieldset = this;
           $('li.list-group-item.scalable', $(fieldset)).each(
@@ -3408,13 +3372,6 @@ define('plone_app_imagecropping_cropscaleselect',[
               });
             }
           );
-          if (findex > 0) {
-            setTimeout(function(){
-              // delay so cropped is initialized before it hides
-              // this is ugly, better solutions welcome
-              $(fieldset).removeClass('active').addClass('inactive');
-            }, 200);
-          }
         }
       );
     }
@@ -3429,5 +3386,5 @@ require([
   'use strict';
 });
 
-define("/home/_thet/data/dev/aaf/buildout-aaf/src-addons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/bundle.js", function(){});
+define("/Volumes/WORKSPACE2/kinderdorf_plone5/srcaddons/plone.app.imagecropping/src/plone/app/imagecropping/browser/static/bundle.js", function(){});
 

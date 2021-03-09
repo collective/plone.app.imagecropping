@@ -13,33 +13,6 @@ define([
       var e = $.Event('CROPPERPATTERN.VISIBLE');
       $cropperimg.trigger(e);
     },
-    toggle_fieldset: function(nava) {
-      var fieldset_selector = $(nava).data('forfieldset'),
-          $fieldset = $(fieldset_selector);
-      if ($fieldset.hasClass('active')) {
-        // ignore any active
-        return;
-      }
-      // set prior active to inactive
-      $('fieldset.active', self.$el)
-      .removeClass('active')
-      .addClass('inactive');
-      $('nav a.active', self.$el)
-      .removeClass('active')
-      .addClass('inactive');
-
-      // set clicked tab to active
-      $fieldset
-      .removeClass('inactive')
-      .addClass('active');
-      $(nava)
-      .removeClass('inactive')
-      .addClass('active');
-
-      // trigger resize
-      var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
-      this.trigger_notify_visible($cropperimg);
-    },
     toggle_li: function(li) {
       var $li = $(li),
           $ul = $($li.parent());
@@ -49,26 +22,20 @@ define([
       }
       // set prior active to inactive
       $('li.list-group-item.active', $ul)
-      .removeClass('active')
-      .addClass('inactive');
+        .removeClass('active')
+        .addClass('inactive');
 
       // set clicked tab to active
-      $li
-      .removeClass('inactive')
-      .addClass('active');
+      $li.removeClass('inactive').addClass('active');
 
       // activate/ deactivate cropping area
       var $new_area = $($($li.data('cropping-area'))),
           $areas = $($new_area.parent()),
-          $old_area = $('.singlecroppingarea.active', $areas);
+          $old_area = $('.singlecroppingarea.d-block', $areas);
 
-      $old_area
-      .removeClass('active')
-      .addClass('inactive');
+      $old_area.removeClass('d-block').addClass('d-none');
 
-      $new_area
-      .removeClass('inactive')
-      .addClass('active');
+      $new_area.removeClass('d-none').addClass('d-block');
 
       // trigger repaint
       var $cropperimg = $('img.main-image', $new_area);
@@ -102,17 +69,14 @@ define([
       $preview.height(height);
     },
     init: function() {
-      var self = this;
-      $('nav a', self.$el).each(
-        function(findex) {
-          var nava = this;
-          $(nava).click(
-            function(){
-              self.toggle_fieldset(nava);
-            }
-          );
+      var self = this, tabEl = document.querySelector('a[data-bs-toggle="tab"]');
+      tabEl.addEventListener('shown.bs.tab', function (event) {
+        // trigger resize
+        var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
+        this.trigger_notify_visible($cropperimg);
       });
-      $('fieldset', self.$el).each(
+
+      $('.tab-pane', self.$el).each(
         function(findex) {
           var fieldset = this;
           $('li.list-group-item.scalable', $(fieldset)).each(
@@ -124,13 +88,6 @@ define([
               });
             }
           );
-          if (findex > 0) {
-            setTimeout(function(){
-              // delay so cropped is initialized before it hides
-              // this is ugly, better solutions welcome
-              $(fieldset).removeClass('active').addClass('inactive');
-            }, 200);
-          }
         }
       );
     }
