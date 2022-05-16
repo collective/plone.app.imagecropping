@@ -43,7 +43,6 @@ local.cfg
 /temp_resources
 /node_modules
 Gruntfile.js
-package.json
 
 # virtualenv
 /include
