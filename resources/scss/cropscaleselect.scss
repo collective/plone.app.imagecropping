@@ -1,9 +1,9 @@
-@import "@{bowerPath}/bootstrap/less/variables.less";
-@import "@{bowerPath}/bootstrap/less/mixins.less";
-@import (inline) "@{plone_app_imagecropping_cropper}";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~cropper";
 
 .pat-imagecrop-scaleselect {
-    @import "@{bowerPath}/bootstrap/less/labels.less";
     &.autotabs {
         padding: 1em;
     }
@@ -19,7 +19,7 @@
                 padding: 10px 15px;
                 margin-bottom: -1px;
                 background: #f2f1f1;
-                border: 1px solid @plone-gray-lighter;
+                border: 1px solid var(--bs-light);
                 cursor: pointer;
                 div.preview-container {
                     div.crop-preview {
@@ -82,7 +82,7 @@
         .pat-image-cropper {
             padding: 4px 0px;
             img {
-                width: 100%
+                width: 100%;
             }
         }
         .scale-info {
@@ -100,8 +100,8 @@
         padding: 0;
         margin: 0 0 0.3em 0;
         border: 0;
-        border-bottom: 1px solid #DDD;
-        background: #EEE none repeat scroll 0 0;
+        border-bottom: 1px solid #ddd;
+        background: #eee none repeat scroll 0 0;
         -webkit-border-radius: 4px 4px 0 0;
         -moz-border-radius: 4px 4px 0 0;
         -ie-border-radius: 4px 4px 0 0;
@@ -122,7 +122,7 @@
             -ie-border-radius: 4px 4px 0 0;
             -o-border-radius: 4px 4px 0 0;
             border-radius: 4px 4px 0 0;
-            background-color: #FFF;
+            background-color: #fff;
             height: 50px;
             img {
                 -webkit-border-radius: 3px;
@@ -140,18 +140,18 @@
                 outline-style: none;
             }
             &.active {
-                border: 1px solid #DDD;
-                border-bottom-color: #FFF;
+                border: 1px solid #ddd;
+                border-bottom-color: #fff;
                 color: #555555;
                 cursor: default;
             }
             &.inactive {
-                border: 1px solid #EEE;
-                border-bottom-color: #DDD;
+                border: 1px solid #eee;
+                border-bottom-color: #ddd;
             }
             &.inactive:hover {
-                border: 1px solid #DDD;
-                border-bottom-color: #FFF;
+                border: 1px solid #ddd;
+                border-bottom-color: #fff;
             }
         }
         button.save-all {

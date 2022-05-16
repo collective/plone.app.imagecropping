@@ -52,7 +52,7 @@
           <div id="fieldset-${fieldname}"
                role="tabpanel"
                aria-labelledby="${fieldname}-tab"
-               class="tab-pane fade ${python:'show' if repeat.fieldname.start else ''}">
+               class="tab-pane fade ${python:'active show' if repeat.fieldname.start else ''}">
             <div class="row">
               <div class="col-md-4 items scaleselector">
                   <ul class="list-group mb-4">
