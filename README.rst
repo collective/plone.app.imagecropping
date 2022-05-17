@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/collective/plone.app.imagecropping.png?branch=master
-    :target: http://travis-ci.org/collective/plone.app.imagecropping
+.. image:: https://github.com/collective/plone.app.imagecropping/workflows/tests/badge.svg
+    :target: https://github.com/collective/plone.app.imagecropping/actions?query=workflow%3Atests
 
 .. image:: https://coveralls.io/repos/collective/plone.app.imagecropping/badge.png
     :target: https://coveralls.io/r/collective/plone.app.imagecropping
