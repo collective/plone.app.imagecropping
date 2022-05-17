@@ -1,0 +1,31 @@
+<registry>
+  <records
+      interface="Products.CMFPlone.interfaces.IBundleRegistry"
+      prefix="plone.bundles/plone_app_imagecropping">
+    <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-remote.min.js</value>
+    <value key="csscompilation"></value>
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropper"
+      remove="true">
+  </records>
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropperpattern"
+      remove="true">
+  </records>
+  <records
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      prefix="plone.resources/plone_app_imagecropping_cropscaleselect"
+      remove="true">
+  </records>
+  <records
+      prefix="plone.resources/plone_app_imagecropping"
+      interface="Products.CMFPlone.interfaces.IResourceRegistry"
+      remove="true">
+  </records>
+</registry>
