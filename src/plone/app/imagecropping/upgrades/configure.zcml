@@ -60,4 +60,23 @@
       profile="plone.app.imagecropping:default"
       title="Upgrade plone.app.imagecropping to profile 2002"
   />
+
+  <gs:registerProfile
+      name="upgrade_2300_to_2301"
+      title="Upgrade policy GS profile to 2301"
+      directory="profiles/2300_to_2301"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+  />
+  <gs:upgradeSteps
+      source="2300"
+      destination="2301"
+      profile="plone.app.imagecropping:default">
+    <gs:upgradeDepends
+        import_profile="plone.app.imagecropping.upgrades:upgrade_2300_to_2301"
+        run_deps="True"
+        title="Update resource registry for ES6"
+    />
+  </gs:upgradeSteps>
 </configure>
