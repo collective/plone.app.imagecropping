@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from zope.component.interfaces import IObjectEvent
+from zope.interface.interfaces import IObjectEvent
 from zope.interface.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
