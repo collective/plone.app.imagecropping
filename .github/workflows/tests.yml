@@ -55,7 +55,8 @@ jobs:
           pip install zest.pocompile
           pocompile src
       - name: Test
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export DISPLAY=:99.0
           Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
@@ -63,5 +64,6 @@ jobs:
           python --version 2> /dev/stdout | grep 3.6 || bin/code-analysis
           bin/test $TEST_OPTIONS
           bin/createcoverage
-          pip install -q coveralls
-          coveralls
+          # 422 Client Error: Unprocessable Entity for url: https://coveralls.io/api/v1/jobs
+          # pip install -q coveralls
+          # coveralls
