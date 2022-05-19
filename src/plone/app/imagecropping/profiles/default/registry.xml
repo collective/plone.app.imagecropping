@@ -9,30 +9,6 @@
   <!-- javascript/less ====================================================== -->
 
   <records
-      interface="Products.CMFPlone.interfaces.IResourceRegistry"
-      prefix="plone.resources/plone_app_imagecropping_cropper">
-    <value key="js">++resource++plone.app.imagecropping.static/cropper-dist/cropper.js</value>
-  </records>
-
-  <records
-      interface="Products.CMFPlone.interfaces.IResourceRegistry"
-      prefix="plone.resources/plone_app_imagecropping_cropperpattern">
-    <value key="js">++resource++plone.app.imagecropping.static/cropperpattern.js</value>
-  </records>
-
-  <records
-      interface="Products.CMFPlone.interfaces.IResourceRegistry"
-      prefix="plone.resources/plone_app_imagecropping_cropscaleselect">
-    <value key="js">++resource++plone.app.imagecropping.static/cropscaleselect.js</value>
-  </records>
-
-  <records
-      prefix="plone.resources/plone_app_imagecropping"
-      interface="Products.CMFPlone.interfaces.IResourceRegistry">
-    <value key="js">++resource++plone.app.imagecropping.static/bundle.js</value>
-  </records>
-
-  <records
       interface="Products.CMFPlone.interfaces.IBundleRegistry"
       prefix="plone.bundles/plone_app_imagecropping">
     <value key="enabled">True</value>
