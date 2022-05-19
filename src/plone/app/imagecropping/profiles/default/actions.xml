@@ -17,6 +17,7 @@
       <property
           i18n:translate=""
           name="description">View the image cropping editor for this object</property>
+      <property name="icon_expr">string:crop</property>
       <property name="url_expr">string:${object_url}/@@croppingeditor</property>
       <property name="available_expr">python:object.restrictedTraverse('@@plone_interface_info').provides('plone.app.imagecropping.interfaces.IImageCroppingMarker')</property>
       <property name="permissions">
