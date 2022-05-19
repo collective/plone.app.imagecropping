@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layers>
-  <layer
-      name="plone.app.imagecropping"
-      interface="plone.app.imagecropping.interfaces.IPloneAppImagecroppingLayer"
-      />
+  <layer interface="plone.app.imagecropping.interfaces.IPloneAppImagecroppingLayer"
+         name="plone.app.imagecropping"
+  />
 </layers>

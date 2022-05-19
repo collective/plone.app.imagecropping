@@ -1,11 +1,12 @@
 <configure
-    i18n_domain="plone.app.imagecropping"
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone.app.imagecropping"
+    >
 
   <five:registerPackage package="." />
   <i18n:registerTranslations directory="locales" />
@@ -18,24 +19,25 @@
   </configure>
 
   <genericsetup:registerProfile
-      description="Installs the plone.app.imagecropping package"
-      directory="profiles/default"
       name="default"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
       title="Image Cropping Support"
-  />
+      description="Installs the plone.app.imagecropping package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
 
   <genericsetup:registerProfile
-      description="Uninstalls resources from the plone.app.imagecropping package"
-      directory="profiles/uninstall"
       name="uninstall"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
       title="Image Cropping Uninstallation"
-  />
+      description="Uninstalls resources from the plone.app.imagecropping package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
 
   <utility
       factory=".setuphandlers.HiddenProfiles"
-      name="plone.app.imagecropping-hiddenprofiles" />
+      name="plone.app.imagecropping-hiddenprofiles"
+      />
 
   <subscriber handler=".subscribers.apply_crops_after_copy" />
 
@@ -55,7 +57,7 @@
       title="Enable Image Cropping"
       description="Provides imagecropping functionality for DX contenttypes"
       provides=".behaviors.IImageCroppingBehavior"
-  />
+      />
 
 
 </configure>

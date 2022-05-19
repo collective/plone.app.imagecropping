@@ -3,43 +3,48 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="plone">
+    i18n_domain="plone"
+    >
 
-    <include package="Products.CMFCore" file="permissions.zcml" />
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
 
-    <!-- utilities -->
-    <utility
-        factory=".settings.SizesVocabulary"
-        name="plone.app.imagecropping.all_sizes" />
+  <!-- utilities -->
+  <utility
+      factory=".settings.SizesVocabulary"
+      name="plone.app.imagecropping.all_sizes"
+      />
 
-    <!--resources-->
-    <browser:resourceDirectory
-        name="plone.app.imagecropping.static"
-        directory="static"
-        />
+  <!--resources-->
+  <browser:resourceDirectory
+      name="plone.app.imagecropping.static"
+      directory="static"
+      />
 
-    <!-- configlet -->
-    <browser:page
-        name="imagecropping-settings"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        permission="cmf.ManagePortal"
-        class=".settings.SettingsView"
-        />
+  <!-- configlet -->
+  <browser:page
+      name="imagecropping-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".settings.SettingsView"
+      permission="cmf.ManagePortal"
+      />
 
-    <!-- views -->
-    <browser:page
-        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
-        name="crop-image"
-        class=".crop.CroppingView"
-        permission="cmf.ModifyPortalContent"
-        />
+  <!-- views -->
+  <browser:page
+      name="crop-image"
+      for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+      class=".crop.CroppingView"
+      permission="cmf.ModifyPortalContent"
+      />
 
-    <browser:page
-        class=".editor.CroppingEditor"
-        template="editor.pt"
-        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
-        name="croppingeditor"
-        permission="cmf.ModifyPortalContent"
-        />
+  <browser:page
+      name="croppingeditor"
+      for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+      class=".editor.CroppingEditor"
+      template="editor.pt"
+      permission="cmf.ModifyPortalContent"
+      />
 
 </configure>

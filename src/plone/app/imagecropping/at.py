@@ -22,8 +22,7 @@ import time
 
 
 class IImageCroppingAT(IImageCroppingMarker):
-    """Image cropping support marker interface for Archetypes based content
-    """
+    """Image cropping support marker interface for Archetypes based content"""
 
 
 def _millis():
@@ -33,31 +32,29 @@ def _millis():
 @implementer(IImageCroppingUtils)
 @adapter(IATContentType)
 class CroppingUtilsArchetype(object):
-
     def __init__(self, context):
         self.context = context
 
     def image_fields(self):
-        """ read interface
-        """
+        """read interface"""
         fields = []
 
         for field in self.context.Schema().fields():
             if (
-                IBlobImageField.providedBy(field) or IImageField.providedBy(field) and field.get_size(self.context) > 0
+                IBlobImageField.providedBy(field)
+                or IImageField.providedBy(field)
+                and field.get_size(self.context) > 0
             ):
                 fields.append(field)
 
         return fields
 
     def image_field_names(self):
-        """ read interface
-        """
+        """read interface"""
         return [field.__name__ for field in self.image_fields()]
 
     def get_image_field(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         return self.context.getField(fieldname)
 
     def get_image_label(self, fieldname):
@@ -65,42 +62,39 @@ class CroppingUtilsArchetype(object):
         return field.widget.label
 
     def get_image_data(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         field = self.get_image_field(fieldname)
         blob = field.get(self.context)
-        data = getattr(aq_base(blob), 'data', blob)
+        data = getattr(aq_base(blob), "data", blob)
         if isinstance(data, Pdata):
             data = str(data)
         return data
 
     def get_image_size(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         field = self.get_image_field(fieldname)
         image_size = field.getSize(self.context)
         return image_size
 
     def save_cropped(self, fieldname, scale, image_file):
-        """ see interface
-        """
+        """see interface"""
         field = self.get_image_field(fieldname)
         handler = IImageScaleHandler(field)
         sizes = field.getAvailableSizes(self.context)
         w, h = sizes[scale]
-        data = handler.createScale(
-            self.context, scale, w, h, data=image_file.read())
+        data = handler.createScale(self.context, scale, w, h, data=image_file.read())
 
         # store scale for classic <fieldname>_<scale> traversing
         handler.storeScale(self.context, scale, **data)
 
         # call plone.scale.storage.scale method in order to
         # provide saved scale for plone.app.imaging @@images view
-        def crop_factory(fieldname, direction='keep', **parameters):
+        def crop_factory(fieldname, direction="keep", **parameters):
             blob = Blob()
-            result = blob.open('w')
+            result = blob.open("w")
             _, image_format, dimensions = scaleImage(
-                data['data'], result=result, **parameters)
+                data["data"], result=result, **parameters
+            )
             result.close()
             return blob, image_format, dimensions
 
@@ -111,8 +105,7 @@ class CroppingUtilsArchetype(object):
         # call storage with actual time in milliseconds
         # this always invalidates old scales
         storage = AnnotationStorage(self.context, _millis)
-        storage.scale(
-            factory=crop_factory, fieldname=field.__name__, width=w, height=h)
+        storage.scale(factory=crop_factory, fieldname=field.__name__, width=w, height=h)
 
 
 @adapter(IImageCroppingAT, IRequest)
@@ -132,7 +125,10 @@ class ImageTraverser(BaseImageTraverser):
                 has_blobs = True
                 break
 
-        if has_blobs and not hasattr(aq_base(self.context), blobScalesAttr) \
-           and PAI_STORAGE_KEY in IAnnotations(self.context):
+        if (
+            has_blobs
+            and not hasattr(aq_base(self.context), blobScalesAttr)
+            and PAI_STORAGE_KEY in IAnnotations(self.context)
+        ):
             del IAnnotations(self.context)[PAI_STORAGE_KEY]
         return super(ImageTraverser, self).publishTraverse(request, name)

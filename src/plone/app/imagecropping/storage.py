@@ -12,20 +12,16 @@ import time
 
 
 class Storage(object):
-
     def __init__(self, context):
         self.context = context
 
     def _key(self, fieldname, scale):
-        return '{0:s}_{1:s}'.format(fieldname, scale)
+        return "{0:s}_{1:s}".format(fieldname, scale)
 
     def _invalidate_scale(self, fieldname, scale):
         # Call storage with actual time in milliseconds.
         # This always invalidates old scales
-        scale_storage = AnnotationStorage(
-            self.context,
-            int(time.time())
-        )
+        scale_storage = AnnotationStorage(self.context, int(time.time()))
         # holzhammermethode
         uids = list(scale_storage.keys())
         for uid in uids:
@@ -43,12 +39,7 @@ class Storage(object):
 
     @property
     def _storage(self):
-        return IAnnotations(
-            self.context
-        ).setdefault(
-            PAI_STORAGE_KEY,
-            PersistentDict()
-        )
+        return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY, PersistentDict())
 
     def store(self, fieldname, scale, box):
         self.remove(fieldname, scale, surpress_event=True)

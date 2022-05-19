@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <registry>
 
-    <records interface="plone.app.imagecropping.browser.settings.ISettings" remove="true" />
-    <records interface="Products.CMFPlone.interfaces.IBundleRegistry" prefix="plone.bundles/plone_app_imagecropping" remove="true" />
+  <records interface="plone.app.imagecropping.browser.settings.ISettings"
+           remove="true"
+  />
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+           prefix="plone.bundles/plone_app_imagecropping"
+           remove="true"
+  />
 
 </registry>

@@ -16,9 +16,9 @@ def apply_crops_after_copy(context, event):
         return
     croputils = IImageCroppingUtils(context)
     request = getRequest()
-    cropper = getMultiAdapter((context, request), name='crop-image')
+    cropper = getMultiAdapter((context, request), name="crop-image")
     for fieldname in croputils.image_field_names():
         for crop_key in crops:
             if crop_key.startswith(fieldname):
-                scalename = crop_key[len(fieldname) + 1:]
+                scalename = crop_key[len(fieldname) + 1 :]
                 cropper._crop(fieldname, scalename, crops[crop_key])

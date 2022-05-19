@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from zope.interface.interfaces import IObjectEvent
 from zope.interface.interface import Interface
+from zope.interface.interfaces import IObjectEvent
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
@@ -17,7 +17,7 @@ class IImageCroppingMarker(Interface):
 
 class IImageCroppingUtils(Interface):
     """Methods to help the cropping editor views.
-       The implementation is different for Archetype and Dexterity context.
+    The implementation is different for Archetype and Dexterity context.
     """
 
     def image_fields():
@@ -38,24 +38,24 @@ class IImageCroppingUtils(Interface):
     def get_image_size(fieldname):
         """Returns the original image size:
 
-           (100, 200)
+        (100, 200)
         """
 
     def save_cropped(fieldname, scale, image_file):
-        """ Save the cropped image under the name of the selected scale in
-            plone.scale.storage.AnnotationStorage, so that it is available
-            in plone.app.imaging @@images view
+        """Save the cropped image under the name of the selected scale in
+        plone.scale.storage.AnnotationStorage, so that it is available
+        in plone.app.imaging @@images view
 
-            DEPRECATED/ BBB - this is superseeded by usage of scaling factories
+        DEPRECATED/ BBB - this is superseeded by usage of scaling factories
         """
 
 
 class ICroppingInfoChangedEvent(IObjectEvent):
-    """ event after cropping information has changed """
+    """event after cropping information has changed"""
 
 
 class ICroppingInfoRemovedEvent(IObjectEvent):
-    """ event after cropping information has changed """
+    """event after cropping information has changed"""
 
 
 # seems unused

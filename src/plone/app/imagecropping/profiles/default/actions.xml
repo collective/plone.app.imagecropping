@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
-<object
-    meta_type="Plone Actions Tool"
-    name="portal_actions"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <object
-      meta_type="CMF Action Category"
-      name="object"
-      purge="false">
-    <object
-        meta_type="CMF Action"
-        i18n:domain="plone.app.imagecropping"
-        name="cropping">
-      <property
-          i18n:translate=""
-          name="title">Cropping</property>
-      <property
-          i18n:translate=""
-          name="description">View the image cropping editor for this object</property>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Plone Actions Tool"
+        name="portal_actions"
+>
+  <object meta_type="CMF Action Category"
+          name="object"
+          purge="false"
+  >
+    <object meta_type="CMF Action"
+            name="cropping"
+            i18n:domain="plone.app.imagecropping"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Cropping</property>
+      <property name="description"
+                i18n:translate=""
+      >View the image cropping editor for this object</property>
       <property name="icon_expr">string:crop</property>
       <property name="url_expr">string:${object_url}/@@croppingeditor</property>
       <property name="available_expr">python:object.restrictedTraverse('@@plone_interface_info').provides('plone.app.imagecropping.interfaces.IImageCroppingMarker')</property>

@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
-<object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="plone">
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Plone Control Panel Tool"
+        name="portal_controlpanel"
+        i18n:domain="plone"
+>
 
-    <configlet
-        title="Image Cropping"
-        action_id="imagecropping.settings"
-        appId="ImageCroppingSettings"
-        category="plone-content"
-        condition_expr=""
-        icon_expr="string:crop"
-        url_expr="string:${portal_url}/@@imagecropping-settings"
-        visible="True"
-        i18n:attributes="title">
-            <permission>Manage Site</permission>
-    </configlet>
+  <configlet action_id="imagecropping.settings"
+             appId="ImageCroppingSettings"
+             category="plone-content"
+             condition_expr=""
+             icon_expr="string:crop"
+             title="Image Cropping"
+             url_expr="string:${portal_url}/@@imagecropping-settings"
+             visible="True"
+             i18n:attributes="title"
+  >
+    <permission>Manage Site</permission>
+  </configlet>
 
 </object>

@@ -8,12 +8,12 @@
 
   <!-- javascript/less ====================================================== -->
 
-  <records
-      interface="Products.CMFPlone.interfaces.IBundleRegistry"
-      prefix="plone.bundles/plone_app_imagecropping">
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+           prefix="plone.bundles/plone_app_imagecropping"
+  >
     <value key="enabled">True</value>
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-remote.min.js</value>
-    <value key="csscompilation"></value>
+    <value key="csscompilation" />
     <value key="expression">python: member is not None</value>
   </records>
 
