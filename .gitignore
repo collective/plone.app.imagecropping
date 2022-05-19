@@ -49,3 +49,5 @@ Gruntfile.js
 /lib
 /.Python
 
+/*-mxdev.txt
+/.make-sentinels/
