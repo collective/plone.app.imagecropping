@@ -18,33 +18,25 @@ class PloneAppImagecropping(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import plone.app.imagecropping
-        self.loadZCML('testing.zcml', package=plone.app.imagecropping)
+
+        self.loadZCML("testing.zcml", package=plone.app.imagecropping)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'plone.app.imagecropping:testing')
-        setRoles(portal, TEST_USER_ID, ['Manager'])
+        applyProfile(portal, "plone.app.imagecropping:testing")
+        setRoles(portal, TEST_USER_ID, ["Manager"])
         login(portal, TEST_USER_NAME)
-        portal.portal_workflow.setDefaultChain('one_state_workflow')
-        portal.invokeFactory(
-            'Folder',
-            id='acceptance-test-folder',
-            title=u'Test Folder'
-        )
+        portal.portal_workflow.setDefaultChain("one_state_workflow")
+        portal.invokeFactory("Folder", id="acceptance-test-folder", title="Test Folder")
 
 
 IMAGECROPPING = PloneAppImagecropping()
 IMAGECROPPING_INTEGRATION = IntegrationTesting(
-    bases=(IMAGECROPPING, ),
-    name='plone.app.imagecropping:Integration'
+    bases=(IMAGECROPPING,), name="plone.app.imagecropping:Integration"
 )
 IMAGECROPPING_FUNCTIONAL = FunctionalTesting(
-    bases=(IMAGECROPPING, ),
-    name='plone.app.imagecropping:Functional')
+    bases=(IMAGECROPPING,), name="plone.app.imagecropping:Functional"
+)
 IMAGECROPPING_ROBOT = FunctionalTesting(
-    bases=(
-        REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        IMAGECROPPING,
-        z2.ZSERVER_FIXTURE
-    ),
-    name='plone.app.imagecropping:Robot'
+    bases=(REMOTE_LIBRARY_BUNDLE_FIXTURE, IMAGECROPPING, z2.ZSERVER_FIXTURE),
+    name="plone.app.imagecropping:Robot",
 )

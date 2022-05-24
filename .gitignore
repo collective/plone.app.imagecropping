@@ -43,10 +43,11 @@ local.cfg
 /temp_resources
 /node_modules
 Gruntfile.js
-package.json
 
 # virtualenv
 /include
 /lib
 /.Python
 
+/*-mxdev.txt
+/.make-sentinels/

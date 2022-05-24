@@ -1,0 +1,89 @@
+{
+    "name": "plone-imagecropping",
+    "version": "2.2.2",
+    "description": "Image Cropping for Plone",
+    "license": "GPL-2.0-only",
+    "engines": {
+        "node": ">=8.12.0",
+        "yarn": "^1.3.2"
+    },
+    "dependencies": {
+        "@patternslib/patternslib": "^8.0.1",
+        "bootstrap": "^5.2.0-beta1",
+        "cropper": "^4.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.8",
+        "@babel/eslint-parser": "^7.17.0",
+        "@babel/plugin-proposal-optional-chaining": "^7.16.0",
+        "@babel/preset-env": "^7.16.11",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@types/sinon": "^10.0.11",
+        "babel-loader": "^8.2.4",
+        "clean-css-cli": "^5.6.0",
+        "copy-webpack-plugin": "^10.2.4",
+        "copyfiles": "^2.4.1",
+        "core-js": "3.21.1",
+        "cross-env": "^7.0.3",
+        "css-loader": "^6.7.1",
+        "eslint": "^8.12.0",
+        "eslint-config-prettier": "^8.5.0",
+        "expose-loader": "^3.0.0",
+        "identity-obj-proxy": "^3.0.0",
+        "imports-loader": "^3.1.0",
+        "inspectpack": "^4.7.1",
+        "jest": "^27.5.1",
+        "jest-raw-loader": "^1.0.1",
+        "jest-watch-typeahead": "^1.0.0",
+        "nodemon": "^2.0.15",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.6.2",
+        "prism-themes": "^1.9.0",
+        "regenerator-runtime": "^0.13.9",
+        "sass": "^1.49.11",
+        "sass-loader": "^12.6.0",
+        "style-loader": "^3.3.0",
+        "terser-webpack-plugin": "^5.3.1",
+        "timezone-mock": "^1.3.1",
+        "webpack": "^5.71.0",
+        "webpack-bundle-analyzer": "^4.4.2",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.8.0",
+        "webpack-modernizr-loader": "^5.0.0",
+        "whybundled": "^2.0.0",
+        "yarn": "^1.22.18"
+    },
+    "resolutions": {},
+    "resolutions-comments": {
+        "ua-parser-js": "See https://github.com/faisalman/ua-parser-js/issues/536"
+    },
+    "scripts": {
+        "build": "npm-run-all build:webpack build:css",
+        "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
+        "build:css": "npm-run-all css-compile css-minify",
+        "watch:webpack": "NODE_ENV=development webpack --config webpack.config.js --watch",
+        "watch:scss": "nodemon --watch resources/scss/ --ext scss --exec \"yarn build:css\"",
+        "start": "NODE_ENV=development webpack serve --config webpack.config.js",
+        "css-compile": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css resources/scss/cropscaleselect.scss:src/plone/app/imagecropping/browser/static/cropscaleselect.css",
+        "css-minify": "cleancss -O1 --format breakWith=lf --source-map --source-map-inline-sources --output src/plone/app/imagecropping/browser/static/cropscaleselect.min.css src/plone/app/imagecropping/browser/static/cropscaleselect.css"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "author": {
+        "name": "Plone Foundation",
+        "email": "releasemanager@plone.org"
+    },
+    "homepage": "https://github.com/plone/plone.app.imagecropping",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plone/plone.app.imagecropping.git"
+    }
+}

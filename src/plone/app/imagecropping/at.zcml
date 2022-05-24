@@ -1,7 +1,8 @@
 <configure
-    i18n_domain="plone.app.imagecropping"
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="plone.app.imagecropping"
+    >
   <!--
     ATCT adapter
   -->
@@ -25,10 +26,10 @@
   <!-- Archetypes FIELDNAME_SCALE traverser adaptions -->
   <adapter factory=".at.ImageTraverser" />
   <browser:page
-      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
-      class=".browser.scalingat.ImageScalingAT"
-      for="plone.app.imagecropping.at.IImageCroppingAT"
       name="images"
+      for="plone.app.imagecropping.at.IImageCroppingAT"
+      class=".browser.scalingat.ImageScalingAT"
+      allowed_interface="plone.app.imaging.interfaces.IImageScaling"
       permission="zope2.View"
-  />
+      />
 </configure>

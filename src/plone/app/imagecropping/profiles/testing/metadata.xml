@@ -2,7 +2,7 @@
 <metadata>
   <version>0002</version>
   <dependencies>
-      <dependency>profile-plone.app.imagecropping:default</dependency>
-      <dependency>profile-plone.app.dexterity:default</dependency>
+    <dependency>profile-plone.app.imagecropping:default</dependency>
+    <dependency>profile-plone.app.dexterity:default</dependency>
   </dependencies>
 </metadata>

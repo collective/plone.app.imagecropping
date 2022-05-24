@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from plone.app.imagecropping.interfaces import ICroppingInfoChangedEvent
 from plone.app.imagecropping.interfaces import ICroppingInfoRemovedEvent
-from zope.component.interfaces import ObjectEvent
 from zope.interface import implementer
+from zope.interface.interfaces import ObjectEvent
 
 
 @implementer(ICroppingInfoChangedEvent)

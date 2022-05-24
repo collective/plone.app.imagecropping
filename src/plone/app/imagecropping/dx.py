@@ -18,16 +18,13 @@ import PIL
 
 
 class IImageCroppingDX(IImageScaleTraversable, IImageCroppingMarker):
-    """Image cropping support marker interface for NamedFile/DX types
-    """
+    """Image cropping support marker interface for NamedFile/DX types"""
 
 
 @adapter(IImageCroppingDX)  # this would work almost also on AT!
 class CroppingImageScalingFactory(DefaultImageScalingFactory):
-
-    def _crop(self, data, box, default_format='PNG'):
-        """crop data (image as open file) to box
-        """
+    def _crop(self, data, box, default_format="PNG"):
+        """crop data (image as open file) to box"""
         image = PIL.Image.open(data)
         image_format = image.format or default_format
         cropped_image = image.crop(box)
@@ -41,17 +38,13 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
             # do crop stuff first
             data = self._crop(data, self.box)
         return super(CroppingImageScalingFactory, self).create_scale(
-            data,
-            direction,
-            height,
-            width,
-            **parameters
+            data, direction, height, width, **parameters
         )
 
     def __call__(
         self,
         fieldname=None,
-        direction='thumbnail',
+        direction="thumbnail",
         height=None,
         width=None,
         scale=None,
@@ -60,12 +53,12 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         storage = Storage(self.context)
         self.box = storage.read(fieldname, scale)
         if self.box:
-            direction = 'down'
+            direction = "down"
         else:
             registry = getUtility(IRegistry)
             settings = registry.forInterface(ISettings)
             if scale in settings.cropping_for:
-                direction = 'down'
+                direction = "down"
         return super(CroppingImageScalingFactory, self).__call__(
             fieldname=fieldname,
             direction=direction,
@@ -79,8 +72,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
 @implementer(IImageCroppingUtils)
 @adapter(IImageScaleTraversable)
 class CroppingUtilsDexterity(object):
-    """Dexterity variant of scaling adapter
-    """
+    """Dexterity variant of scaling adapter"""
 
     def __init__(self, context):
         self.context = context
@@ -105,18 +97,15 @@ class CroppingUtilsDexterity(object):
                 yield (fieldname, value)
 
     def image_fields(self):
-        """ read interface
-        """
+        """read interface"""
         return [info[1] for info in self._image_field_values()]
 
     def image_field_names(self):
-        """ read interface
-        """
+        """read interface"""
         return [info[0] for info in self._image_field_values()]
 
     def get_image_field(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         return getattr(self.context, fieldname, None)
 
     def get_image_label(self, fieldname):
@@ -126,20 +115,17 @@ class CroppingUtilsDexterity(object):
         return fieldname
 
     def get_image_data(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         field = self.get_image_field(fieldname)
         return field.data
 
     def get_image_size(self, fieldname):
-        """ read interface
-        """
+        """read interface"""
         field = self.get_image_field(fieldname)
         image_size = field.getImageSize()
         return image_size
 
     def save_cropped(self, fieldname, scale, image_file):
-        """ see interface
-        """
+        """see interface"""
         # BBB - this is superseeded by usage of scaling factories
         pass

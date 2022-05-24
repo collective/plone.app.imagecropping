@@ -1,18 +1,19 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="plone.app.imagecropping">
+    i18n_domain="plone.app.imagecropping"
+    >
 
-    <include file="configure.zcml" />
+  <include file="configure.zcml" />
 
-    <include package="plone.app.dexterity" />
+  <include package="plone.app.dexterity" />
 
-    <genericsetup:registerProfile
-        name="testing"
-        title="plone.app.imagecropping tests"
-        directory="profiles/testing"
-        description="Steps to ease tests of plone.app.imagecropping"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+      name="testing"
+      title="plone.app.imagecropping tests"
+      description="Steps to ease tests of plone.app.imagecropping"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/testing"
+      />
 
 </configure>

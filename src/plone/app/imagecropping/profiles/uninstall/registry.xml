@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <registry>
 
-    <record interface="plone.app.imagecropping.browser.settings.ISettings" field="large_size" delete="True" />
-    <record interface="plone.app.imagecropping.browser.settings.ISettings" field="min_size" delete="True" />
+  <records interface="plone.app.imagecropping.browser.settings.ISettings"
+           remove="true"
+  />
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+           prefix="plone.bundles/plone_app_imagecropping"
+           remove="true"
+  />
 
 </registry>
