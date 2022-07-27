@@ -1,5 +1,9 @@
 import $ from "jquery";
 import Base from "@patternslib/patternslib/src/core/base";
+import logging from "@patternslib/patternslib/src/core/logging";
+
+logging.setLevel("INFO");
+const log = logging.getLogger("pat-image-cropper");
 
 export default Base.extend({
     name: "image-cropper",
@@ -26,6 +30,7 @@ export default Base.extend({
         true_width: null,
         true_height: null,
     },
+
     update_badges: function () {
         if (this.while_saving) {
             this.$badge_saving.show();
@@ -60,6 +65,7 @@ export default Base.extend({
             }
         }
     },
+
     crop_changed: function () {
         if (this.while_init || this.while_reset) {
             return false;
@@ -83,16 +89,18 @@ export default Base.extend({
         this._changed = !(xc && yc && wc && hc);
         return this._changed;
     },
+
     reset: function () {
-        console.log("RESET");
+        log.info("RESET");
         this.while_reset = true;
         this.cropper.setData(this.original_data);
         this.visualize_selected_area();
         this.while_reset = false;
         this.update_badges();
     },
+
     remove: function () {
-        console.log("REMOVE");
+        log.info("REMOVE");
         var self = this,
             postData = {
                 remove: true,
@@ -118,8 +126,9 @@ export default Base.extend({
             },
         });
     },
+
     save: function () {
-        console.log("SAVE " + this.identifier);
+        log.info("SAVE " + this.identifier);
         var self = this,
             crop_data = this.$image.cropper("getData"),
             postData = {
@@ -151,6 +160,7 @@ export default Base.extend({
             },
         });
     },
+
     visualize_selected_area: function () {
         var crop_data = this.$image.cropper("getData");
         $(".cropx", self.$el).text(Math.round(crop_data.x));
@@ -158,16 +168,18 @@ export default Base.extend({
         $(".cropw", self.$el).text(Math.round(crop_data.width));
         $(".croph", self.$el).text(Math.round(crop_data.height));
     },
+
     notify_visible: function () {
         this.while_reset = true;
         this.cropper.resize();
         if (this.options.is_cropped && !this.crop_changed()) {
-            console.log("set to orig");
+            log.info("set to orig");
             this.cropper.setData(this.original_data);
             this.visualize_selected_area();
         }
         this.while_reset = false;
     },
+
     limit_minimum_cropping_size: function () {
         var current = this.$image.cropper("getData"),
             newbox = {};
@@ -195,6 +207,7 @@ export default Base.extend({
             this.while_reset = false;
         }
     },
+
     init: async function () {
         (await import("cropper")).default;
 
@@ -244,18 +257,17 @@ export default Base.extend({
         self.update_badges();
 
         // bind buttons
-        self.$button_reset.click(function () {
+        self.$button_reset.on("click", function () {
             self.reset();
         });
-        self.$button_remove.click(function () {
+        self.$button_remove.on("click", function () {
             self.remove();
         });
-        self.$button_save.click(function () {
+        self.$button_save.on("click", function () {
             self.save();
         });
         self.$button_save_all.on(
             "click",
-            { identifier: self.identifier },
             function (event) {
                 if (self.crop_changed()) {
                     self.save();

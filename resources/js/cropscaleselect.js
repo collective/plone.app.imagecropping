@@ -1,16 +1,21 @@
 import $ from "jquery";
 import Base from "@patternslib/patternslib/src/core/base";
+import logging from "@patternslib/patternslib/src/core/logging";
+
+logging.setLevel("INFO");
+const log = logging.getLogger("pat-imagecrop-scaleselect");
 
 export default Base.extend({
     name: "imagecropsave",
     trigger: ".pat-imagecrop-scaleselect",
     parser: "mockup",
+
     // A shortcut for triggering custom events
     trigger_notify_visible: function ($cropperimg) {
-        console.log("Trigger event");
         var e = $.Event("CROPPERPATTERN.VISIBLE");
         $cropperimg.trigger(e);
     },
+
     toggle_li: function (li) {
         var $li = $(li),
             $ul = $($li.parent());
@@ -37,8 +42,9 @@ export default Base.extend({
         var $cropperimg = $("img.main-image", $new_area);
         this.trigger_notify_visible($cropperimg);
     },
+
     set_preview_dimensions: function (li) {
-        // console.log('SET_PREVIEW_DIMENSIONS');
+        // log.info('SET_PREVIEW_DIMENSIONS');
         var $li = $(li),
             $pcontainer = $(".preview-container", $li),
             $preview = $(".crop-preview", $pcontainer),
@@ -46,17 +52,17 @@ export default Base.extend({
             theight = parseFloat($pcontainer.data("target-height")),
             liwidth = $li.width(),
             height = null;
-        // console.log('liwidth');
-        // console.log(liwidth);
-        // console.log($preview);
+        // log.info('liwidth');
+        // log.info(liwidth);
+        // log.info($preview);
 
         if (liwidth >= twidth) {
             // if smaller set to real value
-            // console.log('-> smaller');
+            // log.info('-> smaller');
             height = theight;
         } else {
             // if greater scale down, respect aspect ratio
-            // console.log('->  greater');
+            // log.info('->  greater');
             height = (theight * liwidth) / twidth;
         }
         $pcontainer.width(liwidth);
@@ -64,6 +70,7 @@ export default Base.extend({
         $preview.width(liwidth);
         $preview.height(height);
     },
+
     init: function () {
         import("../scss/cropscaleselect.scss");
 
@@ -84,4 +91,5 @@ export default Base.extend({
             });
         });
     },
+
 });
