@@ -79,7 +79,7 @@
                             </div>
                           </li>
                           <li tal:condition="not: scale/can_scale"
-                              class="list-group-item impossible">
+                              class="list-group-item impossible disabled">
                             <div class="d-flex justify-content-between align-items-center">
                               <span>
                                 <strong>${scale/title}</strong> ${scale/target_width}&times;${scale/target_height}:
