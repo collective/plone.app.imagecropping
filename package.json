@@ -16,9 +16,7 @@
         "sass": "^1.54.5"
     },
     "resolutions": {},
-    "resolutions-comments": {
-        "ua-parser-js": "See https://github.com/faisalman/ua-parser-js/issues/536"
-    },
+    "resolutions-comments": {},
     "scripts": {
         "build": "npm-run-all build:webpack build:css",
         "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
