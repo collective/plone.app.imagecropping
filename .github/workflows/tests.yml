@@ -1,11 +1,9 @@
-name: tests
+name: Tests
 
 on:
   push:
     branches: [master]
   pull_request:
-  schedule:
-    - cron: "0 12 * * 0" # run once a week on Sunday
 
 jobs:
   tests:
@@ -16,15 +14,19 @@ jobs:
           - "3.7"
           - "3.8"
           - "3.9"
+          - "3.10"
         plone:
-          - "6.0.0a4"
+          - "6.0-dev"
     steps:
       - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v1
+
       - name: Setup Plone ${{ matrix.plone }} with Python ${{ matrix.python }}
         uses: plone/setup-plone@v1.0.0
         with:
           python-version: ${{ matrix.python }}
           plone-version: ${{ matrix.plone }}
+
       - name: Pip cache
         uses: actions/cache@v2
         with:
@@ -35,10 +37,20 @@ jobs:
           key: ${{ runner.os }}-cache-${{ hashFiles('setup.*', '*.cfg') }}-${{ matrix.config[0] }}
           restore-keys: |
             ${{ runner.os }}-cache-
+
       - name: Install package
         run: |
           make VENV=off install
 
+      - name: Run Lint
+        run: |
+          make VENV=off lint
+
       - name: Run tests
         run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          sleep 2
+          export ROBOT_BROWSER=headlesschrome &
           make VENV=off test-ignore-warnings
