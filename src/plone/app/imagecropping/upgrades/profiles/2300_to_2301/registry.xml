@@ -4,6 +4,7 @@
   >
     <value key="jscompilation">++resource++plone.app.imagecropping.static/imagecropping-remote.min.js</value>
     <value key="csscompilation" />
+    <value key="depends"></value>
     <value key="load_async">False</value>
     <value key="load_defer">False</value>
   </records>
