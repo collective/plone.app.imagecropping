@@ -33,4 +33,4 @@ The code is located in the
 `github collective <https://github.com/collective/plone.app.imagecropping>`_.
 
 You can clone it and send a pull request or `get access to the github-collective
-<http://collective.github.com/>`_ and work directly on a branch of the project.
+<https://collective.github.com/>`_ and work directly on a branch of the project.

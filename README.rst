@@ -22,7 +22,7 @@ so in some ocasions this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually for each available image scale using the `cropper`_  Javascript library
 
-.. _`plone.namedfile`: http://pypi.python.org/pypi/plone.namedfile
+.. _`plone.namedfile`: https://pypi.org/project/plone.namedfile/
 .. _`cropper`: https://github.com/fengyuanchen/cropper
 
 
@@ -109,7 +109,7 @@ There has been a need for cropping for a long time and there are lots of addons 
 There is `plip #10174`_ asking for adding image cropping to plone core which recently got rejected by the FWT.
 The cropping functionality should go into an addon first that also work for dexterity and can be pliped into core.
 
-.. _`plip #10174`: http://dev.plone.org/plone/ticket/10174
+.. _`plip #10174`: https://dev.plone.org/plone/ticket/10174
 
 This package aims to be THE cropping solution for plone that 'just works TM'.
 
