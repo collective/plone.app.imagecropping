@@ -16,7 +16,7 @@
 #
 # $ bin/robot src/plonetraining/testing/tests/robot/test_task.robot
 #
-# See the http://docs.plone.org for further details (search for robot
+# See the https://docs.plone.org for further details (search for robot
 # framework).
 #
 # ============================================================================
