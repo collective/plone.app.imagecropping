@@ -1,24 +1,37 @@
 process.traceDeprecation = true;
-const package_json = require("./package.json");
 const path = require("path");
-const patternslib_config = require("@patternslib/patternslib/webpack/webpack.config");
-const mf_config = require("@patternslib/patternslib/webpack/webpack.mf");
+const package_json = require("./package.json");
+const package_json_mockup = require("@plone/mockup/package.json");
+const package_json_patternslib = require("@patternslib/patternslib/package.json");
+const webpack_config = require("@patternslib/dev/webpack/webpack.config").config;
+const mf_config = require("@patternslib/dev/webpack/webpack.mf");
 
-module.exports = async (env, argv) => {
+module.exports = () => {
     let config = {
         entry: {
             "imagecropping.min": path.resolve(__dirname, "resources/index"),
         },
     };
 
-    config = patternslib_config(env, argv, config, ["mockup"]);
-    config.output.path = path.resolve(__dirname, "src/plone/app/imagecropping/browser/static");
+    config = webpack_config({
+        config: config,
+        package_json: package_json,
+    });
+    config.output.path = path.resolve(
+        __dirname,
+        "src/plone/app/imagecropping/browser/static"
+    );
 
     config.plugins.push(
         mf_config({
+            name: "plone-imagecropping",
             filename: "imagecropping-remote.min.js",
-            package_json: package_json,
             remote_entry: config.entry["imagecropping.min"],
+            dependencies: {
+                ...package_json_patternslib.dependencies,
+                ...package_json_mockup.dependencies,
+                ...package_json.dependencies,
+            },
         })
     );
 
@@ -27,8 +40,5 @@ module.exports = async (env, argv) => {
         config.devServer.static.directory = __dirname;
     }
 
-    console.log(JSON.stringify(config, null, 4));
-
     return config;
 };
-
