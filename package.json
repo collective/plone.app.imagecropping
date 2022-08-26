@@ -1,6 +1,6 @@
 {
     "name": "plone-imagecropping",
-    "version": "2.2.2",
+    "version": "3.0.0-dev.0",
     "description": "Image Cropping for Plone",
     "license": "GPL-2.0-only",
     "dependencies": {
