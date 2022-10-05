@@ -52,9 +52,9 @@ export default Base.extend({
             theight = parseFloat($pcontainer.data("target-height")),
             liwidth = $li.width(),
             height = null;
-        // log.info('liwidth');
-        // log.info(liwidth);
-        // log.info($preview);
+            // log.info('liwidth');
+            // log.info(liwidth);
+            // log.info($preview);
 
         if (liwidth >= twidth) {
             // if smaller set to real value
@@ -78,14 +78,14 @@ export default Base.extend({
         tabEl.addEventListener('shown.bs.tab', function (event) {
             // trigger resize
             var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
-            this.trigger_notify_visible($cropperimg);
+            self.trigger_notify_visible($cropperimg);
         });
         $(".tab-pane", self.$el).each(function (findex) {
             var fieldset = this;
             $("li.list-group-item.scalable", $(fieldset)).each(function (lindex) {
                 var li = this;
                 self.set_preview_dimensions(li);
-                $(li).click(function () {
+                $(li).on("click", function (e) {
                     self.toggle_li(li);
                 });
             });

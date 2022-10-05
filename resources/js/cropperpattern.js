@@ -43,10 +43,12 @@ export default Base.extend({
         }
         if (this.options.is_cropped) {
             this.$button_remove.prop("disabled", false);
+            this.$button_reset.prop("disabled", false);
             this.$badge_uncropped.hide();
             this.$badge_cropped.show();
         } else {
             this.$button_remove.prop("disabled", true);
+            this.$button_reset.prop("disabled", true);
             this.$badge_uncropped.show();
             this.$badge_cropped.hide();
         }
@@ -67,13 +69,10 @@ export default Base.extend({
     },
 
     crop_changed: function () {
-        if (this.while_init || this.while_reset) {
-            return false;
-        }
         if (!$(".cropper-container", this.$image.parent()).is(":visible")) {
             return this._changed;
         }
-        var current = this.$image.cropper("getData");
+        var current = this.cropper.getData(true);
         var xc =
                 this.original_data.x - 1 < current.x &&
                 current.x < this.original_data.x + 1,
@@ -93,7 +92,7 @@ export default Base.extend({
     reset: function () {
         log.info("RESET");
         this.while_reset = true;
-        this.cropper.setData(this.original_data);
+        this.cropper.setData(this.initial_data);
         this.visualize_selected_area();
         this.while_reset = false;
         this.update_badges();
@@ -117,7 +116,7 @@ export default Base.extend({
             success: function (data, textStatus, jqXHR) {
                 self.options.is_cropped = false;
                 self.while_saving = false;
-                self.update_badges();
+                self.reset();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 self.while_saving = false;
@@ -130,7 +129,7 @@ export default Base.extend({
     save: function () {
         log.info("SAVE " + this.identifier);
         var self = this,
-            crop_data = this.$image.cropper("getData"),
+            crop_data = this.cropper.getData(true),
             postData = {
                 x: crop_data.x,
                 y: crop_data.y,
@@ -149,7 +148,10 @@ export default Base.extend({
             success: function (data, textStatus, jqXHR) {
                 self.options.is_cropped = true;
                 self._changed = false;
-                self.original_data = $.extend({}, self.cropper.getData());
+                self.original_data = {
+                    ...self.original_data,
+                    ...self.cropper.getData(true)
+                };
                 self.while_saving = false;
                 self.update_badges();
             },
@@ -162,7 +164,7 @@ export default Base.extend({
     },
 
     visualize_selected_area: function () {
-        var crop_data = this.$image.cropper("getData");
+        var crop_data = this.cropper.getData(true);
         $(".cropx", self.$el).text(Math.round(crop_data.x));
         $(".cropy", self.$el).text(Math.round(crop_data.y));
         $(".cropw", self.$el).text(Math.round(crop_data.width));
@@ -172,8 +174,8 @@ export default Base.extend({
     notify_visible: function () {
         this.while_reset = true;
         this.cropper.resize();
-        if (this.options.is_cropped && !this.crop_changed()) {
-            log.info("set to orig");
+        if (this.options.is_cropped) {
+            log.info("set to current");
             this.cropper.setData(this.original_data);
             this.visualize_selected_area();
         }
@@ -181,7 +183,7 @@ export default Base.extend({
     },
 
     limit_minimum_cropping_size: function () {
-        var current = this.$image.cropper("getData"),
+        var current = this.cropper,
             newbox = {};
         if (
             current.width < this.options.target_width ||
@@ -209,12 +211,10 @@ export default Base.extend({
     },
 
     init: async function () {
-        (await import("cropper")).default;
+        const Cropper = (await import("cropperjs")).default;
 
         var self = this,
-            area_inactive = self.$el.parent().hasClass("d-none"),
             sel_select = "#select-" + self.options.identifier,
-            sel_cropper = "#croppingarea-" + self.options.identifier,
             sel_form = "#croppingarea-" + self.options.identifier;
         self.identifier = self.options.identifier;
         self.$image = $("img.main-image", self.$el);
@@ -228,6 +228,10 @@ export default Base.extend({
         self.$button_save_all = $("button.save-all");
 
         // we need to make coords floats
+        self.options.initial_x = parseFloat(self.options.initial_x);
+        self.options.initial_y = parseFloat(self.options.initial_y);
+        self.options.initial_w = parseFloat(self.options.initial_w);
+        self.options.initial_h = parseFloat(self.options.initial_h);
         self.options.current_x = parseFloat(self.options.current_x);
         self.options.current_y = parseFloat(self.options.current_y);
         self.options.current_w = parseFloat(self.options.current_w);
@@ -238,6 +242,15 @@ export default Base.extend({
         self.options.target_height = parseFloat(self.options.target_height);
         self.options.is_cropped = self.options.is_cropped == "True" ? true : false;
 
+        self.initial_data = {
+            x: this.options.initial_x,
+            y: this.options.initial_y,
+            width: this.options.initial_w,
+            height: this.options.initial_h,
+            rotate: 0,
+            scaleX: 1,
+            scaleY: 1,
+        }
         // the scale we came in with from server side
         self.original_data = {
             // x: 100,
@@ -284,21 +297,26 @@ export default Base.extend({
             aspectRatio: parseFloat(self.options.aspect_ratio),
             viewMode: self.options.view_mode,
             restore: false,
-            crop: function (e) {
-                if (self.while_init || self.while_reset) {
-                    return;
-                }
-                self.limit_minimum_cropping_size();
-                self.update_badges();
-                self.visualize_selected_area();
-            },
-            built: function () {
-                self.reset();
-                self.while_init = false;
-            },
         };
-        self.$image.cropper(configuration);
-        self.cropper = self.$image.data("cropper");
+
+        let img_el = self.$image[0];
+
+        self.cropper = new Cropper(img_el, configuration);
+
+        // setup events
+        img_el.addEventListener("crop", function (e) {
+            if(self.while_init || self.while_reset) {
+                return;
+            }
+            self.limit_minimum_cropping_size();
+            self.update_badges();
+            self.visualize_selected_area();
+        });
+        img_el.addEventListener("ready", function(e) {
+            // initialization finished
+            self.while_init = false;
+        })
+
         self.$image.on("CROPPERPATTERN.VISIBLE", function () {
             self.notify_visible();
         });
