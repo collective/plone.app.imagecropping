@@ -53,3 +53,7 @@ Gruntfile.js
 /.make-sentinels/
 /sources/
 .installed.txt
+
+# robot test
+robot_*
+test_*
