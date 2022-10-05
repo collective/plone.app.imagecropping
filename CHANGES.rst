@@ -4,7 +4,8 @@ Changelog
 2.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update wording.
+  [zopyx]
 
 
 2.2.2 (2020-03-11)
