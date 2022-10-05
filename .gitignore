@@ -52,3 +52,4 @@ Gruntfile.js
 /*-mxdev.txt
 /.make-sentinels/
 /sources/
+.installed.txt
