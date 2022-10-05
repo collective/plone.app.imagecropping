@@ -16,8 +16,7 @@ class IImageCroppingMarker(Interface):
 
 
 class IImageCroppingUtils(Interface):
-    """Methods to help the cropping editor views.
-    """
+    """Methods to help the cropping editor views."""
 
     def image_fields():
         """Returns all image fields"""
