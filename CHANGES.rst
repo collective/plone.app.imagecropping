@@ -9,6 +9,7 @@ BREAKING CHANGES:
 - Plone 6 only.
 - Removed Archetypes support.
 - ES6 resources with Module Federation integration
+- moved from ``cropper`` to ``cropperjs`` libary
   [petschki]
 
 
