@@ -1,10 +1,14 @@
 Changelog
 =========
 
-2.3.0 (unreleased)
+3.0.0 (unreleased)
 ------------------
 
-- Plone6/Barecloneta LTS support
+BREAKING CHANGES:
+
+- Plone 6 only.
+- Removed Archetypes support.
+- ES6 resources with Module Federation integration
   [petschki]
 
 
