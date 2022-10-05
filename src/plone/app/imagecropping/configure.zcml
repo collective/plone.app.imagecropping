@@ -14,10 +14,6 @@
   <include package=".browser" />
   <include package=".upgrades" />
 
-  <configure zcml:condition="installed Products.ATContentTypes">
-    <include file="at.zcml" />
-  </configure>
-
   <genericsetup:registerProfile
       name="default"
       title="Image Cropping Support"
