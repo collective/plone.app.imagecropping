@@ -50,7 +50,7 @@
                 aria-labelledby="${fieldname}-tab"
                 class="tab-pane fade ${python:'active show' if repeat.fieldname.start else ''}">
               <div class="row">
-                <div class="col-md-4 items scaleselector">
+                <div class="col-lg-4 items scaleselector">
                     <ul class="list-group mb-4">
                         <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
                             <li tal:condition="scale/can_scale"
@@ -68,13 +68,6 @@
                                   <span class="badge bg-info saving" i18n:translate="label_saving">saving...</span>
                                 </span>
                               </div>
-                              <div class="preview-container"
-                                  data-target-width="${scale/target_width}"
-                                  data-target-height="${scale/target_height}">
-                                  <div id="preview-${fieldname}-${scale/id}"
-                                      class="crop-preview overflow-hidden">
-                                  </div>
-                              </div>
                             </li>
                             <li tal:condition="not: scale/can_scale"
                                 class="list-group-item impossible disabled">
@@ -89,7 +82,7 @@
                         </tal:loop>
                     </ul>
                 </div>
-                <div class="col-md-8 allcroppingarea">
+                <div class="col-lg-8 allcroppingarea">
                     <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
                         <div tal:condition="scale/can_scale"
                             class="singlecroppingarea ${python:'active' if repeat.scale.start else 'd-none'}"
@@ -100,7 +93,7 @@
                                                         scalename: ${scale/id};
                                                         saveurl: ${context/absolute_url}/@@crop-image;
                                                         authenticator: ${context/@@authenticator/token};
-                                                        preview: #preview-${fieldname}-${scale/id};
+                                                        preview: #scale-crop-preview .crop-preview;
                                                         aspect_ratio: ${scale/aspect_ratio};
                                                         is_cropped: ${scale/is_cropped};
                                                         initial_x: ${scale/initial/x};
@@ -119,7 +112,7 @@
                                 <img class="main-image" src="${python:view.original_url(fieldname)}" style="width:100%;height:auto" />
 
                             </div>
-                            <div class="scale-info mt-2">
+                            <div class="scale-info mt-2 float-end text-end">
                                 <span class="nowrap d-block">
                                     <span i18n:translate="original_size">
                                         Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
@@ -149,6 +142,11 @@
                             </div>
                         </div>
                     </tal:loop>
+                    <div id="scale-crop-preview">
+                        <span i18n:translate="">Preview</span>
+                        <div class="crop-preview overflow-hidden mt-2">
+                    </div>
+                    </div>
                 </div>
               </div>
             </div>

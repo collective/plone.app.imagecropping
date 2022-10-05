@@ -43,34 +43,6 @@ export default Base.extend({
         this.trigger_notify_visible($cropperimg);
     },
 
-    set_preview_dimensions: function (li) {
-        // log.info('SET_PREVIEW_DIMENSIONS');
-        var $li = $(li),
-            $pcontainer = $(".preview-container", $li),
-            $preview = $(".crop-preview", $pcontainer),
-            twidth = parseFloat($pcontainer.data("target-width")),
-            theight = parseFloat($pcontainer.data("target-height")),
-            liwidth = $li.width(),
-            height = null;
-            // log.info('liwidth');
-            // log.info(liwidth);
-            // log.info($preview);
-
-        if (liwidth >= twidth) {
-            // if smaller set to real value
-            // log.info('-> smaller');
-            height = theight;
-        } else {
-            // if greater scale down, respect aspect ratio
-            // log.info('->  greater');
-            height = (theight * liwidth) / twidth;
-        }
-        $pcontainer.width(liwidth);
-        $pcontainer.height(height);
-        $preview.width(liwidth);
-        $preview.height(height);
-    },
-
     init: function () {
         import("../scss/cropscaleselect.scss");
 
@@ -84,7 +56,6 @@ export default Base.extend({
             var fieldset = this;
             $("li.list-group-item.scalable", $(fieldset)).each(function (lindex) {
                 var li = this;
-                self.set_preview_dimensions(li);
                 $(li).on("click", function (e) {
                     self.toggle_li(li);
                 });

@@ -8,11 +8,7 @@
         padding: 1em;
     }
     div.items.scaleselector {
-        margin-top: 5em;
-        padding-left: 0px;
-        padding-right: 0px;
         .list-group {
-            padding-left: 0;
             .list-group-item {
                 position: relative;
                 display: block;
@@ -23,7 +19,6 @@
                 cursor: pointer;
                 div.preview-container {
                     div.crop-preview {
-                        overflow: hidden;
                         img {
                             max-width: 100%;
                         }
@@ -47,10 +42,7 @@
                     border-top-right-radius: 0px;
                 }
                 &.active:last-child {
-                    border-botton-right-radius: 0px;
-                }
-                &.inactive div.preview-container {
-                    display: none;
+                    border-bottom-right-radius: 0px;
                 }
                 .label {
                     float: right;
@@ -64,12 +56,7 @@
     #fieldset-image {
         width: 100%;
     }
-    div.allcroppingarea {
-        padding: 1em 1em 0 1em;
-    }
     div.singlecroppingarea {
-        padding-left: 1.5em;
-        padding-right: 0px;
         .pat-image-crop {
             padding-left: 15px;
             padding-right: 15px;
@@ -87,7 +74,7 @@
             }
         }
         .scale-info {
-            padding: 0 6px 10px 0;
+            padding: 0 6px 10px 120px;
             .nowrap {
                 white-space: nowrap;
             }
@@ -163,5 +150,12 @@
         &.inactive {
             display: none;
         }
+    }
+}
+
+#scale-crop-preview {
+    .crop-preview {
+        width:250px;
+        height:250px;
     }
 }
