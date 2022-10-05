@@ -72,19 +72,14 @@ export default Base.extend({
         if (!$(".cropper-container", this.$image.parent()).is(":visible")) {
             return this._changed;
         }
-        var current = this.cropper.getData(true);
-        var xc =
-                this.original_data.x - 1 < current.x &&
-                current.x < this.original_data.x + 1,
-            yc =
-                this.original_data.y - 1 < current.y &&
-                current.y < this.original_data.y + 1,
-            wc =
-                this.original_data.width - 1 < current.width &&
-                current.width < this.original_data.width + 1,
-            hc =
-                this.original_data.height - 1 < current.height &&
-                current.height < this.original_data.height + 1;
+        function is_within_1px_range(x, y) {
+            return (x>=(y-1)) && (x<=(y+1));
+        }
+        var current = this.cropper.getData();
+        var xc = is_within_1px_range(current.x, this.original_data.x),
+            yc = is_within_1px_range(current.y, this.original_data.y),
+            wc = is_within_1px_range(current.width, this.original_data.width),
+            hc = is_within_1px_range(current.height, this.original_data.height);
         this._changed = !(xc && yc && wc && hc);
         return this._changed;
     },
@@ -116,6 +111,7 @@ export default Base.extend({
             success: function (data, textStatus, jqXHR) {
                 self.options.is_cropped = false;
                 self.while_saving = false;
+                self.original_data = self.initial_data;
                 self.reset();
             },
             error: function (jqXHR, textStatus, errorThrown) {
