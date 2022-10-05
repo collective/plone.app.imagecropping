@@ -42,7 +42,7 @@ class Storage(object):
         return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY, PersistentDict())
 
     def store(self, fieldname, scale, box):
-        self.remove(fieldname, scale, surpress_event=True)
+        self.remove(fieldname, scale)
         key = self._key(fieldname, scale)
         self._storage[key] = box
         notify(CroppingInfoChangedEvent(self.context))
