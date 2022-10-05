@@ -61,10 +61,12 @@
                                 <span>
                                   <strong>${scale/title}</strong> ${scale/target_width}&times;${scale/target_height}:
                                 </span>
-                                <span class="badge bg-success cropped" i18n:translate="label_cropped">cropped</span>
-                                <span class="badge bg-primary uncropped" i18n:translate="label_uncropped">uncropped</span>
-                                <span class="badge bg-warning changed" i18n:translate="label_changed">changed</span>
-                                <span class="badge bg-info saving" i18n:translate="label_saving">saving...</span>
+                                <span class="nowrap">
+                                  <span class="badge bg-success cropped" i18n:translate="label_cropped">cropped</span>
+                                  <span class="badge bg-primary uncropped" i18n:translate="label_uncropped">uncropped</span>
+                                  <span class="badge bg-warning changed" i18n:translate="label_changed">changed</span>
+                                  <span class="badge bg-info saving" i18n:translate="label_saving">saving...</span>
+                                </span>
                               </div>
                               <div class="preview-container"
                                   data-target-width="${scale/target_width}"
