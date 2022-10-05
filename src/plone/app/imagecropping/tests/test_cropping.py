@@ -268,17 +268,17 @@ class TestCroppingDX(unittest.TestCase):
         # )
 
     def test_autocrop(self):
-        """check direction='down' for cropped and un-cropped image scales"""
+        """check mode='contain' for cropped and un-cropped image scales"""
         traverse = self.portal.REQUEST.traverseName
 
         # auto-cropped scale
         img_scales = traverse(self.img, "@@images")
-        auto_crop = img_scales.scale("image", "thumb", direction="down")
+        auto_crop = img_scales.scale("image", "thumb", mode="contain")
 
         # cropped scale
         view = self.img.restrictedTraverse("@@crop-image")
         view._crop(fieldname="image", scale="thumb", box=(0, 0, 200, 200))
-        manual_crop = img_scales.scale("image", "thumb", direction="down")
+        manual_crop = img_scales.scale("image", "thumb", mode="contain")
         self.assertEqual(
             (auto_crop.width, auto_crop.height), (manual_crop.width, manual_crop.height)
         )

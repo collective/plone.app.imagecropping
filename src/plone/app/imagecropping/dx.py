@@ -33,18 +33,18 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         cropped_image_file.seek(0)
         return cropped_image_file
 
-    def create_scale(self, data, direction, height, width, **parameters):
+    def create_scale(self, data, mode, height, width, **parameters):
         if self.box:
             # do crop stuff first
             data = self._crop(data, self.box)
         return super(CroppingImageScalingFactory, self).create_scale(
-            data, direction, height, width, **parameters
+            data, mode, height, width, **parameters
         )
 
     def __call__(
         self,
         fieldname=None,
-        direction="thumbnail",
+        mode="scale",
         height=None,
         width=None,
         scale=None,
@@ -53,15 +53,15 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         storage = Storage(self.context)
         self.box = storage.read(fieldname, scale)
         if self.box:
-            direction = "down"
+            mode = "contain"
         else:
             registry = getUtility(IRegistry)
             settings = registry.forInterface(ISettings)
             if scale in settings.cropping_for:
-                direction = "down"
+                mode = "contain"
         return super(CroppingImageScalingFactory, self).__call__(
             fieldname=fieldname,
-            direction=direction,
+            mode=mode,
             height=height,
             width=width,
             scale=scale,
