@@ -90,7 +90,7 @@
                 <div class="col-md-8 allcroppingarea">
                     <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
                         <div tal:condition="scale/can_scale"
-                            class="singlecroppingarea ${python:'d-block' if repeat.scale.start else 'd-none'}"
+                            class="singlecroppingarea ${python:'active' if repeat.scale.start else 'd-none'}"
                             id="croppingarea-${fieldname}-${scale/id}">
                             <div class="pat-image-cropper"
                                 data-pat-image-cropper="identifier: ${fieldname}-${scale/id};
@@ -101,6 +101,10 @@
                                                         preview: #preview-${fieldname}-${scale/id};
                                                         aspect_ratio: ${scale/aspect_ratio};
                                                         is_cropped: ${scale/is_cropped};
+                                                        initial_x: ${scale/initial/x};
+                                                        initial_y: ${scale/initial/y};
+                                                        initial_w: ${scale/initial/w};
+                                                        initial_h: ${scale/initial/h};
                                                         current_x: ${scale/current/x};
                                                         current_y: ${scale/current/y};
                                                         current_w: ${scale/current/w};
@@ -114,13 +118,12 @@
 
                             </div>
                             <div class="scale-info mt-2">
-                                <span class="nowrap">
+                                <span class="nowrap d-block">
                                     <span i18n:translate="original_size">
                                         Original <span i18n:name="size">${scale/true_width}&times;${scale/true_height}</span>
                                     </span>
-                                    &mdash;
                                 </span>
-                                <span class="nowrap">
+                                <span class="nowrap d-block">
                                     <span i18n:translate="">Selected</span>
                                     <span class="cropw">${scale/current/w}</span>&times;<span class="croph">${scale/current/h}</span>, <span i18n:translate="">offset</span>
                                     <span class="cropx">${scale/current/x}</span>, <span class="cropy">${scale/current/y}</span>
@@ -130,16 +133,16 @@
                                             disabled=""
                                             title="Store the choosen cropping area permanently on the server and scale area down to ${scale/target_width}px&times;${scale/target_height}px"
 
-                                            i18n:attributes="button_save_description">
+                                            i18n:attributes="title button_save_description">
                                         <span i18n:translate="button_save">Save</span> ${python:view.field_label(fieldname)} ${python:scale['title']}</button>
                                     <button class="btn btn-danger remove standalone"
                                             title="Delete the manual choosen cropping area and auto scale on the server side."
                                             i18n:translate="button_remove"
-                                            i18n:attributes="button_remove_description">Remove</button>
+                                            i18n:attributes="title button_remove_description">Remove</button>
                                     <button class="btn btn-warning reset standalone"
                                             title="Set to initial value of ${scale/current/w}&times;${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}"
                                             i18n:translate="button_reset"
-                                            i18n:attributes="button_reset_description">Reset</button>
+                                            i18n:attributes="title button_reset_description">Reset</button>
                                 </div>
                             </div>
                         </div>
