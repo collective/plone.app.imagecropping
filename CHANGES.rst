@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2.3 (unreleased)
+2.2.3 (2022-10-05)
 ------------------
 
 - Update wording.
