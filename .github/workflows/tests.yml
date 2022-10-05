@@ -11,12 +11,11 @@ jobs:
     strategy:
       matrix:
         python:
-          - "3.7"
           - "3.8"
           - "3.9"
           - "3.10"
         plone:
-          - "6.0-dev"
+          - "6.0.0b3"
     steps:
       - uses: actions/checkout@v2
       - uses: nanasess/setup-chromedriver@v1
