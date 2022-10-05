@@ -302,14 +302,6 @@
 .pat-imagecrop-scaleselect.autotabs {
   padding: 1em;
 }
-.pat-imagecrop-scaleselect div.items.scaleselector {
-  margin-top: 5em;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-.pat-imagecrop-scaleselect div.items.scaleselector .list-group {
-  padding-left: 0;
-}
 .pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item {
   position: relative;
   display: block;
@@ -318,9 +310,6 @@
   background: #f2f1f1;
   border: 1px solid var(--bs-light);
   cursor: pointer;
-}
-.pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item div.preview-container div.crop-preview {
-  overflow: hidden;
 }
 .pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item div.preview-container div.crop-preview img {
   max-width: 100%;
@@ -342,10 +331,7 @@
   border-top-right-radius: 0px;
 }
 .pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item.active:last-child {
-  border-botton-right-radius: 0px;
-}
-.pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item.inactive div.preview-container {
-  display: none;
+  border-bottom-right-radius: 0px;
 }
 .pat-imagecrop-scaleselect div.items.scaleselector .list-group .list-group-item .label {
   float: right;
@@ -355,13 +341,6 @@
 }
 .pat-imagecrop-scaleselect #fieldset-image {
   width: 100%;
-}
-.pat-imagecrop-scaleselect div.allcroppingarea {
-  padding: 1em 1em 0 1em;
-}
-.pat-imagecrop-scaleselect div.singlecroppingarea {
-  padding-left: 1.5em;
-  padding-right: 0px;
 }
 .pat-imagecrop-scaleselect div.singlecroppingarea .pat-image-crop {
   padding-left: 15px;
@@ -380,7 +359,7 @@
   width: 100%;
 }
 .pat-imagecrop-scaleselect div.singlecroppingarea .scale-info {
-  padding: 0 6px 10px 0;
+  padding: 0 6px 10px 120px;
 }
 .pat-imagecrop-scaleselect div.singlecroppingarea .scale-info .nowrap {
   white-space: nowrap;
@@ -452,6 +431,11 @@
 }
 .pat-imagecrop-scaleselect fieldset.inactive {
   display: none;
+}
+
+#scale-crop-preview .crop-preview {
+  width: 250px;
+  height: 250px;
 }
 
 /*# sourceMappingURL=cropscaleselect.css.map */
