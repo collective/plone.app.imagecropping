@@ -95,16 +95,25 @@ class EditorTestCase(unittest.TestCase):
 
         # do some cropping and removing
         self.test_editview_crop(check_assert=False)
-        self.test_editview_remove(check_assert=False)
-
         six.assertCountEqual(
             self,
             firedEvents,
             [
+                CroppingInfoRemovedEvent,
                 CroppingInfoChangedEvent,
+            ],
+        )
+
+        firedEvents = []
+        self.test_editview_remove(check_assert=False)
+        six.assertCountEqual(
+            self,
+            firedEvents,
+            [
                 CroppingInfoRemovedEvent,
             ],
         )
+
         sm.unregisterHandler(recordEvent, (ICroppingInfoChangedEvent,))
         sm.unregisterHandler(recordEvent, (ICroppingInfoRemovedEvent,))
 
