@@ -165,7 +165,7 @@ class CroppingEditor(BrowserView):
         scaled_img = scales.scale(
             fieldname,
             scale="icon",
-            direction="keep",
+            mode="scale",
         )
         return scaled_img and scaled_img.url or ""
 
