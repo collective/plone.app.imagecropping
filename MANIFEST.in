@@ -1,5 +1,14 @@
+exclude Makefile *.cfg *.in *.nix *.sh *.conf *.js *.json Procfile .jshintrc *-mxdev.txt .installed.txt .editorconfig .prettierignore
 recursive-include docs *
 recursive-include src *
-include *.rst 
+include *.rst
 include *.sh
 global-exclude *.pyc
+include *.js
+include *.json
+include *.lock
+include *.txt
+include Makefile
+include mx.ini
+recursive-include resources *.js
+recursive-include resources *.scss
