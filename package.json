@@ -7,7 +7,7 @@
         "@patternslib/patternslib": "*",
         "@plone/mockup": ">= 5.0.0-alpha.24 < 6",
         "bootstrap": "^5.2.0",
-        "cropper": "^4.1.0"
+        "cropperjs": "^1.5.12"
     },
     "devDependencies": {
         "@patternslib/dev": "^2.7.2",
