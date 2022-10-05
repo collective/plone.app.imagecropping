@@ -10,11 +10,11 @@
 Why do I need this?
 ===================
 
-Automatic cropping is already possible, `plone.namedfile`_ does already handle this via the ``direction`` parameter::
+Automatic cropping is already possible, `plone.namedfile`_ does already handle this via the ``mode`` parameter::
 
   <img tal:define="scales context/@@images"
        tal:replace="structure python: scales.tag('image',
-                    width=1200, height=800, direction='down')"
+                    width=1200, height=800, mode='contain')"
        />
 
 However it only crops from the top/center of the image,
@@ -60,8 +60,8 @@ This also enables support for richtext editors such as TinyMCE to insert cropped
 Automatic cropping behavior
 ---------------------------
 
-You can use ``direction='down'`` for autocropped scales as usual.
-This package overrides the direction and delivers the cropped scale if it is available.
+You can use ``mode='contain'`` for autocropped scales as usual.
+This package overrides the ``mode`` and delivers the cropped scale if it is available.
 
 
 Load editor as overlay

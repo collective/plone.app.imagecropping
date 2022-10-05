@@ -49,7 +49,7 @@ PIP_PARAMS= --pre
 ##############################################################################
 # targets and prerequisites
 # target has to be one file, otherwise step gets executes for each file separate
-PREPARE_PREREQUISITES=${PIP_REQUIREMENTS_IN_FILE} ${CONSTRAINTS_IN} sources.ini ${ADDONBASE}setup.py
+PREPARE_PREREQUISITES=${PIP_REQUIREMENTS_IN_FILE} ${CONSTRAINTS_IN} mx.ini ${ADDONBASE}setup.py
 PREPARE_TARGET=requirements-mxdev.txt
 INSTALL_PREREQUSISTES=${PREPARE_TARGET}
 INSTALL_TARGET=.installed.txt
@@ -82,7 +82,7 @@ help: ## This help message
 ##############################################################################
 # targets and prerequisites
 # target has to be one file, otherwise step gets executes for each file separate
-PREPARE_PREREQUISITES=${PIP_REQUIREMENTS_IN_FILE} ${CONSTRAINTS_IN} sources.ini ${ADDONBASE}setup.cfg
+PREPARE_PREREQUISITES=${PIP_REQUIREMENTS_IN_FILE} ${CONSTRAINTS_IN} mx.ini ${ADDONBASE}setup.cfg
 PREPARE_TARGET=requirements-mxdev.txt
 INSTALL_PREREQUSISTES=${PREPARE_TARGET}
 INSTALL_TARGET=.installed.txt
@@ -124,7 +124,8 @@ endif
 
 # version ok?
 PYTHON_VERSION_MIN=3.7
-PYTHON_VERSION_OK=$(shell $(PYTHON) -c 'import sys; print(int(float("%d.%d"% sys.version_info[0:2]) >= float($(PYTHON_VERSION_MIN))))' )
+PYTHON_VERSION_OK=$(shell $(PYTHON) -c 'import sys; print(int(sys.version_info[0:2] >= tuple(map(int, "$(PYTHON_VERSION_MIN)".split(".")))))' )
+
 ifeq ($(PYTHON_VERSION_OK),0)
   $(error "Need python $(PYTHON_VERSION) >= $(PYTHON_VERSION_MIN)")
 endif
@@ -142,7 +143,7 @@ endif
 PIP_SENTINEL=${SENTINELFOLDER}pip.sentinel
 ${PIP_SENTINEL}: ${VENV_SENTINEL} ${CONSTRAINTS_IN} ${SENTINEL}
 	@echo "$(OK_COLOR)Install pip$(NO_COLOR)"
-	@${PYBIN}pip install -U pip>=22.0.2 wheel setuptools
+	@${PYBIN}pip install -U "pip>=22.0.2" wheel setuptools
 	@touch ${PIP_SENTINEL}
 
 ##############################################################################
@@ -151,7 +152,7 @@ ${PIP_SENTINEL}: ${VENV_SENTINEL} ${CONSTRAINTS_IN} ${SENTINEL}
 MXDEV_SENTINEL=${SENTINELFOLDER}pip-mxdev.sentinel
 ${MXDEV_SENTINEL}: ${PIP_SENTINEL}
 	@echo "$(OK_COLOR)Install mxdev$(NO_COLOR)"
-	@${PYBIN}pip install mxdev>=2.0.0
+	@${PYBIN}pip install "mxdev>=2.0.0"
 	@touch ${MXDEV_SENTINEL}
 
 .PHONY: prepare
@@ -162,7 +163,7 @@ ${PREPARE_PREREQUISITES}:
 
 ${PREPARE_TARGET}: ${MXDEV_SENTINEL} ${PREPARE_PREREQUISITES}
 	@echo "$(OK_COLOR)Prepare sources and dependencies$(NO_COLOR)"
-	@${PYBIN}mxdev -c sources.ini
+	@${PYBIN}mxdev -c mx.ini
 
 .PHONY: install
 install: ${INSTALL_TARGET} ## pip install all dependencies and scripts
@@ -247,7 +248,7 @@ apply-style-zpretty: ${ZPRETTY_SENTINEL}   ## apply/format code style zpretty (t
 	@find ${ADDONFOLDER} -name "*.xml"|grep -v locales|xargs ${PYBIN}zpretty -ix
 
 .PHONY: style ## apply code styles black, isort and zpretty
-style: apply-style-black apply-style-isort apply-style-zpretty
+style: apply-style-black apply-style-isort
 
 .PHONY: format ## alias for "style"
 FORMATTING: style
@@ -269,7 +270,7 @@ lint-zpretty: ${ZPRETTY_SENTINEL}   ## lint code-style zpretty (to XML/ZCML file
 	@find ${ADDONFOLDER} -name '*.xml'|grep -v locales|xargs zpretty --check -x
 
 .PHONY: lint ## lint all: check if complies with code-styles black, isort and zpretty
-lint: lint-black lint-isort lint-zpretty
+lint: lint-black lint-isort
 
 ##############################################################################
 # RUN

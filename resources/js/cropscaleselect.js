@@ -1,16 +1,21 @@
 import $ from "jquery";
 import Base from "@patternslib/patternslib/src/core/base";
+import logging from "@patternslib/patternslib/src/core/logging";
+
+logging.setLevel("INFO");
+const log = logging.getLogger("pat-imagecrop-scaleselect");
 
 export default Base.extend({
     name: "imagecropsave",
     trigger: ".pat-imagecrop-scaleselect",
     parser: "mockup",
+
     // A shortcut for triggering custom events
     trigger_notify_visible: function ($cropperimg) {
-        console.log("Trigger event");
         var e = $.Event("CROPPERPATTERN.VISIBLE");
         $cropperimg.trigger(e);
     },
+
     toggle_li: function (li) {
         var $li = $(li),
             $ul = $($li.parent());
@@ -37,33 +42,7 @@ export default Base.extend({
         var $cropperimg = $("img.main-image", $new_area);
         this.trigger_notify_visible($cropperimg);
     },
-    set_preview_dimensions: function (li) {
-        // console.log('SET_PREVIEW_DIMENSIONS');
-        var $li = $(li),
-            $pcontainer = $(".preview-container", $li),
-            $preview = $(".crop-preview", $pcontainer),
-            twidth = parseFloat($pcontainer.data("target-width")),
-            theight = parseFloat($pcontainer.data("target-height")),
-            liwidth = $li.width(),
-            height = null;
-        // console.log('liwidth');
-        // console.log(liwidth);
-        // console.log($preview);
 
-        if (liwidth >= twidth) {
-            // if smaller set to real value
-            // console.log('-> smaller');
-            height = theight;
-        } else {
-            // if greater scale down, respect aspect ratio
-            // console.log('->  greater');
-            height = (theight * liwidth) / twidth;
-        }
-        $pcontainer.width(liwidth);
-        $pcontainer.height(height);
-        $preview.width(liwidth);
-        $preview.height(height);
-    },
     init: function () {
         import("../scss/cropscaleselect.scss");
 
@@ -71,17 +50,17 @@ export default Base.extend({
         tabEl.addEventListener('shown.bs.tab', function (event) {
             // trigger resize
             var $cropperimg = $('div.singlecroppingarea.active img.main-image', $fieldset);
-            this.trigger_notify_visible($cropperimg);
+            self.trigger_notify_visible($cropperimg);
         });
         $(".tab-pane", self.$el).each(function (findex) {
             var fieldset = this;
             $("li.list-group-item.scalable", $(fieldset)).each(function (lindex) {
                 var li = this;
-                self.set_preview_dimensions(li);
-                $(li).click(function () {
+                $(li).on("click", function (e) {
                     self.toggle_li(li);
                 });
             });
         });
     },
+
 });

@@ -16,9 +16,7 @@ class IImageCroppingMarker(Interface):
 
 
 class IImageCroppingUtils(Interface):
-    """Methods to help the cropping editor views.
-    The implementation is different for Archetype and Dexterity context.
-    """
+    """Methods to help the cropping editor views."""
 
     def image_fields():
         """Returns all image fields"""
@@ -56,12 +54,3 @@ class ICroppingInfoChangedEvent(IObjectEvent):
 
 class ICroppingInfoRemovedEvent(IObjectEvent):
     """event after cropping information has changed"""
-
-
-# seems unused
-# class ICroppedImageScaling(IImageScaling):
-#     """ marker for @@images overrides """
-
-
-# class ICroppedBlobImageField(IBlobImageField):
-#     """ marker for coppable blob image field adapters """

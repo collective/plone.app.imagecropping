@@ -107,9 +107,10 @@ class CroppingEditor(BrowserView):
         # lookup saved crop info
         storage = Storage(self.context)
         current_box = storage.read(fieldname, scale_id)
+        initial_box = self._initial_size(true_size, target_size)
 
         if current_box is None:
-            current_box = self._initial_size(true_size, target_size)
+            current_box = initial_box
             scale["is_cropped"] = False
         else:
             scale["is_cropped"] = True
@@ -121,6 +122,14 @@ class CroppingEditor(BrowserView):
         # images target dimensions
         scale["target_width"] = target_size[0]
         scale["target_height"] = target_size[1]
+
+        # initial selected crop
+        scale["initial"] = {
+            "x": initial_box[0],
+            "y": initial_box[1],
+            "w": initial_box[2] - initial_box[0],
+            "h": initial_box[3] - initial_box[1],
+        }
 
         # current selected crop
         scale["current"] = {
@@ -165,7 +174,7 @@ class CroppingEditor(BrowserView):
         scaled_img = scales.scale(
             fieldname,
             scale="icon",
-            direction="keep",
+            mode="scale",
         )
         return scaled_img and scaled_img.url or ""
 
