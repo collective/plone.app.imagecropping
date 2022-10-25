@@ -4,7 +4,8 @@ Changelog
 3.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix bug in croppingarea visibility.
+  [petschki]
 
 
 3.0.0a1 (2022-10-05)
