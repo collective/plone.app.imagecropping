@@ -40,8 +40,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone>=6.0a4',  # Module Federation support
-        'plone.namedfile>=3.999',
+        'Products.CMFPlone>=6.0b3',  # Module Federation support
+        'plone.namedfile>=6.0.0b5',
         'setuptools',
         'six',
     ],

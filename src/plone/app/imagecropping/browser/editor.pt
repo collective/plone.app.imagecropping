@@ -85,7 +85,7 @@
                 <div class="col-lg-8 allcroppingarea">
                     <tal:loop tal:repeat="scale python:view.scales_info(fieldname)">
                         <div tal:condition="scale/can_scale"
-                            class="singlecroppingarea ${python:'active' if repeat.scale.start else 'd-none'}"
+                            class="singlecroppingarea ${python:'active' if repeat.scale.start else 'inactive'}"
                             id="croppingarea-${fieldname}-${scale/id}">
                             <div class="pat-image-cropper"
                                 data-pat-image-cropper="identifier: ${fieldname}-${scale/id};
