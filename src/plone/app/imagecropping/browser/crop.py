@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.imagecropping.storage import Storage
 from Products.Five.browser import BrowserView
 

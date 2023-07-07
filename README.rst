@@ -18,7 +18,7 @@ Automatic cropping is already possible, `plone.namedfile`_ does already handle t
        />
 
 However it only crops from the top/center of the image,
-so in some ocasions this is not what you want.
+so in some occasions this is not what you want.
 
 ``plone.app.imagecropping`` allows you to select the cropping area manually for each available image scale using the `cropper`_  Javascript library
 
@@ -39,7 +39,7 @@ The interfaces are implemented by default for Dexterity based ``plone.app.conten
 
 There is also a Dexterity behavior called ``Enable Image Cropping`` which can be applied on custom content types containing at least one image.
 
-The editor view hav a tabbed navigation on the top and two columns:
+The editor view has a tabbed navigation on the top and two columns:
 
 - Image fields on tabbed navigation.
 - Image scales column on left

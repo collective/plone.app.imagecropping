@@ -1,59 +1,51 @@
-*.py[co]
-
-# Packages
-*.egg
+# Generated from:
+# https://github.com/plone/meta/tree/master/config/default
+# See the inline comments on how to expand/tweak this configuration file
+# python related
 *.egg-info
-/dist
-/build
-/eggs
-/parts
-/bin
-/var
-/sdist
-/develop-eggs
-/local
+*.pyc
+*.pyo
 
-# Installer logs
-pip-log.txt
-pip-selfcheck.json
+# tools related
+build/
+.coverage
+coverage.xml
+dist/
+docs/_build
+__pycache__/
+.tox
+.vscode/
+node_modules/
 
-# Unit test / coverage reports
-/.coverage
-/.tox
-/htmlcov
+# venv / buildout related
+bin/
+develop-eggs/
+eggs/
+.eggs/
+etc/
+.installed.cfg
+include/
+lib/
+lib64
+.mr.developer.cfg
+parts/
+pyvenv.cfg
+var/
 
-# Translations
-*.mo
-
-# editors
-*.sublime*
-
-# mr.developer
-/.mr.developer.cfg
-/.installed.cfg
-/devsrc
-
-# developement
-/.project
-/.pydevproject
-/.settings
-.DS_Store
-*.swp
-local.cfg
-/temp_resources
-/node_modules
-Gruntfile.js
-
-# virtualenv
-/include
-/lib
-/.Python
-
-/*-mxdev.txt
+# mxdev
+/instance/
 /.make-sentinels/
+/*-mxdev.txt
+/reports/
 /sources/
+/venv/
 .installed.txt
 
-# robot test
-robot_*
-test_*
+
+##
+# Add extra configuration options in .meta.toml:
+#  [gitignore]
+#  extra_lines = """
+#  _your own configuration lines_
+#  """
+##

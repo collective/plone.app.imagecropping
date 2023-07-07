@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from plone import api
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
@@ -54,7 +53,6 @@ class TestSetup(unittest.TestCase):
 
 
 class TestUninstall(unittest.TestCase):
-
     layer = IMAGECROPPING_FUNCTIONAL
 
     def setUp(self):

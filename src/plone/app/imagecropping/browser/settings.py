@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.imagecropping import imagecroppingMessageFactory as _
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
@@ -14,7 +13,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
-class SizesVocabulary(object):
+class SizesVocabulary:
     def __call__(self, context):
         allowed_sizes = getUtility(IAvailableSizes)()
         size_names = allowed_sizes and list(allowed_sizes.keys()) or []

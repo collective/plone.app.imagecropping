@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from plone.app.imagecropping import PRODUCT_NAME
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.registry.interfaces import IRegistry
@@ -13,11 +11,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-PROFILE_ID = "profile-{0:s}:default".format(PRODUCT_NAME)
+PROFILE_ID = f"profile-{PRODUCT_NAME:s}:default"
 
 
 @interface.implementer(plone_ifaces.INonInstallable)
-class HiddenProfiles(object):
+class HiddenProfiles:
     """
     Exclude upgrade profiles on the Plone add-on control panel.
     """
@@ -44,7 +42,7 @@ def _cookResources(context):
 
 def to_0004(context):
     """search for iimagecropping interface in catalog and reindex those objects
-    so they implment our new interfaces
+    so they implement our new interfaces
     """
     iface = "plone.app.imagecropping.interfaces.IImageCropping"
     cat = getToolByName(context, "portal_catalog")

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from io import BytesIO
 from os.path import dirname
 from PIL import Image

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.imagecropping.events import CroppingInfoChangedEvent
 from plone.app.imagecropping.events import CroppingInfoRemovedEvent
@@ -11,13 +10,11 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing.z2 import Browser
 from zope.component import getGlobalSiteManager
 
-import six
 import transaction
 import unittest
 
 
 class EditorTestCase(unittest.TestCase):
-
     layer = IMAGECROPPING_FUNCTIONAL
 
     def setUp(self):
@@ -29,7 +26,7 @@ class EditorTestCase(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             "Authorization",
-            "Basic {0:s}:{1:s}".format(TEST_USER_NAME, TEST_USER_PASSWORD),
+            f"Basic {TEST_USER_NAME:s}:{TEST_USER_PASSWORD:s}",
         )
         self.createSingleImageType()
 
@@ -95,8 +92,7 @@ class EditorTestCase(unittest.TestCase):
 
         # do some cropping and removing
         self.test_editview_crop(check_assert=False)
-        six.assertCountEqual(
-            self,
+        self.assertCountEqual(
             firedEvents,
             [
                 CroppingInfoRemovedEvent,
@@ -106,8 +102,7 @@ class EditorTestCase(unittest.TestCase):
 
         firedEvents = []
         self.test_editview_remove(check_assert=False)
-        six.assertCountEqual(
-            self,
+        self.assertCountEqual(
             firedEvents,
             [
                 CroppingInfoRemovedEvent,

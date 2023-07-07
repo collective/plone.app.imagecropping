@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.imagecropping.testing import IMAGECROPPING_ROBOT
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered

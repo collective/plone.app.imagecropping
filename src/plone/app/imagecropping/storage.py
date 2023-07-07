@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.events import CroppingInfoChangedEvent
@@ -11,12 +10,12 @@ from zope.event import notify
 import time
 
 
-class Storage(object):
+class Storage:
     def __init__(self, context):
         self.context = context
 
     def _key(self, fieldname, scale):
-        return "{0:s}_{1:s}".format(fieldname, scale)
+        return f"{fieldname:s}_{scale:s}"
 
     def _invalidate_scale(self, fieldname, scale):
         # Call storage with actual time in milliseconds.

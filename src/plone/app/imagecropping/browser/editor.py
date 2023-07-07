@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from operator import itemgetter
 from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
@@ -7,17 +6,14 @@ from plone.app.imagecropping.storage import Storage
 from plone.namedfile.interfaces import IAvailableSizes
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
-from six.moves import map
 from zope.component._api import getUtility
-
-import six
 
 
 class CroppingEditor(BrowserView):
     """Cropping Editor View"""
 
     def __init__(self, context, request):
-        super(CroppingEditor, self).__init__(context, request)
+        super().__init__(context, request)
         request.set("disable_plone.leftcolumn", 1)
         request.set("disable_plone.rightcolumn", 1)
 
@@ -140,7 +136,7 @@ class CroppingEditor(BrowserView):
         }
         scale["aspect_ratio"] = "1.777778"  # 16:9
         if target_size[0] > 0 and target_size[1] > 0:
-            scale["aspect_ratio"] = "{0:.2f}".format(
+            scale["aspect_ratio"] = "{:.2f}".format(
                 float(target_size[0]) / float(target_size[1])
             )
         scale["can_scale"] = (
@@ -152,7 +148,7 @@ class CroppingEditor(BrowserView):
         constrain_cropping = self._editor_settings.constrain_cropping
         cropping_for = self._editor_settings.cropping_for
         allowed_sizes = getUtility(IAvailableSizes)() or []
-        sizes_iterator = sorted(six.iteritems(allowed_sizes), key=itemgetter(1))
+        sizes_iterator = sorted(allowed_sizes.items(), key=itemgetter(1))
         for scale_id, target_size in sizes_iterator:
             if constrain_cropping and scale_id not in cropping_for:
                 continue
@@ -181,7 +177,7 @@ class CroppingEditor(BrowserView):
     def original_url(self, fieldname):
         """Returns the url to the unscaled image"""
         url = self.context.absolute_url()
-        return "{0}/@@images/{1}".format(url, fieldname)
+        return f"{url}/@@images/{fieldname}"
 
     def field_label(self, fieldname):
         return self._croputils.get_image_label(fieldname)
