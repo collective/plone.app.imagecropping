@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils

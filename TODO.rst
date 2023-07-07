@@ -1,4 +1,4 @@
-the follwoing needs checks if its still valid.
+the following needs checks if its still valid.
 if yes make it an github issue, if no remove from here:
 
 FIXME

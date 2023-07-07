@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from zope.interface.interface import Interface
 from zope.interface.interfaces import IObjectEvent
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
@@ -44,7 +43,7 @@ class IImageCroppingUtils(Interface):
         plone.scale.storage.AnnotationStorage, so that it is available
         in plone.app.imaging @@images view
 
-        DEPRECATED/ BBB - this is superseeded by usage of scaling factories
+        DEPRECATED/ BBB - this is superseded by usage of scaling factories
         """
 
 

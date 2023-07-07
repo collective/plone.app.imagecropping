@@ -130,7 +130,7 @@ msgstr ""
 msgid "instructions_p2"
 msgstr ""
 
-#. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
+#. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediately in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
 #: ../browser/editor.pt:153
 msgid "instructions_p3"
 msgstr ""

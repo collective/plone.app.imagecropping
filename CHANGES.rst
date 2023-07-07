@@ -1,6 +1,14 @@
 Changelog
 =========
 
+.. You should *NOT* be adding new change log entries to this file.
+   You should create a file in the news directory instead.
+   For helpful instructions, please see:
+   https://github.com/plone/plone.releaser/blob/master/ADD-A-NEWS-ITEM.rst
+
+.. towncrier release notes start
+
+
 3.0.1 (unreleased)
 ------------------
 
@@ -22,7 +30,7 @@ BREAKING CHANGES:
 - Plone 6 only.
 - Removed Archetypes support.
 - ES6 resources with Module Federation integration
-- moved from ``cropper`` to ``cropperjs`` libary
+- moved from ``cropper`` to ``cropperjs`` library
   [petschki]
 
 
@@ -49,7 +57,7 @@ BREAKING CHANGES:
 - Fix bug when there is an 'images' folder inside context : #96
   [laulaz]
 
-- Fix Python 3 and Plone 5.2 compatibilty
+- Fix Python 3 and Plone 5.2 compatibility
   [cillianderoiste]
 
 
@@ -119,7 +127,7 @@ BREAKING CHANGES:
 2.0b3 (2016-04-29)
 ------------------
 
-- Fix: Enable accidentially disabled JS bundle in resource registry.
+- Fix: Enable accidentally disabled JS bundle in resource registry.
   [jensens]
 
 
@@ -227,7 +235,7 @@ BREAKING CHANGES:
   [jensens]
 
 - better initial selection for cropping, also mark scales in left column
-  cropped/ uncropped and show uncropped in its default appereance.
+  cropped/ uncropped and show uncropped in its default appearance.
   [jensens]
 
 - Fix: Removed registration of Traverse for dexterity types since its
@@ -243,11 +251,11 @@ BREAKING CHANGES:
 - added dexterity behavior for image cropping.
   [benniboy]
 
-- Major cleanup and split up code and interfaces into Dexterity and Archtypes.
+- Major cleanup and split up code and interfaces into Dexterity and Archetypes.
   Also renamed/ moved Interfaces to be used as markers! Attention, in custom
   code minor changes are needed in order to point to the correct interfaces.
   see README for details.
-  Also removed some superfluos/unused ``interface=`` passes to methods of
+  Also removed some superfluous/unused ``interface=`` passes to methods of
   ``IImageCroppingUtils``.
   [jensens]
 
@@ -272,7 +280,7 @@ BREAKING CHANGES:
 - Add coveralls, code-analysis and update travis configuration.
   [saily]
 
-- Check for plone.namedfile not Dexterity. It can be used seperately.
+- Check for plone.namedfile not Dexterity. It can be used separately.
   *If plone.namedfile is used it needs to be at least version 2.0.1*
   [tomgross]
 
@@ -285,13 +293,13 @@ BREAKING CHANGES:
   reusage in ``plone.app.robotframework``.
   [saily]
 
-- pin zc.buildout=2.1.1 for travis-ci boostrap
+- pin zc.buildout=2.1.1 for travis-ci bootstrap
   [petschki]
 
 - Added Russian translations
   [bogdangi]
 
-- Prevent fieldname loosing for for current field
+- Prevent fieldname losing for for current field
   [bogdangi]
 
 - Fixed #21 (cropping was reset on modifying image)

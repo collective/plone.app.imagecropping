@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.imagecropping.interfaces import ICroppingInfoChangedEvent
 from plone.app.imagecropping.interfaces import ICroppingInfoRemovedEvent
 from zope.interface import implementer

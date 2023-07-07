@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from io import BytesIO
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
@@ -37,9 +36,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         if self.box:
             # do crop stuff first
             data = self._crop(data, self.box)
-        return super(CroppingImageScalingFactory, self).create_scale(
-            data, mode, height, width, **parameters
-        )
+        return super().create_scale(data, mode, height, width, **parameters)
 
     def __call__(
         self,
@@ -48,7 +45,7 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         height=None,
         width=None,
         scale=None,
-        **parameters
+        **parameters,
     ):
         storage = Storage(self.context)
         self.box = storage.read(fieldname, scale)
@@ -59,19 +56,19 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
             settings = registry.forInterface(ISettings)
             if scale in settings.cropping_for:
                 mode = "contain"
-        return super(CroppingImageScalingFactory, self).__call__(
+        return super().__call__(
             fieldname=fieldname,
             mode=mode,
             height=height,
             width=width,
             scale=scale,
-            **parameters
+            **parameters,
         )
 
 
 @implementer(IImageCroppingUtils)
 @adapter(IImageScaleTraversable)
-class CroppingUtilsDexterity(object):
+class CroppingUtilsDexterity:
     """Dexterity variant of scaling adapter"""
 
     def __init__(self, context):
@@ -82,13 +79,11 @@ class CroppingUtilsDexterity(object):
         if type_info is None:
             return
         schema = type_info.lookupSchema()
-        for field in getFieldsInOrder(schema):
-            yield field
+        yield from getFieldsInOrder(schema)
         behavior_assignable = IBehaviorAssignable(self.context)
         if behavior_assignable:
             for behavior in behavior_assignable.enumerateBehaviors():
-                for field in getFieldsInOrder(behavior.interface):
-                    yield field
+                yield from getFieldsInOrder(behavior.interface)
 
     def _image_field_values(self):
         for fieldname, field in self._all_fields():
@@ -127,5 +122,5 @@ class CroppingUtilsDexterity(object):
 
     def save_cropped(self, fieldname, scale, image_file):
         """see interface"""
-        # BBB - this is superseeded by usage of scaling factories
+        # BBB - this is superseded by usage of scaling factories
         pass

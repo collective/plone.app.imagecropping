@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_parent
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
@@ -14,7 +13,6 @@ import unittest
 
 
 class TestCroppingDX(unittest.TestCase):
-
     layer = IMAGECROPPING_FUNCTIONAL
 
     def setUp(self):

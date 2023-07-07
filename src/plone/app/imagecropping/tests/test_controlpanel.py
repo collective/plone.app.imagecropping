@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
@@ -20,7 +19,6 @@ except ImportError:
 
 
 class ControlPanelTestCase(unittest.TestCase):
-
     layer = IMAGECROPPING_INTEGRATION
 
     def setUp(self):
@@ -48,7 +46,6 @@ class ControlPanelTestCase(unittest.TestCase):
 
 
 class RegistryTestCase(unittest.TestCase):
-
     layer = IMAGECROPPING_INTEGRATION
 
     def setUp(self):
