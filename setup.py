@@ -42,15 +42,30 @@ setup(
     zip_safe=False,
     python_requires=">=3.8",
     install_requires=[
-        "Products.CMFPlone>=6.0b3",  # Module Federation support
-        "plone.namedfile>=6.0.0b5",
+        "Pillow",
+        "plone.api",
+        "plone.app.dexterity",
+        "plone.app.registry",
+        "plone.behavior",
+        "plone.dexterity",
+        "plone.namedfile>=6.0.0",
+        "plone.registry",
+        "plone.scale",
+        "plone.z3cform",
+        "Products.CMFPlone>=6.0.0",
+        "Products.GenericSetup",
         "setuptools",
-        "six",
+        "z3c.caching",
+        "z3c.form",
     ],
     extras_require={
         "test": [
+            "plone.app.contenttypes",
             "plone.app.testing",
             "plone.app.robotframework[debug]",
+            "plone.browserlayer",
+            "plone.testing",
+            "robotsuite",
         ],
     },
     entry_points="""

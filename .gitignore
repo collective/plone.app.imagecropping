@@ -41,6 +41,9 @@ var/
 /venv/
 .installed.txt
 
+test_*
+robot_*
+forest.*
 
 ##
 # Add extra configuration options in .meta.toml:

@@ -6,4 +6,14 @@ template = "default"
 commit-id = "c1677eef"
 
 [pyproject]
-codespell_skip = "*.js,*.min.js,*.min.js.map,*.css.map,yarn.lock"
+codespell_skip = "*.js,*.min.js,*.min.js.map,*.css.map,yarn.lock,robot_*,test_*"
+dependencies_mappings = [
+    "Pillow = ['PIL']",
+    ]
+
+[gitignore]
+extra_lines = """
+test_*
+robot_*
+forest.*
+"""

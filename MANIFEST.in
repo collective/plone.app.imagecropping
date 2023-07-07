@@ -2,6 +2,9 @@ exclude *.cfg *.in *.nix *.sh *.conf *.js *.json Procfile .jshintrc *-mxdev.txt
 exclude Makefile .installed.txt .editorconfig .prettierignore pyproject.toml .coveragerc
 recursive-include docs *
 recursive-include src *
+recursive-include resources *.js
+recursive-include resources *.scss
+recursive-exclude news *
 include *.rst
 include *.sh
 global-exclude *.pyc
@@ -9,5 +12,3 @@ include *.js
 include *.json
 include *.lock
 include *.txt
-recursive-include resources *.js
-recursive-include resources *.scss

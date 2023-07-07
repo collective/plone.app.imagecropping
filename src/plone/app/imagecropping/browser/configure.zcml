@@ -6,11 +6,6 @@
     i18n_domain="plone"
     >
 
-  <include
-      package="Products.CMFCore"
-      file="permissions.zcml"
-      />
-
   <!-- utilities -->
   <utility
       factory=".settings.SizesVocabulary"
