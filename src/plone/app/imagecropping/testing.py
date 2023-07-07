@@ -13,7 +13,6 @@ from plone.testing import z2
 
 
 class PloneAppImagecropping(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

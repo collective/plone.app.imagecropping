@@ -4,7 +4,6 @@ from Products.Five.browser import BrowserView
 
 
 class CroppingView(BrowserView):
-
     DEFAULT_FORMAT = "PNG"
 
     def __call__(self, **kw):

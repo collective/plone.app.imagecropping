@@ -14,8 +14,9 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
+          - "3.11"
         plone:
-          - "6.0.0b3"
+          - "6.0-dev"
     steps:
       - uses: actions/checkout@v2
       - uses: nanasess/setup-chromedriver@v1

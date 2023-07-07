@@ -1,11 +1,11 @@
 /*!
- * Cropper.js v1.5.12
+ * Cropper.js v1.5.13
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2021-06-12T08:00:11.623Z
+ * Date: 2022-11-20T05:30:43.444Z
  */
 .cropper-container {
   direction: ltr;
@@ -21,6 +21,8 @@
 }
 
 .cropper-container img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   display: block;
   height: 100%;
   image-orientation: 0deg;
@@ -62,7 +64,7 @@
   display: block;
   height: 100%;
   outline: 1px solid #39f;
-  outline-color: rgba(51, 153, 255, 0.75);
+  outline-color: rgba(51, 153, 255, 75%);
   overflow: hidden;
   width: 100%;
 }
