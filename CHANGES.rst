@@ -25,12 +25,6 @@ Internal:
   [plone devs] (c1677eef)
 
 
-3.0.1 (unreleased)
-------------------
-
-- Nothing changed yet.
-
-
 3.0.0 (2022-10-25)
 ------------------
 
