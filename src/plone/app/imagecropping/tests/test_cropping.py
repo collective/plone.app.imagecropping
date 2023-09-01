@@ -9,6 +9,7 @@ from zope import event
 from zope.annotation.interfaces import IAnnotations
 from zope.lifecycleevent import ObjectModifiedEvent
 
+import transaction
 import unittest
 
 
@@ -83,6 +84,33 @@ class TestCroppingDX(unittest.TestCase):
             (128, 128),
             "imagescaling does not return cropped image",
         )
+
+    def test_create_new_key_hash_for_copped_images(self):
+        """Even though the origunal image did not change,
+        the cache key needs to change, otherwise cache proxies and browser
+        don't about the 'new' cropped image.
+
+        Since the original image does not change, we need to force update
+        the modification (_p_mtime) on the field
+
+        Hint: the has key has the modification time included.
+        """
+
+        view = self.img.restrictedTraverse("@@crop-image")
+        view._crop(fieldname="image", scale="thumb", box=(14, 14, 218, 218))
+        transaction.commit()  # needed in order to have a _p_mtime on objects
+
+        # another use-case: call plone.app.imaging's ImageScaling view
+        thumb2 = self.img.restrictedTraverse("@@images")
+        tag_thumb2 = thumb2.tag(scale="thumb")
+
+        view._crop(fieldname="image", scale="thumb", box=(14, 14, 100, 100))
+        transaction.commit()
+
+        thumb3 = self.img.restrictedTraverse("@@images")
+        tag_thumb3 = thumb3.tag(scale="thumb")
+
+        self.assertNotEqual(tag_thumb2, tag_thumb3)
 
     def test_image_formats(self):
         """make sure the scales have the same format as the original image"""
