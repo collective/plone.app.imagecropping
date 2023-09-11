@@ -126,7 +126,6 @@ Pillow = ['PIL']
 #    "gitpython = ['git']",
 #    "pygithub = ['github']",
 #  ]
-#  """
 ##
 
 [tool.check-manifest]

@@ -13,6 +13,16 @@ on:
       - main
   workflow_dispatch:
 
+##
+# To set environment variables for all jobs, add in .meta.toml:
+# [github]
+# env = """
+#     debug: 1
+#     image-name: 'org/image'
+#     image-tag: 'latest'
+# """
+##
+
 jobs:
   qa:
     uses: plone/meta/.github/workflows/qa.yml@main
