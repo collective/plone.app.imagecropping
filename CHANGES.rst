@@ -18,6 +18,10 @@ Bug fixes:
   [petschki] (#0)
 
 
+- Make sure the hash key changes after cropping an image.
+  [mathias.leimgruber]
+
+
 Internal:
 
 
