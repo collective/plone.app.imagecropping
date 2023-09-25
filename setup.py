@@ -43,16 +43,16 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "Pillow",
-        "plone.api",
         "plone.app.dexterity",
         "plone.app.registry",
+        "plone.base",
         "plone.behavior",
         "plone.dexterity",
         "plone.namedfile>=6.0.0",
         "plone.registry",
         "plone.scale",
         "plone.z3cform",
-        "Products.CMFPlone>=6.0.0",
+        "Products.CMFCore",
         "Products.GenericSetup",
         "setuptools",
         "z3c.caching",
@@ -60,6 +60,7 @@ setup(
     ],
     extras_require={
         "test": [
+            "plone.api",
             "plone.app.contenttypes",
             "plone.app.testing",
             "plone.app.robotframework[debug]",

@@ -21,7 +21,7 @@
   <!-- configlet -->
   <browser:page
       name="imagecropping-settings"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class=".settings.SettingsView"
       permission="cmf.ManagePortal"
       />

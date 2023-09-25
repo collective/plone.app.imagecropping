@@ -8,7 +8,7 @@
 
   <!-- javascript/less ====================================================== -->
 
-  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+  <records interface="plone.base.interfaces.IBundleRegistry"
            prefix="plone.bundles/plone_app_imagecropping"
   >
     <value key="enabled">True</value>

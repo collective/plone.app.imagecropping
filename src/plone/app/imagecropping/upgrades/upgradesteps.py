@@ -1,8 +1,8 @@
 from plone.app.imagecropping import PRODUCT_NAME
 from plone.app.imagecropping.browser.settings import ISettings
+from plone.base.interfaces import INonInstallable
 from plone.registry.interfaces import IRegistry
-from Products.CMFPlone import interfaces as plone_ifaces
-from Products.CMFPlone.utils import getToolByName
+from Products.CMFCore.utils import getToolByName
 from zope import interface
 from zope.component import queryUtility
 
@@ -10,11 +10,10 @@ import logging
 
 
 logger = logging.getLogger(__name__)
-
 PROFILE_ID = f"profile-{PRODUCT_NAME:s}:default"
 
 
-@interface.implementer(plone_ifaces.INonInstallable)
+@interface.implementer(INonInstallable)
 class HiddenProfiles:
     """
     Exclude upgrade profiles on the Plone add-on control panel.

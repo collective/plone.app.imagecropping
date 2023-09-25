@@ -1,15 +1,9 @@
 """Setup tests for this package."""
 from plone import api
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
+from plone.base.utils import get_installer
 
 import unittest
-
-
-try:
-    from Products.CMFPlone.utils import get_installer
-except ImportError:
-    # BBB for Plone 5.0 and lower.
-    get_installer = None
 
 
 class TestSetup(unittest.TestCase):
