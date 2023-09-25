@@ -4,7 +4,7 @@
   <records interface="plone.app.imagecropping.browser.settings.ISettings"
            remove="true"
   />
-  <records interface="Products.CMFPlone.interfaces.IBundleRegistry"
+  <records interface="plone.base.interfaces.IBundleRegistry"
            prefix="plone.bundles/plone_app_imagecropping"
            remove="true"
   />

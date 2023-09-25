@@ -3,7 +3,7 @@ from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
 from plone.app.imagecropping.tests import dummy_named_blob_png_image
-from Products.CMFPlone.utils import _createObjectByType
+from plone.base.utils import unrestricted_construct_instance
 from unittest.case import skip
 from zope import event
 from zope.annotation.interfaces import IAnnotations
@@ -20,7 +20,7 @@ class TestCroppingDX(unittest.TestCase):
         self.app = self.layer["app"]
         self.portal = self.layer["portal"]
 
-        _createObjectByType(
+        unrestricted_construct_instance(
             "Image", self.portal, "testimage", title="I'm a testing Image"
         )
 
@@ -136,7 +136,7 @@ class TestCroppingDX(unittest.TestCase):
 
         # create a jpeg image out of the png file
         # and test if created scale is jpeg too
-        _createObjectByType("Image", self.portal, "testjpeg")
+        unrestricted_construct_instance("Image", self.portal, "testjpeg")
         jpg = self.portal.testjpeg
         jpg.image = dummy_named_blob_jpg_image()
 

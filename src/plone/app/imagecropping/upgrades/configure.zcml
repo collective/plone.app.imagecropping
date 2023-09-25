@@ -7,7 +7,7 @@
 
   <utility
       factory=".upgradesteps.HiddenProfiles"
-      provides="Products.CMFPlone.interfaces.INonInstallable"
+      provides="plone.base.interfaces.INonInstallable"
       name="plone.app.imagecropping.upgrades"
       />
   <gs:registerProfile
@@ -15,7 +15,7 @@
       title="Upgrade policy GS profile to 0004"
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      for="plone.base.interfaces.IMigratingPloneSiteRoot"
       directory="profiles/0003_to_0004"
       />
 
@@ -68,7 +68,7 @@
       title="Upgrade policy GS profile to 2301"
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      for="plone.base.interfaces.IMigratingPloneSiteRoot"
       directory="profiles/2300_to_2301"
       />
   <gs:upgradeSteps

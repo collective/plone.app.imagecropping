@@ -4,18 +4,12 @@ from plone.app.imagecropping.testing import IMAGECROPPING_INTEGRATION
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.base.utils import get_installer
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
 import unittest
-
-
-try:
-    from Products.CMFPlone.utils import get_installer
-except ImportError:
-    # BBB for Plone 5.0 and lower.
-    get_installer = None
 
 
 class ControlPanelTestCase(unittest.TestCase):
