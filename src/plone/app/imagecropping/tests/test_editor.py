@@ -80,6 +80,63 @@ class EditorTestCase(unittest.TestCase):
         result = cropview()
         self.assertEqual(result, "OK")
 
+    def test_can_scale(self, check_assert=True):
+        scale_name = "teaser"
+        request = self.layer["request"]
+        request.form.update(
+            {
+                "x": 1.0,
+                "y": 2.7,
+                "width": 600,
+                "height": 200,
+                "fieldname": "image",
+                "scale": scale_name,
+                "form.button.Save": "1",
+            }
+        )
+        def get_cropped_scale(scales):
+            return [s for s in scales if s["id"] == scale_name][0]
+
+        # set teaser target width and height lower than image height (776x232):
+        api.portal.set_registry_record(
+            "plone.allowed_sizes", ['teaser 600:200'],
+        )
+        cropedit = api.content.get_view("croppingeditor", self.img, request)
+        cropedit()
+        cropped_scale = get_cropped_scale(cropedit.scales_info("image"))
+        if check_assert:
+            self.assertTrue(cropped_scale["can_scale"])
+
+        # set teaser target width lower than image width (776x232) and height on max ():
+        api.portal.set_registry_record(
+            "plone.allowed_sizes", ['teaser 600:65536'],
+        )
+        cropedit = api.content.get_view("croppingeditor", self.img, request)
+        cropedit()
+        cropped_scale = get_cropped_scale(cropedit.scales_info("image"))
+        if check_assert:
+            self.assertTrue(cropped_scale["can_scale"])
+
+        # set teaser width heigher than image width (776x232):
+        api.portal.set_registry_record(
+            "plone.allowed_sizes", ['teaser 800:200'],
+        )
+        cropedit = api.content.get_view("croppingeditor", self.img, request)
+        cropedit()
+        cropped_scale = get_cropped_scale(cropedit.scales_info("image"))
+        if check_assert:
+            self.assertFalse(cropped_scale["can_scale"])
+
+        # set teaser height heigher than image height (776x232):
+        api.portal.set_registry_record(
+            "plone.allowed_sizes", ['teaser 600:400'],
+        )
+        cropedit = api.content.get_view("croppingeditor", self.img, request)
+        cropedit()
+        cropped_scale = get_cropped_scale(cropedit.scales_info("image"))
+        if check_assert:
+            self.assertFalse(cropped_scale["can_scale"])
+
     def test_events(self):
         sm = getGlobalSiteManager()
         firedEvents = []
