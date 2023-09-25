@@ -1,5 +1,4 @@
 from operator import itemgetter
-from plone import api
 from plone.app.imagecropping.browser.settings import ISettings
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from plone.app.imagecropping.storage import Storage
@@ -166,7 +165,7 @@ class CroppingEditor(BrowserView):
         return self._croputils.image_field_names()
 
     def icon_url(self, fieldname):
-        scales = api.content.get_view("images", self.context, self.request)
+        scales = self.context.restrictedTraverse("@@images")
         scaled_img = scales.scale(
             fieldname,
             scale="icon",
