@@ -143,9 +143,7 @@ class CroppingEditor(BrowserView):
                 float(target_size[0]) / float(target_size[1])
             )
 
-        scale["can_scale"] = (
-            target_size[0] <= true_size[0]
-        )
+        scale["can_scale"] = target_size[0] <= true_size[0]
         return scale
 
     def _scales(self, fieldname):

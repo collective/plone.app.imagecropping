@@ -85,17 +85,16 @@ class TestCroppingDX(unittest.TestCase):
             "imagescaling does not return cropped image",
         )
 
-    def test_create_new_key_hash_for_copped_images(self):
-        """Even though the origunal image did not change,
+    def test_create_new_hashkey_for_cropped_images(self):
+        """Even though the original image did not change,
         the cache key needs to change, otherwise cache proxies and browser
-        don't about the 'new' cropped image.
+        don't know about the 'new' cropped image.
 
         Since the original image does not change, we need to force update
         the modification (_p_mtime) on the field
 
-        Hint: the has key has the modification time included.
+        Hint: the hash key has the modification time included.
         """
-
         view = self.img.restrictedTraverse("@@crop-image")
         view._crop(fieldname="image", scale="thumb", box=(14, 14, 218, 218))
         transaction.commit()  # needed in order to have a _p_mtime on objects
