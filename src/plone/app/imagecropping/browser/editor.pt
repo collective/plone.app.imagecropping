@@ -87,7 +87,7 @@
                           <div class="d-flex justify-content-between align-items-center">
                             <span>
                               <strong>${scale/title}</strong>
-                              <span i18n:translate="">${scale/target_width}&times;${scale/target_height}:</span>
+                              <span>${scale/target_width}&times;${python:"max" if scale.get('target_height_orig') else scale['target_height']}:</span>
                             </span>
                             <span class="nowrap">
                               <span class="badge bg-success cropped"
