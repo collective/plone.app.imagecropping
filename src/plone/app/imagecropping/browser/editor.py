@@ -142,8 +142,7 @@ class CroppingEditor(BrowserView):
             scale["aspect_ratio"] = "{:.2f}".format(
                 float(target_size[0]) / float(target_size[1])
             )
-
-        scale["can_scale"] = target_size[0] <= true_size[0]
+        scale["can_scale"] = target_size[0] <= true_size[0] and target_size[1] <= true_size[1]
         return scale
 
     def _scales(self, fieldname):
