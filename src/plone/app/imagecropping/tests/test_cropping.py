@@ -121,8 +121,8 @@ class TestCroppingDX(unittest.TestCase):
         transaction.commit()
         img_brain_new = api.content.find(UID=self.img.UID())[0]
         self.assertNotEqual(
-            img_brain.image_scales['image'][0]['scales']['thumb']['download'],
-            img_brain_new.image_scales['image'][0]['scales']['thumb']['download'],
+            img_brain.image_scales["image"][0]["scales"]["thumb"]["download"],
+            img_brain_new.image_scales["image"][0]["scales"]["thumb"]["download"],
         )
 
     def test_image_formats(self):

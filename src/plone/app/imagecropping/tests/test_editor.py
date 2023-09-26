@@ -94,12 +94,14 @@ class EditorTestCase(unittest.TestCase):
                 "form.button.Save": "1",
             }
         )
+
         def get_cropped_scale(scales):
             return [s for s in scales if s["id"] == scale_name][0]
 
         # set teaser target width and height lower than image height (776x232):
         api.portal.set_registry_record(
-            "plone.allowed_sizes", ['teaser 600:200'],
+            "plone.allowed_sizes",
+            ["teaser 600:200"],
         )
         cropedit = api.content.get_view("croppingeditor", self.img, request)
         cropedit()
@@ -109,7 +111,8 @@ class EditorTestCase(unittest.TestCase):
 
         # set teaser target width lower than image width (776x232) and height on max ():
         api.portal.set_registry_record(
-            "plone.allowed_sizes", ['teaser 600:65536'],
+            "plone.allowed_sizes",
+            ["teaser 600:65536"],
         )
         cropedit = api.content.get_view("croppingeditor", self.img, request)
         cropedit()
@@ -119,7 +122,8 @@ class EditorTestCase(unittest.TestCase):
 
         # set teaser width higher than image width (776x232):
         api.portal.set_registry_record(
-            "plone.allowed_sizes", ['teaser 800:200'],
+            "plone.allowed_sizes",
+            ["teaser 800:200"],
         )
         cropedit = api.content.get_view("croppingeditor", self.img, request)
         cropedit()
@@ -129,7 +133,8 @@ class EditorTestCase(unittest.TestCase):
 
         # set teaser height higher than image height (776x232):
         api.portal.set_registry_record(
-            "plone.allowed_sizes", ['teaser 600:400'],
+            "plone.allowed_sizes",
+            ["teaser 600:400"],
         )
         cropedit = api.content.get_view("croppingeditor", self.img, request)
         cropedit()
