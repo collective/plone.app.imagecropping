@@ -1,0 +1,3 @@
+Fix recreation of `image_scale` catalog metadata and update hashkey after
+changing cropping information.
+[petschki, mrTango]
