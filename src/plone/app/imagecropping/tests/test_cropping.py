@@ -1,4 +1,5 @@
 from Acquisition import aq_parent
+from plone import api
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.app.imagecropping.tests import dummy_named_blob_jpg_image
@@ -110,6 +111,19 @@ class TestCroppingDX(unittest.TestCase):
         tag_thumb3 = thumb3.tag(scale="thumb")
 
         self.assertNotEqual(tag_thumb2, tag_thumb3)
+
+    def test_cropping_udates_image_scales_in_catalog(self):
+        view = self.img.restrictedTraverse("@@crop-image")
+        view._crop(fieldname="image", scale="thumb", box=(14, 14, 218, 218))
+        transaction.commit()  # needed in order to have a _p_mtime on objects
+        img_brain = api.content.find(UID=self.img.UID())[0]
+        view._crop(fieldname="image", scale="thumb", box=(14, 14, 100, 100))
+        transaction.commit()
+        img_brain_new = api.content.find(UID=self.img.UID())[0]
+        self.assertNotEqual(
+            img_brain.image_scales['image'][0]['scales']['thumb']['download'],
+            img_brain_new.image_scales['image'][0]['scales']['thumb']['download'],
+        )
 
     def test_image_formats(self):
         """make sure the scales have the same format as the original image"""
