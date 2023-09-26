@@ -9,7 +9,10 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <include package="Products.CMFCore" file="permissions.zcml" />
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
 
   <include package=".browser" />
   <include package=".upgrades" />
@@ -36,6 +39,7 @@
       />
 
   <subscriber handler=".subscribers.apply_crops_after_copy" />
+  <subscriber handler=".subscribers.reindex_after_crop_change" />
 
   <class class="plone.app.contenttypes.content.Image">
     <implements interface=".dx.IImageCroppingDX" />

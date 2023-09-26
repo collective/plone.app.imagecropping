@@ -102,7 +102,7 @@ class CroppingEditor(BrowserView):
         # lookup saved crop info
         storage = Storage(self.context)
         current_box = storage.read(fieldname, scale_id)
-        initial_box = self._initial_size(true_size, target_size)
+        initial_box = self._initial_size(true_size, target_size[:2])
 
         if current_box is None:
             current_box = initial_box
@@ -117,6 +117,10 @@ class CroppingEditor(BrowserView):
         # images target dimensions
         scale["target_width"] = target_size[0]
         scale["target_height"] = target_size[1]
+
+        if len(target_size) == 3:
+            # original height was scaled down
+            scale["target_height_orig"] = target_size[2]
 
         # initial selected crop
         scale["initial"] = {
@@ -158,6 +162,15 @@ class CroppingEditor(BrowserView):
         on the current content with the given fieldname and interface."""
         true_size = self._croputils.get_image_size(fieldname)
         for scale_id, target_size in self._scales(fieldname):
+            # scale down target height if too large
+            # in this case we calculate the height by the original ratio
+            if target_size[1] >= 65536:
+                target_size = (
+                    target_size[0],
+                    int(round(target_size[0] / true_size[0] * true_size[1])),
+                    # save original height and show info in editor
+                    target_size[1],
+                )
             yield self._scale_info(fieldname, scale_id, target_size, true_size)
 
     @property
