@@ -117,7 +117,7 @@ class EditorTestCase(unittest.TestCase):
         if check_assert:
             self.assertTrue(cropped_scale["can_scale"])
 
-        # set teaser width heigher than image width (776x232):
+        # set teaser width higher than image width (776x232):
         api.portal.set_registry_record(
             "plone.allowed_sizes", ['teaser 800:200'],
         )
@@ -127,7 +127,7 @@ class EditorTestCase(unittest.TestCase):
         if check_assert:
             self.assertFalse(cropped_scale["can_scale"])
 
-        # set teaser height heigher than image height (776x232):
+        # set teaser height higher than image height (776x232):
         api.portal.set_registry_record(
             "plone.allowed_sizes", ['teaser 600:400'],
         )
