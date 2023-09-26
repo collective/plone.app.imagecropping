@@ -1,4 +1,5 @@
 from Acquisition import aq_base
+from DateTime import DateTime
 from persistent.dict import PersistentDict
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.events import CroppingInfoChangedEvent
@@ -49,7 +50,7 @@ class Storage:
         context = aq_base(self.context)
         field = getattr(context, fieldname, None)
         if field is not None:
-            field._p_changed = True  # Force a new hash key
+            field._modified = DateTime().millis()  # Force a new hash key
 
         notify(CroppingInfoChangedEvent(self.context))
 
