@@ -1,4 +1,5 @@
 from plone.app.imagecropping import PAI_STORAGE_KEY
+from plone.app.imagecropping.interfaces import ICroppingInfoChangedEvent
 from plone.app.imagecropping.interfaces import IImageCroppingMarker
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from zope.annotation.interfaces import IAnnotations
@@ -21,3 +22,9 @@ def apply_crops_after_copy(context, event):
             if crop_key.startswith(fieldname):
                 scalename = crop_key[len(fieldname) + 1 :]
                 cropper._crop(fieldname, scalename, crops[crop_key])
+
+
+@adapter(IImageCroppingMarker, ICroppingInfoChangedEvent)
+def reindex_after_crop_change(context, event):
+    # reindex to recreate `image_scales` metadata in catalog
+    context.reindexObject()
