@@ -8,7 +8,9 @@
   <property name="behaviors"
             purge="false"
   >
-    <element value="plone.imagecropping" remove="true" />
+    <element remove="true"
+             value="plone.imagecropping"
+    />
   </property>
 
 </object>
