@@ -82,4 +82,25 @@
         run_deps="True"
         />
   </gs:upgradeSteps>
+
+  <gs:registerProfile
+      name="upgrade_2301_to_2302"
+      title="Upgrade policy GS profile to 2302"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="plone.base.interfaces.IMigratingPloneSiteRoot"
+      directory="profiles/2301_to_2302"
+      />
+
+  <gs:upgradeSteps
+      profile="plone.app.imagecropping:default"
+      source="2301"
+      destination="2302"
+      >
+    <gs:upgradeDepends
+        title="Activate behavior for Image types"
+        import_profile="plone.app.imagecropping.upgrades:upgrade_2301_to_2302"
+        run_deps="True"
+        />
+  </gs:upgradeSteps>
 </configure>
