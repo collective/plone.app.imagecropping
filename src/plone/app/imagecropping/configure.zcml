@@ -41,10 +41,6 @@
   <subscriber handler=".subscribers.apply_crops_after_copy" />
   <subscriber handler=".subscribers.reindex_after_crop_change" />
 
-  <class class="plone.app.contenttypes.content.Image">
-    <implements interface=".dx.IImageCroppingDX" />
-  </class>
-
   <!-- dexterity cropping adapter -->
   <adapter factory=".dx.CroppingUtilsDexterity" />
 
