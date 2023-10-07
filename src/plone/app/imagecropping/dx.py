@@ -36,6 +36,12 @@ class CroppingImageScalingFactory(DefaultImageScalingFactory):
         if self.box:
             # do crop stuff first
             data = self._crop(data, self.box)
+            if height >= 65536:
+                # special case for "flexible height" settings:
+                # we calculate the height with the box ratio
+                box_width = self.box[2] - self.box[0]
+                box_height = self.box[3] - self.box[1]
+                height = int(round(width / box_width * box_height))
         return super().create_scale(data, mode, height, width, **parameters)
 
     def __call__(
