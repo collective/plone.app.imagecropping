@@ -23,12 +23,9 @@ class Storage:
         # Call storage with actual time in milliseconds.
         # This always invalidates old scales
         scale_storage = AnnotationStorage(self.context, int(time.time()))
-        # holzhammermethode
-        uids = list(scale_storage.keys())
-        for uid in uids:
-            del scale_storage[uid]
+        scale_storage.clear()
 
-    def remove(self, fieldname, scale, surpress_event=False):
+    def remove(self, fieldname, scale, surpress_event=False, reindex=True):
         # remove info from annotation
         key = self._key(fieldname, scale)
         if key in list(self._storage.keys()):
@@ -37,13 +34,15 @@ class Storage:
         if not surpress_event:
             notify(CroppingInfoRemovedEvent(self.context))
             notify(Purge(self.context))
+        if reindex:
+            self.context.reindexObject()
 
     @property
     def _storage(self):
         return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY, PersistentDict())
 
     def store(self, fieldname, scale, box):
-        self.remove(fieldname, scale)
+        self.remove(fieldname, scale, reindex=False)
         key = self._key(fieldname, scale)
         self._storage[key] = box
 
