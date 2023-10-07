@@ -157,7 +157,6 @@ class EditorTestCase(unittest.TestCase):
         self.assertCountEqual(
             firedEvents,
             [
-                CroppingInfoRemovedEvent,
                 CroppingInfoChangedEvent,
             ],
         )
