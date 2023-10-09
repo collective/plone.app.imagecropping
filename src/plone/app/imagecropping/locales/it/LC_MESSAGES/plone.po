@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2016-03-29 18:17+0000\n"
+"POT-Creation-Date: 2023-10-09 12:38+0000\n"
 "PO-Revision-Date: 2013-03-22 13:10+0100\n"
 "Last-Translator: Peter Mathis <peter.mathis@kombinat.at>\n"
 "Language-Team: <office@kombinat.at>\n"
@@ -16,15 +16,11 @@ msgstr ""
 "Language: English\n"
 "X-Generator: Poedit 1.5.3\n"
 
-#: ../browser/settings.py:28
-msgid "Crop Editor Large Size"
-msgstr ""
-
-#: ../browser/settings.py:42
+#: ../browser/settings.py:27
 msgid "Enable to constrain croppable scales"
 msgstr ""
 
-#: ../browser/settings.py:43
+#: ../browser/settings.py:28
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
 msgstr ""
 
@@ -32,30 +28,22 @@ msgstr ""
 msgid "Image Cropping"
 msgstr "Ritaglio miniature"
 
-#: ../browser/settings.py:76
+#: ../browser/settings.py:64
 msgid "Image Cropping Settings"
 msgstr "Impostazioni ritaglio miniature"
 
-#: ../browser/settings.py:50
+#: ../browser/settings.py:37
 msgid "List of scales with crop support"
-msgstr ""
-
-#: ../browser/settings.py:35
-msgid "Minimum Crop Area Size"
 msgstr ""
 
 #: ../profiles/testing/types/dexterity_content_type_with_two_image_fields.xml
 msgid "None"
 msgstr ""
 
-#: ../browser/settings.py:51
+#: ../browser/settings.py:38
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
 msgstr ""
 
 #: ../profiles/testing/types/dexterity_content_type_with_two_image_fields.xml
 msgid "dexterity content type with two image fields"
-msgstr ""
-
-#: ../browser/settings.py:29
-msgid "width:height"
 msgstr ""

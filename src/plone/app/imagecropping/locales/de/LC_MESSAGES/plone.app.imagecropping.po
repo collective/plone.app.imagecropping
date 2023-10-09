@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.imagecropping\n"
-"POT-Creation-Date: 2016-03-29 18:17+0000\n"
+"POT-Creation-Date: 2023-10-09 12:38+0000\n"
 "PO-Revision-Date: 2014-04-07 16:39+0200\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -17,72 +17,80 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Language: German\n"
 
-#: ../browser/settings.py:28
-msgid "Crop Editor Large Size"
-msgstr "Bildgröße für Vorschau im Jcrop Editor (Jcrop: boxWidth: boxHeight)"
+#: ../browser/editor.pt:90
+msgid "${scale/target_width}&times;${python:\"max\" if scale.get('target_height_orig') else scale['target_height']}:"
+msgstr ""
+
+#: ../browser/editor.pt:114
+msgid "${scale/target_width}&times;${scale/target_height}:"
+msgstr ""
 
 #: ../profiles/default/actions.xml
 msgid "Cropping"
 msgstr "Zuschneiden"
 
-#: ../configure.zcml:50
+#: ../configure.zcml:56
 msgid "Enable Image Cropping"
 msgstr "Image Cropping anschalten"
 
-#: ../browser/settings.py:42
+#: ../browser/settings.py:27
 msgid "Enable to constrain croppable scales"
 msgstr "Zuschneidbare Bildgrößen einschränken?"
 
-#: ../browser/settings.py:43
+#: ../browser/settings.py:28
 msgid "Enable to reduce the scales shown for cropping in the list of scales with crop support."
 msgstr "Aktivieren, wenn nicht alle Bildgrößen zuschneidbar sein sollen. Die Auswahl der eingeschränkten Bildgrößen folgt weiter unten."
 
-#: ../browser/editor.pt:10
+#: ../browser/editor.pt:13
 msgid "Image Cropping Editor"
 msgstr "Zuschnitts Editor"
 
-#: ../browser/settings.py:76
+#: ../browser/settings.py:64
 msgid "Image Cropping Settings"
 msgstr "Cropping-Editor Einstellungen"
 
-#: ../configure.zcml:22
+#: ../configure.zcml:26
 msgid "Image Cropping Support"
 msgstr "Unterstützung für Bildzuschnitt"
 
-#: ../configure.zcml:30
+#: ../configure.zcml:34
 msgid "Image Cropping Uninstallation"
 msgstr "Image Cropping Deinstallation"
 
-#: ../configure.zcml:22
+#: ../configure.zcml:26
 msgid "Installs the plone.app.imagecropping package"
 msgstr "Installiert das plone.app.imagecropping Paket"
 
-#: ../browser/editor.pt:19
-#: ../browser/settings.py:50
+#: ../browser/editor.pt:22
+#: ../browser/settings.py:37
 msgid "List of scales with crop support"
 msgstr "Bildgrößen für Cropping Editor"
 
-#: ../browser/settings.py:35
-msgid "Minimum Crop Area Size"
-msgstr "Minimal erlaubter Ausschnitt"
+#: ../browser/editor.pt:197
+msgid "Preview"
+msgstr ""
 
-#: ../configure.zcml:50
+#: ../configure.zcml:56
 msgid "Provides imagecropping functionality for DX contenttypes"
 msgstr "Stellt den Bild-Zuschnitts Editor für Dexterity Inhaltstypen bereit."
 
-#: ../browser/settings.py:51
+#: ../browser/editor.pt:64
+msgid "Save all changed croppings."
+msgstr ""
+
+#: ../browser/settings.py:38
 msgid "Select the scales with cropping support enabled. Only active if enabled with checkbox."
 msgstr "Wählen Sie die Bildgrößen, welche zuschneidbar sein sollen. Nur aktiv, wenn die Einschränkung aktiviert ist."
 
-#: ../browser/editor.pt:91
+#: ../browser/editor.pt:168
 msgid "Selected"
 msgstr "Ausgewählt"
 
-#: ../testing.zcml:16
+#: ../testing.zcml:17
 msgid "Steps to ease tests of plone.app.imagecropping"
 msgstr ""
 
-#: ../configure.zcml:30
+#: ../configure.zcml:34
 msgid "Uninstalls resources from the plone.app.imagecropping package"
 msgstr "Deinstallieren des plone.app.imagecropping Pakets"
 
@@ -91,100 +99,112 @@ msgid "View the image cropping editor for this object"
 msgstr "Zuschnitts Editor für dieses Bild laden."
 
 #. Default: "Remove"
-#: ../browser/editor.pt:104
+#: ../browser/editor.pt:182
 msgid "button_remove"
 msgstr "Entfernen"
 
+#. Default: "Delete the manual chosen cropping area and auto scale on the server side."
+#: ../browser/editor.pt:182
+msgid "button_remove_description"
+msgstr ""
+
 #. Default: "Reset"
-#: ../browser/editor.pt:108
+#: ../browser/editor.pt:187
 msgid "button_reset"
 msgstr "Zurücksetzen"
 
+#. Default: "Set to initial value of ${scale/current/w}×${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}"
+#: ../browser/editor.pt:187
+msgid "button_reset_description"
+msgstr ""
+
 #. Default: "Save"
-#: ../browser/editor.pt:103
+#: ../browser/editor.pt:180
 #, fuzzy
 msgid "button_save"
 msgstr "Speichere"
 
 #. Default: "Save all"
-#: ../browser/editor.pt:39
+#: ../browser/editor.pt:64
 msgid "button_save_all"
 msgstr "Alles speichern"
 
+#. Default: "Store the chosen cropping area permanently on the server and scale area down to ${scale/target_width}px×${scale/target_height}px"
+#: ../browser/editor.pt:175
+msgid "button_save_description"
+msgstr ""
+
 #. Default: "Target dimensions are larger than original image."
-#: ../browser/editor.pt:73
+#: ../browser/editor.pt:120
 msgid "description_not_croppable"
 msgstr "Die Ziel-Größe ist größer als das Original-Bild."
 
 #. Default: "Instructions"
-#: ../browser/editor.pt:143
+#: ../browser/editor.pt:209
 msgid "instructions_heading"
 msgstr "Anleitung"
 
 #. Default: "Define cropping areas for each scale of the available image-fields."
-#: ../browser/editor.pt:144
+#: ../browser/editor.pt:210
 msgid "instructions_p1"
 msgstr "Lege pro Bild-Feld und dort pro möglicher Skalierung einen Bereich für den Zuschnitt fest."
 
 #. Default: "First select which image to crop: If there is more than one image stored for your type, use the tabs at the top to select the image. For each image there are one or more predefined scales. Select a scale to crop at the side menu."
-#: ../browser/editor.pt:147
+#: ../browser/editor.pt:215
 msgid "instructions_p2"
 msgstr "Als erstes wähle das Bild aus: Wenn mehrere Bilder pro Inhaltstyp möglich sind, verwende die Reiter oben um das Bild auszuwählen. Für jedes Bild gibt es einen oder mehrere vorgegebene Größen bzw. Skalierungen. Wähle eine Skalierung aus dem Seitenmenu."
 
-#. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediatly in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
-#: ../browser/editor.pt:153
+#. Default: "In order to crop an image drag the frame on the main image until you found your cropping area. A preview is shown immediately in the side menu. If the side menu size is smaller than the target scale, the preview is scaled down to fit. Use the Save button to store you scale permanently on the server. The Reset button restores the state as you loaded the page, either in uncropped state or - if there was already an crop - to the previous saved crop."
+#: ../browser/editor.pt:221
+#, fuzzy
 msgid "instructions_p3"
 msgstr "Um das Bild zuzuschneiden, ziehe den Rahmen in dem Haupt-Bild bis der gewünschte Ausschnitt gefunden ist. Eine Vorschau ist sofort im Seitenmenu zu sehen. Wenn das Seitenmenu schmaler als ist als die Zielgröße, dann wird die Vorschau herunterskaliert. Benutze die Schaltfläche Speichern um das Bild so dauerhaft am Server zu speichern. Mit der Zurücksetzen Schaltfläche wird der Zustand wie beim Laden der Seite wiederhergestellt: entweder nicht zugeschnitten oder - wenn bereits ein Zuschnitt gespeichert - war zu dieser Zuschnitts-Auswahl."
 
 #. Default: "This cropping operation is non-destructive, which means your original image data doesn't get lost when cropping a scale. By removing a cropping area, the scale gets back to its default functionality: resize, no crop."
-#: ../browser/editor.pt:159
+#: ../browser/editor.pt:227
 msgid "instructions_p4"
 msgstr "Die Zuschnitte arbeiten zerstörungsfrei. D.h. das Original Bild geht niemals verloren, wenn ein Zuschnitt angelegt wird. Wird ein Zuschnitt entfernt, so werden wieder die Standardeinstellungen (skalieren ohne Zuschnitt) verwendet."
 
 #. Default: "changed"
-#: ../browser/editor.pt:58
+#: ../browser/editor.pt:99
 msgid "label_changed"
 msgstr "verändert"
 
 #. Default: "cropped"
-#: ../browser/editor.pt:56
+#: ../browser/editor.pt:93
 msgid "label_cropped"
 msgstr "zugeschnitten"
 
 #. Default: "not croppable"
-#: ../browser/editor.pt:72
+#: ../browser/editor.pt:116
 msgid "label_not_croppable"
 msgstr "kein Zuschnitt möglich"
 
 #. Default: "saving..."
-#: ../browser/editor.pt:59
+#: ../browser/editor.pt:102
 #, fuzzy
 msgid "label_saving"
 msgstr "speichere..."
 
 #. Default: "uncropped"
-#: ../browser/editor.pt:57
+#: ../browser/editor.pt:96
 msgid "label_uncropped"
 msgstr "nicht zugeschnitten"
 
 #. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
-#: ../browser/editor.pt:19
+#: ../browser/editor.pt:22
 msgid "noscales_message"
 msgstr "Derzeit sind keine zuschneidbaren Bildgrößen definiert. Sie können diese unter ${link} hinzufügen."
 
-#: ../browser/editor.pt:92
+#: ../browser/editor.pt:170
 msgid "offset"
 msgstr "Versatz"
 
 #. Default: "Original ${size}"
-#: ../browser/editor.pt:86
+#: ../browser/editor.pt:164
 msgid "original_size"
 msgstr "Original ${size}"
 
-#: ../testing.zcml:16
+#: ../testing.zcml:17
 msgid "plone.app.imagecropping tests"
 msgstr ""
-
-#: ../browser/settings.py:29
-msgid "width:height"
-msgstr "Breite (in px) mal Höhe (in px)"
