@@ -192,6 +192,11 @@ msgstr "non-découpée"
 msgid "noscales_message"
 msgstr "Il n'y a pas d'échelles pour la découpe. Veuillez en ajouter dans la ${link} via le panneau de configuration."
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr "Il n'y a pas d'échelles pour la découpe."
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr "décalage"

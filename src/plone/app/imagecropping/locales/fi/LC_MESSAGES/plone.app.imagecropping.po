@@ -190,6 +190,11 @@ msgstr ""
 msgid "noscales_message"
 msgstr "Sivustolla ei ole määritetty kuvakokoja. Määritä kuvakoot osoitteessa ${link}."
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr "Sivustolla ei ole määritetty kuvakokoja."
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr ""
