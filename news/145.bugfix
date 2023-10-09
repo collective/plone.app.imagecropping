@@ -1,3 +1,0 @@
-Fix `plone.imagecropping` behavior registration with a GenericSetup profile
-and remove `zcml` Interface/Class registration.
-[petschki]

@@ -8,6 +8,26 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.2 (2023-10-09)
+------------------
+
+Bug fixes:
+
+
+- Packaging updates: fix old imports and update resources.
+  [petschki] (#143)
+- Fix recreation of `image_scale` catalog metadata and update hashkey after
+  changing cropping information.
+  [petschki, mrTango] (#144)
+- Fix `plone.imagecropping` behavior registration with a GenericSetup profile
+  and remove `zcml` Interface/Class registration.
+  [petschki] (#145)
+- Update catalog metadata when removing cropping info.
+  [petschki] (#146)
+- Upgrade dependencies.
+  [petschki] (#148)
+
+
 3.0.1 (2023-07-07)
 ------------------
 
