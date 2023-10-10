@@ -195,6 +195,11 @@ msgstr ""
 msgid "noscales_message"
 msgstr "Er zijn geen schalen om bij te snijden. Voeg ze toe aan  de ${link} in het controlepaneel."
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr "Er zijn geen schalen om bij te snijden."
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr ""

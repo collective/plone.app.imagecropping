@@ -192,6 +192,11 @@ msgstr ""
 msgid "noscales_message"
 msgstr ""
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr ""
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr ""

@@ -15,23 +15,34 @@
       >Image Cropping Editor</h1>
 
       <tal:noscales condition="python:not view.show_cropping">
-        <p class="documentDescription"
-           i18n:translate="noscales_message"
-        >
-      There are no scales to crop. Make sure to add them to the
-          <a href="#"
-             tal:define="
-               portal context/@@plone_portal_state/portal_url;
-             "
-             tal:attributes="
-               href string:$portal/@@imagecropping-settings;
-             "
-             i18n:name="link"
-             i18n:translate=""
+        <tal:def define="
+                   can_access_settings python:checkPermission('Manage portal', context);
+                 ">
+          <div class="alert alert-warning"
+               tal:condition="can_access_settings"
+               i18n:translate="noscales_message"
           >
-            List of scales with crop support</a>
+      There are no scales to crop. Make sure to add them to the
+            <a href="#"
+               tal:define="
+                 portal context/@@plone_portal_state/portal_url;
+               "
+               tal:attributes="
+                 href string:$portal/@@imagecropping-settings;
+               "
+               i18n:name="link"
+               i18n:translate=""
+            >
+              List of scales with crop support</a>
       in the controlpanel.
-        </p>
+          </div>
+          <div class="alert alert-info"
+               tal:condition="not: can_access_settings"
+               i18n:translate="noscales_short_message"
+          >
+      There are no scales to crop.
+          </div>
+        </tal:def>
       </tal:noscales>
 
       <tal:scales condition="python:view.show_cropping">

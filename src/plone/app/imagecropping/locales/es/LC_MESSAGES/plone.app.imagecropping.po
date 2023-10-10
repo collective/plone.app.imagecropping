@@ -194,6 +194,11 @@ msgstr "sin recortar"
 msgid "noscales_message"
 msgstr "No hay escalas para recortar. Asegúrate de añadirlas en ${link} en el panel de control."
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr "No hay escalas para recortar."
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr ""

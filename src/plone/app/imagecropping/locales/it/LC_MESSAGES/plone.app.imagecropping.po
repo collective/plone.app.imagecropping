@@ -193,6 +193,11 @@ msgstr "non ritagliata"
 msgid "noscales_message"
 msgstr "Non ci sono miniature da ritagliare. Controlla di averne aggiunte mediante il ${link} nel pannello di controllo."
 
+#. Default: "There are no scales to crop."
+#: ../browser/editor.pt:39
+msgid "noscales_short_message"
+msgstr "Non ci sono miniature da ritagliare."
+
 #: ../browser/editor.pt:170
 msgid "offset"
 msgstr ""
