@@ -18,9 +18,9 @@
         <tal:def define="
                    can_access_settings python:checkPermission('Manage portal', context);
                  ">
-          <p class="documentDescription"
-             tal:condition="can_access_settings"
-             i18n:translate="noscales_message"
+          <div class="alert alert-warning"
+               tal:condition="can_access_settings"
+               i18n:translate="noscales_message"
           >
       There are no scales to crop. Make sure to add them to the
             <a href="#"
@@ -35,13 +35,13 @@
             >
               List of scales with crop support</a>
       in the controlpanel.
-          </p>
-          <p class="documentDescription"
-             tal:condition="not: can_access_settings"
-             i18n:translate="noscales_short_message"
+          </div>
+          <div class="alert alert-info"
+               tal:condition="not: can_access_settings"
+               i18n:translate="noscales_short_message"
           >
       There are no scales to crop.
-          </p>
+          </div>
         </tal:def>
       </tal:noscales>
 
