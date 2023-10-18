@@ -181,25 +181,35 @@ export default Base.extend({
     limit_minimum_cropping_size: function () {
         var current = this.cropper,
             newbox = {};
+        const relativeWidth =
+          (current.canvasData.width /
+            current.canvasData.naturalWidth) *
+          this.options.target_width;
+        const relativeHeight =
+          (current.canvasData.height /
+            current.canvasData.naturalHeight) *
+          this.options.target_height;
+
         if (
-            current.width < this.options.target_width ||
-            current.height < this.options.target_height
+            current.cropBoxData.width <= Math.round(relativeWidth) ||
+            current.cropBoxData.height <= Math.round(relativeHeight)
         ) {
             newbox.width = this.options.target_width;
             newbox.height = this.options.target_height;
-            if (current.x + this.options.target_width > this.options.true_width) {
+            const data = current.getData()
+            if (data.x + this.options.target_width > this.options.true_width) {
                 newbox.x = this.options.true_width - this.options.target_width;
             } else {
-                newbox.x = current.x;
+                newbox.x = data.x;
             }
-            if (current.y + this.options.target_height > this.options.true_height) {
+            if (data.y + this.options.target_height > this.options.true_height) {
                 newbox.y = this.options.true_height - this.options.target_height;
             } else {
-                newbox.y = current.y;
+                newbox.y = data.y;
             }
-            newbox.rotate = current.rotate;
-            newbox.scaleX = current.scaleX;
-            newbox.scaleY = current.scaleY;
+            newbox.rotate = data.rotate;
+            newbox.scaleX = data.scaleX;
+            newbox.scaleY = data.scaleY;
             this.while_reset = true;
             this.cropper.setData(newbox);
             this.while_reset = false;

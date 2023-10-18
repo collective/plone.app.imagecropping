@@ -12,3 +12,4 @@ include *.js
 include *.json
 include *.lock
 include *.txt
+include *.yaml
