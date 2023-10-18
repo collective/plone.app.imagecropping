@@ -190,16 +190,16 @@
                             >
                               <span i18n:translate="button_save">Save</span>
                               ${python:view.field_label(fieldname)} ${python:scale['title']}</button>
-                            <button class="btn btn-danger remove standalone"
-                                    title="Delete the manual chosen cropping area and auto scale on the server side."
-                                    i18n:attributes="title button_remove_description"
-                                    i18n:translate="button_remove"
-                            >Remove</button>
                             <button class="btn btn-warning reset standalone"
                                     title="Set to initial value of ${scale/current/w}&times;${scale/current/h}. offset ${scale/current/x}, ${scale/current/y}"
                                     i18n:attributes="title button_reset_description"
                                     i18n:translate="button_reset"
                             >Reset</button>
+                            <button class="btn btn-danger remove standalone"
+                                    title="Delete the manual chosen cropping area and auto scale on the server side."
+                                    i18n:attributes="title button_remove_description"
+                                    i18n:translate="button_remove"
+                            >Remove</button>
                           </div>
                         </div>
                       </div>

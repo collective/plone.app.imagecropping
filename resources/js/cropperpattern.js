@@ -87,7 +87,7 @@ export default Base.extend({
     reset: function () {
         log.info("RESET");
         this.while_reset = true;
-        this.cropper.setData(this.initial_data);
+        this.cropper.setData(this.original_data);
         this.visualize_selected_area();
         this.while_reset = false;
         this.update_badges();
