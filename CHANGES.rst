@@ -8,6 +8,20 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.3 (2023-10-25)
+------------------
+
+Bug fixes:
+
+
+- Fix misleading message for non-administrators when no scales are available
+  [laulaz] (#141)
+- Fix minimal crop size implementation, to support current cropperjs version.
+  [maethu] (#150)
+- Reset to last saved state when hitting the reset button.
+  [petschki] (#153)
+
+
 3.0.2 (2023-10-09)
 ------------------
 
