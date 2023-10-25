@@ -25,13 +25,13 @@ class Storage:
         scale_storage = AnnotationStorage(self.context, int(time.time()))
         scale_storage.clear()
 
-    def remove(self, fieldname, scale, surpress_event=False):
+    def remove(self, fieldname, scale, supress_event=False):
         # remove info from annotation
         key = self._key(fieldname, scale)
         if key in list(self._storage.keys()):
             del self._storage[key]
         self._invalidate_scale(fieldname, scale)
-        if not surpress_event:
+        if not supress_event:
             notify(CroppingInfoRemovedEvent(self.context))
             notify(Purge(self.context))
             self.context.reindexObject()
@@ -41,7 +41,7 @@ class Storage:
         return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY, PersistentDict())
 
     def store(self, fieldname, scale, box):
-        self.remove(fieldname, scale, surpress_event=True)
+        self.remove(fieldname, scale, supress_event=True)
         key = self._key(fieldname, scale)
         self._storage[key] = box
 
