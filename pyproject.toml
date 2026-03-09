@@ -3,6 +3,19 @@
 # See the inline comments on how to expand/tweak this configuration file
 [build-system]
 requires = ["setuptools>=68.2,<80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = ["*.pt", "*.xml", "*.zcml", "*.txt", "*.js", "*.css", "*.gif", "*.png", "*.jpg", "*.jpeg", "*.po", "*.pot", "*.mo"]
 
 [tool.towncrier]
 directory = "news/"
@@ -158,19 +171,12 @@ ignore = [
 #  """
 ##
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/plone"]
-
-[tool.ruff.lint.isort]
-force-single-line = true
-lines-after-imports = 2
-
 [project]
 name = "plone.app.imagecropping"
 version = "3.0.4.dev0"
 description = "Crops Images in Plone manually using cropper JS library"
 readme = "README.rst"
-license = "GPL version 2"
+license = {text = "GPL version 2"}
 requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
