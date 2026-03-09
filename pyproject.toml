@@ -158,6 +158,64 @@ ignore = [
 #  """
 ##
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/plone"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-after-imports = 2
+
+[project]
+name = "plone.app.imagecropping"
+version = "3.0.4.dev0"
+description = "Crops Images in Plone manually using cropper JS library"
+readme = "README.rst"
+license = "GPL version 2"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Plone",
+    "Framework :: Plone :: Addon",
+    "Framework :: Plone :: 6.1",
+    "Framework :: Plone :: 6.2",
+    "Operating System :: OS Independent",
+    "Programming Language :: JavaScript",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["plone image crop"]
+authors = [{name = "Plone Collective", email = "plone-developers@lists.sourceforge.net"}]
+dependencies = [
+    "Pillow",
+    "plone.app.dexterity",
+    "plone.app.registry",
+    "plone.base",
+    "plone.behavior",
+    "plone.dexterity",
+    "plone.namedfile",
+    "plone.registry",
+    "plone.scale",
+    "plone.z3cform",
+    "Products.CMFCore",
+    "Products.GenericSetup",
+    "z3c.caching",
+    "z3c.form",
+]
+
+[project.optional-dependencies]
+test = ["plone.api", "plone.app.contenttypes", "plone.app.testing", "plone.app.robotframework[debug]", "plone.browserlayer", "plone.testing", "robotsuite"]
+
+[project.urls]
+Homepage = "https://github.com/collective/plone.app.imagecropping"
+
+[project.entry-points."z3c.autoinclude.plugin"]
+target = "plone"
 
 ##
 # Add extra configuration options in .meta.toml:
