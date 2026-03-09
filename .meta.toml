@@ -7,9 +7,65 @@ commit-id = "2.4.1.dev0"
 
 [pyproject]
 codespell_skip = "*.js,*.min.js,*.min.js.map,*.css.map,yarn.lock,robot_*,test_*"
-dependencies_mappings = [
-    "Pillow = ['PIL']",
-    ]
+dependencies_mappings = ["Pillow = ['PIL']"]
+
+extra_lines = """
+[tool.hatch.build.targets.wheel]
+packages = ["src/plone"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-after-imports = 2
+
+[project]
+name = "plone.app.imagecropping"
+version = "3.0.4.dev0"
+description = "Crops Images in Plone manually using cropper JS library"
+readme = "README.rst"
+license = "GPL version 2"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Plone",
+    "Framework :: Plone :: Addon",
+    "Framework :: Plone :: 6.0",
+    "Operating System :: OS Independent",
+    "Programming Language :: JavaScript",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["plone image crop"]
+authors = [{name = "Plone Collective", email = "plone-developers@lists.sourceforge.net"}]
+dependencies = [
+    "Pillow",
+    "plone.app.dexterity",
+    "plone.app.registry",
+    "plone.base",
+    "plone.behavior",
+    "plone.dexterity",
+    "plone.namedfile>=6.0.0",
+    "plone.registry",
+    "plone.scale",
+    "plone.z3cform",
+    "Products.CMFCore",
+    "Products.GenericSetup",
+    "z3c.caching",
+    "z3c.form",
+]
+
+[project.optional-dependencies]
+test = ["plone.api", "plone.app.contenttypes", "plone.app.testing", "plone.app.robotframework[debug]", "plone.browserlayer", "plone.testing", "robotsuite"]
+
+[project.urls]
+Homepage = "https://github.com/collective/plone.app.imagecropping"
+
+[project.entry-points."z3c.autoinclude.plugin"]
+target = "plone"
+"""
 
 [gitignore]
 extra_lines = """
@@ -19,8 +75,4 @@ forest.*
 """
 
 [github]
-jobs = [
-    "qa",
-    "dependencies",
-    "release_ready",
-    ]
+jobs = ["qa", "dependencies", "release_ready"]
