@@ -1,6 +1,6 @@
 from Acquisition import aq_base
 from DateTime import DateTime
-from persistent.dict import PersistentDict
+from persistent.mapping import PersistentMapping
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.events import CroppingInfoChangedEvent
 from plone.app.imagecropping.events import CroppingInfoRemovedEvent
@@ -38,7 +38,9 @@ class Storage:
 
     @property
     def _storage(self):
-        return IAnnotations(self.context).setdefault(PAI_STORAGE_KEY, PersistentDict())
+        return IAnnotations(self.context).setdefault(
+            PAI_STORAGE_KEY, PersistentMapping()
+        )
 
     def store(self, fieldname, scale, box):
         self.remove(fieldname, scale, supress_event=True)

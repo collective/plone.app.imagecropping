@@ -1,11 +1,10 @@
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version
 from zope.i18nmessageid.message import MessageFactory
 
-import pkg_resources
-
-
 try:
-    pkg_resources.get_distribution("plone.namedfile")
-except pkg_resources.DistributionNotFound:
+    version("plone.namedfile")
+except PackageNotFoundError:
     HAS_NAMEDFILE = False
 else:
     HAS_NAMEDFILE = True
