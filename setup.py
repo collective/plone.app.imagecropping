@@ -63,7 +63,7 @@ setup(
         "zope.lifecycleevent",
         "zope.publisher",
         "zope.schema",
-        "Zope"
+        "Zope",
     ],
     extras_require={
         "test": [
