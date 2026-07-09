@@ -7,7 +7,7 @@ from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.app.imagecropping.tests import dummy_named_blob_png_image
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
-from plone.testing.z2 import Browser
+from plone.testing.zope import Browser
 from zope.component import getGlobalSiteManager
 
 import transaction
