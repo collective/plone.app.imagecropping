@@ -25,12 +25,6 @@ Internal:
   [plone devs]
 
 
-4.0.0 (unreleased)
-------------------
-
-- Nothing changed yet.
-
-
 3.0.3 (2023-10-25)
 ------------------
 
