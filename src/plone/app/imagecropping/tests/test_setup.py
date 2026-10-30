@@ -1,4 +1,5 @@
 """Setup tests for this package."""
+
 from plone import api
 from plone.app.imagecropping.testing import IMAGECROPPING_FUNCTIONAL
 from plone.base.utils import get_installer

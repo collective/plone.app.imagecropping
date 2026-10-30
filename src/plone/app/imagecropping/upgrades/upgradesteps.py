@@ -8,7 +8,6 @@ from zope.component import queryUtility
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 PROFILE_ID = f"profile-{PRODUCT_NAME:s}:default"
 
