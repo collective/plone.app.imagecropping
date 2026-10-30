@@ -1,8 +1,6 @@
-from zope.i18nmessageid.message import MessageFactory
-
-from importlib.metadata import PackageNotFoundError
 from importlib.metadata import distribution
-
+from importlib.metadata import PackageNotFoundError
+from zope.i18nmessageid.message import MessageFactory
 
 try:
     distribution("plone.namedfile")
