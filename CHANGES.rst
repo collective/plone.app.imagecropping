@@ -8,7 +8,7 @@ Changelog
 
 .. towncrier release notes start
 
-3.0.4 (unreleased)
+4.0.0 (unreleased)
 ------------------
 
 - Nothing changed yet.

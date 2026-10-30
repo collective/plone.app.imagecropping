@@ -1,11 +1,12 @@
 from zope.i18nmessageid.message import MessageFactory
 
-import pkg_resources
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import distribution
 
 
 try:
-    pkg_resources.get_distribution("plone.namedfile")
-except pkg_resources.DistributionNotFound:
+    distribution("plone.namedfile")
+except PackageNotFoundError:
     HAS_NAMEDFILE = False
 else:
     HAS_NAMEDFILE = True
