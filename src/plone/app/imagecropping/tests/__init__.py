@@ -3,7 +3,6 @@ from os.path import dirname
 from PIL import Image
 from plone.namedfile.file import NamedBlobImage
 
-
 TEST_IMAGE_FILE = "/".join([dirname(__file__), "plone-logo.png"])
 
 
