@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+4.0.1 (2026-11-19)
+------------------
+
+Internal:
+
+
+- Remove a deprecation warning.
+  @ale-rt
+
+
 4.0.0 (2026-10-30)
 ------------------
 
